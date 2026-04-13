@@ -201,21 +201,24 @@ def main() -> int:
 
     # index.json — cheap change-detection manifest.
     #
-    # Consumers with a previously-synced state can avoid even fetching
-    # this index: call `GET /repos/<owner>/<this-repo>/commits/<branch>`
-    # first to get the current HEAD SHA, compare to the last-synced SHA,
-    # and if different call `GET /compare/<last>...<head>` for a
-    # file-level diff limited to metadata/. See README §Delta sync.
-    repo_slug = os.environ.get("GITHUB_REPOSITORY", "")
+    # `generated_sha` captures the commit SHA of the workflow run that
+    # produced this index. Consumers use it as a Tier-1 early-exit
+    # (stored value == current value → nothing changed, one HTTP request
+    # total). Sourced from the GH Action's $GITHUB_SHA so the check
+    # never has to hit api.github.com — important because GitHub's REST
+    # API is IPv4-only and many IPv6-first hosts can't reach it.
+    repo_slug  = os.environ.get("GITHUB_REPOSITORY", "")
+    generated_sha = os.environ.get("GITHUB_SHA", "")
     index_doc = {
-        "schema":       "vyges-ip-catalog/index-v1",
-        "generated_at": now,
-        "repo":         repo_slug,
-        "org":          args.org,
-        "repo_count":   len(repos),
+        "schema":        "vyges-ip-catalog/index-v1",
+        "generated_at":  now,
+        "generated_sha": generated_sha,
+        "repo":          repo_slug,
+        "org":           args.org,
+        "repo_count":    len(repos),
         "with_metadata":    len(have_metadata),
         "without_metadata": len(no_metadata),
-        "ips":          index_entries,
+        "ips":           index_entries,
     }
     index_text = json.dumps(index_doc, indent=2) + "\n"
     index_changed = write_if_changed(out / "index.json", index_text)
