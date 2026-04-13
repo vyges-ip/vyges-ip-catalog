@@ -46,8 +46,9 @@ jobs:
         run: |
           git config user.name  'vyges-ip-catalog-bot'
           git config user.email 'noreply@vyges.com'
-          if [[ -n "$(git status --porcelain metadata catalog.json SUMMARY.md scores.json SCORES.md)" ]]; then
-            git add metadata catalog.json SUMMARY.md scores.json SCORES.md
+          TRACKED="metadata index.json SUMMARY.md scores.json SCORES.md"
+          if [[ -n "$(git status --porcelain $TRACKED)" ]]; then
+            git add $TRACKED
             git commit -m "sync: refresh metadata + scores $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             git push
           else
