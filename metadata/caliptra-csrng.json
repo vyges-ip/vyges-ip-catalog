@@ -1,0 +1,236 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-csrng",
+  "version": "0.1.0",
+  "description": "CTR_DRBG (AES-256) cryptographically secure random number generator per NIST SP 800-90A. Supports multiple independent DRBG instances with Instantiate, Reseed, Generate, Update, and Uninstantiate commands. 256-bit security strength, 384-bit seed, 128-bit output blocks. AHB-Lite slave interface. Extracted from CHIPS Alliance Caliptra Root of Trust.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T20:52:56Z",
+  "updated": "2026-03-27T20:52:56Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "ip_path": "src/csrng",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "ahb",
+      "width": 32,
+      "description": "AHB-Lite slave. 32/64-bit data configurable, 32-bit address."
+    },
+    {
+      "type": "entropy",
+      "direction": "input",
+      "protocol": "entropy_src_hw_if",
+      "port": "entropy_src",
+      "description": "Hardware entropy source interface for seeding DRBG."
+    },
+    {
+      "type": "application",
+      "direction": "both",
+      "protocol": "csrng_req/rsp",
+      "port": "csrng_cmd",
+      "description": "Application command/response interface. NHwApps hardware ports (default 2) plus 1 software port."
+    },
+    {
+      "type": "control",
+      "direction": "both",
+      "protocol": "cs_aes_halt",
+      "port": "cs_aes_halt",
+      "description": "AES cipher coordination halt signaling."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "port": "intr",
+      "width": 4,
+      "description": "4 interrupts: cmd_req_done, entropy_req, hw_inst_exc, fatal_err."
+    },
+    {
+      "type": "alert",
+      "direction": "output",
+      "port": "alert_tx_o",
+      "width": 2,
+      "description": "Recoverable and fatal alerts."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "port": "clk_i",
+      "description": "System clock."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "port": "rst_ni",
+      "polarity": "active_low",
+      "description": "Asynchronous active-low reset."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "SBoxImpl",
+      "type": "enum",
+      "default": "SBoxImplCanright",
+      "description": "AES S-Box implementation variant."
+    },
+    {
+      "name": "NHwApps",
+      "type": "int",
+      "default": 2,
+      "description": "Number of hardware application interfaces."
+    },
+    {
+      "name": "AHBDataWidth",
+      "type": "int",
+      "default": 32,
+      "description": "AHB data bus width (32 or 64)."
+    }
+  ],
+  "performance": {
+    "security_strength": 256,
+    "key_length": 256,
+    "block_length": 128,
+    "seed_length": 384,
+    "output_width": 128,
+    "drbg_algorithm": "CTR_DRBG (AES-256, NIST SP 800-90A)",
+    "commands": [
+      "Instantiate",
+      "Reseed",
+      "Generate",
+      "Update",
+      "Uninstantiate"
+    ]
+  },
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "CTR_DRBG per NIST SP 800-90A using AES-256 in ECB mode",
+      "256-bit security strength, 384-bit seed, 128-bit output blocks",
+      "Multiple independent DRBG instances (NHwApps + 1 software)",
+      "Per-instance state database with reseed counters",
+      "Main state machine with 15 states for command sequencing",
+      "AES block cipher core for key stream generation",
+      "Hardware entropy source interface for automatic seeding",
+      "Configurable reseed interval",
+      "OTP-controlled software application read access",
+      "Lifecycle debug enable gating",
+      "Sparse FSM encoding for fault resistance",
+      "Counter-based integrity checks"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A",
+      "GF22",
+      "TSMC"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado",
+      "Quartus"
+    ],
+    "devices": [
+      "Artix-7",
+      "Ultrascale+"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "caliptra-prim",
+      "type": "library",
+      "description": "Primitives: FIFOs, counters, FSM, alert generation"
+    },
+    {
+      "name": "caliptra-aes",
+      "type": "core",
+      "description": "AES cipher core for block encryption"
+    },
+    {
+      "name": "caliptra-entropy-src",
+      "type": "integration",
+      "description": "Entropy source interface"
+    },
+    {
+      "name": "lc_ctrl",
+      "type": "integration",
+      "description": "Lifecycle controller"
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "systemverilog"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl/tree/main/src/csrng",
+    "caliptra_spec": "https://chipsalliance.github.io/Caliptra/",
+    "standard": "NIST SP 800-90A (CTR_DRBG)"
+  },
+  "artifacts": {
+    "total_rtl_lines": 7884
+  },
+  "categories": {
+    "primary": "security",
+    "secondary": [
+      "crypto",
+      "rng"
+    ],
+    "tags": [
+      "csrng",
+      "ctr-drbg",
+      "aes256",
+      "caliptra",
+      "root-of-trust",
+      "nist-sp800-90a",
+      "random",
+      "ahb",
+      "chips-alliance"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 1,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "manual (gold-standard pass 2026-03-27)",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T20:52:56Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

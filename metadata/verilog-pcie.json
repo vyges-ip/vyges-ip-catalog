@@ -1,0 +1,213 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "verilog-pcie",
+  "version": "0.1.0",
+  "description": "A collection of PCI Express components including PCIe to AXI bridges, AXI Lite bridges, and a high-performance DMA subsystem. Supports multiple FPGA families with FPGA-independent PCIe interfaces and includes cocotb-based testbenches.",
+  "license": "MIT",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:42:40Z",
+  "updated": "2026-03-27T21:42:40Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/alexforencich/verilog-pcie",
+    "commit": "25156a9a162c41c60f11f41590c7d006d015ae5a",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "pcie_axi_master",
+      "width": 128,
+      "description": "PCIe to AXI bridge for high-performance data transfer."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI-Lite",
+      "port": "pcie_axil_master",
+      "width": 32,
+      "description": "PCIe to AXI-Lite bridge for register access."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_if_axi",
+      "width": 128,
+      "description": "AXI DMA interface for high-performance data transfer."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI-Stream",
+      "port": "dma_client_axis_sink",
+      "width": 64,
+      "description": "AXI Stream sink DMA client module."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI-Stream",
+      "port": "dma_client_axis_source",
+      "width": 64,
+      "description": "AXI Stream source DMA client module."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock input for the PCIe system."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst",
+      "width": 1,
+      "description": "Reset input for the PCIe system."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "DATA_WIDTH",
+      "type": "int",
+      "default": 128,
+      "description": "Width of the data bus for AXI and PCIe interfaces."
+    },
+    {
+      "name": "ADDR_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the address bus for AXI and PCIe interfaces."
+    },
+    {
+      "name": "ID_WIDTH",
+      "type": "int",
+      "default": 8,
+      "description": "Width of the ID field for AXI transactions."
+    },
+    {
+      "name": "AXIS_DATA_WIDTH",
+      "type": "int",
+      "default": 64,
+      "description": "Width of the AXI Stream data bus."
+    },
+    {
+      "name": "AXIS_KEEP_WIDTH",
+      "type": "int",
+      "default": 8,
+      "description": "Width of the AXI Stream keep signal."
+    }
+  ],
+  "performance": {
+    "max_data_rate": "16 GT/s",
+    "latency": "Low",
+    "throughput": "High"
+  },
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "PCIe to AXI bridge",
+      "PCIe to AXI-Lite bridge",
+      "High-performance DMA subsystem",
+      "FPGA-independent PCIe interface",
+      "Support for multiple FPGA families"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Xilinx Virtex UltraScale+",
+      "Xilinx Kintex UltraScale",
+      "Intel Stratix 10",
+      "Intel Agilex"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "cocotbext-pcie",
+      "type": "library",
+      "description": "Cocotb extension for PCIe simulation."
+    },
+    {
+      "name": "cocotbext-axi",
+      "type": "library",
+      "description": "Cocotb extension for AXI simulation."
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "cocotb"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "http://alexforencich.com/wiki/en/verilog/pcie/start"
+  },
+  "artifacts": {
+    "total_rtl_lines": 37008
+  },
+  "categories": {
+    "primary": "interface",
+    "secondary": [
+      "dma",
+      "bridge"
+    ],
+    "tags": [
+      "PCIe",
+      "AXI",
+      "DMA",
+      "FPGA"
+    ]
+  },
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": true,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:42:40Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

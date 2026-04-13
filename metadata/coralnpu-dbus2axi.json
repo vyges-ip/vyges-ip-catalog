@@ -1,0 +1,310 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "coralnpu-dbus2axi",
+  "version": "0.1.0",
+  "description": "A bridge module that converts DBus transactions to AXI transactions, supporting high-performance data transfer for Coral NPU systems.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T05:50:03Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/google-coral/coralnpu",
+    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
+    "ip_path": "hdl/chisel",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "DBus",
+      "port": "io_dbus_valid",
+      "width": 1,
+      "description": "DBus transaction valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "DBus",
+      "port": "io_dbus_ready",
+      "width": 1,
+      "description": "DBus transaction ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "DBus",
+      "port": "io_dbus_write",
+      "width": 1,
+      "description": "DBus write enable signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "DBus",
+      "port": "io_dbus_pc",
+      "width": 32,
+      "description": "Program counter for DBus transactions."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "DBus",
+      "port": "io_dbus_addr",
+      "width": 32,
+      "description": "Address for DBus transactions."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "DBus",
+      "port": "io_dbus_adrx",
+      "width": 32,
+      "description": "Extended address for DBus transactions."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "DBus",
+      "port": "io_dbus_size",
+      "width": 6,
+      "description": "Size of DBus transactions."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "DBus",
+      "port": "io_dbus_wdata",
+      "width": 256,
+      "description": "Write data for DBus transactions."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "DBus",
+      "port": "io_dbus_wmask",
+      "width": 32,
+      "description": "Write mask for DBus transactions."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "DBus",
+      "port": "io_dbus_rdata",
+      "width": 256,
+      "description": "Read data from DBus transactions."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "AXI",
+      "port": "io_axi_write_addr_ready",
+      "width": 1,
+      "description": "AXI write address ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_write_addr_valid",
+      "width": 1,
+      "description": "AXI write address valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_write_addr_bits_addr",
+      "width": 32,
+      "description": "AXI write address."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_write_addr_bits_prot",
+      "width": 3,
+      "description": "AXI write address protection bits."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_write_addr_bits_id",
+      "width": 6,
+      "description": "AXI write address ID."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_write_addr_bits_len",
+      "width": 8,
+      "description": "AXI write burst length."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_write_addr_bits_size",
+      "width": 3,
+      "description": "AXI write burst size."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_write_addr_bits_burst",
+      "width": 2,
+      "description": "AXI write burst type."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_write_addr_bits_lock",
+      "width": 1,
+      "description": "AXI write lock signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_write_addr_bits_cache",
+      "width": 4,
+      "description": "AXI write cache control."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "ADDR_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the address bus."
+    },
+    {
+      "name": "DATA_WIDTH",
+      "type": "int",
+      "default": 256,
+      "description": "Width of the data bus."
+    },
+    {
+      "name": "ID_WIDTH",
+      "type": "int",
+      "default": 6,
+      "description": "Width of the ID field."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "bus",
+    "features": [
+      "DBus to AXI protocol conversion",
+      "High-performance data transfer",
+      "Support for burst transactions"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "AXI",
+      "type": "bus",
+      "description": "Advanced eXtensible Interface protocol."
+    },
+    {
+      "name": "DBus",
+      "type": "bus",
+      "description": "Custom data bus protocol."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/google-coral/coralnpu"
+  },
+  "artifacts": {
+    "total_rtl_lines": 459
+  },
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "Parallel Interfaces"
+    }
+  ],
+  "keywords": [
+    "DBus",
+    "AXI",
+    "protocol conversion",
+    "Coral NPU"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:50:03Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/coralnpu-DBus2AxiV2.sv",
+    "rtl/coralnpu-DBus2AxiV2.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

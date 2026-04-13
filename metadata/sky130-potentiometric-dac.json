@@ -1,0 +1,279 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "sky130-potentiometric-dac",
+  "version": "0.1.0",
+  "description": "A 10-bit potentiometric digital-to-analog converter (DAC) designed for 3.3V operation in the SKY130 process node.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic"
+  ],
+  "design_type": [
+    "analog",
+    "mixed-signal"
+  ],
+  "created": "2026-04-01T05:14:40Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/vsdip/avsddac_3v3_sky130_v2",
+    "commit": "45a035b14e63c082c15933d90b973491d153ad3b",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "digital_input",
+      "width": 10,
+      "description": "10-bit digital input for the DAC."
+    },
+    {
+      "type": "analog",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "analog_output",
+      "width": 1,
+      "description": "Analog output voltage corresponding to the digital input."
+    },
+    {
+      "type": "power",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "vdd",
+      "width": 1,
+      "description": "Power supply input (3.3V)."
+    },
+    {
+      "type": "ground",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "vss",
+      "width": 1,
+      "description": "Ground connection."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "resolution",
+      "type": "int",
+      "default": 10,
+      "description": "Resolution of the DAC in bits."
+    },
+    {
+      "name": "vdd_voltage",
+      "type": "float",
+      "default": 3.3,
+      "description": "Operating voltage for the DAC."
+    }
+  ],
+  "performance": {
+    "resolution_bits": 10,
+    "supply_voltage": 3.3,
+    "output_range": "0V to VDD",
+    "power_consumption": "Low"
+  },
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "10-bit resolution",
+      "Potentiometric DAC architecture",
+      "Designed for 3.3V operation",
+      "Optimized for SKY130 process node"
+    ]
+  },
+  "asic": {
+    "flavor": "analog",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [],
+    "devices": []
+  },
+  "dependencies": [],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/vsdip/avsddac_3v3_sky130_v2"
+  },
+  "artifacts": {
+    "total_rtl_lines": 0
+  },
+  "categories": [
+    {
+      "main_category": "Analog & Mixed-Signal",
+      "sub_category": "Converters"
+    }
+  ],
+  "keywords": [
+    "DAC",
+    "potentiometric",
+    "analog",
+    "mixed-signal",
+    "10-bit",
+    "SKY130"
+  ],
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:14:40Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__ff.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__ff.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__fs.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__fs.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__mismatch.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__sf.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__sf.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__ss.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__ss.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__tt.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__tt.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__ff.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__ff.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__fs.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__fs.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__mismatch.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__sf.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__sf.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__ss.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__ss.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__tt.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__tt.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__tt_discrete.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/all.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/critical.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/fast.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/fast_70p.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/invariant.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/lod.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/montecarlo.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/slow.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/slow_70p.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/typical.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/sky130.lib.spice",
+    "rtl/Layout files/Layout_new/10bit_DAC.spice",
+    "rtl/Layout files/Layout_new/2bit_DAC.spice",
+    "rtl/Layout files/Layout_new/2bit_DAC_cap.spice",
+    "rtl/Layout files/Layout_new/3bit_DAC.spice",
+    "rtl/Layout files/Layout_new/4bit_DAC.spice",
+    "rtl/Layout files/Layout_new/5bit_DAC.spice",
+    "rtl/Layout files/Layout_new/6bit_DAC.spice",
+    "rtl/Layout files/Layout_new/7bit_DAC.spice",
+    "rtl/Layout files/Layout_new/8bit_DAC.spice",
+    "rtl/Layout files/Layout_new/9bit_DAC.spice",
+    "rtl/Post Layout Simulations/10bit_DAC.spice",
+    "rtl/Post Layout Simulations/2bit_DAC.spice",
+    "rtl/Post Layout Simulations/3bit_DAC.spice",
+    "rtl/Post Layout Simulations/4bit_DAC.spice",
+    "rtl/Post Layout Simulations/5bit_DAC.spice",
+    "rtl/Post Layout Simulations/6bit_DAC.spice",
+    "rtl/Post Layout Simulations/7bit_DAC.spice",
+    "rtl/Post Layout Simulations/8bit_DAC.spice",
+    "rtl/Post Layout Simulations/9bit_DAC.spice",
+    "rtl/Post Layout Simulations/switchfinal.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__ff.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__ff.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__fs.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__fs.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__mismatch.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__sf.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__sf.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__ss.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__ss.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__tt.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__tt.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__ff.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__ff.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__fs.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__fs.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__mismatch.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__sf.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__sf.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__ss.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__ss.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__tt.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__tt.pm3.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__tt_discrete.corner.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/all.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/critical.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/fast.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/fast_70p.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/invariant.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/lod.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/montecarlo.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/slow.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/slow_70p.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/parameters/typical.spice",
+    "rtl/DAC_Prelayout/sky130_fd_pr/models/sky130.lib.spice",
+    "rtl/Layout files/Layout_new/10bit_DAC.spice",
+    "rtl/Layout files/Layout_new/2bit_DAC.spice",
+    "rtl/Layout files/Layout_new/2bit_DAC_cap.spice",
+    "rtl/Layout files/Layout_new/3bit_DAC.spice",
+    "rtl/Layout files/Layout_new/4bit_DAC.spice",
+    "rtl/Layout files/Layout_new/5bit_DAC.spice",
+    "rtl/Layout files/Layout_new/6bit_DAC.spice",
+    "rtl/Layout files/Layout_new/7bit_DAC.spice",
+    "rtl/Layout files/Layout_new/8bit_DAC.spice",
+    "rtl/Layout files/Layout_new/9bit_DAC.spice",
+    "rtl/Post Layout Simulations/10bit_DAC.spice",
+    "rtl/Post Layout Simulations/2bit_DAC.spice",
+    "rtl/Post Layout Simulations/3bit_DAC.spice",
+    "rtl/Post Layout Simulations/4bit_DAC.spice",
+    "rtl/Post Layout Simulations/5bit_DAC.spice",
+    "rtl/Post Layout Simulations/6bit_DAC.spice",
+    "rtl/Post Layout Simulations/7bit_DAC.spice",
+    "rtl/Post Layout Simulations/8bit_DAC.spice",
+    "rtl/Post Layout Simulations/9bit_DAC.spice",
+    "rtl/Post Layout Simulations/switchfinal.spice"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

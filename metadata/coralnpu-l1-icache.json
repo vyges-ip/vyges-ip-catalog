@@ -1,0 +1,279 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "coralnpu-l1-icache",
+  "version": "0.1.0",
+  "description": "A Level-1 instruction cache for the Coral NPU, supporting AXI read transactions and optimized for high-performance instruction fetch operations.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T05:49:54Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/google-coral/coralnpu",
+    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
+    "ip_path": "hdl/chisel",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clock",
+      "width": 1,
+      "description": "Clock signal for synchronous operation."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "reset",
+      "width": 1,
+      "description": "Reset signal for initialization."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_ready",
+      "width": 1,
+      "description": "AXI read address handshake signal."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_valid",
+      "width": 1,
+      "description": "AXI read address valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_bits_addr",
+      "width": 32,
+      "description": "AXI read address."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_bits_prot",
+      "width": 3,
+      "description": "AXI protection type."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_bits_id",
+      "width": 4,
+      "description": "AXI transaction ID."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_bits_len",
+      "width": 8,
+      "description": "AXI burst length."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_bits_size",
+      "width": 3,
+      "description": "AXI burst size."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_bits_burst",
+      "width": 2,
+      "description": "AXI burst type."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_bits_lock",
+      "width": 1,
+      "description": "AXI lock signal."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_bits_cache",
+      "width": 4,
+      "description": "AXI cache control."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_bits_qos",
+      "width": 4,
+      "description": "AXI quality of service."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_bits_region",
+      "width": 4,
+      "description": "AXI region identifier."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "io_axi_read_data_ready",
+      "width": 1,
+      "description": "AXI read data handshake signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "io_axi_read_data_valid",
+      "width": 1,
+      "description": "AXI read data valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "io_axi_read_data_bits_data",
+      "width": 256,
+      "description": "AXI read data payload."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "io_axi_read_data_bits_id",
+      "width": 4,
+      "description": "AXI transaction ID for read data."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "io_axi_read_data_bits_resp",
+      "width": 2,
+      "description": "AXI response code."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "io_axi_read_data_bits_last",
+      "width": 1,
+      "description": "AXI last data signal."
+    }
+  ],
+  "parameters": [],
+  "performance": {},
+  "architecture": {
+    "type": "memory",
+    "features": [
+      "Level-1 instruction cache",
+      "AXI interface support",
+      "Fault handling"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/google-coral/coralnpu"
+  },
+  "artifacts": {
+    "total_rtl_lines": 8337
+  },
+  "categories": [
+    {
+      "main_category": "Memory Subsystems",
+      "sub_category": "Cache Subsystems"
+    }
+  ],
+  "keywords": [
+    "L1 cache",
+    "AXI",
+    "instruction cache",
+    "Coral NPU"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01T05:49:54Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:49:54Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/coralnpu-L1ICache.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

@@ -1,0 +1,503 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "openfasoc-temp-sensor",
+  "version": "0.1.0",
+  "description": "Analog temperature sensor generator designed for SKY130 and GF180 process nodes, providing automated synthesis and optimization for temperature sensing applications.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital",
+    "analog"
+  ],
+  "created": "2026-04-01T05:15:12Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/idea-fasoc/OpenFASOC",
+    "commit": "426c17025c7c01d6e7d4d259fb7f9e7d741cc5c4",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "name": "clock",
+      "signals": [
+        {
+          "name": "clk_i",
+          "direction": "input",
+          "type": "clock",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "type": "reset",
+      "name": "reset",
+      "signals": [
+        {
+          "name": "rst_ni",
+          "direction": "input",
+          "type": "reset",
+          "width": 1,
+          "active_level": "low"
+        }
+      ]
+    },
+    {
+      "type": "analog",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "TEMP_ANALOG_lv",
+      "width": 1,
+      "description": "Low-voltage analog temperature input."
+    },
+    {
+      "type": "analog",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "TEMP_ANALOG_hv",
+      "width": 1,
+      "description": "High-voltage analog temperature input."
+    },
+    {
+      "type": "digital",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "counter",
+      "width": 16,
+      "description": "Digital counter output for temperature measurement."
+    },
+    {
+      "type": "bus",
+      "name": "ctrl",
+      "protocol": "apb",
+      "description": "Default control bus added by metadata fix pass \u2014 verify against RTL.",
+      "signals": [
+        {
+          "name": "psel_i",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "penable_i",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "pwrite_i",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "paddr_i",
+          "direction": "input",
+          "type": "address",
+          "width": 32
+        },
+        {
+          "name": "pwdata_i",
+          "direction": "input",
+          "type": "data",
+          "width": 32
+        },
+        {
+          "name": "prdata_o",
+          "direction": "output",
+          "type": "data",
+          "width": 32
+        },
+        {
+          "name": "pready_o",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "pslverr_o",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        }
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "name": "TEMP_AUTO_def",
+      "type": "bit",
+      "default": 0,
+      "description": "Automatic temperature sensing mode enable."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Analog temperature sensing",
+      "Digital counter-based measurement",
+      "Process node compatibility with SKY130 and GF180"
+    ]
+  },
+  "asic": {
+    "flavor": "mixed-signal",
+    "technology": [
+      "sky130A",
+      "gf180"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "sky130_fd_sc_hs",
+      "type": "library",
+      "description": "High-speed standard cell library for SKY130 process."
+    },
+    {
+      "name": "sky130_fd_sc_hvl",
+      "type": "library",
+      "description": "High-voltage standard cell library for SKY130 process."
+    }
+  ],
+  "test": {
+    "testbenches": [
+      {
+        "name": "upstream",
+        "path": "tb/",
+        "framework": "upstream",
+        "description": "Upstream project's testbench harness \u2014 see source repo."
+      }
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/idea-fasoc/OpenFASOC"
+  },
+  "artifacts": {
+    "total_rtl_lines": 11355
+  },
+  "categories": [
+    {
+      "main_category": "Analog & Mixed-Signal",
+      "sub_category": "Temperature Sensors"
+    }
+  ],
+  "keywords": [
+    "temperature sensor",
+    "analog sensing",
+    "SKY130",
+    "GF180",
+    "mixed-signal"
+  ],
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:15:12Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/openfasoc/generators/PMU-gen/src/DCDC_BUFFER.sv",
+    "rtl/openfasoc/generators/PMU-gen/src/DCDC_NOV_CLKGEN.sv",
+    "rtl/openfasoc/generators/PMU-gen/src/DCDC_NOV_CLKGEN.template.sv",
+    "rtl/openfasoc/generators/dcdc-gen/flow/design/src/dcdc/DCDC_BUFFER.sv",
+    "rtl/openfasoc/generators/dcdc-gen/flow/design/src/dcdc/DCDC_NOV_CLKGEN.sv",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_BUFFER.sv",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_BUFFER.template.sv",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_DIGITAL_NOISE_INJECTION.template.sv",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_NOV_CLKGEN.sv",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_NOV_CLKGEN.template.sv",
+    "rtl/openfasoc/generators/lc-dco/src/behavioral_verilog/dco_decoder.v.sv",
+    "rtl/openfasoc/generators/lc-dco/src/behavioral_verilog/freq_loop.sv",
+    "rtl/openfasoc/generators/lc-dco/src/behavioral_verilog/lc_dco.sv",
+    "rtl/openfasoc/generators/lc-dco/src/behavioral_verilog/pll_ss.sv",
+    "rtl/openfasoc/generators/lc-dco/src/behavioral_verilog/synchronizer.sv",
+    "rtl/openfasoc/generators/lc-dco/src/freq_loop.sv",
+    "rtl/openfasoc/generators/lc-dco/src/lc_dco.sv",
+    "rtl/openfasoc/generators/lc-dco/src/pll_ss.sv",
+    "rtl/openfasoc/generators/lc-dco/src/synchronizer.sv",
+    "rtl/openfasoc/generators/lc-dco/tools/freq_loop.sv",
+    "rtl/openfasoc/generators/lc-dco/tools/lc_dco.sv",
+    "rtl/openfasoc/generators/lc-dco/tools/pll_ss.sv",
+    "rtl/openfasoc/generators/lc-dco/tools/synchronizer.sv",
+    "rtl/openfasoc/common/platforms/sky130hd/cells_adders_hd.v",
+    "rtl/openfasoc/common/platforms/sky130hd/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130hd/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130hs/cells_clkgate_hs.v",
+    "rtl/openfasoc/common/platforms/sky130hs/cells_latch_hs.v",
+    "rtl/openfasoc/common/platforms/sky130hs/sky130_fd_sc_hs.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130hvl/sky130_fd_sc_hvl.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Ths/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Ths/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Ths/sky130_osu_sc_12T_hs.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Tls/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Tls/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Tls/sky130_osu_sc_12T_ls.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Tms/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Tms/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Tms/sky130_osu_sc_12T_ms.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Ths/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Ths/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Ths/sky130_osu_sc_15T_hs.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Tls/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Tls/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Tls/sky130_osu_sc_15T_ls.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Tms/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Tms/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Tms/sky130_osu_sc_15T_ms.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Ths/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Ths/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Ths/sky130_osu_sc_18T_hs.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Tls/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Tls/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Tls/sky130_osu_sc_18T_ls.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Tms/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Tms/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Tms/sky130_osu_sc_18T_ms.blackbox.v",
+    "rtl/openfasoc/generators/NON_CLK_GEN/blocks/sky130hs/dcdcInst.blackbox.v",
+    "rtl/openfasoc/generators/NON_CLK_GEN/flow/design/src/NON_CLK_GEN/NON_CLK_GEN.v",
+    "rtl/openfasoc/generators/PMU-gen/blocks/sky130hd/dcdcInst.blackbox.v",
+    "rtl/openfasoc/generators/PMU-gen/blocks/sky130hs/dcdcInst.blackbox.v",
+    "rtl/openfasoc/generators/PMU-gen/flow/design/src/dcdcInst/dcdcInst.v",
+    "rtl/openfasoc/generators/PMU-gen/openroad_block/OpenROAD-flow-scripts/design/NON_CLK_GEN/NON_CLK_GEN.v",
+    "rtl/openfasoc/generators/PMU-gen/openroad_block/OpenROAD-flow-scripts/design/dcdc_config/dcdc_config.v",
+    "rtl/openfasoc/generators/PMU-gen/openroad_block/OpenROAD-flow-scripts/src/dcdcInst/dcdcInst.blackbox.v",
+    "rtl/openfasoc/generators/PMU-gen/openroad_block/OpenROAD-flow-scripts/src/dcdcInst/dcdcInst.v",
+    "rtl/openfasoc/generators/PMU-gen/src/DCDC_POWMUX.template.v",
+    "rtl/openfasoc/generators/PMU-gen/src/DCDC_POWMUX.v",
+    "rtl/openfasoc/generators/PMU-gen/src/DCDC_SIX_STAGES_CONV.template.v",
+    "rtl/openfasoc/generators/PMU-gen/src/DCDC_SIX_STAGES_CONV.v",
+    "rtl/openfasoc/generators/PMU-gen/src/dcdcInst.template.v",
+    "rtl/openfasoc/generators/PMU-gen/src/dcdcInst.v",
+    "rtl/openfasoc/generators/cryo-gen/src/cryoInst.v",
+    "rtl/openfasoc/generators/cryo-gen/src/cryo_ro.v",
+    "rtl/openfasoc/generators/cryo-gen/src/divider.v",
+    "rtl/openfasoc/generators/dcdc-config-gen/blocks/sky130hs/dcdcInst.blackbox.v",
+    "rtl/openfasoc/generators/dcdc-config-gen/flow/design/src/dcdc_config/dcdc_config.v",
+    "rtl/openfasoc/generators/dcdc-gen/blocks/sky130hd/dcdcInst.blackbox.v",
+    "rtl/openfasoc/generators/dcdc-gen/blocks/sky130hs/dcdcInst.blackbox.v",
+    "rtl/openfasoc/generators/dcdc-gen/flow/design/src/dcdc/DCDC_POWMUX.v",
+    "rtl/openfasoc/generators/dcdc-gen/flow/design/src/dcdc/DCDC_SIX_STAGES_CONV.v",
+    "rtl/openfasoc/generators/dcdc-gen/flow/design/src/dcdc/dcdcInst.v",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_POWMUX.template.v",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_POWMUX.v",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_SIX_STAGES_CONV.template.v",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_SIX_STAGES_CONV.v",
+    "rtl/openfasoc/generators/dcdc-gen/src/dcdcInst.template.v",
+    "rtl/openfasoc/generators/dcdc-gen/src/dcdcInst.v",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_verilog/Ind_top_ver.v",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_verilog/LC_dco.v",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_verilog/diff_cross_mirror_verilog.v",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_verilog/swcap.v",
+    "rtl/openfasoc/generators/ldo-gen/blocks/sky130hvl/ldoInst.blackbox.v",
+    "rtl/openfasoc/generators/ldo-gen/src/LDO.v",
+    "rtl/openfasoc/generators/ldo-gen/src/LDO_CONTROLLER.v",
+    "rtl/openfasoc/generators/scpa-gen/blocks/sky130hd/scpa.blackbox.v",
+    "rtl/openfasoc/generators/scpa-gen/flow/design/src/scpa/scpa.v",
+    "rtl/openfasoc/generators/scpa-gen/src/scpa.v",
+    "rtl/openfasoc/generators/temp-sense-gen/blocks/sky130hd/tempsenseInst.blackbox.v",
+    "rtl/openfasoc/generators/temp-sense-gen/src/TEMP_ANALOG_hv.v",
+    "rtl/openfasoc/generators/temp-sense-gen/src/TEMP_ANALOG_lv.v",
+    "rtl/openfasoc/generators/temp-sense-gen/src/TEMP_AUTO_def.v",
+    "rtl/openfasoc/generators/temp-sense-gen/src/counter.v",
+    "rtl/openfasoc/generators/temp-sense-gen/src/tempsenseInst.v",
+    "rtl/openfasoc/common/platforms/gf180osu9t/cdl/gf180mcu_osu_sc_9T.spice",
+    "rtl/openfasoc/common/platforms/sky130hd/cdl/sky130_fd_sc_hd.spice",
+    "rtl/openfasoc/common/platforms/sky130hs/cdl/sky130_fd_sc_hs.spice",
+    "rtl/openfasoc/common/platforms/sky130hvl/cdl/sky130_fd_sc_hvl.spice",
+    "rtl/openfasoc/common/platforms/sky130osu12Ths/cdl/sky130_osu_sc_12T_hs.spice",
+    "rtl/openfasoc/generators/glayout/tapeout/tapeout_and_RL/sky130A/cryo_models/nshort.spice",
+    "rtl/openfasoc/generators/glayout/tapeout/tapeout_and_RL/sky130A/cryo_models/nshortlvth.spice",
+    "rtl/openfasoc/generators/glayout/tapeout/tapeout_and_RL/sky130A/cryo_models/pmos.spice",
+    "rtl/openfasoc/generators/lc-dco/simulations/Ngspice/LC_Cell.spice",
+    "rtl/openfasoc/generators/lc-dco/simulations/Ngspice/LC_Cell_sized.spice",
+    "rtl/openfasoc/generators/lc-dco/simulations/Ngspice/mim_1m2C.spice",
+    "rtl/openfasoc/generators/lc-dco/simulations/Ngspice/swcap_3M2C.spice",
+    "rtl/openfasoc/generators/lc-dco/simulations/Xyce/LC_Cell.spice",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_spice/Ind_top_ver.spice",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_spice/diff_cross_mirror.spice",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_spice/swcap.spice",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_spice/swcap_3M2C.spice",
+    "rtl/openfasoc/generators/lc-dco/xschem_rundir/LC_Cell.spice",
+    "rtl/openfasoc/generators/lc-dco/xschem_rundir/mim_1m2C.spice",
+    "rtl/openfasoc/generators/lc-dco/xschem_rundir/swcap_3M2C.spice",
+    "rtl/openfasoc/generators/lc-dco/xschem_rundir/swcap_3M2C_mim2.spice",
+    "rtl/openfasoc/generators/lc-dco/xschem_rundir/swcap_3M2C_scaled.spice",
+    "rtl/openfasoc/generators/PMU-gen/src/DCDC_BUFFER.sv",
+    "rtl/openfasoc/generators/PMU-gen/src/DCDC_NOV_CLKGEN.sv",
+    "rtl/openfasoc/generators/PMU-gen/src/DCDC_NOV_CLKGEN.template.sv",
+    "rtl/openfasoc/generators/dcdc-gen/flow/design/src/dcdc/DCDC_BUFFER.sv",
+    "rtl/openfasoc/generators/dcdc-gen/flow/design/src/dcdc/DCDC_NOV_CLKGEN.sv",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_BUFFER.sv",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_BUFFER.template.sv",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_DIGITAL_NOISE_INJECTION.template.sv",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_NOV_CLKGEN.sv",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_NOV_CLKGEN.template.sv",
+    "rtl/openfasoc/generators/lc-dco/src/behavioral_verilog/dco_decoder.v.sv",
+    "rtl/openfasoc/generators/lc-dco/src/behavioral_verilog/freq_loop.sv",
+    "rtl/openfasoc/generators/lc-dco/src/behavioral_verilog/lc_dco.sv",
+    "rtl/openfasoc/generators/lc-dco/src/behavioral_verilog/pll_ss.sv",
+    "rtl/openfasoc/generators/lc-dco/src/behavioral_verilog/synchronizer.sv",
+    "rtl/openfasoc/generators/lc-dco/src/freq_loop.sv",
+    "rtl/openfasoc/generators/lc-dco/src/lc_dco.sv",
+    "rtl/openfasoc/generators/lc-dco/src/pll_ss.sv",
+    "rtl/openfasoc/generators/lc-dco/src/synchronizer.sv",
+    "rtl/openfasoc/generators/lc-dco/tools/freq_loop.sv",
+    "rtl/openfasoc/generators/lc-dco/tools/lc_dco.sv",
+    "rtl/openfasoc/generators/lc-dco/tools/pll_ss.sv",
+    "rtl/openfasoc/generators/lc-dco/tools/synchronizer.sv",
+    "rtl/openfasoc/common/platforms/sky130hd/cells_adders_hd.v",
+    "rtl/openfasoc/common/platforms/sky130hd/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130hd/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130hs/cells_clkgate_hs.v",
+    "rtl/openfasoc/common/platforms/sky130hs/cells_latch_hs.v",
+    "rtl/openfasoc/common/platforms/sky130hs/sky130_fd_sc_hs.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130hvl/sky130_fd_sc_hvl.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Ths/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Ths/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Ths/sky130_osu_sc_12T_hs.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Tls/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Tls/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Tls/sky130_osu_sc_12T_ls.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Tms/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Tms/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu12Tms/sky130_osu_sc_12T_ms.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Ths/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Ths/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Ths/sky130_osu_sc_15T_hs.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Tls/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Tls/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Tls/sky130_osu_sc_15T_ls.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Tms/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Tms/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu15Tms/sky130_osu_sc_15T_ms.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Ths/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Ths/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Ths/sky130_osu_sc_18T_hs.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Tls/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Tls/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Tls/sky130_osu_sc_18T_ls.blackbox.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Tms/cells_clkgate_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Tms/cells_latch_hd.v",
+    "rtl/openfasoc/common/platforms/sky130osu18Tms/sky130_osu_sc_18T_ms.blackbox.v",
+    "rtl/openfasoc/generators/NON_CLK_GEN/blocks/sky130hs/dcdcInst.blackbox.v",
+    "rtl/openfasoc/generators/NON_CLK_GEN/flow/design/src/NON_CLK_GEN/NON_CLK_GEN.v",
+    "rtl/openfasoc/generators/PMU-gen/blocks/sky130hd/dcdcInst.blackbox.v",
+    "rtl/openfasoc/generators/PMU-gen/blocks/sky130hs/dcdcInst.blackbox.v",
+    "rtl/openfasoc/generators/PMU-gen/flow/design/src/dcdcInst/dcdcInst.v",
+    "rtl/openfasoc/generators/PMU-gen/openroad_block/OpenROAD-flow-scripts/design/NON_CLK_GEN/NON_CLK_GEN.v",
+    "rtl/openfasoc/generators/PMU-gen/openroad_block/OpenROAD-flow-scripts/design/dcdc_config/dcdc_config.v",
+    "rtl/openfasoc/generators/PMU-gen/openroad_block/OpenROAD-flow-scripts/src/dcdcInst/dcdcInst.blackbox.v",
+    "rtl/openfasoc/generators/PMU-gen/openroad_block/OpenROAD-flow-scripts/src/dcdcInst/dcdcInst.v",
+    "rtl/openfasoc/generators/PMU-gen/src/DCDC_POWMUX.template.v",
+    "rtl/openfasoc/generators/PMU-gen/src/DCDC_POWMUX.v",
+    "rtl/openfasoc/generators/PMU-gen/src/DCDC_SIX_STAGES_CONV.template.v",
+    "rtl/openfasoc/generators/PMU-gen/src/DCDC_SIX_STAGES_CONV.v",
+    "rtl/openfasoc/generators/PMU-gen/src/dcdcInst.template.v",
+    "rtl/openfasoc/generators/PMU-gen/src/dcdcInst.v",
+    "rtl/openfasoc/generators/cryo-gen/src/cryoInst.v",
+    "rtl/openfasoc/generators/cryo-gen/src/cryo_ro.v",
+    "rtl/openfasoc/generators/cryo-gen/src/divider.v",
+    "rtl/openfasoc/generators/dcdc-config-gen/blocks/sky130hs/dcdcInst.blackbox.v",
+    "rtl/openfasoc/generators/dcdc-config-gen/flow/design/src/dcdc_config/dcdc_config.v",
+    "rtl/openfasoc/generators/dcdc-gen/blocks/sky130hd/dcdcInst.blackbox.v",
+    "rtl/openfasoc/generators/dcdc-gen/blocks/sky130hs/dcdcInst.blackbox.v",
+    "rtl/openfasoc/generators/dcdc-gen/flow/design/src/dcdc/DCDC_POWMUX.v",
+    "rtl/openfasoc/generators/dcdc-gen/flow/design/src/dcdc/DCDC_SIX_STAGES_CONV.v",
+    "rtl/openfasoc/generators/dcdc-gen/flow/design/src/dcdc/dcdcInst.v",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_POWMUX.template.v",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_POWMUX.v",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_SIX_STAGES_CONV.template.v",
+    "rtl/openfasoc/generators/dcdc-gen/src/DCDC_SIX_STAGES_CONV.v",
+    "rtl/openfasoc/generators/dcdc-gen/src/dcdcInst.template.v",
+    "rtl/openfasoc/generators/dcdc-gen/src/dcdcInst.v",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_verilog/Ind_top_ver.v",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_verilog/LC_dco.v",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_verilog/diff_cross_mirror_verilog.v",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_verilog/swcap.v",
+    "rtl/openfasoc/generators/ldo-gen/blocks/sky130hvl/ldoInst.blackbox.v",
+    "rtl/openfasoc/generators/ldo-gen/src/LDO.v",
+    "rtl/openfasoc/generators/ldo-gen/src/LDO_CONTROLLER.v",
+    "rtl/openfasoc/generators/scpa-gen/blocks/sky130hd/scpa.blackbox.v",
+    "rtl/openfasoc/generators/scpa-gen/flow/design/src/scpa/scpa.v",
+    "rtl/openfasoc/generators/scpa-gen/src/scpa.v",
+    "rtl/openfasoc/generators/temp-sense-gen/blocks/sky130hd/tempsenseInst.blackbox.v",
+    "rtl/openfasoc/generators/temp-sense-gen/src/TEMP_ANALOG_hv.v",
+    "rtl/openfasoc/generators/temp-sense-gen/src/TEMP_ANALOG_lv.v",
+    "rtl/openfasoc/generators/temp-sense-gen/src/TEMP_AUTO_def.v",
+    "rtl/openfasoc/generators/temp-sense-gen/src/counter.v",
+    "rtl/openfasoc/generators/temp-sense-gen/src/tempsenseInst.v",
+    "rtl/openfasoc/common/platforms/gf180osu9t/cdl/gf180mcu_osu_sc_9T.spice",
+    "rtl/openfasoc/common/platforms/sky130hd/cdl/sky130_fd_sc_hd.spice",
+    "rtl/openfasoc/common/platforms/sky130hs/cdl/sky130_fd_sc_hs.spice",
+    "rtl/openfasoc/common/platforms/sky130hvl/cdl/sky130_fd_sc_hvl.spice",
+    "rtl/openfasoc/common/platforms/sky130osu12Ths/cdl/sky130_osu_sc_12T_hs.spice",
+    "rtl/openfasoc/generators/glayout/tapeout/tapeout_and_RL/sky130A/cryo_models/nshort.spice",
+    "rtl/openfasoc/generators/glayout/tapeout/tapeout_and_RL/sky130A/cryo_models/nshortlvth.spice",
+    "rtl/openfasoc/generators/glayout/tapeout/tapeout_and_RL/sky130A/cryo_models/pmos.spice",
+    "rtl/openfasoc/generators/lc-dco/simulations/Ngspice/LC_Cell.spice",
+    "rtl/openfasoc/generators/lc-dco/simulations/Ngspice/LC_Cell_sized.spice",
+    "rtl/openfasoc/generators/lc-dco/simulations/Ngspice/mim_1m2C.spice",
+    "rtl/openfasoc/generators/lc-dco/simulations/Ngspice/swcap_3M2C.spice",
+    "rtl/openfasoc/generators/lc-dco/simulations/Xyce/LC_Cell.spice",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_spice/Ind_top_ver.spice",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_spice/diff_cross_mirror.spice",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_spice/swcap.spice",
+    "rtl/openfasoc/generators/lc-dco/src/aux_cell_spice/swcap_3M2C.spice",
+    "rtl/openfasoc/generators/lc-dco/xschem_rundir/LC_Cell.spice",
+    "rtl/openfasoc/generators/lc-dco/xschem_rundir/mim_1m2C.spice",
+    "rtl/openfasoc/generators/lc-dco/xschem_rundir/swcap_3M2C.spice",
+    "rtl/openfasoc/generators/lc-dco/xschem_rundir/swcap_3M2C_mim2.spice",
+    "rtl/openfasoc/generators/lc-dco/xschem_rundir/swcap_3M2C_scaled.spice"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

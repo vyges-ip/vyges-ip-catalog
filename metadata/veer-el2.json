@@ -1,0 +1,237 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "veer-el2",
+  "version": "0.1.0",
+  "description": "The VeeR EL2 is a RISC-V-based processor core designed for embedded systems, featuring a 32-bit architecture with support for debug, memory protection, and AXI4 interfaces.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:42:29Z",
+  "updated": "2026-03-27T21:42:29Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/Cores-VeeR-EL2",
+    "commit": "ab93a36eb4fd7825845f92da797761dbfef29320",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "Primary clock input for the core."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "free_clk",
+      "width": 1,
+      "description": "Free-running clock input for asynchronous operations."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_l",
+      "width": 1,
+      "description": "Active-low reset signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI4",
+      "port": "dma_axi_awvalid",
+      "width": 1,
+      "description": "AXI4 write address valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI4",
+      "port": "dma_axi_awready",
+      "width": 1,
+      "description": "AXI4 write address ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI4",
+      "port": "dma_axi_wvalid",
+      "width": 1,
+      "description": "AXI4 write data valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI4",
+      "port": "dma_axi_wready",
+      "width": 1,
+      "description": "AXI4 write data ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI4",
+      "port": "dma_axi_bvalid",
+      "width": 1,
+      "description": "AXI4 write response valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI4",
+      "port": "dma_axi_bready",
+      "width": 1,
+      "description": "AXI4 write response ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI4",
+      "port": "dma_axi_arvalid",
+      "width": 1,
+      "description": "AXI4 read address valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI4",
+      "port": "dma_axi_arready",
+      "width": 1,
+      "description": "AXI4 read address ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI4",
+      "port": "dma_axi_rvalid",
+      "width": 1,
+      "description": "AXI4 read data valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI4",
+      "port": "dma_axi_rready",
+      "width": 1,
+      "description": "AXI4 read data ready signal."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "DEPTH",
+      "type": "int",
+      "default": "pt.DMA_BUF_DEPTH",
+      "description": "Depth of the DMA buffer."
+    },
+    {
+      "name": "DEPTH_PTR",
+      "type": "int",
+      "default": "$clog2(DEPTH)",
+      "description": "Pointer width for addressing the DMA buffer."
+    },
+    {
+      "name": "NACK_COUNT",
+      "type": "int",
+      "default": 7,
+      "description": "Maximum number of NACK retries for DMA transactions."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "processor",
+    "features": [
+      "RISC-V ISA support",
+      "AXI4 bus interface",
+      "Debug module with abstract command support",
+      "Memory protection via DCCM and ICCM",
+      "DMA controller with ECC error handling"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "Verilator",
+      "type": "tool",
+      "description": "Required for simulation and verification of the RTL."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/Cores-VeeR-EL2"
+  },
+  "artifacts": {
+    "total_rtl_lines": 28865
+  },
+  "categories": {
+    "primary": "processor",
+    "secondary": [
+      "risc-v",
+      "embedded"
+    ],
+    "tags": [
+      "RISC-V",
+      "processor",
+      "AXI4",
+      "debug",
+      "DMA",
+      "memory protection"
+    ]
+  },
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T21:42:29Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:42:29Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

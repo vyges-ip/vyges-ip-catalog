@@ -1,0 +1,363 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "sky130-opamp",
+  "version": "0.1.0",
+  "description": "Two-stage Miller-compensated operational amplifier designed for the SKY130 process node, featuring high gain and stability for analog signal processing applications.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic"
+  ],
+  "design_type": [
+    "analog"
+  ],
+  "created": "2026-04-01T05:17:08Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/JuliaAlva/caravel_fulgor_opamp",
+    "commit": "54c8d62297686d4f2c992ba5036adace8a5bbe38",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "analog",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "vin_p",
+      "width": 1,
+      "description": "Positive input terminal for the operational amplifier."
+    },
+    {
+      "type": "analog",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "vin_n",
+      "width": 1,
+      "description": "Negative input terminal for the operational amplifier."
+    },
+    {
+      "type": "analog",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "vout",
+      "width": 1,
+      "description": "Output terminal for the operational amplifier."
+    },
+    {
+      "type": "power",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "vdd",
+      "width": 1,
+      "description": "Power supply terminal for the operational amplifier."
+    },
+    {
+      "type": "power",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "vss",
+      "width": 1,
+      "description": "Ground terminal for the operational amplifier."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "gain",
+      "type": "int",
+      "default": 100000,
+      "description": "Open-loop gain of the operational amplifier."
+    },
+    {
+      "name": "bandwidth",
+      "type": "int",
+      "default": 1000000,
+      "description": "Unity-gain bandwidth of the operational amplifier in Hz."
+    },
+    {
+      "name": "slew_rate",
+      "type": "int",
+      "default": 10,
+      "description": "Slew rate of the operational amplifier in V/\u00b5s."
+    }
+  ],
+  "performance": {
+    "gain": "100000",
+    "bandwidth": "1 MHz",
+    "slew_rate": "10 V/\u00b5s"
+  },
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Two-stage design",
+      "Miller compensation",
+      "High gain",
+      "Low power consumption"
+    ]
+  },
+  "asic": {
+    "flavor": "analog",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [],
+    "devices": []
+  },
+  "dependencies": [
+    {
+      "name": "sky130_fd_sc_hvl",
+      "type": "library",
+      "description": "Standard cell library for high-voltage analog designs in SKY130."
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "gpio_tb.v",
+      "hkspi_tb.v",
+      "mem_tb.v",
+      "mprj_ctrl_tb.v",
+      "pass_thru_tb.v",
+      "perf_tb.v",
+      "pll_tb.v",
+      "storage_tb.v",
+      "sysctrl_tb.v",
+      "timer_tb.v",
+      "timer2_tb.v",
+      "uart_tb.v"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/JuliaAlva/caravel_fulgor_opamp"
+  },
+  "artifacts": {
+    "total_rtl_lines": 2356649
+  },
+  "categories": [
+    {
+      "main_category": "Analog & Mixed-Signal",
+      "sub_category": "Operational Amplifiers"
+    }
+  ],
+  "keywords": [
+    "analog",
+    "opamp",
+    "sky130",
+    "miller compensation",
+    "high gain"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 1,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:17:08Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/qflow/digital_pll_controller/source/digital_pll_controller.v",
+    "rtl/qflow/ring_osc2x13/source/ring_osc2x13.v",
+    "rtl/verilog/dv/caravel/spiflash.v",
+    "rtl/verilog/dv/caravel/tbuart.v",
+    "rtl/verilog/dv/dummy_slave.v",
+    "rtl/verilog/gl/DFFRAM.v",
+    "rtl/verilog/gl/caravel.v",
+    "rtl/verilog/gl/chip_io.v",
+    "rtl/verilog/gl/digital_pll.v",
+    "rtl/verilog/gl/gpio_control_block.v",
+    "rtl/verilog/gl/mgmt_core.v",
+    "rtl/verilog/gl/mgmt_protect.v",
+    "rtl/verilog/gl/mgmt_protect_hv.v",
+    "rtl/verilog/gl/simple_por.v",
+    "rtl/verilog/gl/sky130_fd_sc_hvl__lsbufhv2lv_1_wrapped.v",
+    "rtl/verilog/gl/storage.v",
+    "rtl/verilog/gl/user_id_programming.v",
+    "rtl/verilog/gl/user_proj_example.v",
+    "rtl/verilog/gl/user_project_wrapper.v",
+    "rtl/verilog/rtl/DFFRAM.v",
+    "rtl/verilog/rtl/DFFRAMBB.v",
+    "rtl/verilog/rtl/caravel.v",
+    "rtl/verilog/rtl/caravel_clocking.v",
+    "rtl/verilog/rtl/chip_io.v",
+    "rtl/verilog/rtl/clock_div.v",
+    "rtl/verilog/rtl/convert_gpio_sigs.v",
+    "rtl/verilog/rtl/counter_timer_high.v",
+    "rtl/verilog/rtl/counter_timer_low.v",
+    "rtl/verilog/rtl/defines.v",
+    "rtl/verilog/rtl/digital_pll.v",
+    "rtl/verilog/rtl/digital_pll_controller.v",
+    "rtl/verilog/rtl/gpio_control_block.v",
+    "rtl/verilog/rtl/gpio_wb.v",
+    "rtl/verilog/rtl/housekeeping_spi.v",
+    "rtl/verilog/rtl/la_wb.v",
+    "rtl/verilog/rtl/mem_wb.v",
+    "rtl/verilog/rtl/mgmt_core.v",
+    "rtl/verilog/rtl/mgmt_protect.v",
+    "rtl/verilog/rtl/mgmt_protect_hv.v",
+    "rtl/verilog/rtl/mgmt_soc.v",
+    "rtl/verilog/rtl/mprj_ctrl.v",
+    "rtl/verilog/rtl/mprj_io.v",
+    "rtl/verilog/rtl/pads.v",
+    "rtl/verilog/rtl/picorv32.v",
+    "rtl/verilog/rtl/ring_osc2x13.v",
+    "rtl/verilog/rtl/simple_por.v",
+    "rtl/verilog/rtl/simple_spi_master.v",
+    "rtl/verilog/rtl/simpleuart.v",
+    "rtl/verilog/rtl/sky130_fd_sc_hvl__lsbufhv2lv_1_wrapped.v",
+    "rtl/verilog/rtl/spimemio.v",
+    "rtl/verilog/rtl/sram_1rw1r_32_256_8_sky130.v",
+    "rtl/verilog/rtl/storage.v",
+    "rtl/verilog/rtl/storage_bridge_wb.v",
+    "rtl/verilog/rtl/sysctrl.v",
+    "rtl/verilog/rtl/user_id_programming.v",
+    "rtl/verilog/rtl/user_proj_example.v",
+    "rtl/verilog/rtl/user_project_wrapper.v",
+    "rtl/verilog/rtl/wb_intercon.v",
+    "rtl/verilog/stubs/sky130_fd_io__top_xres4v2.v",
+    "rtl/layout.bak/mag/opamp_v1.spice",
+    "rtl/mag/opamp_v1.spice",
+    "rtl/ngspice/digital_pll/digital_pll.spice",
+    "rtl/ngspice/digital_pll/ring_osc2x13.spice",
+    "rtl/ngspice/digital_pll/ring_osc2x13_tb2.spice",
+    "rtl/ngspice/simple_por/simple_por.spice",
+    "rtl/spi/lvs/DFFRAM.spice",
+    "rtl/spi/lvs/chip_io.spice",
+    "rtl/spi/lvs/digital_pll.spice",
+    "rtl/spi/lvs/gpio_control_block.spice",
+    "rtl/spi/lvs/mgmt_core.spice",
+    "rtl/spi/lvs/mgmt_protect.spice",
+    "rtl/spi/lvs/mgmt_protect_hv.spice",
+    "rtl/spi/lvs/simple_por.spice",
+    "rtl/spi/lvs/sky130_fd_sc_hvl__lsbufhv2lv_1_wrapped.spice",
+    "rtl/spi/lvs/storage.spice",
+    "rtl/spi/lvs/user_id_programming.spice",
+    "rtl/spi/lvs/user_proj_example.spice",
+    "rtl/spi/lvs/user_project_wrapper.spice",
+    "rtl/xschem/netlist/opamp.spice",
+    "rtl/xschem/netlist/opamp_closeloop.spice",
+    "rtl/xschem/netlist/opamp_closeloop_rpad.spice",
+    "rtl/xschem/netlist/opamp_openloop.spice",
+    "rtl/xschem/netlist/opamp_openloop_rpad.spice",
+    "rtl/qflow/digital_pll_controller/source/digital_pll_controller.v",
+    "rtl/qflow/ring_osc2x13/source/ring_osc2x13.v",
+    "rtl/verilog/dv/caravel/spiflash.v",
+    "rtl/verilog/dv/caravel/tbuart.v",
+    "rtl/verilog/dv/dummy_slave.v",
+    "rtl/verilog/gl/DFFRAM.v",
+    "rtl/verilog/gl/caravel.v",
+    "rtl/verilog/gl/chip_io.v",
+    "rtl/verilog/gl/digital_pll.v",
+    "rtl/verilog/gl/gpio_control_block.v",
+    "rtl/verilog/gl/mgmt_core.v",
+    "rtl/verilog/gl/mgmt_protect.v",
+    "rtl/verilog/gl/mgmt_protect_hv.v",
+    "rtl/verilog/gl/simple_por.v",
+    "rtl/verilog/gl/sky130_fd_sc_hvl__lsbufhv2lv_1_wrapped.v",
+    "rtl/verilog/gl/storage.v",
+    "rtl/verilog/gl/user_id_programming.v",
+    "rtl/verilog/gl/user_proj_example.v",
+    "rtl/verilog/gl/user_project_wrapper.v",
+    "rtl/verilog/rtl/DFFRAM.v",
+    "rtl/verilog/rtl/DFFRAMBB.v",
+    "rtl/verilog/rtl/caravel.v",
+    "rtl/verilog/rtl/caravel_clocking.v",
+    "rtl/verilog/rtl/chip_io.v",
+    "rtl/verilog/rtl/clock_div.v",
+    "rtl/verilog/rtl/convert_gpio_sigs.v",
+    "rtl/verilog/rtl/counter_timer_high.v",
+    "rtl/verilog/rtl/counter_timer_low.v",
+    "rtl/verilog/rtl/defines.v",
+    "rtl/verilog/rtl/digital_pll.v",
+    "rtl/verilog/rtl/digital_pll_controller.v",
+    "rtl/verilog/rtl/gpio_control_block.v",
+    "rtl/verilog/rtl/gpio_wb.v",
+    "rtl/verilog/rtl/housekeeping_spi.v",
+    "rtl/verilog/rtl/la_wb.v",
+    "rtl/verilog/rtl/mem_wb.v",
+    "rtl/verilog/rtl/mgmt_core.v",
+    "rtl/verilog/rtl/mgmt_protect.v",
+    "rtl/verilog/rtl/mgmt_protect_hv.v",
+    "rtl/verilog/rtl/mgmt_soc.v",
+    "rtl/verilog/rtl/mprj_ctrl.v",
+    "rtl/verilog/rtl/mprj_io.v",
+    "rtl/verilog/rtl/pads.v",
+    "rtl/verilog/rtl/picorv32.v",
+    "rtl/verilog/rtl/ring_osc2x13.v",
+    "rtl/verilog/rtl/simple_por.v",
+    "rtl/verilog/rtl/simple_spi_master.v",
+    "rtl/verilog/rtl/simpleuart.v",
+    "rtl/verilog/rtl/sky130_fd_sc_hvl__lsbufhv2lv_1_wrapped.v",
+    "rtl/verilog/rtl/spimemio.v",
+    "rtl/verilog/rtl/sram_1rw1r_32_256_8_sky130.v",
+    "rtl/verilog/rtl/storage.v",
+    "rtl/verilog/rtl/storage_bridge_wb.v",
+    "rtl/verilog/rtl/sysctrl.v",
+    "rtl/verilog/rtl/user_id_programming.v",
+    "rtl/verilog/rtl/user_proj_example.v",
+    "rtl/verilog/rtl/user_project_wrapper.v",
+    "rtl/verilog/rtl/wb_intercon.v",
+    "rtl/verilog/stubs/sky130_fd_io__top_xres4v2.v",
+    "rtl/layout.bak/mag/opamp_v1.spice",
+    "rtl/mag/opamp_v1.spice",
+    "rtl/ngspice/digital_pll/digital_pll.spice",
+    "rtl/ngspice/digital_pll/ring_osc2x13.spice",
+    "rtl/ngspice/digital_pll/ring_osc2x13_tb2.spice",
+    "rtl/ngspice/simple_por/simple_por.spice",
+    "rtl/spi/lvs/DFFRAM.spice",
+    "rtl/spi/lvs/chip_io.spice",
+    "rtl/spi/lvs/digital_pll.spice",
+    "rtl/spi/lvs/gpio_control_block.spice",
+    "rtl/spi/lvs/mgmt_core.spice",
+    "rtl/spi/lvs/mgmt_protect.spice",
+    "rtl/spi/lvs/mgmt_protect_hv.spice",
+    "rtl/spi/lvs/simple_por.spice",
+    "rtl/spi/lvs/sky130_fd_sc_hvl__lsbufhv2lv_1_wrapped.spice",
+    "rtl/spi/lvs/storage.spice",
+    "rtl/spi/lvs/user_id_programming.spice",
+    "rtl/spi/lvs/user_proj_example.spice",
+    "rtl/spi/lvs/user_project_wrapper.spice",
+    "rtl/xschem/netlist/opamp.spice",
+    "rtl/xschem/netlist/opamp_closeloop.spice",
+    "rtl/xschem/netlist/opamp_closeloop_rpad.spice",
+    "rtl/xschem/netlist/opamp_openloop.spice",
+    "rtl/xschem/netlist/opamp_openloop_rpad.spice"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

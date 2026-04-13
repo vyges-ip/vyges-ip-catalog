@@ -1,0 +1,233 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "coralnpu-i2c-master",
+  "version": "0.1.0",
+  "description": "A TileLink-UL compliant I2C master controller with integrated SECDED error detection for command and data integrity.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T05:12:55Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/google-coral/coralnpu",
+    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
+    "ip_path": "fpga/ip/i2c_master",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active-low",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TileLink-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "TileLink-UL input interface"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TileLink-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "TileLink-UL output interface"
+    },
+    {
+      "type": "serial",
+      "direction": "input",
+      "protocol": "I2C",
+      "port": "scl_i",
+      "width": 1,
+      "description": "I2C clock input"
+    },
+    {
+      "type": "serial",
+      "direction": "output",
+      "protocol": "I2C",
+      "port": "scl_o",
+      "width": 1,
+      "description": "I2C clock output"
+    },
+    {
+      "type": "serial",
+      "direction": "output",
+      "protocol": "I2C",
+      "port": "scl_en_o",
+      "width": 1,
+      "description": "I2C clock enable output"
+    },
+    {
+      "type": "serial",
+      "direction": "input",
+      "protocol": "I2C",
+      "port": "sda_i",
+      "width": 1,
+      "description": "I2C data input"
+    },
+    {
+      "type": "serial",
+      "direction": "output",
+      "protocol": "I2C",
+      "port": "sda_o",
+      "width": 1,
+      "description": "I2C data output"
+    },
+    {
+      "type": "serial",
+      "direction": "output",
+      "protocol": "I2C",
+      "port": "sda_en_o",
+      "width": 1,
+      "description": "I2C data enable output"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "FifoDepth",
+      "type": "int",
+      "default": 16,
+      "description": "Depth of the FIFO buffer for I2C transactions"
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "TileLink-UL interface for communication",
+      "I2C master functionality",
+      "Integrated SECDED error detection for command and data integrity",
+      "Configurable FIFO depth"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "i2c_master_pkg",
+      "type": "library",
+      "description": "Package defining constants, types, and utility functions for the I2C master"
+    },
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TileLink-UL protocol package"
+    },
+    {
+      "name": "coralnpu_tlul_pkg_32",
+      "type": "library",
+      "description": "TileLink-UL 32-bit package for CoralNPU"
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "rtl/i2c_master_tb.sv"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/google-coral/coralnpu"
+  },
+  "artifacts": {
+    "total_rtl_lines": 916
+  },
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "Serial Interfaces"
+    }
+  ],
+  "keywords": [
+    "I2C",
+    "TileLink-UL",
+    "SECDED",
+    "FIFO",
+    "CoralNPU"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:12:55Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/i2c_master.sv",
+    "rtl/i2c_master_pkg.sv",
+    "rtl/i2c_master_top.sv",
+    "rtl/i2c_slave_model.sv",
+    "rtl/i2c_master.sv",
+    "rtl/i2c_master_pkg.sv",
+    "rtl/i2c_master_top.sv",
+    "rtl/i2c_slave_model.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

@@ -1,0 +1,344 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "ibex",
+  "version": "0.1.0",
+  "description": "Ibex RV32IMC RISC-V CPU core. 2-stage pipeline (IF/ID+EX), configurable register file (FF/FPGA/latch), optional PMP, optional ICache, branch predictor, SecureIbex lockstep mode, and full JTAG debug support. 30 RTL files, 19,627 lines. Originally from lowRISC/ibex, extracted for VyCatalog.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-02-19T06:12:02Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/ibex",
+    "private": false,
+    "rtl_path": "rtl"
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "name": "clock",
+      "signals": [
+        {
+          "name": "clk_i",
+          "direction": "input",
+          "type": "clock",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "type": "reset",
+      "name": "reset",
+      "signals": [
+        {
+          "name": "rst_ni",
+          "direction": "input",
+          "type": "reset",
+          "width": 1,
+          "active_level": "low"
+        }
+      ]
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "OBI-like",
+      "description": "Instruction fetch (instr_req_o/instr_gnt_i/instr_rvalid_i/instr_rdata_i) and data access (data_req_o/data_gnt_i/data_rvalid_i/data_rdata_i) ports. Adapted to TL-UL via tlul_adapter_host in SoC integration.",
+      "signals": [
+        {
+          "name": "req_o",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "gnt_i",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "addr_o",
+          "direction": "output",
+          "type": "address",
+          "width": 32
+        },
+        {
+          "name": "we_o",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "be_o",
+          "direction": "output",
+          "type": "control",
+          "width": 4
+        },
+        {
+          "name": "wdata_o",
+          "direction": "output",
+          "type": "data",
+          "width": 32
+        },
+        {
+          "name": "rvalid_i",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "rdata_i",
+          "direction": "input",
+          "type": "data",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "type": "interrupt",
+      "direction": "input",
+      "protocol": "level",
+      "description": "irq_software_i, irq_timer_i, irq_external_i, irq_fast_i[14:0], irq_nm_i"
+    },
+    {
+      "type": "debug",
+      "direction": "input",
+      "description": "debug_req_i for JTAG halt/resume"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "PMPEnable",
+      "type": "bit",
+      "default": "1'b0",
+      "description": "Enable Physical Memory Protection"
+    },
+    {
+      "name": "RV32M",
+      "type": "enum",
+      "default": "RV32MFast",
+      "description": "Multiply/divide: RV32MNone, RV32MSlow, RV32MFast, RV32MSingleCycle"
+    },
+    {
+      "name": "RV32B",
+      "type": "enum",
+      "default": "RV32BNone",
+      "description": "Bit manipulation: RV32BNone, RV32BBalanced, RV32BFull"
+    },
+    {
+      "name": "RegFile",
+      "type": "enum",
+      "default": "RegFileFF",
+      "description": "Register file: RegFileFF (ASIC), RegFileFPGA, RegFileLatch"
+    },
+    {
+      "name": "ICache",
+      "type": "bit",
+      "default": "1'b0",
+      "description": "Enable instruction cache"
+    },
+    {
+      "name": "BranchPredictor",
+      "type": "bit",
+      "default": "1'b0",
+      "description": "Enable branch predictor"
+    },
+    {
+      "name": "SecureIbex",
+      "type": "bit",
+      "default": "1'b0",
+      "description": "Enable lockstep + shadow registers"
+    },
+    {
+      "name": "WritebackStage",
+      "type": "bit",
+      "default": "1'b0",
+      "description": "Enable 3rd pipeline stage (writeback)"
+    },
+    {
+      "name": "BranchTargetALU",
+      "type": "bit",
+      "default": "1'b0",
+      "description": "Dedicated branch target ALU"
+    }
+  ],
+  "performance": {
+    "frequency": {
+      "asic_sky130": "50 MHz (proven in edge-sensor-soc, OpenLane hardened)",
+      "fpga_artix7": "50 MHz (proven in Arty A7-100T)"
+    },
+    "pipeline_depth": 2,
+    "pipeline_stages": [
+      "IF",
+      "ID/EX"
+    ],
+    "instruction_set": "RV32IMC (Integer, Multiply, Compressed)",
+    "gate_count": "~14,595 cells / ~33,685 GE (sky130_fd_sc_hd, Yosys)"
+  },
+  "architecture": {
+    "type": "cpu",
+    "features": [
+      "RV32IMC instruction set (Integer, Multiply, Compressed)",
+      "2-stage pipeline (IF/ID+EX), configurable to 3-stage with WritebackStage",
+      "Configurable register file: FF (ASIC), FPGA, or latch",
+      "Optional PMP (Physical Memory Protection, up to 16 regions)",
+      "Optional instruction cache (ICache, 4KB default)",
+      "Branch predictor (configurable)",
+      "SecureIbex: lockstep core + shadow registers for fault detection",
+      "Full RISC-V Debug Spec support (halt, resume, single-step, breakpoints)",
+      "Hardware performance counters (mcycle, minstret)",
+      "Scramble key interface for memory encryption",
+      "30 RTL files, 19,627 lines"
+    ]
+  },
+  "dependencies": [],
+  "test": {
+    "status": "passing",
+    "simulators": [
+      "verilator"
+    ],
+    "notes": "Verified in edge-sensor-soc (Verilator + Vivado FPGA). Upstream has full UVM DV + RISC-V compliance tests.",
+    "testbenches": [
+      {
+        "name": "upstream",
+        "path": "tb/",
+        "framework": "upstream",
+        "description": "Upstream project's testbench harness \u2014 see source repo."
+      }
+    ],
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://ibex-core.readthedocs.io/"
+  },
+  "artifacts": {
+    "total_rtl_lines": 19627
+  },
+  "categories": {
+    "primary": "Processing Cores",
+    "secondary": [
+      "risc-v",
+      "processor"
+    ],
+    "tags": [
+      "ibex",
+      "rv32imc",
+      "risc-v",
+      "cpu",
+      "pipeline",
+      "lowrisc",
+      "pmp",
+      "icache",
+      "secure"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 3,
+    "fpga_validated": true,
+    "maintained": true,
+    "last_activity": "2026-03-27",
+    "notes": "Silicon-proven in OpenTitan Earl Grey (3 tapeouts). FPGA-validated in edge-sensor-soc on Arty A7-100T. ~33K GE (sky130)."
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ],
+    "estimated_area": "126,321 um2 (sky130_fd_sc_hd)",
+    "estimated_gate_count": "~33,685 GE"
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado",
+      "Yosys"
+    ],
+    "devices": [
+      "Artix-7 (xc7a100t)"
+    ],
+    "resource_estimate": "~3,187 LUTs, ~1,845 FFs (Vivado post-route)"
+  },
+  "keywords": [
+    "ibex",
+    "rv32imc",
+    "risc-v",
+    "cpu",
+    "lowrisc",
+    "pipeline",
+    "pmp",
+    "icache"
+  ],
+  "meta": {
+    "template": {
+      "generator": "manual (gold-standard pass 2026-03-27)"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/ibex_alu.sv",
+    "rtl/ibex_branch_predict.sv",
+    "rtl/ibex_compressed_decoder.sv",
+    "rtl/ibex_controller.sv",
+    "rtl/ibex_core.sv",
+    "rtl/ibex_counter.sv",
+    "rtl/ibex_cs_registers.sv",
+    "rtl/ibex_csr.sv",
+    "rtl/ibex_decoder.sv",
+    "rtl/ibex_dummy_instr.sv",
+    "rtl/ibex_ex_block.sv",
+    "rtl/ibex_fetch_fifo.sv",
+    "rtl/ibex_icache.sv",
+    "rtl/ibex_id_stage.sv",
+    "rtl/ibex_if_stage.sv",
+    "rtl/ibex_load_store_unit.sv",
+    "rtl/ibex_lockstep.sv",
+    "rtl/ibex_multdiv_fast.sv",
+    "rtl/ibex_multdiv_slow.sv",
+    "rtl/ibex_pkg.sv",
+    "rtl/ibex_pmp.sv",
+    "rtl/ibex_prefetch_buffer.sv",
+    "rtl/ibex_register_file_ff.sv",
+    "rtl/ibex_register_file_fpga.sv",
+    "rtl/ibex_register_file_latch.sv",
+    "rtl/ibex_top.sv",
+    "rtl/ibex_top_tracing.sv",
+    "rtl/ibex_tracer.sv",
+    "rtl/ibex_tracer_pkg.sv",
+    "rtl/ibex_wb_stage.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": [],
+  "upstream": {
+    "repo": "https://github.com/lowRISC/ibex",
+    "commit": "fc34556837c4c2e4665f6932296fb3b54cc9e857"
+  }
+}

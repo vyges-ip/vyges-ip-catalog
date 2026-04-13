@@ -1,0 +1,324 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "pwm-controller",
+  "version": "0.1.0",
+  "description": "Configurable multi-channel PWM controller with APB4 interface, supporting precise frequency, duty cycle, and phase control, along with advanced features like fault protection, dead-time insertion, and PLL integration.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:43:25Z",
+  "updated": "2026-03-27T21:43:25Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/vyges/pwm-controller",
+    "commit": "73891f212c86270b907dd38e926e18fdd32b79a2",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "pclk_i",
+      "width": 1,
+      "description": "Primary clock input for the PWM controller."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active_low",
+      "port": "preset_n_i",
+      "width": 1,
+      "description": "Active-low reset input for the PWM controller."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB4",
+      "port": "psel_i",
+      "width": 1,
+      "description": "APB4 slave select signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB4",
+      "port": "penable_i",
+      "width": 1,
+      "description": "APB4 enable signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB4",
+      "port": "pwrite_i",
+      "width": 1,
+      "description": "APB4 write signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB4",
+      "port": "paddr_i",
+      "width": 12,
+      "description": "APB4 address bus."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB4",
+      "port": "pwdata_i",
+      "width": 32,
+      "description": "APB4 write data bus."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB4",
+      "port": "prdata_o",
+      "width": 32,
+      "description": "APB4 read data bus."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB4",
+      "port": "pready_o",
+      "width": 1,
+      "description": "APB4 ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB4",
+      "port": "pslverr_o",
+      "width": 1,
+      "description": "APB4 slave error signal."
+    },
+    {
+      "type": "output",
+      "direction": "output",
+      "protocol": "PWM",
+      "port": "pwm_o",
+      "width": 8,
+      "description": "PWM output signals for each channel."
+    },
+    {
+      "type": "output",
+      "direction": "output",
+      "protocol": "PWM",
+      "port": "pwm_n_o",
+      "width": 8,
+      "description": "Complementary PWM output signals for each channel."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "sync_i",
+      "width": 1,
+      "description": "Synchronization input signal."
+    },
+    {
+      "type": "control",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "sync_o",
+      "width": 1,
+      "description": "Synchronization output signal."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "fault_i",
+      "width": 1,
+      "description": "Fault input signal for emergency shutdown."
+    },
+    {
+      "type": "control",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "fault_o",
+      "width": 1,
+      "description": "Fault output signal indicating fault status."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "irq_o",
+      "width": 1,
+      "description": "Interrupt request output signal."
+    },
+    {
+      "type": "status",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "busy_o",
+      "width": 1,
+      "description": "Busy status output signal."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "NUM_CHANNELS",
+      "type": "int",
+      "default": 8,
+      "description": "Number of PWM channels supported."
+    },
+    {
+      "name": "FREQ_WIDTH",
+      "type": "int",
+      "default": 24,
+      "description": "Bit-width for frequency settings."
+    },
+    {
+      "name": "DUTY_WIDTH",
+      "type": "int",
+      "default": 16,
+      "description": "Bit-width for duty cycle settings."
+    },
+    {
+      "name": "PHASE_WIDTH",
+      "type": "int",
+      "default": 16,
+      "description": "Bit-width for phase settings."
+    },
+    {
+      "name": "APB_ADDR_WIDTH",
+      "type": "int",
+      "default": 12,
+      "description": "Bit-width for APB address bus."
+    }
+  ],
+  "performance": {
+    "frequency_range": "0.1Hz to 100MHz",
+    "duty_cycle_resolution": "0.001%",
+    "phase_resolution": "0.01\u00b0"
+  },
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Multi-channel PWM generation",
+      "APB4 slave interface",
+      "PLL integration for precise timing",
+      "Dead-time insertion",
+      "Fault protection and emergency shutdown",
+      "Chiplet-ready design"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "pwm_apb_slave",
+      "type": "module",
+      "description": "APB slave interface for PWM controller."
+    },
+    {
+      "name": "pwm_channel_array",
+      "type": "module",
+      "description": "Module for managing multiple PWM channels."
+    },
+    {
+      "name": "pwm_pll_controller",
+      "type": "module",
+      "description": "PLL controller for precise timing."
+    },
+    {
+      "name": "pwm_fault_protection",
+      "type": "module",
+      "description": "Fault protection and emergency shutdown logic."
+    },
+    {
+      "name": "pwm_irq_controller",
+      "type": "module",
+      "description": "Interrupt controller for PWM channels."
+    },
+    {
+      "name": "pwm_sync_controller",
+      "type": "module",
+      "description": "Synchronization controller for PWM channels."
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "SystemVerilog testbench",
+      "cocotb testbench"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/vyges/pwm-controller"
+  },
+  "artifacts": {
+    "total_rtl_lines": 1669
+  },
+  "categories": {
+    "primary": "peripherals",
+    "secondary": [
+      "motor-control",
+      "signal-generation",
+      "power-management"
+    ],
+    "tags": [
+      "PWM",
+      "APB4",
+      "frequency-control",
+      "duty-cycle",
+      "phase-control",
+      "fault-protection",
+      "chiplet"
+    ]
+  },
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T21:43:25Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:43:25Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "coralnpu-scalar-units",
+  "version": "0.1.0",
+  "description": "Scalar execution units for the CoralNPU, including an ALU, multiplier (MLU), and divider (DVU). Designed for efficient scalar operations in neural processing units.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T05:50:10Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/google-coral/coralnpu",
+    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
+    "ip_path": "hdl/chisel",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "name": "clock",
+      "signals": [
+        {
+          "name": "clk_i",
+          "direction": "input",
+          "type": "clock",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "type": "reset",
+      "name": "reset",
+      "signals": [
+        {
+          "name": "rst_ni",
+          "direction": "input",
+          "type": "reset",
+          "width": 1,
+          "active_level": "low"
+        }
+      ]
+    },
+    {
+      "type": "bus",
+      "name": "ctrl",
+      "protocol": "apb",
+      "description": "Default control bus added by metadata fix pass \u2014 verify against RTL.",
+      "signals": [
+        {
+          "name": "psel_i",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "penable_i",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "pwrite_i",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "paddr_i",
+          "direction": "input",
+          "type": "address",
+          "width": 32
+        },
+        {
+          "name": "pwdata_i",
+          "direction": "input",
+          "type": "data",
+          "width": 32
+        },
+        {
+          "name": "prdata_o",
+          "direction": "output",
+          "type": "data",
+          "width": 32
+        },
+        {
+          "name": "pready_o",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "pslverr_o",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        }
+      ]
+    }
+  ],
+  "parameters": [],
+  "performance": {},
+  "architecture": {
+    "type": "coprocessor",
+    "features": [
+      "Arithmetic Logic Unit (ALU)",
+      "Multiplier Unit (MLU)",
+      "Divider Unit (DVU)"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [],
+  "test": {
+    "testbenches": [
+      {
+        "name": "upstream",
+        "path": "tb/",
+        "framework": "upstream",
+        "description": "Upstream project's testbench harness \u2014 see source repo."
+      }
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/google-coral/coralnpu"
+  },
+  "artifacts": {
+    "total_rtl_lines": 0
+  },
+  "categories": [
+    {
+      "main_category": "Processing Cores",
+      "sub_category": "Co-Processors"
+    }
+  ],
+  "keywords": [
+    "scalar",
+    "ALU",
+    "MLU",
+    "DVU",
+    "neural processing"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:50:10Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/coralnpu-Alu.sv",
+    "rtl/coralnpu-Dvu.sv",
+    "rtl/coralnpu-Mlu.sv",
+    "rtl/coralnpu-Alu.sv",
+    "rtl/coralnpu-Dvu.sv",
+    "rtl/coralnpu-Mlu.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

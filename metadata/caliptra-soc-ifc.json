@@ -1,0 +1,197 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-soc-ifc",
+  "version": "0.1.0",
+  "description": "The Caliptra SoC Interface (SOC_IFC) provides a secure communication interface between the host processor and the Caliptra subsystem, including mailbox and SHA-512 accelerator functionalities.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:43:15Z",
+  "updated": "2026-03-27T21:43:15Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "ip_path": "src/soc_ifc",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "System clock input."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_b",
+      "width": 1,
+      "description": "Active-low reset signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "AXI",
+      "port": "req_data",
+      "width": "SOC_IFC_REQ_T_WIDTH",
+      "description": "Incoming request data from AXI or AHB."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "rdata",
+      "width": 32,
+      "description": "Read data output."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "error_intr",
+      "width": 1,
+      "description": "Error interrupt signal."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "notif_intr",
+      "width": 1,
+      "description": "Notification interrupt signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "sha_sram_req_addr",
+      "width": "CPTRA_MBOX_ADDR_W",
+      "description": "Address for SRAM requests."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "sha_sram_resp",
+      "width": "CPTRA_MBOX_SRAM_RESP_T_WIDTH",
+      "description": "Response data from SRAM."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "DATA_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the data bus in bits."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Secure mailbox interface",
+      "SHA-512 accelerator",
+      "AXI/AHB request handling",
+      "Interrupt generation for error and notifications"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "soc_ifc_pkg",
+      "type": "library",
+      "description": "Package containing definitions for SOC interface types and constants."
+    },
+    {
+      "name": "mbox_pkg",
+      "type": "library",
+      "description": "Package for mailbox-related definitions."
+    },
+    {
+      "name": "sha512_acc_csr_pkg",
+      "type": "library",
+      "description": "Package for SHA-512 accelerator control and status registers."
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "rtl/mbox_csr_uvm.sv",
+      "rtl/sha512_acc_csr_uvm.sv",
+      "rtl/soc_ifc_reg_uvm.sv"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl"
+  },
+  "artifacts": {
+    "total_rtl_lines": 22835
+  },
+  "categories": {
+    "primary": "security",
+    "secondary": [
+      "communication",
+      "cryptography"
+    ],
+    "tags": [
+      "SHA-512",
+      "mailbox",
+      "AXI",
+      "AHB",
+      "secure interface"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T21:43:15Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:43:15Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

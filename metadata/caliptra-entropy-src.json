@@ -1,0 +1,226 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-entropy-src",
+  "version": "0.1.0",
+  "description": "NIST SP 800-90B compliant entropy source with 5 parallel health tests (Repetitive Count, Adaptive Proportion, Markov, Bucket), SHA-3 conditioning for FIPS entropy compression, and 384-bit seed generation for CSRNG. Supports FIPS, bypass, and firmware override modes. AHB-Lite slave interface. Extracted from CHIPS Alliance Caliptra Root of Trust.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T20:52:56Z",
+  "updated": "2026-03-27T20:52:56Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "ip_path": "src/entropy_src",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "ahb",
+      "width": 64,
+      "description": "AHB-Lite slave. 64-bit data, 32-bit address."
+    },
+    {
+      "type": "entropy",
+      "direction": "output",
+      "protocol": "entropy_src_hw_if",
+      "port": "entropy_src_hw_if_o",
+      "description": "384-bit entropy output interface to CSRNG."
+    },
+    {
+      "type": "rng",
+      "direction": "both",
+      "protocol": "entropy_src_rng",
+      "port": "entropy_src_rng",
+      "description": "4-bit raw entropy input from AST analog RNG."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "port": "intr",
+      "width": 4,
+      "description": "4 interrupts: entropy_valid, health_test_failed, observe_fifo_ready, fatal_err."
+    },
+    {
+      "type": "alert",
+      "direction": "output",
+      "port": "alert_tx_o",
+      "width": 2,
+      "description": "Recovery (health test) and fatal (integrity) alerts."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "port": "clk_i",
+      "description": "System clock."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "port": "rst_ni",
+      "polarity": "active_low",
+      "description": "Asynchronous active-low reset."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Stub",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable stub mode (LFSR-based) vs full implementation."
+    },
+    {
+      "name": "EsFifoDepth",
+      "type": "int",
+      "default": 3,
+      "description": "Final entropy FIFO depth (384-bit entries)."
+    },
+    {
+      "name": "DistrFifoDepth",
+      "type": "int",
+      "default": 2,
+      "description": "Distribution FIFO depth (32-bit entries)."
+    }
+  ],
+  "performance": {
+    "output_width": 384,
+    "rng_input_width": 4,
+    "health_tests": 5,
+    "conditioning": "SHA-3 (Keccak)",
+    "modes": [
+      "FIPS (SHA-3 conditioned)",
+      "Bypass (raw entropy)",
+      "FW Override (software-injected)"
+    ]
+  },
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "NIST SP 800-90B compliant entropy source",
+      "384-bit seed generation for CSRNG",
+      "5 parallel health tests: RepCnt, RepCntS, Adaptive Proportion, Markov, Bucket",
+      "SHA-3 (KMAC) entropy conditioning for FIPS mode",
+      "Bypass mode for boot-time raw entropy",
+      "FW override mode for software-controlled entropy injection",
+      "20-state main FSM with sparse encoding",
+      "Redundant counters in all health tests (SEC_CM: CTR.REDUN)",
+      "Observable FIFO for entropy quality monitoring",
+      "Configurable health test thresholds",
+      "OTP-controlled firmware read/override access",
+      "FIPS compliance indicator output"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A",
+      "GF22",
+      "TSMC"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado",
+      "Quartus"
+    ],
+    "devices": [
+      "Artix-7",
+      "Ultrascale+"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "caliptra-prim",
+      "type": "library",
+      "description": "Primitives: counters, FIFOs, FSM, alert generation"
+    },
+    {
+      "name": "caliptra-kmac",
+      "type": "core",
+      "description": "SHA-3/Keccak for entropy conditioning"
+    },
+    {
+      "name": "lc_ctrl",
+      "type": "integration",
+      "description": "Lifecycle controller"
+    },
+    {
+      "name": "caliptra-csrng",
+      "type": "integration",
+      "description": "CSRNG coordination (cs_aes_halt)"
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "systemverilog"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl/tree/main/src/entropy_src",
+    "caliptra_spec": "https://chipsalliance.github.io/Caliptra/",
+    "standard": "NIST SP 800-90B (Entropy Sources)"
+  },
+  "artifacts": {
+    "total_rtl_lines": 10514
+  },
+  "categories": {
+    "primary": "security",
+    "secondary": [
+      "crypto",
+      "rng",
+      "entropy"
+    ],
+    "tags": [
+      "entropy",
+      "health-test",
+      "sha3",
+      "caliptra",
+      "root-of-trust",
+      "nist-sp800-90b",
+      "fips",
+      "ahb",
+      "chips-alliance"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 1,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "manual (gold-standard pass 2026-03-27)",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T20:52:56Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

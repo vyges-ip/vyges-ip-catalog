@@ -1,0 +1,288 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-datavault",
+  "version": "0.1.0",
+  "description": "The Caliptra DataVault is a hardware block for secure storage and management of sensitive data, featuring lockable and non-lockable registers, scratch registers, and data vault entries with configurable access control.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:43:20Z",
+  "updated": "2026-03-27T21:43:20Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "ip_path": "src/datavault",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock signal for the DataVault module."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst",
+      "width": 1,
+      "description": "Reset signal for the DataVault module."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "s_cpuif_req",
+      "width": 1,
+      "description": "CPU interface request signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "s_cpuif_req_is_wr",
+      "width": 1,
+      "description": "CPU interface write request signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "s_cpuif_addr",
+      "width": 11,
+      "description": "Address bus for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "s_cpuif_wr_data",
+      "width": 32,
+      "description": "Write data bus for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "s_cpuif_wr_biten",
+      "width": 32,
+      "description": "Write byte enable signals for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_req_stall_wr",
+      "width": 1,
+      "description": "Write stall signal for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_req_stall_rd",
+      "width": 1,
+      "description": "Read stall signal for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_rd_ack",
+      "width": 1,
+      "description": "Read acknowledgment signal for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_rd_err",
+      "width": 1,
+      "description": "Read error signal for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_rd_data",
+      "width": 32,
+      "description": "Read data bus for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_wr_ack",
+      "width": 1,
+      "description": "Write acknowledgment signal for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_wr_err",
+      "width": 1,
+      "description": "Write error signal for CPU interface."
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "hwif_in",
+      "width": "variable",
+      "description": "Hardware interface input signals."
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "hwif_out",
+      "width": "variable",
+      "description": "Hardware interface output signals."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "DV_ADDR_W",
+      "type": "int",
+      "default": 13,
+      "description": "Address width for the DataVault."
+    },
+    {
+      "name": "DV_DATA_W",
+      "type": "int",
+      "default": 32,
+      "description": "Data width for the DataVault."
+    },
+    {
+      "name": "STICKY_DV_NUM_ENTRIES",
+      "type": "int",
+      "default": 10,
+      "description": "Number of sticky DataVault entries."
+    },
+    {
+      "name": "DV_NUM_ENTRIES",
+      "type": "int",
+      "default": 10,
+      "description": "Number of non-sticky DataVault entries."
+    },
+    {
+      "name": "LOCK_SCRATCH_NUM_ENTRIES",
+      "type": "int",
+      "default": 10,
+      "description": "Number of lockable scratch registers."
+    },
+    {
+      "name": "STICKY_LOCK_SCRATCH_NUM_ENTRIES",
+      "type": "int",
+      "default": 8,
+      "description": "Number of sticky lockable scratch registers."
+    },
+    {
+      "name": "NONSTICKY_SCRATCH_NUM_ENTRIES",
+      "type": "int",
+      "default": 8,
+      "description": "Number of non-sticky scratch registers."
+    },
+    {
+      "name": "DV_NUM_DWORDS",
+      "type": "int",
+      "default": 12,
+      "description": "Number of double words per DataVault entry."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Lockable and non-lockable registers",
+      "Sticky and non-sticky data vault entries",
+      "Configurable access control",
+      "Support for CPU interface with read/write operations"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "PeakRDL-regblock",
+      "type": "tool",
+      "description": "SystemVerilog generator used to create the register block."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl"
+  },
+  "artifacts": {
+    "total_rtl_lines": 1193
+  },
+  "categories": {
+    "primary": "security",
+    "secondary": [
+      "memory",
+      "peripheral"
+    ],
+    "tags": [
+      "data-vault",
+      "secure-storage",
+      "registers",
+      "hardware-security"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T21:43:20Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:43:20Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

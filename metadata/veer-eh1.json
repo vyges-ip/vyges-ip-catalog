@@ -1,0 +1,404 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "veer-eh1",
+  "version": "0.1.0",
+  "description": "The VeeR EH1 is a high-performance RISC-V processor core supporting AXI and AHB interfaces, designed for embedded applications with debug and DMA capabilities.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:42:27Z",
+  "updated": "2026-03-27T21:42:27Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/Cores-VeeR-EH1",
+    "commit": "915fb34a5b38ef14c5d5c05431765ad8b912bc34",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_awvalid",
+      "width": 1,
+      "description": "AXI write address valid signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_awready",
+      "width": 1,
+      "description": "AXI write address ready signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_awid",
+      "width": "`RV_DMA_BUS_TAG",
+      "description": "AXI write address ID"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_awaddr",
+      "width": 32,
+      "description": "AXI write address"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_awsize",
+      "width": 3,
+      "description": "AXI write address size"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_awprot",
+      "width": 3,
+      "description": "AXI write address protection"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_awlen",
+      "width": 8,
+      "description": "AXI write address burst length"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_awburst",
+      "width": 2,
+      "description": "AXI write address burst type"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_wvalid",
+      "width": 1,
+      "description": "AXI write data valid signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_wready",
+      "width": 1,
+      "description": "AXI write data ready signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_wdata",
+      "width": 64,
+      "description": "AXI write data"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_wstrb",
+      "width": 8,
+      "description": "AXI write strobe"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_wlast",
+      "width": 1,
+      "description": "AXI write last signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_bvalid",
+      "width": 1,
+      "description": "AXI write response valid signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_bready",
+      "width": 1,
+      "description": "AXI write response ready signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_bresp",
+      "width": 2,
+      "description": "AXI write response"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_bid",
+      "width": "`RV_DMA_BUS_TAG",
+      "description": "AXI write response ID"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_arvalid",
+      "width": 1,
+      "description": "AXI read address valid signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_arready",
+      "width": 1,
+      "description": "AXI read address ready signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_arid",
+      "width": "`RV_DMA_BUS_TAG",
+      "description": "AXI read address ID"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_araddr",
+      "width": 32,
+      "description": "AXI read address"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_arsize",
+      "width": 3,
+      "description": "AXI read address size"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_arprot",
+      "width": 3,
+      "description": "AXI read address protection"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_arlen",
+      "width": 8,
+      "description": "AXI read address burst length"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_arburst",
+      "width": 2,
+      "description": "AXI read address burst type"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_rvalid",
+      "width": 1,
+      "description": "AXI read data valid signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_rready",
+      "width": 1,
+      "description": "AXI read data ready signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_rid",
+      "width": "`RV_DMA_BUS_TAG",
+      "description": "AXI read data ID"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_rdata",
+      "width": 64,
+      "description": "AXI read data"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_rresp",
+      "width": 2,
+      "description": "AXI read response"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_rlast",
+      "width": 1,
+      "description": "AXI read last signal"
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "Primary clock signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_l",
+      "width": 1,
+      "description": "Active-low reset signal"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "DEPTH",
+      "type": "int",
+      "default": "DMA_BUF_DEPTH",
+      "description": "Depth of the DMA buffer"
+    },
+    {
+      "name": "DEPTH_PTR",
+      "type": "int",
+      "default": "$clog2(DEPTH)",
+      "description": "Pointer width for DMA buffer depth"
+    },
+    {
+      "name": "NACK_COUNT",
+      "type": "int",
+      "default": 7,
+      "description": "Maximum count for NACK retries"
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "processor",
+    "features": [
+      "RISC-V ISA support",
+      "AXI and AHB bus interfaces",
+      "DMA controller",
+      "Debug interface",
+      "ECC error handling"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "Verilator",
+      "type": "tool",
+      "description": "Required for simulation and verification"
+    },
+    {
+      "name": "RISC-V GCC Toolchain",
+      "type": "tool",
+      "description": "Required for compiling RISC-V binaries"
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "testbench/asm",
+      "testbench/hex"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/Cores-VeeR-EH1"
+  },
+  "artifacts": {
+    "total_rtl_lines": 25310
+  },
+  "categories": {
+    "primary": "processor",
+    "secondary": [
+      "embedded",
+      "risc-v"
+    ],
+    "tags": [
+      "dma",
+      "debug",
+      "axi",
+      "ahb",
+      "risc-v"
+    ]
+  },
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T21:42:27Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:42:27Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+# Vyges IP Catalog — Metadata Quality Scores
+
+- **Aggregate:** 93/100
+- **IPs scored:** 130
+- **Good (≥80):** 130
+- **Medium (60–79):** 0
+- **High-risk (<60):** 0
+- **Scorer:** [vyges/metadata-scorer-action@v1](https://github.com/vyges/metadata-scorer-action/tree/v1)
+
+## Needs work (bottom 20)
+
+| IP | Score | Tier | Top gap |
+|---|---:|---|---|
+| `sky130-bandgap-reference` | 80 | Good | interfaces: interfaces[].type=clock |
+| `sky130-opamp` | 80 | Good | interfaces: interfaces[].type=clock |
+| `tlul-apb-adapter` | 80 | Good | interfaces: interfaces[].type=clock |
+| `caliptra-edn` | 83 | Good | interfaces: interfaces[].type=clock |
+| `caliptra-libs` | 83 | Good | interfaces: interfaces[].type=clock |
+| `caliptra-prim` | 83 | Good | interfaces: interfaces[].type=clock |
+| `coralnpu-dbus2axi` | 83 | Good | interfaces: interfaces[].type=clock |
+| `coralnpu-l1-dcache` | 83 | Good | interfaces: interfaces[].bus.signals |
+| `coralnpu-l1-icache` | 83 | Good | interfaces: interfaces[].bus.signals |
+| `coralnpu-tlul-pkg` | 83 | Good | interfaces: interfaces[].type=clock |
+| `opentitan-otp-ctrl` | 83 | Good | interfaces: interfaces[].type=clock |
+| `opentitan-prim-xilinx` | 83 | Good | interfaces: interfaces[].type=clock |
+| `riscduino-pwm` | 83 | Good | parameters: parameters[].description |
+| `sky130-potentiometric-dac` | 83 | Good | interfaces: interfaces[].type=clock |
+| `caliptra-hmac-drbg` | 85 | Good | interfaces: interfaces[].type=bus |
+| `caliptra-sha512-masked` | 85 | Good | interfaces: interfaces[].type=bus |
+| `coralnpu-clock-gate` | 85 | Good | interfaces: interfaces[].type=bus |
+| `coralnpu-rst-sync` | 85 | Good | interfaces: interfaces[].type=bus |
+| `mlow-codec` | 85 | Good | interfaces: interfaces[].type=bus |
+| `opentitan-prim-asap7` | 85 | Good | interfaces: interfaces[].type=bus |
+
+## Top 20 (highest scores)
+
+| IP | Score |
+|---|---:|
+| `fast-fourier-transform-ip` | 100 |
+| `ibex` | 100 |
+| `openfasoc-temp-sensor` | 100 |
+| `opentitan-flash-ctrl` | 100 |
+| `opentitan-rv-core-ibex` | 100 |
+| `opentitan-uart` | 100 |
+| `vyges-rv-plic-lite` | 100 |
+| `vyges-spi-host-lite` | 100 |
+| `32bit-risc-core` | 98 |
+| `adams-bridge` | 98 |
+| `caliptra-aes` | 98 |
+| `caliptra-csrng` | 98 |
+| `caliptra-ecc` | 98 |
+| `caliptra-entropy-src` | 98 |
+| `caliptra-hmac` | 98 |
+| `caliptra-sha256` | 98 |
+| `caliptra-sha512` | 98 |
+| `caliptra-soc-ifc` | 98 |
+| `canakari` | 98 |
+| `coralnpu-core` | 98 |

@@ -1,0 +1,299 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-rom-ctrl",
+  "version": "0.1.0",
+  "description": "A secure ROM controller for OpenTitan, supporting end-to-end data integrity, optional scrambling, and integration with KMAC for cryptographic operations.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:05:46Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "ip_path": "hw/ip/rom_ctrl",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "rom_tl_i",
+      "width": 128,
+      "description": "TileLink interface for ROM access."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "rom_tl_o",
+      "width": 128,
+      "description": "TileLink response interface for ROM access."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "regs_tl_i",
+      "width": 128,
+      "description": "TileLink interface for register access."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "regs_tl_o",
+      "width": 128,
+      "description": "TileLink response interface for register access."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal."
+    },
+    {
+      "type": "alert",
+      "direction": "input",
+      "port": "alert_rx_i",
+      "width": 1,
+      "description": "Alert receiver input."
+    },
+    {
+      "type": "alert",
+      "direction": "output",
+      "port": "alert_tx_o",
+      "width": 1,
+      "description": "Alert transmitter output."
+    },
+    {
+      "type": "data",
+      "direction": "output",
+      "port": "pwrmgr_data_o",
+      "width": 32,
+      "description": "Power manager data output."
+    },
+    {
+      "type": "data",
+      "direction": "output",
+      "port": "keymgr_data_o",
+      "width": 32,
+      "description": "Key manager data output."
+    },
+    {
+      "type": "data",
+      "direction": "input",
+      "port": "kmac_data_i",
+      "width": 256,
+      "description": "KMAC data input."
+    },
+    {
+      "type": "data",
+      "direction": "output",
+      "port": "kmac_data_o",
+      "width": 256,
+      "description": "KMAC data output."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "BootRomInitFile",
+      "type": "string",
+      "default": "\"\"",
+      "description": "Path to the boot ROM initialization file."
+    },
+    {
+      "name": "AlertAsyncOn",
+      "type": "bit",
+      "default": "1",
+      "description": "Enable asynchronous alerts."
+    },
+    {
+      "name": "AlertSkewCycles",
+      "type": "int",
+      "default": 1,
+      "description": "Number of cycles a differential skew is tolerated on the alert signal."
+    },
+    {
+      "name": "FlopToKmac",
+      "type": "bit",
+      "default": 0,
+      "description": "Insert a flop stage between the ROM output and KMAC input."
+    },
+    {
+      "name": "RndCnstScrNonce",
+      "type": "bit",
+      "default": 0,
+      "description": "Random constant for scrambling nonce."
+    },
+    {
+      "name": "RndCnstScrKey",
+      "type": "bit",
+      "default": 0,
+      "description": "Random constant for scrambling key."
+    },
+    {
+      "name": "MemSizeRom",
+      "type": "int",
+      "default": 32768,
+      "description": "ROM size in bytes."
+    },
+    {
+      "name": "SecDisableScrambling",
+      "type": "bit",
+      "default": 0,
+      "description": "Disable scrambling operations for debugging or testing."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Secure ROM controller with end-to-end data integrity",
+      "Optional scrambling for data security",
+      "Integration with KMAC for cryptographic operations",
+      "Support for TileLink interface",
+      "ECC for data integrity"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Assertion library for OpenTitan."
+    },
+    {
+      "name": "prim_rom_pkg",
+      "type": "library",
+      "description": "Package defining ROM configuration types."
+    },
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TileLink protocol package."
+    },
+    {
+      "name": "prim_alert_pkg",
+      "type": "library",
+      "description": "Package defining alert protocol types."
+    },
+    {
+      "name": "kmac_pkg",
+      "type": "library",
+      "description": "Package defining KMAC interface types."
+    },
+    {
+      "name": "prim_util_pkg",
+      "type": "library",
+      "description": "Utility package for OpenTitan."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/lowRISC/opentitan"
+  },
+  "artifacts": {
+    "total_rtl_lines": 2687
+  },
+  "categories": [
+    {
+      "main_category": "Security IP",
+      "sub_category": "Secure Boot Blocks"
+    }
+  ],
+  "keywords": [
+    "ROM controller",
+    "secure boot",
+    "scrambling",
+    "ECC",
+    "OpenTitan"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:05:46Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/rom_ctrl.sv",
+    "rtl/rom_ctrl_compare.sv",
+    "rtl/rom_ctrl_counter.sv",
+    "rtl/rom_ctrl_fsm.sv",
+    "rtl/rom_ctrl_mux.sv",
+    "rtl/rom_ctrl_pkg.sv",
+    "rtl/rom_ctrl_reg_pkg.sv",
+    "rtl/rom_ctrl_regs_reg_top.sv",
+    "rtl/rom_ctrl_rom_reg_top.sv",
+    "rtl/rom_ctrl_scrambled_rom.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

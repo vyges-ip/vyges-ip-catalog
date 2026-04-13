@@ -1,0 +1,218 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "fastvdma",
+  "version": "0.1.0",
+  "description": "FastVDMA is a highly configurable and portable DMA controller supporting 2D transfers with configurable stride, external frame synchronization, and multiple bus protocols including AXI4, AXI-Stream, and Wishbone.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:42:51Z",
+  "updated": "2026-03-27T21:42:51Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/antmicro/fastvdma",
+    "commit": "9ec9f3ae8fc51ade5ff3ed70d96dca1b1d810a9a",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI4",
+      "port": "data_axi",
+      "width": 64,
+      "description": "AXI4 data bus interface for memory-mapped transactions."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI-Stream",
+      "port": "data_stream",
+      "width": 32,
+      "description": "AXI-Stream interface for streaming data transfers."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI4-Lite",
+      "port": "control_axi",
+      "width": 32,
+      "description": "AXI4-Lite control bus interface for configuration and status."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "Wishbone",
+      "port": "control_wb",
+      "width": 32,
+      "description": "Wishbone control bus interface for configuration and status."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock input for the DMA controller."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "reset",
+      "width": 1,
+      "description": "Active-high reset signal for the DMA controller."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "irq",
+      "width": 1,
+      "description": "Interrupt signal to indicate transfer completion or error."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "DATA_WIDTH",
+      "type": "int",
+      "default": 64,
+      "description": "Width of the data bus in bits."
+    },
+    {
+      "name": "ADDR_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the address bus in bits."
+    },
+    {
+      "name": "STRIDE_SUPPORT",
+      "type": "bit",
+      "default": 1,
+      "description": "Enable or disable support for 2D transfers with configurable stride."
+    },
+    {
+      "name": "FRAME_SYNC",
+      "type": "bit",
+      "default": 1,
+      "description": "Enable or disable external frame synchronization inputs."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "2D transfers with configurable stride",
+      "External frame synchronization",
+      "Support for AXI4, AXI-Stream, AXI4-Lite, and Wishbone protocols",
+      "Interrupt-driven operation"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "sbt",
+      "type": "tool",
+      "description": "Scala Build Tool required for building the Chisel-based design."
+    },
+    {
+      "name": "scala",
+      "type": "tool",
+      "description": "Scala programming language required for Chisel."
+    },
+    {
+      "name": "java",
+      "type": "tool",
+      "description": "Java runtime required for running Scala and sbt."
+    },
+    {
+      "name": "imagemagick",
+      "type": "tool",
+      "description": "ImageMagick required for generating test output images."
+    }
+  ],
+  "test": {
+    "testbenches": [
+      {
+        "name": "testM2M",
+        "description": "Memory-to-memory transfer test with configurable parameters."
+      },
+      {
+        "name": "testS2M",
+        "description": "Stream-to-memory transfer test with configurable parameters."
+      }
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/antmicro/fastvdma"
+  },
+  "artifacts": {
+    "total_rtl_lines": 0
+  },
+  "categories": {
+    "primary": "DMA Controller",
+    "secondary": [
+      "Memory Interface",
+      "Bus Interface"
+    ],
+    "tags": [
+      "DMA",
+      "AXI4",
+      "AXI-Stream",
+      "Wishbone",
+      "2D Transfers",
+      "Configurable"
+    ]
+  },
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:42:51Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

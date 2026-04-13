@@ -1,0 +1,239 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-tlul",
+  "version": "0.1.0",
+  "description": "TileLink UL adapter for SRAM-like devices, supporting byte-level integrity handling and readback checks for secure data transactions.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-06T03:29:42Z",
+  "updated": "2026-04-06T03:29:42Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "82eed18aedc14b03bfb8d9dce873c866e1eda22e",
+    "ip_path": "src/caliptra_tlul",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "TileLink host-to-device input interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "TileLink device-to-host output interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "TL-UL",
+      "port": "tl_sram_o",
+      "width": 32,
+      "description": "TileLink output interface for SRAM-like devices."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "TL-UL",
+      "port": "tl_sram_i",
+      "width": 32,
+      "description": "TileLink input interface for SRAM-like devices."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal."
+    },
+    {
+      "type": "signal",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "error_i",
+      "width": 1,
+      "description": "Error input signal indicating transaction issues."
+    },
+    {
+      "type": "signal",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "error_o",
+      "width": 1,
+      "description": "Error output signal indicating transaction issues."
+    },
+    {
+      "type": "signal",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "alert_o",
+      "width": 1,
+      "description": "Alert signal for critical conditions."
+    },
+    {
+      "type": "signal",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "compound_txn_in_progress_o",
+      "width": 1,
+      "description": "Indicates if a compound transaction is in progress."
+    },
+    {
+      "type": "signal",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "readback_en_i",
+      "width": 4,
+      "description": "Enable signal for readback checks."
+    },
+    {
+      "type": "signal",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "wr_collision_i",
+      "width": 1,
+      "description": "Indicates write collision conditions."
+    },
+    {
+      "type": "signal",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "write_pending_i",
+      "width": 1,
+      "description": "Indicates if a write transaction is pending."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "EnableIntg",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable integrity handling at byte level."
+    },
+    {
+      "name": "Outstanding",
+      "type": "int",
+      "default": 1,
+      "description": "Maximum number of outstanding transactions."
+    },
+    {
+      "name": "EnableReadback",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable readback checks for transactions."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "TileLink UL protocol support",
+      "Byte-level integrity handling",
+      "Readback checks for secure transactions",
+      "Error propagation and handling"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "caliptra_prim_mubi_pkg",
+      "type": "library",
+      "description": "Package for multi-bit utilities and constants."
+    },
+    {
+      "name": "caliptra_prim_util_pkg",
+      "type": "library",
+      "description": "Package for utility functions and constants."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl"
+  },
+  "artifacts": {
+    "total_rtl_lines": 2801
+  },
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "Parallel Interfaces"
+    }
+  ],
+  "keywords": [
+    "TileLink",
+    "SRAM",
+    "Integrity",
+    "Adapter",
+    "Security"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-06T03:29:42Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-06T03:29:42Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

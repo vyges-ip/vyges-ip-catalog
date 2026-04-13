@@ -1,0 +1,293 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-pcrvault",
+  "version": "0.1.0",
+  "description": "The Caliptra PCR Vault is a hardware IP block designed for secure storage and management of Platform Configuration Registers (PCRs), supporting cryptographic operations and secure access control.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:43:22Z",
+  "updated": "2026-03-27T21:43:22Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "ip_path": "src/pcrvault",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock signal for the PCR Vault."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst",
+      "width": 1,
+      "description": "Reset signal for the PCR Vault."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "generic",
+      "port": "s_cpuif_req",
+      "width": 1,
+      "description": "CPU interface request signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "generic",
+      "port": "s_cpuif_req_is_wr",
+      "width": 1,
+      "description": "CPU interface write request signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "generic",
+      "port": "s_cpuif_addr",
+      "width": 12,
+      "description": "Address bus for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "generic",
+      "port": "s_cpuif_wr_data",
+      "width": 32,
+      "description": "Write data bus for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "generic",
+      "port": "s_cpuif_wr_biten",
+      "width": 32,
+      "description": "Write byte enable signals for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "generic",
+      "port": "s_cpuif_req_stall_wr",
+      "width": 1,
+      "description": "Write stall signal for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "generic",
+      "port": "s_cpuif_req_stall_rd",
+      "width": 1,
+      "description": "Read stall signal for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "generic",
+      "port": "s_cpuif_rd_ack",
+      "width": 1,
+      "description": "Read acknowledgment signal for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "generic",
+      "port": "s_cpuif_rd_err",
+      "width": 1,
+      "description": "Read error signal for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "generic",
+      "port": "s_cpuif_rd_data",
+      "width": 32,
+      "description": "Read data bus for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "generic",
+      "port": "s_cpuif_wr_ack",
+      "width": 1,
+      "description": "Write acknowledgment signal for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "generic",
+      "port": "s_cpuif_wr_err",
+      "width": 1,
+      "description": "Write error signal for CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "generic",
+      "port": "hwif_in",
+      "width": "struct",
+      "description": "Hardware interface input signals."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "generic",
+      "port": "hwif_out",
+      "width": "struct",
+      "description": "Hardware interface output signals."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "PV_NUM_DWORDS",
+      "type": "int",
+      "default": 12,
+      "description": "Number of double words per PCR."
+    },
+    {
+      "name": "PV_NUM_PCR",
+      "type": "int",
+      "default": 32,
+      "description": "Number of PCR entries."
+    },
+    {
+      "name": "PV_ADDR_W",
+      "type": "int",
+      "default": 13,
+      "description": "Width of the address bus."
+    },
+    {
+      "name": "PV_DATA_W",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the data bus."
+    },
+    {
+      "name": "PV_ENTRY_ADDR_W",
+      "type": "int",
+      "default": 5,
+      "description": "Width of the entry address bus."
+    },
+    {
+      "name": "PV_ENTRY_SIZE_WIDTH",
+      "type": "int",
+      "default": 4,
+      "description": "Width of the entry size bus."
+    },
+    {
+      "name": "PV_NUM_READ",
+      "type": "int",
+      "default": 1,
+      "description": "Number of read operations supported."
+    },
+    {
+      "name": "PV_NUM_WRITE",
+      "type": "int",
+      "default": 1,
+      "description": "Number of write operations supported."
+    },
+    {
+      "name": "PV_SIZE_OF_NONCE",
+      "type": "int",
+      "default": 256,
+      "description": "Size of the nonce used in cryptographic operations."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Secure storage of PCR values",
+      "Support for cryptographic operations",
+      "Hardware interface for PCR management",
+      "CPU bus interface for read/write operations"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "PeakRDL-regblock",
+      "type": "library",
+      "description": "SystemVerilog generator used for register block generation."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl"
+  },
+  "artifacts": {
+    "total_rtl_lines": 991
+  },
+  "categories": {
+    "primary": "security",
+    "secondary": [
+      "cryptography",
+      "memory"
+    ],
+    "tags": [
+      "PCR",
+      "secure storage",
+      "hardware security"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T21:43:22Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:43:22Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

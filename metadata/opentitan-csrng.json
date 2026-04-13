@@ -1,0 +1,263 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-csrng",
+  "version": "0.1.0",
+  "description": "A silicon-proven cryptographic secure random number generator (CSRNG) compliant with NIST SP 800-90A, providing high-quality random numbers for secure applications.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:04:59Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "ip_path": "hw/ip/csrng",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "TileLink host-to-device interface for CSRNG control and data input."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "TileLink device-to-host interface for CSRNG control and data output."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input for the CSRNG module."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset input for the CSRNG module."
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "port": "reg2hw",
+      "width": 128,
+      "description": "Register-to-hardware interface for CSRNG configuration and control."
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "port": "hw2reg",
+      "width": 128,
+      "description": "Hardware-to-register interface for CSRNG status and data."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "port": "intg_err_o",
+      "width": 1,
+      "description": "Integrity error output signal for alert generation."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "AW",
+      "type": "int",
+      "default": 7,
+      "description": "Address width for the CSRNG register interface."
+    },
+    {
+      "name": "DW",
+      "type": "int",
+      "default": 32,
+      "description": "Data width for the CSRNG register interface."
+    },
+    {
+      "name": "DBW",
+      "type": "int",
+      "default": 4,
+      "description": "Byte width for the CSRNG register interface."
+    },
+    {
+      "name": "BlkLen",
+      "type": "int",
+      "default": 128,
+      "description": "Size of the generated random number blocks in bits."
+    },
+    {
+      "name": "KeyLen",
+      "type": "int",
+      "default": 256,
+      "description": "Cipher key size in bits."
+    },
+    {
+      "name": "SeedLen",
+      "type": "int",
+      "default": 384,
+      "description": "Seed size in bits, equal to the sum of BlkLen and KeyLen."
+    },
+    {
+      "name": "CtrLen",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the counter field used as input to the cipher."
+    },
+    {
+      "name": "RsCtrWidth",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the reseed counter."
+    },
+    {
+      "name": "GenBitsCtrWidth",
+      "type": "int",
+      "default": 12,
+      "description": "Width of the counter for generated random bits."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "NIST SP 800-90A compliant DRBG",
+      "Supports multiple independent applications",
+      "Hardware-accelerated AES-256 encryption",
+      "Built-in integrity checks for error detection",
+      "Supports FIPS-compliant random number generation"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TileLink Ultra-Lite protocol package for bus communication."
+    },
+    {
+      "name": "csrng_reg_pkg",
+      "type": "library",
+      "description": "Register package for CSRNG configuration and status."
+    },
+    {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Assertion library for design verification."
+    },
+    {
+      "name": "prim_reg_we_check",
+      "type": "library",
+      "description": "Primitive for write enable checking in registers."
+    },
+    {
+      "name": "tlul_adapter_reg",
+      "type": "library",
+      "description": "TileLink-to-register adapter for CSRNG."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/lowRISC/opentitan"
+  },
+  "artifacts": {
+    "total_rtl_lines": 5381
+  },
+  "categories": [
+    {
+      "main_category": "Security IP",
+      "sub_category": "True Random Number Generators (TRNG)"
+    }
+  ],
+  "keywords": [
+    "CSRNG",
+    "NIST SP 800-90A",
+    "Random Number Generator",
+    "Security",
+    "OpenTitan"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T23:04:59Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:04:59Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/csrng.sv",
+    "rtl/csrng_block_encrypt.sv",
+    "rtl/csrng_cmd_stage.sv",
+    "rtl/csrng_core.sv",
+    "rtl/csrng_ctr_drbg.sv",
+    "rtl/csrng_main_sm.sv",
+    "rtl/csrng_pkg.sv",
+    "rtl/csrng_reg_pkg.sv",
+    "rtl/csrng_reg_top.sv",
+    "rtl/csrng_state_db.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

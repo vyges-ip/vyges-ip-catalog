@@ -1,0 +1,242 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-sysrst-ctrl",
+  "version": "0.1.0",
+  "description": "The sysrst_ctrl module is a system reset controller for OpenTitan, providing configurable reset, wakeup, and interrupt handling functionality with support for alert signaling and input inversion.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:06:02Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "ip_path": "hw/ip/sysrst_ctrl",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "TileLink host-to-device interface for register access."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "TileLink device-to-host interface for register responses."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "port": "clk_i",
+      "width": 1,
+      "description": "24MHz always-on clock for configuration logic."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "port": "clk_aon_i",
+      "width": 1,
+      "description": "200KHz always-on clock for logic operations."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Power-on reset for the 24MHz clock domain."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "port": "rst_aon_ni",
+      "width": 1,
+      "description": "Power-on reset for the 200KHz clock domain."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "port": "intr_event_detected_o",
+      "width": 1,
+      "description": "Interrupt signal for event detection to PLIC."
+    },
+    {
+      "type": "alert",
+      "direction": "input",
+      "port": "alert_rx_i",
+      "width": 1,
+      "description": "Alert receiver interface for incoming alerts."
+    },
+    {
+      "type": "alert",
+      "direction": "output",
+      "port": "alert_tx_o",
+      "width": 1,
+      "description": "Alert transmitter interface for outgoing alerts."
+    },
+    {
+      "type": "gpio",
+      "direction": "input",
+      "port": "cio_pwrb_in_i",
+      "width": 1,
+      "description": "Power button input signal."
+    },
+    {
+      "type": "gpio",
+      "direction": "output",
+      "port": "cio_pwrb_out_o",
+      "width": 1,
+      "description": "Power button output signal with optional inversion."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "AlertAsyncOn",
+      "type": "bit",
+      "default": "1'b1",
+      "description": "Determines if alerts are asynchronous."
+    },
+    {
+      "name": "AlertSkewCycles",
+      "type": "int",
+      "default": 1,
+      "description": "Number of cycles tolerated for differential skew on alert signals."
+    },
+    {
+      "name": "NumAlerts",
+      "type": "int",
+      "default": 1,
+      "description": "Number of alert signals supported."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Configurable reset and wakeup handling",
+      "Interrupt generation for event detection",
+      "Alert signaling with configurable parameters",
+      "Input signal inversion and synchronization"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "prim_alert_pkg",
+      "type": "library",
+      "description": "Provides alert signaling primitives."
+    },
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "Defines TileLink Ultra-Lite protocol types."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/lowRISC/opentitan/tree/master/hw/ip/sysrst_ctrl"
+  },
+  "artifacts": {
+    "total_rtl_lines": 9543
+  },
+  "categories": [
+    {
+      "main_category": "Control Logic",
+      "sub_category": "Reset Controllers"
+    }
+  ],
+  "keywords": [
+    "OpenTitan",
+    "System Reset Controller",
+    "TileLink",
+    "Alert Signaling",
+    "Interrupts",
+    "Reset Management"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T23:06:02Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:06:02Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/sysrst_ctrl.sv",
+    "rtl/sysrst_ctrl_autoblock.sv",
+    "rtl/sysrst_ctrl_combo.sv",
+    "rtl/sysrst_ctrl_comboact.sv",
+    "rtl/sysrst_ctrl_detect.sv",
+    "rtl/sysrst_ctrl_intr.sv",
+    "rtl/sysrst_ctrl_keyintr.sv",
+    "rtl/sysrst_ctrl_pin.sv",
+    "rtl/sysrst_ctrl_pkg.sv",
+    "rtl/sysrst_ctrl_reg_pkg.sv",
+    "rtl/sysrst_ctrl_reg_top.sv",
+    "rtl/sysrst_ctrl_ulp.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

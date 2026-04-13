@@ -1,0 +1,230 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "serv",
+  "version": "0.1.0",
+  "description": "SERV is the world's smallest RISC-V CPU, designed as a bit-serial processor for minimal silicon area and power consumption. It is ideal for resource-constrained applications and supports the RISC-V RV32I instruction set.",
+  "license": "ISC",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-13T03:28:54Z",
+  "updated": "2026-04-13T03:28:54Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/olofk/serv",
+    "commit": "null",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "i_clk",
+      "width": 1,
+      "description": "Clock input for the SERV core."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "i_rst",
+      "width": 1,
+      "description": "Active-high reset input for the SERV core."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "Wishbone",
+      "port": "wb_adr_o",
+      "width": 32,
+      "description": "Wishbone address output."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "Wishbone",
+      "port": "wb_dat_o",
+      "width": 32,
+      "description": "Wishbone data output."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "Wishbone",
+      "port": "wb_dat_i",
+      "width": 32,
+      "description": "Wishbone data input."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "Wishbone",
+      "port": "wb_we_o",
+      "width": 1,
+      "description": "Wishbone write enable output."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "Wishbone",
+      "port": "wb_stb_o",
+      "width": 1,
+      "description": "Wishbone strobe output."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "Wishbone",
+      "port": "wb_cyc_o",
+      "width": 1,
+      "description": "Wishbone cycle output."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "Wishbone",
+      "port": "wb_ack_i",
+      "width": 1,
+      "description": "Wishbone acknowledge input."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "RESET_PC",
+      "type": "int",
+      "default": 0,
+      "description": "Reset value for the program counter."
+    },
+    {
+      "name": "WITH_CSR",
+      "type": "bit",
+      "default": 1,
+      "description": "Enable or disable CSR support."
+    },
+    {
+      "name": "MDU",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable or disable the multiplication and division unit (MDU)."
+    }
+  ],
+  "performance": {
+    "lut_usage": {
+      "Lattice iCE40": 198,
+      "Intel Cyclone 10LP": 239,
+      "AMD Artix-7": 125
+    },
+    "flip_flop_usage": {
+      "Lattice iCE40": 164,
+      "Intel Cyclone 10LP": 164,
+      "AMD Artix-7": 164
+    },
+    "gate_equivalents": 2100
+  },
+  "architecture": {
+    "type": "processor",
+    "features": [
+      "Bit-serial RISC-V core",
+      "RV32I instruction set support",
+      "Minimal silicon area",
+      "Low power consumption"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado",
+      "Yosys",
+      "nextpnr"
+    ],
+    "devices": [
+      "Artix-7",
+      "Lattice iCE40",
+      "Intel Cyclone 10LP"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "fusesoc",
+      "type": "tool",
+      "description": "FuseSoC is used for managing and building the SERV core."
+    },
+    {
+      "name": "Verilator",
+      "type": "tool",
+      "description": "Verilator is used for linting and simulation of the SERV core."
+    },
+    {
+      "name": "mdu",
+      "type": "library",
+      "description": "Optional library for enabling the RISC-V M extension (multiplication and division unit)."
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "serv_tb"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://serv.readthedocs.io/en/latest/#"
+  },
+  "artifacts": {
+    "total_rtl_lines": 3562
+  },
+  "categories": [
+    {
+      "main_category": "Processing Cores",
+      "sub_category": "RISC-V"
+    }
+  ],
+  "keywords": [
+    "RISC-V",
+    "bit-serial",
+    "low-power",
+    "minimal-area",
+    "RV32I"
+  ],
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": true,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-13T03:28:54Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-13T03:28:54Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

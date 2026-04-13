@@ -1,0 +1,148 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "riscv-boom",
+  "version": "0.1.0",
+  "description": "SonicBOOM is a Berkeley Out-of-Order RV64GC RISC-V core featuring superscalar and speculative execution, implemented in Chisel.",
+  "license": "BSD-3-Clause",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T06:13:55Z",
+  "updated": "2026-04-01T06:13:55Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/riscv-boom/riscv-boom",
+    "commit": "af3023c5ef22d6a19e2f4608b29f61c37419c115",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "axi_master",
+      "width": 64,
+      "description": "AXI master interface for memory transactions."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock input signal."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "reset",
+      "width": 1,
+      "description": "Active-high reset signal."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "CORE_ID",
+      "type": "int",
+      "default": 0,
+      "description": "Unique identifier for the core instance."
+    },
+    {
+      "name": "NUM_THREADS",
+      "type": "int",
+      "default": 1,
+      "description": "Number of hardware threads supported by the core."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "processor",
+    "features": [
+      "Out-of-Order Execution",
+      "Superscalar Pipeline",
+      "Speculative Execution",
+      "RV64GC ISA Support"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "Chisel",
+      "type": "library",
+      "description": "Hardware construction language used for RTL generation."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/riscv-boom/riscv-boom"
+  },
+  "artifacts": {
+    "total_rtl_lines": 143
+  },
+  "categories": [
+    {
+      "main_category": "Processing Cores",
+      "sub_category": "RISC-V"
+    }
+  ],
+  "keywords": [
+    "RISC-V",
+    "Out-of-Order",
+    "Superscalar",
+    "Speculative Execution",
+    "RV64GC"
+  ],
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T06:13:55Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

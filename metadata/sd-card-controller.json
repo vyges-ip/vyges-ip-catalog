@@ -1,0 +1,227 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "sd-card-controller",
+  "version": "0.1.0",
+  "description": "A high-performance SD Card controller with APB interface supporting SD/SDHC/SDXC cards, SPI and SD modes, DMA support, and comprehensive error handling.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:43:23Z",
+  "updated": "2026-03-27T21:43:23Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/vyges/sd-card-controller-ip",
+    "commit": "45c4e5934bdfdca4608e7298828cb59d7b76e851",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "PCLK_i",
+      "width": 1,
+      "description": "APB clock input"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "PRESETn_i",
+      "width": 1,
+      "description": "APB reset input, active low"
+    },
+    {
+      "type": "jtag",
+      "direction": "both",
+      "protocol": "JTAG",
+      "port": "jtag_tck_i",
+      "width": 1,
+      "description": "JTAG clock input"
+    },
+    {
+      "type": "jtag",
+      "direction": "both",
+      "protocol": "JTAG",
+      "port": "jtag_tms_i",
+      "width": 1,
+      "description": "JTAG TMS input"
+    },
+    {
+      "type": "jtag",
+      "direction": "both",
+      "protocol": "JTAG",
+      "port": "jtag_tdi_i",
+      "width": 1,
+      "description": "JTAG TDI input"
+    },
+    {
+      "type": "jtag",
+      "direction": "output",
+      "protocol": "JTAG",
+      "port": "jtag_tdo_o",
+      "width": 1,
+      "description": "JTAG TDO output"
+    },
+    {
+      "type": "jtag",
+      "direction": "input",
+      "protocol": "JTAG",
+      "port": "jtag_trst_n_i",
+      "width": 1,
+      "description": "JTAG TRST input, active low"
+    },
+    {
+      "type": "debug",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "debug_enable_i",
+      "width": 1,
+      "description": "Enable debug functionality"
+    },
+    {
+      "type": "debug",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "debug_active_o",
+      "width": 1,
+      "description": "Indicates if debug is active"
+    },
+    {
+      "type": "trace",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "trace_data_i",
+      "width": 32,
+      "description": "Trace data input"
+    },
+    {
+      "type": "trace",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "trace_data_o",
+      "width": 32,
+      "description": "Trace data output"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "SDCARD_TRACE_DEPTH",
+      "type": "int",
+      "default": 1024,
+      "description": "Depth of the trace buffer"
+    },
+    {
+      "name": "SDCARD_DEBUG_REG_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the debug registers"
+    }
+  ],
+  "performance": {
+    "max_clock_frequency_mhz": 208,
+    "max_data_rate_mbps": 104,
+    "latency_ns": 10
+  },
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "SD/SDHC/SDXC card support",
+      "SPI and SD mode operation",
+      "DMA support",
+      "Error handling and recovery",
+      "Debug and trace capabilities",
+      "Performance monitoring"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "APB",
+      "type": "bus",
+      "description": "APB interface for communication"
+    },
+    {
+      "name": "JTAG",
+      "type": "debug",
+      "description": "JTAG interface for debugging"
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "tb_sdcard_debug_controller",
+      "tb_sdcard_controller"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/vyges/sd-card-controller-ip"
+  },
+  "artifacts": {
+    "total_rtl_lines": 6448
+  },
+  "categories": {
+    "primary": "storage",
+    "secondary": [
+      "debug",
+      "peripheral"
+    ],
+    "tags": [
+      "SD card",
+      "APB",
+      "DMA",
+      "debug",
+      "storage"
+    ]
+  },
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:43:23Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

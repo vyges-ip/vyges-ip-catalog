@@ -1,0 +1,334 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "mlow-codec",
+  "version": "0.1.0",
+  "description": "The MLow Audio Codec IP is a high-performance, low-complexity audio compression solution designed for real-time communication (RTC) applications. It supports ultra-low latency, split-band CELP architecture, and forward error correction for superior audio quality at low bitrates.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2025-08-02T16:08:15Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/vyges/mlow-codec-ip",
+    "commit": "811bcc6bf8c1461810a3171af692b81b277bbb17",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "System clock input"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active_low",
+      "port": "reset_n_i",
+      "width": 1,
+      "description": "Active-low reset input"
+    },
+    {
+      "type": "audio",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "audio_data_i",
+      "width": 16,
+      "description": "Input audio data"
+    },
+    {
+      "type": "audio",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "audio_valid_i",
+      "width": 1,
+      "description": "Input audio data valid signal"
+    },
+    {
+      "type": "audio",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "audio_ready_o",
+      "width": 1,
+      "description": "Audio interface ready signal"
+    },
+    {
+      "type": "audio",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "audio_data_o",
+      "width": 16,
+      "description": "Output audio data"
+    },
+    {
+      "type": "audio",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "audio_valid_o",
+      "width": 1,
+      "description": "Output audio data valid signal"
+    },
+    {
+      "type": "audio",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "audio_ready_i",
+      "width": 1,
+      "description": "Audio interface ready input"
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "encode_mode_i",
+      "width": 1,
+      "description": "Encode mode control signal"
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "bitrate_sel_i",
+      "width": 4,
+      "description": "Bitrate selection input"
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "bandwidth_sel_i",
+      "width": 2,
+      "description": "Bandwidth selection input"
+    },
+    {
+      "type": "packet",
+      "direction": "inout",
+      "protocol": "generic",
+      "port": "packet_data_io",
+      "width": 8,
+      "description": "Packet data interface"
+    },
+    {
+      "type": "packet",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "packet_valid_o",
+      "width": 1,
+      "description": "Packet valid output signal"
+    },
+    {
+      "type": "packet",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "packet_ready_i",
+      "width": 1,
+      "description": "Packet ready input signal"
+    },
+    {
+      "type": "packet",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "packet_start_o",
+      "width": 1,
+      "description": "Packet start signal"
+    },
+    {
+      "type": "packet",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "packet_end_o",
+      "width": 1,
+      "description": "Packet end signal"
+    },
+    {
+      "type": "status",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "busy_o",
+      "width": 1,
+      "description": "Busy status signal"
+    },
+    {
+      "type": "status",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "error_o",
+      "width": 1,
+      "description": "Error status signal"
+    },
+    {
+      "type": "status",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "quality_metric_o",
+      "width": 8,
+      "description": "Quality metric output"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "SAMPLE_RATE",
+      "type": "int",
+      "default": 48000,
+      "description": "Audio sample rate in Hz"
+    },
+    {
+      "name": "FRAME_SIZE",
+      "type": "int",
+      "default": 480,
+      "description": "Frame size in samples"
+    },
+    {
+      "name": "MAX_BITRATE",
+      "type": "int",
+      "default": 32000,
+      "description": "Maximum bitrate in bits per second"
+    },
+    {
+      "name": "LPC_ORDER",
+      "type": "int",
+      "default": 16,
+      "description": "Linear predictive coding order"
+    },
+    {
+      "name": "SUBBAND_COUNT",
+      "type": "int",
+      "default": 2,
+      "description": "Number of subbands for split-band processing"
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Audio compression and decompression",
+      "Split-band CELP architecture",
+      "Range encoding for bitstream compression",
+      "Forward error correction support"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "audio_interface",
+      "type": "module",
+      "description": "Handles audio data input and output"
+    },
+    {
+      "name": "mlow_encoder",
+      "type": "module",
+      "description": "Encodes audio data using MLow codec"
+    },
+    {
+      "name": "mlow_decoder",
+      "type": "module",
+      "description": "Decodes audio data using MLow codec"
+    },
+    {
+      "name": "packet_framer",
+      "type": "module",
+      "description": "Frames encoded data into packets"
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/vyges/mlow-codec-ip"
+  },
+  "artifacts": {
+    "total_rtl_lines": 671
+  },
+  "categories": [
+    {
+      "main_category": "Signal Processing",
+      "sub_category": "Codecs"
+    }
+  ],
+  "keywords": [
+    "audio",
+    "codec",
+    "compression",
+    "real-time",
+    "low-latency"
+  ],
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-30T01:53:34Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-30T01:53:34Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/audio_interface.sv",
+    "rtl/mlow_codec.sv",
+    "rtl/mlow_decoder.sv",
+    "rtl/mlow_encoder.sv",
+    "rtl/packet_framer.sv",
+    "rtl/audio_interface.sv",
+    "rtl/mlow_codec.sv",
+    "rtl/mlow_decoder.sv",
+    "rtl/mlow_encoder.sv",
+    "rtl/packet_framer.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

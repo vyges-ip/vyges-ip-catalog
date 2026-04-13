@@ -1,0 +1,223 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-rv-timer",
+  "version": "0.1.0",
+  "description": "A RISC-V compliant timer module from the OpenTitan project, providing multi-hart timer functionality with support for register access control and integrity checks.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:05:53Z",
+  "updated": "2026-03-27T23:05:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "ip_path": "hw/ip/rv_timer",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active-low",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset input signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "TileLink host-to-device interface"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "TileLink device-to-host interface"
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "reg2hw",
+      "width": 160,
+      "description": "Register-to-hardware interface for write operations"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "hw2reg",
+      "width": 66,
+      "description": "Hardware-to-register interface for read operations"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "racl_policies_i",
+      "width": 10,
+      "description": "Input for RACL policy vector"
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "racl_error_o",
+      "width": 1,
+      "description": "Output for RACL error log"
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "intg_err_o",
+      "width": 1,
+      "description": "Integrity error output signal"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "EnableRacl",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable Register Access Control Logic (RACL)"
+    },
+    {
+      "name": "RaclErrorRsp",
+      "type": "bit",
+      "default": 1,
+      "description": "Enable RACL error response"
+    },
+    {
+      "name": "RaclPolicySelVec",
+      "type": "enum",
+      "default": "{rv_timer_reg_pkg::NumRegs{0}}",
+      "description": "RACL policy selection vector"
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Multi-hart timer functionality",
+      "TileLink interface for communication",
+      "Register access control logic (RACL)",
+      "Integrity check and error reporting"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TileLink Ultra-Lite protocol package"
+    },
+    {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Primitive assertion library for OpenTitan"
+    },
+    {
+      "name": "prim_reg_we_check",
+      "type": "library",
+      "description": "Primitive register write enable checker"
+    },
+    {
+      "name": "tlul_adapter_reg",
+      "type": "core",
+      "description": "TileLink register adapter"
+    },
+    {
+      "name": "rv_timer_reg_pkg",
+      "type": "library",
+      "description": "Register package for RV Timer"
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://opentitan.org/book/"
+  },
+  "artifacts": {
+    "total_rtl_lines": 1088
+  },
+  "categories": [
+    {
+      "main_category": "Base Libraries",
+      "sub_category": "Counters & Timers"
+    }
+  ],
+  "keywords": [
+    "RISC-V",
+    "Timer",
+    "OpenTitan",
+    "TileLink",
+    "RACL",
+    "Integrity Check"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T23:05:53Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:05:53Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-keymgr",
+  "version": "0.1.0",
+  "description": "The OpenTitan Key Manager is a hardware block responsible for secure key generation, storage, and management, supporting key derivation, reseeding, and sideloading for cryptographic operations.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:05:14Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "ip_path": "hw/ip/keymgr",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Primary clock input for the key manager."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal for the primary clock domain."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_edn_i",
+      "width": 1,
+      "description": "Clock input for the entropy distribution network (EDN)."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_edn_ni",
+      "width": 1,
+      "description": "Active-low reset signal for the EDN clock domain."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "reseed_req_i",
+      "width": 1,
+      "description": "Request signal to initiate a reseed operation."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "reseed_ack_o",
+      "width": 1,
+      "description": "Acknowledgment signal for a reseed request."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "reseed_done_o",
+      "width": 1,
+      "description": "Indicates the completion of a reseed operation."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "reseed_interval_i",
+      "width": 16,
+      "description": "Interval for automatic reseeding."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "edn_o",
+      "width": "edn_pkg::edn_req_t",
+      "description": "Output request to the entropy distribution network (EDN)."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "edn_i",
+      "width": "edn_pkg::edn_rsp_t",
+      "description": "Input response from the entropy distribution network (EDN)."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "lfsr_en_i",
+      "width": 1,
+      "description": "Enable signal for the linear feedback shift register (LFSR)."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "seed_en_o",
+      "width": 1,
+      "description": "Enable signal for the seed output."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "seed_o",
+      "width": "LfsrWidth",
+      "description": "Seed output from the LFSR."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "cnt_err_o",
+      "width": 1,
+      "description": "Error signal for the reseed counter."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "KeyWidth",
+      "type": "int",
+      "default": 256,
+      "description": "Width of the cryptographic keys."
+    },
+    {
+      "name": "CDIs",
+      "type": "int",
+      "default": 2,
+      "description": "Number of Compound Device Identifiers (CDIs)."
+    },
+    {
+      "name": "LfsrWidth",
+      "type": "int",
+      "default": 64,
+      "description": "Width of the Linear Feedback Shift Register (LFSR)."
+    },
+    {
+      "name": "KeyMgrStages",
+      "type": "int",
+      "default": 3,
+      "description": "Number of key manager stages."
+    },
+    {
+      "name": "EdnWidth",
+      "type": "int",
+      "default": "edn_pkg::ENDPOINT_BUS_WIDTH",
+      "description": "Width of the EDN interface."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Key derivation and management",
+      "Entropy reseeding",
+      "Sideload key support",
+      "Integration with EDN and LFSR"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "prim_edn_req",
+      "type": "core",
+      "description": "Entropy distribution network request module."
+    },
+    {
+      "name": "prim_count",
+      "type": "core",
+      "description": "Generic counter module used for reseed interval counting."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/lowRISC/opentitan/tree/master/hw/ip/keymgr"
+  },
+  "artifacts": {
+    "total_rtl_lines": 7629
+  },
+  "categories": [
+    {
+      "main_category": "Security IP",
+      "sub_category": "Secure Boot Blocks"
+    }
+  ],
+  "keywords": [
+    "key management",
+    "entropy",
+    "reseed",
+    "cryptography",
+    "OpenTitan"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T23:05:14Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:05:14Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/keymgr.sv",
+    "rtl/keymgr_cfg_en.sv",
+    "rtl/keymgr_ctrl.sv",
+    "rtl/keymgr_data_en_state.sv",
+    "rtl/keymgr_err.sv",
+    "rtl/keymgr_input_checks.sv",
+    "rtl/keymgr_kmac_if.sv",
+    "rtl/keymgr_op_state_ctrl.sv",
+    "rtl/keymgr_pkg.sv",
+    "rtl/keymgr_reg_pkg.sv",
+    "rtl/keymgr_reg_top.sv",
+    "rtl/keymgr_reseed_ctrl.sv",
+    "rtl/keymgr_sideload_key.sv",
+    "rtl/keymgr_sideload_key_ctrl.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

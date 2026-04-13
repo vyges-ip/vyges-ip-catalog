@@ -1,0 +1,235 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-libs",
+  "version": "0.1.0",
+  "description": "A collection of reusable SystemVerilog modules and packages for implementing interrupt registers, AHB/APB interfaces, clock gating, and SRAM control, designed for integration in ASIC and FPGA designs.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-06T02:50:54Z",
+  "updated": "2026-04-06T02:50:54Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "82eed18aedc14b03bfb8d9dce873c866e1eda22e",
+    "ip_path": "src/libs",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "s_cpuif_req",
+      "width": 1,
+      "description": "CPU interface request signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "s_cpuif_req_is_wr",
+      "width": 1,
+      "description": "CPU interface write request signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "s_cpuif_addr",
+      "width": 10,
+      "description": "CPU interface address bus."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "s_cpuif_wr_data",
+      "width": 32,
+      "description": "CPU interface write data bus."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_req_stall_wr",
+      "width": 1,
+      "description": "CPU interface write stall signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_req_stall_rd",
+      "width": 1,
+      "description": "CPU interface read stall signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_rd_ack",
+      "width": 1,
+      "description": "CPU interface read acknowledgment signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_rd_err",
+      "width": 1,
+      "description": "CPU interface read error signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_rd_data",
+      "width": 32,
+      "description": "CPU interface read data bus."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_wr_ack",
+      "width": 1,
+      "description": "CPU interface write acknowledgment signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_wr_err",
+      "width": 1,
+      "description": "CPU interface write error signal."
+    },
+    {
+      "type": "interrupt",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "hwif_in",
+      "width": "struct",
+      "description": "Hardware interface input signals for interrupt registers."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "hwif_out",
+      "width": "struct",
+      "description": "Hardware interface output signals for interrupt registers."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "H_OKAY",
+      "type": "bit",
+      "default": 0,
+      "description": "AHB protocol okay response."
+    },
+    {
+      "name": "H_ERROR",
+      "type": "bit",
+      "default": 1,
+      "description": "AHB protocol error response."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Interrupt register block",
+      "AHB to register adapter",
+      "APB slave interface",
+      "Clock gating",
+      "SRAM control"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "ahb_defines_pkg",
+      "type": "library",
+      "description": "Defines for AHB protocol responses."
+    },
+    {
+      "name": "interrupt_regs_pkg",
+      "type": "library",
+      "description": "Package for interrupt register structures and types."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl"
+  },
+  "artifacts": {
+    "total_rtl_lines": 3602
+  },
+  "categories": [
+    {
+      "main_category": "Base Libraries",
+      "sub_category": "Pipeline & Bypass Logic"
+    }
+  ],
+  "keywords": [
+    "interrupt",
+    "AHB",
+    "APB",
+    "SRAM",
+    "clock gating",
+    "registers"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-06T02:50:54Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-06T02:50:54Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

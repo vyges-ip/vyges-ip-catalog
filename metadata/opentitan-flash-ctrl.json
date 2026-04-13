@@ -1,0 +1,250 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-flash-ctrl",
+  "version": "0.1.0",
+  "description": "A generic flash controller package for secure key management, designed as part of the OpenTitan silicon Root of Trust project.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:05:07Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "ip_path": "hw/ip/flash_ctrl",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "name": "clock",
+      "signals": [
+        {
+          "name": "clk_i",
+          "direction": "input",
+          "type": "clock",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "type": "reset",
+      "name": "reset",
+      "signals": [
+        {
+          "name": "rst_ni",
+          "direction": "input",
+          "type": "reset",
+          "width": 1,
+          "active_level": "low"
+        }
+      ]
+    },
+    {
+      "type": "bus",
+      "name": "ctrl",
+      "protocol": "apb",
+      "description": "Default control bus added by metadata fix pass \u2014 verify against RTL.",
+      "signals": [
+        {
+          "name": "psel_i",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "penable_i",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "pwrite_i",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "paddr_i",
+          "direction": "input",
+          "type": "address",
+          "width": 32
+        },
+        {
+          "name": "pwdata_i",
+          "direction": "input",
+          "type": "data",
+          "width": 32
+        },
+        {
+          "name": "prdata_o",
+          "direction": "output",
+          "type": "data",
+          "width": 32
+        },
+        {
+          "name": "pready_o",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "pslverr_o",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        }
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "name": "NumSeeds",
+      "type": "int",
+      "default": 2,
+      "description": "Number of seeds used for key management."
+    },
+    {
+      "name": "CreatorSeedIdx",
+      "type": "bit",
+      "default": 0,
+      "description": "Index of the creator seed."
+    },
+    {
+      "name": "OwnerSeedIdx",
+      "type": "bit",
+      "default": 1,
+      "description": "Index of the owner seed."
+    },
+    {
+      "name": "SeedWidth",
+      "type": "int",
+      "default": 256,
+      "description": "Width of each seed in bits."
+    },
+    {
+      "name": "KeyWidth",
+      "type": "int",
+      "default": 128,
+      "description": "Width of the flash key in bits."
+    },
+    {
+      "name": "KEYMGR_FLASH_DEFAULT",
+      "type": "keymgr_flash_t",
+      "default": "{seeds: {256'h9152e32c9380a4bcc3e0ab263581e6b0e8825186e1e445631646e8bef8c45d47, 256'hfa365df52da48cd752fb3a026a8e608f0098cfe5fa9810494829d0cd9479eb78}}",
+      "description": "Default key manager flash structure with predefined seeds."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Secure key management using flash memory",
+      "Support for multiple seeds and configurable seed widths",
+      "Integration with key manager for cryptographic operations"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "keymgr",
+      "type": "core",
+      "description": "Key manager module for cryptographic operations."
+    }
+  ],
+  "test": {
+    "testbenches": [
+      {
+        "name": "upstream",
+        "path": "tb/",
+        "framework": "upstream",
+        "description": "Upstream project's testbench harness \u2014 see source repo."
+      }
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://opentitan.org/book/"
+  },
+  "artifacts": {
+    "total_rtl_lines": 29
+  },
+  "categories": [
+    {
+      "main_category": "Memory Subsystems",
+      "sub_category": "Flash Interfaces"
+    }
+  ],
+  "keywords": [
+    "flash controller",
+    "key management",
+    "OpenTitan",
+    "secure storage"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:05:07Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/flash_ctrl_pkg.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

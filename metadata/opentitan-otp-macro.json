@@ -1,0 +1,236 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-otp-macro",
+  "version": "0.1.0",
+  "description": "The OpenTitan OTP Macro is a secure one-time programmable memory subsystem designed for storing critical security assets, featuring integrity checks, RACL policy enforcement, and TL-UL interface support.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:05:29Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "ip_path": "hw/ip/otp_macro",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "TL-UL host-to-device interface for command and data input."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "TL-UL device-to-host interface for response and data output."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "none",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input for the OTP macro."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "none",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset input for the OTP macro."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "reg2hw",
+      "width": 32,
+      "description": "Register-to-hardware interface for write operations."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "hw2reg",
+      "width": 32,
+      "description": "Hardware-to-register interface for read operations."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "racl_policies_i",
+      "width": 256,
+      "description": "Input for RACL policy vector."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "racl_error_o",
+      "width": 32,
+      "description": "Output for RACL error log."
+    },
+    {
+      "type": "signal",
+      "direction": "output",
+      "protocol": "none",
+      "port": "intg_err_o",
+      "width": 1,
+      "description": "Integrity error output signal."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "EnableRacl",
+      "type": "bit",
+      "default": 0,
+      "description": "Enables RACL policy enforcement."
+    },
+    {
+      "name": "RaclErrorRsp",
+      "type": "bit",
+      "default": 1,
+      "description": "Enables RACL error response."
+    },
+    {
+      "name": "RaclPolicySelVec",
+      "type": "enum",
+      "default": "{otp_macro_reg_pkg::NumRegsPrim{0}}",
+      "description": "RACL policy selection vector."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "memory",
+    "features": [
+      "One-time programmable memory",
+      "Integrity check mechanisms",
+      "RACL policy enforcement",
+      "TL-UL bus interface"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TileLink Ultra-Lite protocol package."
+    },
+    {
+      "name": "otp_macro_pkg",
+      "type": "library",
+      "description": "OTP macro package containing type definitions and parameters."
+    },
+    {
+      "name": "otp_macro_reg_pkg",
+      "type": "library",
+      "description": "Register package for OTP macro."
+    },
+    {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Primitive assertion library."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://opentitan.org/book/"
+  },
+  "artifacts": {
+    "total_rtl_lines": 2446
+  },
+  "categories": [
+    {
+      "main_category": "Memory Subsystems",
+      "sub_category": "Fuse Controllers"
+    }
+  ],
+  "keywords": [
+    "OTP",
+    "memory",
+    "security",
+    "RACL",
+    "integrity"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:05:29Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/otp_macro.sv",
+    "rtl/otp_macro_pkg.sv",
+    "rtl/otp_macro_prim_reg_top.sv",
+    "rtl/otp_macro_reg_pkg.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

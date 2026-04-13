@@ -1,0 +1,209 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "veer-eh2",
+  "version": "0.1.0",
+  "description": "A dual-threaded RISC-V processor core with programmable interrupt controller, debug support, and memory subsystem integration.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T06:14:13Z",
+  "updated": "2026-04-01T06:14:13Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/Cores-VeeR-EH2",
+    "commit": "aa502ec1594246d305bd0d95d69441b55c41c22e",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "Core clock signal"
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "free_clk",
+      "width": 1,
+      "description": "Free-running clock signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_l",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "picm_rdaddr",
+      "width": 32,
+      "description": "Read address for PIC registers"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "picm_wraddr",
+      "width": 32,
+      "description": "Write address for PIC registers"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "picm_wr_data",
+      "width": 32,
+      "description": "Write data for PIC registers"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "picm_rd_data",
+      "width": 32,
+      "description": "Read data from PIC registers"
+    },
+    {
+      "type": "interrupt",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "extintsrc_req",
+      "width": "pt.PIC_TOTAL_INT_PLUS1",
+      "description": "External interrupt requests"
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "mexintpend_out",
+      "width": "pt.NUM_THREADS",
+      "description": "External interrupt pending signals"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "NUM_LEVELS",
+      "type": "int",
+      "default": "$clog2(pt.PIC_TOTAL_INT_PLUS1)",
+      "description": "Number of interrupt priority levels"
+    },
+    {
+      "name": "INTPEND_SIZE",
+      "type": "int",
+      "default": "1024",
+      "description": "Size of interrupt pending register"
+    },
+    {
+      "name": "INTPRIORITY_BITS",
+      "type": "int",
+      "default": "4",
+      "description": "Number of bits for interrupt priority"
+    },
+    {
+      "name": "ID_BITS",
+      "type": "int",
+      "default": "8",
+      "description": "Number of bits for interrupt ID"
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "processor",
+    "features": [
+      "Dual-threaded RISC-V core",
+      "Programmable interrupt controller",
+      "Debug support",
+      "Memory subsystem integration"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "eh2_pkg",
+      "type": "library",
+      "description": "Package containing core definitions and parameters"
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "tb_top.sv"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/Cores-VeeR-EH2"
+  },
+  "artifacts": {
+    "total_rtl_lines": 37625
+  },
+  "categories": [
+    {
+      "main_category": "Processing Cores",
+      "sub_category": "RISC-V"
+    }
+  ],
+  "keywords": [
+    "RISC-V",
+    "processor",
+    "interrupt controller",
+    "dual-threaded"
+  ],
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T06:14:13Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

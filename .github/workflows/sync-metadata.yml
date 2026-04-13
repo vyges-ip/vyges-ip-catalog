@@ -1,0 +1,55 @@
+name: Sync vyges-ip metadata
+
+on:
+  schedule:
+    # Every 6 hours, on the hour
+    - cron: '0 */6 * * *'
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/sync_metadata.py'
+      - 'scripts/score_all.py'
+      - '.github/workflows/sync-metadata.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-metadata
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout registry repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Crawl vyges-ip + write metadata
+        env:
+          GITHUB_TOKEN: ${{ secrets.VYGES_IP_READ_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/sync_metadata.py --org vyges-ip --output . --prune
+
+      - name: Score every IP via vyges/metadata-scorer-action
+        run: |
+          python scripts/score_all.py --metadata-dir metadata --output . \
+                                      --scorer-ref v1
+
+      - name: Commit changes (if any)
+        run: |
+          git config user.name  'vyges-ip-catalog-bot'
+          git config user.email 'noreply@vyges.com'
+          if [[ -n "$(git status --porcelain metadata catalog.json SUMMARY.md scores.json SCORES.md)" ]]; then
+            git add metadata catalog.json SUMMARY.md scores.json SCORES.md
+            git commit -m "sync: refresh metadata + scores $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          else
+            echo 'No changes — skipping commit.'
+          fi

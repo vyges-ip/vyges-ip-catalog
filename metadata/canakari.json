@@ -1,0 +1,156 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "canakari",
+  "version": "0.1.0",
+  "description": "CANakari is a CAN 2.0B Controller implemented in Verilog and VHDL, designed for automotive and industrial communication systems. It supports message encapsulation, error detection, and fault handling mechanisms.",
+  "license": "MIT",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-13T02:36:37Z",
+  "updated": "2026-04-13T02:36:37Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/FHDO-ICLAB/Canakari",
+    "commit": "null",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "both",
+      "protocol": "CAN 2.0B",
+      "port": "can_bus",
+      "width": 1,
+      "description": "CAN bus interface for communication."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "N/A",
+      "port": "clk",
+      "width": 1,
+      "description": "System clock input."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "N/A",
+      "port": "reset_n",
+      "width": 1,
+      "description": "Active-low reset signal."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "N/A",
+      "port": "irq",
+      "width": 1,
+      "description": "Interrupt request output."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "CAN_BITRATE",
+      "type": "int",
+      "default": 500000,
+      "description": "Default CAN bus bitrate in bits per second."
+    },
+    {
+      "name": "FIFO_DEPTH",
+      "type": "int",
+      "default": 16,
+      "description": "Depth of the internal FIFO buffer."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "CAN 2.0B protocol support",
+      "Message encapsulation and decapsulation",
+      "Error detection and fault handling",
+      "Bit timing and synchronization"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "CAN Protocol Library",
+      "type": "library",
+      "description": "Provides CAN protocol-specific functionality."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/FHDO-ICLAB/Canakari"
+  },
+  "artifacts": {
+    "total_rtl_lines": 8973
+  },
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "Serial Interfaces"
+    }
+  ],
+  "keywords": [
+    "CAN",
+    "Controller",
+    "Automotive",
+    "Industrial",
+    "Communication"
+  ],
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-13"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-13T02:36:37Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "coralnpu-rst-sync",
+  "version": "0.1.0",
+  "description": "A reset synchronization module designed for the Coral NPU, ensuring reliable reset signal propagation across clock domains.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T05:13:03Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/google-coral/coralnpu",
+    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
+    "ip_path": "hdl/verilog",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "rst_in",
+      "width": 1,
+      "description": "Input reset signal to be synchronized."
+    },
+    {
+      "type": "reset",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "rst_out",
+      "width": 1,
+      "description": "Synchronized output reset signal."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock signal for synchronization."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "SYNC_STAGES",
+      "type": "int",
+      "default": 2,
+      "description": "Number of synchronization stages for the reset signal."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Multi-stage reset synchronization",
+      "Clock domain crossing support"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/google-coral/coralnpu"
+  },
+  "artifacts": {
+    "total_rtl_lines": 0
+  },
+  "categories": [
+    {
+      "main_category": "Timing & Clocking",
+      "sub_category": "Reset Synchronizers"
+    }
+  ],
+  "keywords": [
+    "reset synchronization",
+    "clock domain crossing",
+    "Coral NPU"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01T05:13:03Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:13:03Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

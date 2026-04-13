@@ -1,0 +1,268 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-kmac",
+  "version": "0.1.0",
+  "description": "SHA-3/SHAKE/cSHAKE Keccak-based cryptographic hash engine implementing the full Keccak-f[1600] sponge construction with 24-round permutation. Supports SHA3-224/256/384/512, SHAKE128/256 variable-length output, and cSHAKE with custom N/S parameters. Optional Domain-Oriented Masking (DOM) with 2-share Keccak for side-channel resistance. Extracted from CHIPS Alliance Caliptra Root of Trust.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T20:52:56Z",
+  "updated": "2026-03-27T20:52:56Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "ip_path": "src/kmac",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "data",
+      "direction": "input",
+      "protocol": "valid/ready",
+      "port": "msg",
+      "width": 64,
+      "description": "Message input: 64-bit data with 8-bit byte strobe, valid/ready handshake. Supports 1 or 2 shares for masking."
+    },
+    {
+      "type": "data",
+      "direction": "output",
+      "port": "state_o",
+      "width": 1600,
+      "description": "1600-bit Keccak state output (digest). Supports 1 or 2 shares."
+    },
+    {
+      "type": "entropy",
+      "direction": "input",
+      "port": "rand",
+      "width": 800,
+      "description": "800-bit randomness input for masked Keccak operation. Valid/consumed handshake."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "port": "mode_i",
+      "description": "Hash mode: SHA3 (2b00), SHAKE (2b10), cSHAKE (2b11)."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "port": "strength_i",
+      "description": "Security strength: L128, L224, L256, L384, L512."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "port": "ns_data_i",
+      "width": 328,
+      "description": "cSHAKE N (function name) and S (customization string) parameters."
+    },
+    {
+      "type": "status",
+      "direction": "output",
+      "port": "absorbed_o",
+      "description": "MUBI4-encoded sponge absorbing complete signal."
+    },
+    {
+      "type": "status",
+      "direction": "output",
+      "port": "squeezing_o",
+      "description": "In squeezing phase (outputting digest)."
+    },
+    {
+      "type": "lifecycle",
+      "direction": "input",
+      "port": "lc_escalate_en_i",
+      "description": "Lifecycle escalation enable for security kill."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "port": "clk_i",
+      "description": "System clock."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "port": "rst_ni",
+      "polarity": "active_low",
+      "description": "Asynchronous active-low reset."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "EnMasking",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable Domain-Oriented Masking (DOM) with 2-share Keccak for SCA resistance."
+    },
+    {
+      "name": "Share",
+      "type": "int",
+      "default": 1,
+      "description": "Number of shares (1=unmasked, 2=masked). Derived from EnMasking."
+    }
+  ],
+  "performance": {
+    "state_size": 1600,
+    "rounds": 24,
+    "message_width": 64,
+    "security_strengths": [
+      "L128 (rate=1344)",
+      "L224 (rate=1152)",
+      "L256 (rate=1088)",
+      "L384 (rate=832)",
+      "L512 (rate=576)"
+    ],
+    "hash_modes": [
+      "SHA3-224",
+      "SHA3-256",
+      "SHA3-384",
+      "SHA3-512",
+      "SHAKE128",
+      "SHAKE256",
+      "cSHAKE"
+    ]
+  },
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Full Keccak-f[1600] sponge construction (FIPS 202)",
+      "24-round permutation with Theta, Rho, Pi, Chi, Iota steps",
+      "SHA3-224/256/384/512 fixed-output hashing",
+      "SHAKE128/256 variable-length extendable output",
+      "cSHAKE with custom function name (N) and customization string (S)",
+      "Optional 2-share Domain-Oriented Masking (DOM)",
+      "800-bit entropy interface for masked operation",
+      "Sponge absorb/squeeze state machine (5 states)",
+      "Sparse FSM encoding with 3-bit Hamming distance",
+      "Counter redundancy checks",
+      "Lifecycle escalation response",
+      "REQ/ACK handshake for power management"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A",
+      "GF22",
+      "TSMC"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado",
+      "Quartus"
+    ],
+    "devices": [
+      "Artix-7",
+      "Ultrascale+"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "caliptra-prim",
+      "type": "library",
+      "description": "Caliptra primitives: MUBI encoding, sparse FSM, alerts"
+    },
+    {
+      "name": "lc_ctrl",
+      "type": "integration",
+      "description": "Lifecycle controller for escalation"
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "integration"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional",
+    "test_cases": [
+      {
+        "name": "smoke_test_sha3",
+        "description": "Basic SHA3 operations smoke test",
+        "status": "passing"
+      },
+      {
+        "name": "smoke_test_sha3_regs",
+        "description": "Register interface smoke test",
+        "status": "passing"
+      },
+      {
+        "name": "smoke_test_sha3_interrupt",
+        "description": "Interrupt generation test",
+        "status": "passing"
+      }
+    ]
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl/tree/main/src/kmac",
+    "caliptra_spec": "https://chipsalliance.github.io/Caliptra/",
+    "standard": "NIST FIPS 202 (SHA-3), NIST SP 800-185 (KMAC/cSHAKE)"
+  },
+  "artifacts": {
+    "rtl": [
+      "rtl/sha3_pkg.sv",
+      "rtl/sha3.sv",
+      "rtl/sha3pad.sv",
+      "rtl/keccak_round.sv",
+      "rtl/keccak_2share.sv"
+    ],
+    "total_rtl_lines": 2896
+  },
+  "categories": {
+    "primary": "security",
+    "secondary": [
+      "crypto",
+      "hash"
+    ],
+    "tags": [
+      "sha3",
+      "keccak",
+      "shake",
+      "cshake",
+      "kmac",
+      "caliptra",
+      "root-of-trust",
+      "masking",
+      "dom",
+      "fips202",
+      "chips-alliance"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 1,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "manual (gold-standard pass 2026-03-27)",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T20:52:56Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

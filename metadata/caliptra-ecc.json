@@ -1,0 +1,287 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-ecc",
+  "version": "0.1.0",
+  "description": "ECDSA/ECDH P-384 (secp384r1) accelerator with key generation, RFC 6979 deterministic signing, signature verification, ECDH shared key computation, and public key validation. Features Radix-48 pipelined Montgomery multiplier, point randomization, scalar blinding, and signature masking for side-channel resistance. AHB-Lite slave interface. Extracted from CHIPS Alliance Caliptra Root of Trust.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T20:52:56Z",
+  "updated": "2026-03-27T20:52:56Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "ip_path": "src/ecc",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "ahb",
+      "width": 32,
+      "description": "AHB-Lite slave interface. 32-bit address and data bus."
+    },
+    {
+      "type": "keyvault",
+      "direction": "both",
+      "protocol": "kv_read/kv_write",
+      "port": "kv",
+      "description": "KeyVault: 2 read ports (parallel key reads) and 1 write port for secure storage."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "port": "pcr_signing_data",
+      "description": "PCR signing data input for platform attestation."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "port": "error_intr",
+      "description": "Error interrupt."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "port": "notif_intr",
+      "description": "Completion notification interrupt."
+    },
+    {
+      "type": "status",
+      "direction": "output",
+      "port": "busy_o",
+      "description": "ECC engine busy indicator."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "port": "clk",
+      "description": "System clock."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "port": "reset_n",
+      "polarity": "active_low",
+      "description": "Asynchronous active-low reset."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "AHB_ADDR_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "AHB address bus width."
+    },
+    {
+      "name": "AHB_DATA_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "AHB data bus width."
+    },
+    {
+      "name": "REG_SIZE",
+      "type": "int",
+      "default": 384,
+      "description": "Operand size in bits (P-384)."
+    },
+    {
+      "name": "RND_SIZE",
+      "type": "int",
+      "default": 192,
+      "description": "Scalar blinding random value size in bits."
+    },
+    {
+      "name": "RADIX",
+      "type": "int",
+      "default": 48,
+      "description": "Montgomery multiplier radix."
+    }
+  ],
+  "performance": {
+    "curve": "P-384 (secp384r1)",
+    "operand_width": 384,
+    "multiplier_radix": 48,
+    "data_width": 32,
+    "operations": [
+      "keygen",
+      "sign (ECDSA)",
+      "verify (ECDSA)",
+      "shared_key (ECDH)",
+      "pk_chk"
+    ]
+  },
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "NIST P-384 (secp384r1) elliptic curve operations",
+      "ECDSA key generation, signing, and verification",
+      "ECDH shared key computation (Diffie-Hellman)",
+      "Public key validation",
+      "RFC 6979 deterministic ECDSA with HMAC-DRBG",
+      "Radix-48 pipelined Montgomery multiplier with PE array",
+      "Point randomization via projective coordinates (Coron CHES 1999)",
+      "192-bit scalar blinding (k' = k + r * group_order)",
+      "Signature masking (split computation with random d)",
+      "True dual-port RAM for register file storage",
+      "DSP multiplier support for FPGA (ecc_mult_dsp)",
+      "Micro-operation sequencer for complex operations"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A",
+      "GF22",
+      "TSMC"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado",
+      "Quartus"
+    ],
+    "devices": [
+      "Artix-7",
+      "Ultrascale+"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "caliptra-libs",
+      "type": "library",
+      "description": "AHB slave interface, clock gating, synchronizers"
+    },
+    {
+      "name": "keyvault",
+      "type": "integration",
+      "description": "KeyVault read/write clients"
+    },
+    {
+      "name": "caliptra-hmac-drbg",
+      "type": "core",
+      "description": "HMAC-DRBG for RFC 6979 nonce generation"
+    },
+    {
+      "name": "pcrvault",
+      "type": "integration",
+      "description": "PCR signing data interface"
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "systemverilog",
+      "formal"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional",
+    "formal_verification": "Montgomery multiplier and HMAC-DRBG formally verified",
+    "test_cases": [
+      {
+        "name": "ecc_top_tb",
+        "description": "Top-level functional tests with 10 P-384 test vectors",
+        "status": "passing"
+      },
+      {
+        "name": "ecc_montgomerymultiplier_tb",
+        "description": "Montgomery multiplier unit test",
+        "status": "passing"
+      },
+      {
+        "name": "ecc_formal",
+        "description": "Formal verification of multiplier and DRBG interface",
+        "status": "passing"
+      }
+    ]
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl/tree/main/src/ecc",
+    "caliptra_spec": "https://chipsalliance.github.io/Caliptra/"
+  },
+  "artifacts": {
+    "rtl": [
+      "rtl/ecc_defines_pkg.sv",
+      "rtl/ecc_params_pkg.sv",
+      "rtl/ecc_reg_pkg.sv",
+      "rtl/ecc_dsa_uop_pkg.sv",
+      "rtl/ecc_pm_uop_pkg.sv",
+      "rtl/ecc_top.sv",
+      "rtl/ecc_reg.sv",
+      "rtl/ecc_dsa_ctrl.sv",
+      "rtl/ecc_dsa_sequencer.sv",
+      "rtl/ecc_scalar_blinding.sv",
+      "rtl/ecc_hmac_drbg_interface.sv",
+      "rtl/ecc_arith_unit.sv",
+      "rtl/ecc_pm_ctrl.sv",
+      "rtl/ecc_pm_sequencer.sv",
+      "rtl/ecc_fau.sv",
+      "rtl/ecc_montgomerymultiplier.sv",
+      "rtl/ecc_pe_first.sv",
+      "rtl/ecc_pe.sv",
+      "rtl/ecc_pe_final.sv",
+      "rtl/ecc_mult_dsp.sv",
+      "rtl/ecc_add_sub_mod_alter.sv",
+      "rtl/ecc_adder.sv",
+      "rtl/ecc_ram_tdp_file.sv"
+    ],
+    "total_rtl_lines": 10978
+  },
+  "categories": {
+    "primary": "security",
+    "secondary": [
+      "crypto",
+      "accelerator"
+    ],
+    "tags": [
+      "ecc",
+      "ecdsa",
+      "ecdh",
+      "p384",
+      "caliptra",
+      "root-of-trust",
+      "montgomery",
+      "side-channel",
+      "rfc6979",
+      "ahb",
+      "chips-alliance"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 1,
+    "fpga_validated": false,
+    "formal_verified": true,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "manual (gold-standard pass 2026-03-27)",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T20:52:56Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

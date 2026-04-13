@@ -1,0 +1,288 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-keyvault",
+  "version": "0.1.0",
+  "description": "The Caliptra KeyVault is a secure key storage and management module designed for cryptographic operations, supporting multiple key slots and secure access control mechanisms.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:43:13Z",
+  "updated": "2026-03-27T21:43:13Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "ip_path": "src/keyvault",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock input for the KeyVault module."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "rst",
+      "width": 1,
+      "description": "Reset input for the KeyVault module."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "s_cpuif_req",
+      "width": 1,
+      "description": "CPU interface request signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "s_cpuif_req_is_wr",
+      "width": 1,
+      "description": "Indicates if the CPU request is a write operation."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "s_cpuif_addr",
+      "width": 12,
+      "description": "Address for the CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "s_cpuif_wr_data",
+      "width": 32,
+      "description": "Write data for the CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "s_cpuif_wr_biten",
+      "width": 32,
+      "description": "Write byte enable for the CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_req_stall_wr",
+      "width": 1,
+      "description": "Write stall signal for the CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_req_stall_rd",
+      "width": 1,
+      "description": "Read stall signal for the CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_rd_ack",
+      "width": 1,
+      "description": "Read acknowledgment signal for the CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_rd_err",
+      "width": 1,
+      "description": "Read error signal for the CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_rd_data",
+      "width": 32,
+      "description": "Read data for the CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_wr_ack",
+      "width": 1,
+      "description": "Write acknowledgment signal for the CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "s_cpuif_wr_err",
+      "width": 1,
+      "description": "Write error signal for the CPU interface."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "hwif_in",
+      "width": "kv_reg_pkg::kv_reg__in_t",
+      "description": "Hardware interface input signals."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "hwif_out",
+      "width": "kv_reg_pkg::kv_reg__out_t",
+      "description": "Hardware interface output signals."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "KV_NUM_DWORDS",
+      "type": "int",
+      "default": 16,
+      "description": "Number of double words per key."
+    },
+    {
+      "name": "KV_NUM_KEYS",
+      "type": "int",
+      "default": 24,
+      "description": "Number of keys supported by the KeyVault."
+    },
+    {
+      "name": "KV_ADDR_W",
+      "type": "int",
+      "default": 13,
+      "description": "Width of the address bus."
+    },
+    {
+      "name": "KV_DATA_W",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the data bus."
+    },
+    {
+      "name": "KV_ENTRY_ADDR_W",
+      "type": "int",
+      "default": 5,
+      "description": "Width of the entry address bus."
+    },
+    {
+      "name": "KV_ENTRY_SIZE_W",
+      "type": "int",
+      "default": 4,
+      "description": "Width of the entry size bus."
+    },
+    {
+      "name": "KV_NUM_READ",
+      "type": "int",
+      "default": 9,
+      "description": "Number of read operations supported."
+    },
+    {
+      "name": "KV_NUM_WRITE",
+      "type": "int",
+      "default": 5,
+      "description": "Number of write operations supported."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Secure key storage with 24 key slots",
+      "Support for read and write operations with access control",
+      "Hardware interface for secure key management",
+      "Support for cryptographic operations such as HMAC, ECC, and AES"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "kv_reg_pkg",
+      "type": "library",
+      "description": "Package containing key vault register definitions and parameters."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl"
+  },
+  "artifacts": {
+    "total_rtl_lines": 1840
+  },
+  "categories": {
+    "primary": "security",
+    "secondary": [
+      "cryptography",
+      "key management"
+    ],
+    "tags": [
+      "keyvault",
+      "security",
+      "cryptography",
+      "hardware"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:43:13Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

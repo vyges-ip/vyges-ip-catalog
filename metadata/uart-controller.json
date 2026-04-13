@@ -1,0 +1,298 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "uart-controller",
+  "version": "0.1.0",
+  "description": "A configurable UART controller with APB interface, FIFO support, and interrupt capabilities for embedded systems. It supports configurable baud rates, error detection, and power management features.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-30T02:03:17Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/vyges/uart-controller",
+    "commit": "cac3547f13e16cffe583bfe303de9dbaf1b5124c",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "pclk_i",
+      "width": 1,
+      "description": "APB clock input (50 MHz)"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active_low",
+      "port": "presetn_i",
+      "width": 1,
+      "description": "APB reset input (active low)"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB3",
+      "port": "psel_i",
+      "width": 1,
+      "description": "APB select input"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB3",
+      "port": "penable_i",
+      "width": 1,
+      "description": "APB enable input"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB3",
+      "port": "pwrite_i",
+      "width": 1,
+      "description": "APB write input"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "APB3",
+      "port": "paddr_i",
+      "width": 8,
+      "description": "APB address input (8-bit)"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "APB3",
+      "port": "pwdata_i",
+      "width": 32,
+      "description": "APB write data input (32-bit)"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "APB3",
+      "port": "prdata_o",
+      "width": 32,
+      "description": "APB read data output (32-bit)"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "APB3",
+      "port": "pready_o",
+      "width": 1,
+      "description": "APB ready output"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "APB3",
+      "port": "pslverr_o",
+      "width": 1,
+      "description": "APB slave error output"
+    },
+    {
+      "type": "serial",
+      "direction": "output",
+      "protocol": "UART",
+      "port": "uart_tx_o",
+      "width": 1,
+      "description": "UART transmit output"
+    },
+    {
+      "type": "serial",
+      "direction": "input",
+      "protocol": "UART",
+      "port": "uart_rx_i",
+      "width": 1,
+      "description": "UART receive input"
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "irq_tx_empty_o",
+      "width": 1,
+      "description": "Transmit FIFO empty interrupt"
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "irq_rx_full_o",
+      "width": 1,
+      "description": "Receive FIFO full interrupt"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "CLOCK_FREQUENCY",
+      "type": "int",
+      "default": 50000000,
+      "description": "Clock frequency in Hz"
+    },
+    {
+      "name": "BAUD_RATE",
+      "type": "int",
+      "default": 115200,
+      "description": "UART baud rate in bits per second"
+    },
+    {
+      "name": "FIFO_DEPTH",
+      "type": "int",
+      "default": 16,
+      "description": "Depth of the TX/RX FIFOs"
+    },
+    {
+      "name": "DATA_WIDTH",
+      "type": "int",
+      "default": 8,
+      "description": "Width of the data bus in bits"
+    },
+    {
+      "name": "STOP_BITS",
+      "type": "int",
+      "default": 1,
+      "description": "Number of stop bits (1 or 2)"
+    },
+    {
+      "name": "PARITY_ENABLE",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable parity check (1 = enabled, 0 = disabled)"
+    },
+    {
+      "name": "PARITY_TYPE",
+      "type": "string",
+      "default": "even",
+      "description": "Parity type (even or odd)"
+    }
+  ],
+  "performance": {
+    "max_baud_rate": 921600,
+    "min_baud_rate": 9600,
+    "fifo_depth_range": [
+      4,
+      64
+    ]
+  },
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "APB slave interface for register access",
+      "Configurable baud rate (9600 to 921600 bps)",
+      "TX/RX FIFOs with configurable depth",
+      "Interrupt support for TX empty and RX full conditions",
+      "Error detection and reporting",
+      "Power management with clock gating"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "APB3",
+      "type": "bus",
+      "description": "APB3 protocol for register access"
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/vyges/uart-controller"
+  },
+  "artifacts": {
+    "total_rtl_lines": 849
+  },
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "Serial Interfaces"
+    }
+  ],
+  "keywords": [
+    "UART",
+    "APB",
+    "FIFO",
+    "serial communication",
+    "embedded systems"
+  ],
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-30"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-30T02:03:17Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/sync_fifo.sv",
+    "rtl/uart_controller.sv",
+    "rtl/uart_receiver.sv",
+    "rtl/uart_transmitter.sv",
+    "rtl/sync_fifo.sv",
+    "rtl/uart_controller.sv",
+    "rtl/uart_receiver.sv",
+    "rtl/uart_transmitter.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

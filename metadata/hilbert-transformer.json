@@ -1,0 +1,248 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "hilbert-transformer",
+  "version": "0.1.0",
+  "description": "A fully pipelined digital Hilbert transformer for DSP applications, implementing an FIR filter-based Hilbert transform with AXI-Stream interface, configurable data width, filter order, and pipeline stages.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:43:29Z",
+  "updated": "2026-03-27T21:43:29Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/vyges/hilbert-transformer",
+    "commit": "2c87cd97d97fc5c65b5572ceb48e739f77c27fde",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "single_clock",
+      "port": "clk_i",
+      "width": 1,
+      "description": "System clock input"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active_low",
+      "port": "rst_n_i",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI-Stream",
+      "port": "tdata_i",
+      "width": "DATA_WIDTH",
+      "description": "AXI-Stream input data"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI-Stream",
+      "port": "tvalid_i",
+      "width": 1,
+      "description": "AXI-Stream input valid signal"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI-Stream",
+      "port": "tready_o",
+      "width": 1,
+      "description": "AXI-Stream input ready signal"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI-Stream",
+      "port": "tdata_o",
+      "width": "DATA_WIDTH",
+      "description": "AXI-Stream output data"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI-Stream",
+      "port": "tvalid_o",
+      "width": 1,
+      "description": "AXI-Stream output valid signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI-Stream",
+      "port": "tready_i",
+      "width": 1,
+      "description": "AXI-Stream output ready signal"
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "config_valid_i",
+      "width": 1,
+      "description": "Configuration valid signal"
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "config_data_i",
+      "width": 32,
+      "description": "Configuration data input"
+    },
+    {
+      "type": "status",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "status_o",
+      "width": 32,
+      "description": "Status output signal"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "DATA_WIDTH",
+      "type": "int",
+      "default": 16,
+      "description": "Data width (8, 16, 24, 32)"
+    },
+    {
+      "name": "FILTER_ORDER",
+      "type": "int",
+      "default": 64,
+      "description": "FIR filter order (16, 32, 64, 128, 256)"
+    },
+    {
+      "name": "PIPELINE_STAGES",
+      "type": "int",
+      "default": 8,
+      "description": "Number of pipeline stages (4-16)"
+    },
+    {
+      "name": "COEFF_WIDTH",
+      "type": "int",
+      "default": 18,
+      "description": "Coefficient width (16-24)"
+    },
+    {
+      "name": "ACCUM_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Accumulator width"
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Fully pipelined architecture for maximum throughput",
+      "Configurable data width (8-32 bits)",
+      "Configurable filter order (16-256 taps)",
+      "AXI-Stream input/output interface",
+      "Configuration and status registers",
+      "Overflow detection and error reporting"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "hilbert_delay_line",
+      "type": "core",
+      "description": "Implements delay line buffer for FIR filter"
+    },
+    {
+      "name": "hilbert_coefficient_rom",
+      "type": "core",
+      "description": "Stores FIR filter coefficients"
+    },
+    {
+      "name": "hilbert_multiplier_array",
+      "type": "core",
+      "description": "Performs parallel multiplications for FIR filter"
+    },
+    {
+      "name": "hilbert_adder_tree",
+      "type": "core",
+      "description": "Implements adder tree for FIR filter"
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/vyges/hilbert-transformer"
+  },
+  "artifacts": {
+    "total_rtl_lines": 958
+  },
+  "categories": {
+    "primary": "signal_processing",
+    "secondary": [
+      "digital_signal_processing",
+      "communication"
+    ],
+    "tags": [
+      "hilbert_transform",
+      "FIR_filter",
+      "DSP",
+      "AXI-Stream",
+      "pipelined"
+    ]
+  },
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T21:43:29Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:43:29Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

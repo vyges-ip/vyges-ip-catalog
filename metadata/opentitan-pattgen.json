@@ -1,0 +1,216 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-pattgen",
+  "version": "0.1.0",
+  "description": "A pattern generator peripheral from the OpenTitan project, capable of generating programmable patterns on two independent channels with configurable timing and polarity.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:05:31Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "ip_path": "hw/ip/pattgen",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "TileLink Uncached Lightweight (TL-UL) input interface for register access."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "TileLink Uncached Lightweight (TL-UL) output interface for register responses."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal."
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "port": "reg2hw",
+      "width": 242,
+      "description": "Register-to-hardware interface for pattern generator control signals."
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "port": "hw2reg",
+      "width": 4,
+      "description": "Hardware-to-register interface for status signals."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "port": "intg_err_o",
+      "width": 1,
+      "description": "Integrity error output signal for alert generation."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "AW",
+      "type": "int",
+      "default": 6,
+      "description": "Address width for the register interface."
+    },
+    {
+      "name": "DW",
+      "type": "int",
+      "default": 32,
+      "description": "Data width for the register interface."
+    },
+    {
+      "name": "DBW",
+      "type": "int",
+      "default": 4,
+      "description": "Data byte width, derived from data width."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Two independent pattern generation channels",
+      "Configurable timing, polarity, and inactive levels",
+      "Support for programmable pattern length and repetition",
+      "TileLink Uncached Lightweight (TL-UL) interface for control and status"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TileLink Uncached Lightweight (TL-UL) protocol package."
+    },
+    {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Assertion primitives for OpenTitan designs."
+    },
+    {
+      "name": "prim_reg_we_check",
+      "type": "library",
+      "description": "Primitive for write-enable checking in registers."
+    },
+    {
+      "name": "prim_subreg",
+      "type": "library",
+      "description": "Primitive for sub-register implementation."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://opentitan.org/book/"
+  },
+  "artifacts": {
+    "total_rtl_lines": 1690
+  },
+  "categories": [
+    {
+      "main_category": "Control Logic",
+      "sub_category": "Counters & Timers"
+    }
+  ],
+  "keywords": [
+    "pattern generator",
+    "OpenTitan",
+    "TileLink",
+    "peripheral"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T23:05:31Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:05:31Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/pattgen.sv",
+    "rtl/pattgen_chan.sv",
+    "rtl/pattgen_core.sv",
+    "rtl/pattgen_ctrl_pkg.sv",
+    "rtl/pattgen_reg_pkg.sv",
+    "rtl/pattgen_reg_top.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

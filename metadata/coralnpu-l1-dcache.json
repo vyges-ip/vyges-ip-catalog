@@ -1,0 +1,351 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "coralnpu-l1-dcache",
+  "version": "0.1.0",
+  "description": "A Level 1 data cache for the Coral NPU, supporting AXI and custom DBUS interfaces for high-performance memory operations.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T05:49:49Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/google-coral/coralnpu",
+    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
+    "ip_path": "hdl/chisel",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clock",
+      "width": 1,
+      "description": "Clock signal for the L1 data cache."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "reset",
+      "width": 1,
+      "description": "Reset signal for the L1 data cache."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_dbus_valid",
+      "width": 1,
+      "description": "DBUS valid signal for memory operations."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_dbus_ready",
+      "width": 1,
+      "description": "DBUS ready signal indicating readiness for transactions."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_dbus_write",
+      "width": 1,
+      "description": "DBUS write enable signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_dbus_addr",
+      "width": 31,
+      "description": "DBUS address for memory operations."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_dbus_size",
+      "width": 6,
+      "description": "DBUS size of the memory transaction."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_dbus_wdata",
+      "width": 256,
+      "description": "DBUS write data for memory operations."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_dbus_wmask",
+      "width": 32,
+      "description": "DBUS write mask for memory operations."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_dbus_rdata",
+      "width": 256,
+      "description": "DBUS read data from memory."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "AXI",
+      "port": "io_axi_write_addr_ready",
+      "width": 1,
+      "description": "AXI write address ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_write_addr_valid",
+      "width": 1,
+      "description": "AXI write address valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_write_addr_bits_addr",
+      "width": 31,
+      "description": "AXI write address bits."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "AXI",
+      "port": "io_axi_write_data_ready",
+      "width": 1,
+      "description": "AXI write data ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_write_data_valid",
+      "width": 1,
+      "description": "AXI write data valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_write_data_bits_data",
+      "width": 256,
+      "description": "AXI write data bits."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_write_data_bits_strb",
+      "width": 32,
+      "description": "AXI write data strobe bits."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "AXI",
+      "port": "io_axi_write_resp_valid",
+      "width": 1,
+      "description": "AXI write response valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_ready",
+      "width": 1,
+      "description": "AXI read address ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_valid",
+      "width": 1,
+      "description": "AXI read address valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_read_addr_bits_addr",
+      "width": 31,
+      "description": "AXI read address bits."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI",
+      "port": "io_axi_read_data_ready",
+      "width": 1,
+      "description": "AXI read data ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "AXI",
+      "port": "io_axi_read_data_valid",
+      "width": 1,
+      "description": "AXI read data valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "AXI",
+      "port": "io_axi_read_data_bits_data",
+      "width": 256,
+      "description": "AXI read data bits."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_flush_valid",
+      "width": 1,
+      "description": "Flush valid signal for cache operations."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_flush_ready",
+      "width": 1,
+      "description": "Flush ready signal for cache operations."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_flush_all",
+      "width": 1,
+      "description": "Flush all signal for cache operations."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_flush_clean",
+      "width": 1,
+      "description": "Flush clean signal for cache operations."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_volt_sel",
+      "width": 1,
+      "description": "Voltage selection signal."
+    }
+  ],
+  "parameters": [],
+  "performance": {},
+  "architecture": {
+    "type": "memory",
+    "features": [
+      "Level 1 data cache",
+      "AXI interface support",
+      "Custom DBUS interface"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/google-coral/coralnpu"
+  },
+  "artifacts": {
+    "total_rtl_lines": 26599
+  },
+  "categories": [
+    {
+      "main_category": "Memory Subsystems",
+      "sub_category": "Cache Subsystems"
+    }
+  ],
+  "keywords": [
+    "L1 cache",
+    "AXI",
+    "memory subsystem",
+    "Coral NPU"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:49:49Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/coralnpu-L1DCache.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

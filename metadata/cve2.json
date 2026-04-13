@@ -1,0 +1,316 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "cve2",
+  "version": "0.1.0",
+  "description": "CVE2 is a RISC-V compliant processor core supporting RV32IMC instruction set with optional extensions for bit manipulation, physical memory protection, and debug capabilities.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:42:58Z",
+  "updated": "2026-03-27T21:42:58Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/openhwgroup/cve2",
+    "commit": "b72358c73e39914c79568219c03b2d58e12119ba",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "custom",
+      "port": "instr_req_o",
+      "width": 1,
+      "description": "Instruction memory request signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "custom",
+      "port": "instr_gnt_i",
+      "width": 1,
+      "description": "Instruction memory grant signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "custom",
+      "port": "instr_rvalid_i",
+      "width": 1,
+      "description": "Instruction memory read valid signal"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "custom",
+      "port": "instr_addr_o",
+      "width": 32,
+      "description": "Instruction memory address output"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "custom",
+      "port": "instr_rdata_i",
+      "width": 32,
+      "description": "Instruction memory read data input"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "custom",
+      "port": "instr_err_i",
+      "width": 1,
+      "description": "Instruction memory error signal"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "custom",
+      "port": "data_req_o",
+      "width": 1,
+      "description": "Data memory request signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "custom",
+      "port": "data_gnt_i",
+      "width": 1,
+      "description": "Data memory grant signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "custom",
+      "port": "data_rvalid_i",
+      "width": 1,
+      "description": "Data memory read valid signal"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "custom",
+      "port": "data_we_o",
+      "width": 1,
+      "description": "Data memory write enable signal"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "custom",
+      "port": "data_be_o",
+      "width": 4,
+      "description": "Data memory byte enable signal"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "custom",
+      "port": "data_addr_o",
+      "width": 32,
+      "description": "Data memory address output"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "custom",
+      "port": "data_wdata_o",
+      "width": 32,
+      "description": "Data memory write data output"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "custom",
+      "port": "data_rdata_i",
+      "width": 32,
+      "description": "Data memory read data input"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "custom",
+      "port": "data_err_i",
+      "width": 1,
+      "description": "Data memory error signal"
+    },
+    {
+      "type": "interrupt",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "irq_software_i",
+      "width": 1,
+      "description": "Software interrupt input"
+    },
+    {
+      "type": "interrupt",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "irq_timer_i",
+      "width": 1,
+      "description": "Timer interrupt input"
+    },
+    {
+      "type": "interrupt",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "irq_external_i",
+      "width": 1,
+      "description": "External interrupt input"
+    },
+    {
+      "type": "interrupt",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "irq_fast_i",
+      "width": 16,
+      "description": "Fast interrupt inputs"
+    },
+    {
+      "type": "interrupt",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "irq_nm_i",
+      "width": 1,
+      "description": "Non-maskable interrupt input"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "MHPMCounterNum",
+      "type": "int",
+      "default": 10,
+      "description": "Number of hardware performance counters"
+    },
+    {
+      "name": "MHPMCounterWidth",
+      "type": "int",
+      "default": 40,
+      "description": "Width of hardware performance counters"
+    },
+    {
+      "name": "RV32E",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable RV32E extension"
+    },
+    {
+      "name": "RV32M",
+      "type": "enum",
+      "default": "RV32MFast",
+      "description": "RV32M extension configuration"
+    },
+    {
+      "name": "XInterface",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable Core-V extension interface"
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "processor",
+    "features": [
+      "RISC-V RV32IMC support",
+      "Physical Memory Protection (PMP)",
+      "Debug and trace capabilities",
+      "Optional bit manipulation extension"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Assertion library for formal verification"
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/openhwgroup/cve2"
+  },
+  "artifacts": {
+    "total_rtl_lines": 13532
+  },
+  "categories": {
+    "primary": "processor",
+    "secondary": [],
+    "tags": [
+      "RISC-V",
+      "RV32IMC",
+      "processor",
+      "debug",
+      "PMP"
+    ]
+  },
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:42:58Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

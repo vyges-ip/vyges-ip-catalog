@@ -1,0 +1,235 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-dma",
+  "version": "0.1.0",
+  "description": "A DMA controller IP block from the OpenTitan project, supporting TL-UL protocol, register-based configuration, and features such as integrity checking, RACL policy enforcement, and interrupt handling.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-13T01:19:39Z",
+  "updated": "2026-04-13T01:19:39Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "d2f24af56cfaadfec57b2d4974f57aac27aac0fb",
+    "ip_path": "hw/ip/dma",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active-low",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "TileLink UL host-to-device interface"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "TileLink UL device-to-host interface"
+    },
+    {
+      "type": "data",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "reg2hw",
+      "width": 32,
+      "description": "DMA register-to-hardware interface for write operations"
+    },
+    {
+      "type": "data",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "hw2reg",
+      "width": 32,
+      "description": "DMA hardware-to-register interface for read operations"
+    },
+    {
+      "type": "data",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "racl_policies_i",
+      "width": 63,
+      "description": "Input for RACL policy vector"
+    },
+    {
+      "type": "data",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "racl_error_o",
+      "width": 1,
+      "description": "Output for RACL error log"
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "intg_err_o",
+      "width": 1,
+      "description": "Integrity check error output"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "EnableRacl",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable RACL functionality"
+    },
+    {
+      "name": "RaclErrorRsp",
+      "type": "bit",
+      "default": 1,
+      "description": "Enable RACL error response"
+    },
+    {
+      "name": "RaclPolicySelVec",
+      "type": "enum",
+      "default": "{dma_reg_pkg::NumRegs{0}}",
+      "description": "RACL policy selection vector"
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "TileLink UL protocol support",
+      "Register-based configuration",
+      "RACL policy enforcement",
+      "Integrity checking",
+      "Interrupt handling",
+      "Support for multiple transfer widths"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TileLink UL protocol package"
+    },
+    {
+      "name": "dma_reg_pkg",
+      "type": "library",
+      "description": "DMA register package"
+    },
+    {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Primitive assertions for OpenTitan"
+    },
+    {
+      "name": "prim_reg_we_check",
+      "type": "library",
+      "description": "Primitive for register write enable checking"
+    },
+    {
+      "name": "tlul_adapter_reg",
+      "type": "core",
+      "description": "TileLink UL adapter for register interface"
+    },
+    {
+      "name": "tlul_rsp_intg_gen",
+      "type": "core",
+      "description": "TileLink UL response integrity generator"
+    },
+    {
+      "name": "tlul_cmd_intg_chk",
+      "type": "core",
+      "description": "TileLink UL command integrity checker"
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/lowRISC/opentitan/tree/d2f24af56cfaadfec57b2d4974f57aac27aac0fb/hw/ip/dma"
+  },
+  "artifacts": {
+    "total_rtl_lines": 6076
+  },
+  "categories": [
+    {
+      "main_category": "Memory Subsystems",
+      "sub_category": "FIFOs & Buffers"
+    }
+  ],
+  "keywords": [
+    "DMA",
+    "TileLink",
+    "RACL",
+    "OpenTitan",
+    "Memory",
+    "Integrity"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-13T01:19:39Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-13T01:19:39Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

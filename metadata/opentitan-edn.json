@@ -1,0 +1,271 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-edn",
+  "version": "0.1.0",
+  "description": "The opentitan-edn is an Entropy Distribution Network (EDN) IP block that provides secure and reliable entropy distribution for cryptographic operations. It supports the TileLink protocol and includes features for integrity checking, error handling, and configurable entropy generation.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:05:05Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "ip_path": "hw/ip/edn",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active-low",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "TileLink host-to-device interface"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "TileLink device-to-host interface"
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "edn_reg_pkg::edn_reg2hw_t",
+      "port": "reg2hw",
+      "width": 32,
+      "description": "Write interface to hardware"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "edn_reg_pkg::edn_hw2reg_t",
+      "port": "hw2reg",
+      "width": 32,
+      "description": "Read interface from hardware"
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "standard",
+      "port": "intg_err_o",
+      "width": 1,
+      "description": "Integrity check error output"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "AW",
+      "type": "int",
+      "default": 7,
+      "description": "Address width for the register interface"
+    },
+    {
+      "name": "DW",
+      "type": "int",
+      "default": 32,
+      "description": "Data width for the register interface"
+    },
+    {
+      "name": "DBW",
+      "type": "int",
+      "default": 4,
+      "description": "Byte width for the register interface"
+    },
+    {
+      "name": "EdnBootInsCmdResval",
+      "type": "int",
+      "default": 2305,
+      "description": "Default value for the boot instantiate command"
+    },
+    {
+      "name": "EdnBootGenCmdResval",
+      "type": "int",
+      "default": 16773123,
+      "description": "Default value for the boot generate command"
+    },
+    {
+      "name": "CtrlResval",
+      "type": "int",
+      "default": 39321,
+      "description": "Default value for the control register"
+    },
+    {
+      "name": "MaxNumReqsBetweenReseedsResval",
+      "type": "int",
+      "default": 0,
+      "description": "Default value for the maximum number of requests between reseeds"
+    },
+    {
+      "name": "NumAlerts",
+      "type": "int",
+      "default": 2,
+      "description": "Number of alerts supported by the EDN"
+    },
+    {
+      "name": "BlockAw",
+      "type": "int",
+      "default": 7,
+      "description": "Address width within the block"
+    },
+    {
+      "name": "NumRegs",
+      "type": "int",
+      "default": 18,
+      "description": "Number of registers for every interface"
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "TileLink interface for communication",
+      "Integrity checking for incoming and outgoing payloads",
+      "Support for entropy generation and distribution",
+      "Error detection and alert generation"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TileLink protocol package for host-to-device and device-to-host communication"
+    },
+    {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Assertion primitives for design verification"
+    },
+    {
+      "name": "prim_reg_we_check",
+      "type": "library",
+      "description": "Primitive for write enable checking"
+    },
+    {
+      "name": "tlul_adapter_reg",
+      "type": "core",
+      "description": "TileLink adapter for register interface"
+    },
+    {
+      "name": "tlul_rsp_intg_gen",
+      "type": "core",
+      "description": "TileLink response integrity generator"
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/lowRISC/opentitan/tree/7fbd85829ec6354ef6497df69536cefe862c1f5a/hw/ip/edn"
+  },
+  "artifacts": {
+    "total_rtl_lines": 3684
+  },
+  "categories": [
+    {
+      "main_category": "Security IP",
+      "sub_category": "True Random Number Generators (TRNG)"
+    }
+  ],
+  "keywords": [
+    "entropy",
+    "random number generator",
+    "security",
+    "TileLink",
+    "OpenTitan"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:05:05Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/edn.sv",
+    "rtl/edn_ack_sm.sv",
+    "rtl/edn_core.sv",
+    "rtl/edn_field_en.sv",
+    "rtl/edn_main_sm.sv",
+    "rtl/edn_pkg.sv",
+    "rtl/edn_reg_pkg.sv",
+    "rtl/edn_reg_top.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

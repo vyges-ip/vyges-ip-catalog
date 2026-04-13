@@ -1,0 +1,384 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-ahb-lite-bus",
+  "version": "0.1.0",
+  "description": "An AHB-Lite 2:1 multiplexer that arbitrates between two initiators and a single responder, with fixed priority for Initiator 0 and optional optimization for address phase overlapping.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:43:25Z",
+  "updated": "2026-03-27T21:43:25Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "ip_path": "src/ahb_lite_bus",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "hclk",
+      "width": 1,
+      "description": "Global clock signal."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "hreset_n",
+      "width": 1,
+      "description": "Active-low global reset signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hsel_i_0",
+      "width": 1,
+      "description": "Select signal from Initiator 0."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "haddr_i_0",
+      "width": 32,
+      "description": "Address bus from Initiator 0."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hwdata_i_0",
+      "width": 32,
+      "description": "Write data bus from Initiator 0."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hwrite_i_0",
+      "width": 1,
+      "description": "Write control signal from Initiator 0."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "htrans_i_0",
+      "width": 2,
+      "description": "Transaction type from Initiator 0."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hsize_i_0",
+      "width": 3,
+      "description": "Transfer size from Initiator 0."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hready_i_0",
+      "width": 1,
+      "description": "Ready signal from Initiator 0."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "hresp_o_0",
+      "width": 1,
+      "description": "Response signal to Initiator 0."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "hready_o_0",
+      "width": 1,
+      "description": "Ready signal to Initiator 0."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "hrdata_o_0",
+      "width": 32,
+      "description": "Read data bus to Initiator 0."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hsel_i_1",
+      "width": 1,
+      "description": "Select signal from Initiator 1."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "haddr_i_1",
+      "width": 32,
+      "description": "Address bus from Initiator 1."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hwdata_i_1",
+      "width": 32,
+      "description": "Write data bus from Initiator 1."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hwrite_i_1",
+      "width": 1,
+      "description": "Write control signal from Initiator 1."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "htrans_i_1",
+      "width": 2,
+      "description": "Transaction type from Initiator 1."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hsize_i_1",
+      "width": 3,
+      "description": "Transfer size from Initiator 1."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hready_i_1",
+      "width": 1,
+      "description": "Ready signal from Initiator 1."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "hresp_o_1",
+      "width": 1,
+      "description": "Response signal to Initiator 1."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "hready_o_1",
+      "width": 1,
+      "description": "Ready signal to Initiator 1."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "hrdata_o_1",
+      "width": 32,
+      "description": "Read data bus to Initiator 1."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "haddr_o",
+      "width": 32,
+      "description": "Address bus to Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "hwdata_o",
+      "width": 32,
+      "description": "Write data bus to Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "hsel_o",
+      "width": 1,
+      "description": "Select signal to Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "hwrite_o",
+      "width": 1,
+      "description": "Write control signal to Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "hready_o",
+      "width": 1,
+      "description": "Ready signal to Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "htrans_o",
+      "width": 2,
+      "description": "Transaction type to Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "hsize_o",
+      "width": 3,
+      "description": "Transfer size to Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hresp_i",
+      "width": 1,
+      "description": "Response signal from Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hrdata_i",
+      "width": 32,
+      "description": "Read data bus from Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hreadyout_i",
+      "width": 1,
+      "description": "Ready signal from Responder."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "AHB_LITE_ADDR_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the AHB-Lite address bus."
+    },
+    {
+      "name": "AHB_LITE_DATA_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the AHB-Lite data bus."
+    },
+    {
+      "name": "AHB_NO_OPT",
+      "type": "bit",
+      "default": 0,
+      "description": "Flag to enable or disable address phase optimization."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "bus",
+    "features": [
+      "Fixed-priority arbitration with Initiator 0 having higher priority.",
+      "Supports AHB-Lite protocol with 2 initiators and 1 responder.",
+      "Optional address phase optimization for overlapping data and address phases."
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "caliptra_sva",
+      "type": "library",
+      "description": "SystemVerilog Assertions for Caliptra AHB-Lite Bus."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl"
+  },
+  "artifacts": {
+    "total_rtl_lines": 683
+  },
+  "categories": {
+    "primary": "bus",
+    "secondary": [
+      "interconnect"
+    ],
+    "tags": [
+      "AHB-Lite",
+      "2:1 mux",
+      "bus arbitration",
+      "fixed-priority"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T21:43:25Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:43:25Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

@@ -1,0 +1,387 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "sky130-sar-adc",
+  "version": "0.1.0",
+  "description": "A silicon-proven 12-bit fully-differential Successive Approximation Register (SAR) Analog-to-Digital Converter (ADC) implemented in the SKY130 process node.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T05:14:44Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/iic-jku/SKY130_SAR-ADC1",
+    "commit": "3cec5823e64cf1ea5c625615ad71f2a505cf27bc",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock input for the ADC."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_n",
+      "width": 1,
+      "description": "Active-low reset signal."
+    },
+    {
+      "type": "analog",
+      "direction": "input",
+      "protocol": "differential",
+      "port": "vin_p",
+      "width": 1,
+      "description": "Positive input of the differential analog signal."
+    },
+    {
+      "type": "analog",
+      "direction": "input",
+      "protocol": "differential",
+      "port": "vin_n",
+      "width": 1,
+      "description": "Negative input of the differential analog signal."
+    },
+    {
+      "type": "digital",
+      "direction": "output",
+      "protocol": "parallel",
+      "port": "data_out",
+      "width": 12,
+      "description": "12-bit digital output of the ADC."
+    },
+    {
+      "type": "digital",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "data_valid",
+      "width": 1,
+      "description": "Indicates when the output data is valid."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "RESOLUTION",
+      "type": "int",
+      "default": 12,
+      "description": "Resolution of the ADC in bits."
+    },
+    {
+      "name": "VREF",
+      "type": "int",
+      "default": 3300,
+      "description": "Reference voltage for the ADC in millivolts."
+    },
+    {
+      "name": "CLK_FREQ",
+      "type": "int",
+      "default": 50000000,
+      "description": "Clock frequency in Hz."
+    }
+  ],
+  "performance": {
+    "resolution_bits": 12,
+    "sampling_rate_sps": 1000000,
+    "power_consumption_mw": 1.2,
+    "snr_db": 72.5,
+    "enob_bits": 11.8
+  },
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "12-bit resolution",
+      "Fully-differential input",
+      "Successive Approximation Register (SAR) architecture",
+      "Integrated clock generation with edge detection",
+      "Configurable reference voltage"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "sky130_fd_sc_hd",
+      "type": "library",
+      "description": "Standard cell library for the SKY130 process."
+    },
+    {
+      "name": "openlane",
+      "type": "toolchain",
+      "description": "Open-source flow for digital ASIC design."
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "adc_control_nonbinary_tb.v",
+      "adc_core_digital_tb.v",
+      "adc_osr_tb.v",
+      "adc_row_col_decoder_tb.v"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/iic-jku/SKY130_SAR-ADC1"
+  },
+  "artifacts": {
+    "total_rtl_lines": 59554
+  },
+  "categories": [
+    {
+      "main_category": "Analog & Mixed-Signal",
+      "sub_category": "Converters"
+    }
+  ],
+  "keywords": [
+    "SAR-ADC",
+    "12-bit",
+    "Analog-to-Digital Converter",
+    "SKY130",
+    "Mixed-Signal"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01T05:14:44Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:14:44Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_native/runs/Pizza/results/synthesis/adc_clkgen_with_edgedetect_native.v",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_native/src/adc_clkgen_with_edgedetect_native.v",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_thermocode/runs/kaiserschmarrn/results/final/verilog/gl/adc_clkgen_with_edgedetect.v",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_thermocode/runs/kaiserschmarrn/results/synthesis/adc_clkgen_with_edgedetect.v",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_thermocode/runs/kaiserschmarrn/tmp/routing/15-global.v",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_thermocode/runs/kaiserschmarrn/tmp/routing/17-detailed.v",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_thermocode/runs/kaiserschmarrn/tmp/signoff/30-powered_netlist.v",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_thermocode/src/adc_clkgen_with_edgedetect.v",
+    "rtl/archive/verilog/adc_edge_detect_circuit/adc_edge_detect_circuit.v",
+    "rtl/archive/verilog/adc_edge_detect_circuit_native/adc_edge_detect_circuit.v",
+    "rtl/openlane/adc_top/macros/blackbox/adc_array_matrix_12bit.v",
+    "rtl/openlane/adc_top/macros/blackbox/adc_clkgen_with_edgedetect.v",
+    "rtl/openlane/adc_top/macros/blackbox/adc_comp_latch.v",
+    "rtl/openlane/adc_top/macros/blackbox/adc_vcm_generator.v",
+    "rtl/openlane/adc_top/macros/blackbox/scboundary.v",
+    "rtl/verilog/gl/adc_clkgen_with_edgedetect.gl.v",
+    "rtl/verilog/gl/adc_top.v",
+    "rtl/verilog/rtl/adc_clkgen_with_edgedetect.v",
+    "rtl/verilog/rtl/adc_control_nonbinary.v",
+    "rtl/verilog/rtl/adc_core_digital.v",
+    "rtl/verilog/rtl/adc_osr.v",
+    "rtl/verilog/rtl/adc_row_col_decoder.v",
+    "rtl/archive/mag/180n_legacy/adc_array_cap_180n/adc_array_wafflecap_16x544aF_46um2.spice",
+    "rtl/archive/mag/180n_legacy/adc_array_cap_180n/adc_array_wafflecap_16x544aF_46um2_CPAR.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_circuit_1.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_circuit_2.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_circuit_4.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_circuit_8.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_circuit_drv.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_circuit_dummy.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_circuit_gate.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_wafflecap_1.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_wafflecap_2.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_wafflecap_4.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_wafflecap_8.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_wafflecap_drv.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_wafflecap_dummy.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_wafflecap_gate.spice",
+    "rtl/archive/mag/adc_array_circuit/adc_array_circuit_150n.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_fingercap_16_topC/extract.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_fingercap_8_topA/adc_array_fingercap_8(1)x700aF_23um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_fingercap_8_topA/adc_array_fingercap_8(8)x457aF_23um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_fingercap_8_topB/extract.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_fingercap_8_topD/extract.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_fingercap_8_topE/extract.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_fingercap_8_topF/extract.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_16_topA/Extract.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_16_topB/adc_array_wafflecap_16(1)x300aF_28um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_16_topB/adc_array_wafflecap_16(16)x295aF_28um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_16_topB/adc_array_wafflecap_16(2)x300aF_28um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_16_topB/adc_array_wafflecap_16(4)x295aF_28um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_16_topB/adc_array_wafflecap_16(8)x296aF_28um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_8_topA/Extract.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_8_topA/adc_array_wafflecap_8_Gate_25um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_9_topA/adc_array_wafflecap_9x541aF_25um2.spice",
+    "rtl/archive/mag/buffer/buffer.spice",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_native/runs/Pizza/results/signoff/adc_clkgen_with_edgedetect_native.lef.spice",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_native/runs/Pizza/results/signoff/adc_clkgen_with_edgedetect_native.spice",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_thermocode/runs/kaiserschmarrn/results/signoff/adc_clkgen_with_edgedetect.gds.spice",
+    "rtl/archive/stdcells/sky130_mm_sc_hd_dlyMim5ns/sky130_mm_sc_hd_dlyMim5ns.spice",
+    "rtl/archive/xschem/180n_legacy/adc_array_cap_180n/adc_array_cap_16.spice",
+    "rtl/archive/xschem/180n_legacy/adc_array_circuit_180n/adc_array_circuit_180n.spice",
+    "rtl/archive/xschem/adc_delay_macrocell/delay_macrocell.spice",
+    "rtl/archive/xschem/adc_delay_macrocell/delay_macrocell_postlayout.spice",
+    "rtl/archive/xschem/adc_vcm_gen/adc_vcm_generator.spice",
+    "rtl/archive/xschem/sky130_mm_sc_hd_dlyMim5ns/sky130_mm_sc_hd_dlyMim5ns.spice",
+    "rtl/archive/xschem/sky130_mm_sc_hd_dlyMim5ns/sky130_mm_sc_hd_dlyMim5ns_postlayout.spice",
+    "rtl/lvs/adc_top.spice",
+    "rtl/spice/adc_array_matrix_12bit.mag.C.postlayout.spice",
+    "rtl/spice/adc_array_matrix_12bit.mag.lvs.with_c.spice",
+    "rtl/spice/adc_array_matrix_12bit.sch.spice",
+    "rtl/spice/adc_clkgen_with_edgedetect.gds.lvs.spice",
+    "rtl/spice/adc_clkgen_with_edgedetect.gds.lvs.with_c.spice",
+    "rtl/spice/adc_comp_latch.mag.lvs.spice",
+    "rtl/spice/adc_comp_latch.sch.spice",
+    "rtl/spice/adc_top.gds.C.noD.merge.postlayout.spice",
+    "rtl/spice/adc_top.gds.RC.noD.merge.postlayout.spice",
+    "rtl/spice/adc_vcm_generator.mag.lvs.spice",
+    "rtl/spice/adc_vcm_generator.mag.lvs.with_c.spice",
+    "rtl/spice/adc_vcm_generator.sch.spice",
+    "rtl/stdcells/sky130_mm_sc_hd_dlyPoly5ns/sky130_mm_sc_hd_dlyPoly5ns.spice",
+    "rtl/stdcells/sky130_mm_sc_hd_dlyPoly5ns/sky130_mm_sc_hd_dlyPoly5ns_postlayout.spice",
+    "rtl/xschem/adc_comp_circuit.spice",
+    "rtl/xschem/adc_inverter.spice",
+    "rtl/xschem/adc_nor.spice",
+    "rtl/xschem/adc_nor_latch.spice",
+    "rtl/xschem/adc_vcm_clkgen.spice",
+    "rtl/xschem/sky130_mm_sc_hd_dlyPoly5ns.spice",
+    "rtl/xschem/sky130_mm_sc_hd_dlyPoly5ns_postlayout.spice",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_native/runs/Pizza/results/synthesis/adc_clkgen_with_edgedetect_native.v",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_native/src/adc_clkgen_with_edgedetect_native.v",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_thermocode/runs/kaiserschmarrn/results/final/verilog/gl/adc_clkgen_with_edgedetect.v",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_thermocode/runs/kaiserschmarrn/results/synthesis/adc_clkgen_with_edgedetect.v",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_thermocode/runs/kaiserschmarrn/tmp/routing/15-global.v",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_thermocode/runs/kaiserschmarrn/tmp/routing/17-detailed.v",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_thermocode/runs/kaiserschmarrn/tmp/signoff/30-powered_netlist.v",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_thermocode/src/adc_clkgen_with_edgedetect.v",
+    "rtl/archive/verilog/adc_edge_detect_circuit/adc_edge_detect_circuit.v",
+    "rtl/archive/verilog/adc_edge_detect_circuit_native/adc_edge_detect_circuit.v",
+    "rtl/openlane/adc_top/macros/blackbox/adc_array_matrix_12bit.v",
+    "rtl/openlane/adc_top/macros/blackbox/adc_clkgen_with_edgedetect.v",
+    "rtl/openlane/adc_top/macros/blackbox/adc_comp_latch.v",
+    "rtl/openlane/adc_top/macros/blackbox/adc_vcm_generator.v",
+    "rtl/openlane/adc_top/macros/blackbox/scboundary.v",
+    "rtl/verilog/gl/adc_clkgen_with_edgedetect.gl.v",
+    "rtl/verilog/gl/adc_top.v",
+    "rtl/verilog/rtl/adc_clkgen_with_edgedetect.v",
+    "rtl/verilog/rtl/adc_control_nonbinary.v",
+    "rtl/verilog/rtl/adc_core_digital.v",
+    "rtl/verilog/rtl/adc_osr.v",
+    "rtl/verilog/rtl/adc_row_col_decoder.v",
+    "rtl/archive/mag/180n_legacy/adc_array_cap_180n/adc_array_wafflecap_16x544aF_46um2.spice",
+    "rtl/archive/mag/180n_legacy/adc_array_cap_180n/adc_array_wafflecap_16x544aF_46um2_CPAR.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_circuit_1.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_circuit_2.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_circuit_4.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_circuit_8.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_circuit_drv.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_circuit_dummy.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_circuit_gate.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_wafflecap_1.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_wafflecap_2.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_wafflecap_4.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_wafflecap_8.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_wafflecap_drv.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_wafflecap_dummy.spice",
+    "rtl/archive/mag/adc_array_cap/adc_array_wafflecap_gate.spice",
+    "rtl/archive/mag/adc_array_circuit/adc_array_circuit_150n.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_fingercap_16_topC/extract.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_fingercap_8_topA/adc_array_fingercap_8(1)x700aF_23um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_fingercap_8_topA/adc_array_fingercap_8(8)x457aF_23um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_fingercap_8_topB/extract.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_fingercap_8_topD/extract.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_fingercap_8_topE/extract.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_fingercap_8_topF/extract.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_16_topA/Extract.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_16_topB/adc_array_wafflecap_16(1)x300aF_28um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_16_topB/adc_array_wafflecap_16(16)x295aF_28um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_16_topB/adc_array_wafflecap_16(2)x300aF_28um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_16_topB/adc_array_wafflecap_16(4)x295aF_28um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_16_topB/adc_array_wafflecap_16(8)x296aF_28um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_8_topA/Extract.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_8_topA/adc_array_wafflecap_8_Gate_25um2.spice",
+    "rtl/archive/mag/adc_array_topologies/adc_array_wafflecap_9_topA/adc_array_wafflecap_9x541aF_25um2.spice",
+    "rtl/archive/mag/buffer/buffer.spice",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_native/runs/Pizza/results/signoff/adc_clkgen_with_edgedetect_native.lef.spice",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_native/runs/Pizza/results/signoff/adc_clkgen_with_edgedetect_native.spice",
+    "rtl/archive/openlane/adc_clkgen_with_edgedetect_thermocode/runs/kaiserschmarrn/results/signoff/adc_clkgen_with_edgedetect.gds.spice",
+    "rtl/archive/stdcells/sky130_mm_sc_hd_dlyMim5ns/sky130_mm_sc_hd_dlyMim5ns.spice",
+    "rtl/archive/xschem/180n_legacy/adc_array_cap_180n/adc_array_cap_16.spice",
+    "rtl/archive/xschem/180n_legacy/adc_array_circuit_180n/adc_array_circuit_180n.spice",
+    "rtl/archive/xschem/adc_delay_macrocell/delay_macrocell.spice",
+    "rtl/archive/xschem/adc_delay_macrocell/delay_macrocell_postlayout.spice",
+    "rtl/archive/xschem/adc_vcm_gen/adc_vcm_generator.spice",
+    "rtl/archive/xschem/sky130_mm_sc_hd_dlyMim5ns/sky130_mm_sc_hd_dlyMim5ns.spice",
+    "rtl/archive/xschem/sky130_mm_sc_hd_dlyMim5ns/sky130_mm_sc_hd_dlyMim5ns_postlayout.spice",
+    "rtl/lvs/adc_top.spice",
+    "rtl/spice/adc_array_matrix_12bit.mag.C.postlayout.spice",
+    "rtl/spice/adc_array_matrix_12bit.mag.lvs.with_c.spice",
+    "rtl/spice/adc_array_matrix_12bit.sch.spice",
+    "rtl/spice/adc_clkgen_with_edgedetect.gds.lvs.spice",
+    "rtl/spice/adc_clkgen_with_edgedetect.gds.lvs.with_c.spice",
+    "rtl/spice/adc_comp_latch.mag.lvs.spice",
+    "rtl/spice/adc_comp_latch.sch.spice",
+    "rtl/spice/adc_top.gds.C.noD.merge.postlayout.spice",
+    "rtl/spice/adc_top.gds.RC.noD.merge.postlayout.spice",
+    "rtl/spice/adc_vcm_generator.mag.lvs.spice",
+    "rtl/spice/adc_vcm_generator.mag.lvs.with_c.spice",
+    "rtl/spice/adc_vcm_generator.sch.spice",
+    "rtl/stdcells/sky130_mm_sc_hd_dlyPoly5ns/sky130_mm_sc_hd_dlyPoly5ns.spice",
+    "rtl/stdcells/sky130_mm_sc_hd_dlyPoly5ns/sky130_mm_sc_hd_dlyPoly5ns_postlayout.spice",
+    "rtl/xschem/adc_comp_circuit.spice",
+    "rtl/xschem/adc_inverter.spice",
+    "rtl/xschem/adc_nor.spice",
+    "rtl/xschem/adc_nor_latch.spice",
+    "rtl/xschem/adc_vcm_clkgen.spice",
+    "rtl/xschem/sky130_mm_sc_hd_dlyPoly5ns.spice",
+    "rtl/xschem/sky130_mm_sc_hd_dlyPoly5ns_postlayout.spice"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

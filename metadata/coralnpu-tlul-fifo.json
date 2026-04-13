@@ -1,0 +1,258 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "coralnpu-tlul-fifo",
+  "version": "0.1.0",
+  "description": "A TileLink-compatible synchronous FIFO designed for buffering data in the Coral NPU. It supports enqueue and dequeue operations with flow control and data integrity features.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T05:50:13Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/google-coral/coralnpu",
+    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
+    "ip_path": "hdl/chisel",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clock",
+      "width": 1,
+      "description": "Clock signal for the FIFO."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "reset",
+      "width": 1,
+      "description": "Reset signal for the FIFO."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "TL-UL",
+      "port": "io_enq_valid",
+      "width": 1,
+      "description": "Input signal indicating valid data for enqueue operation."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "TL-UL",
+      "port": "io_enq_ready",
+      "width": 1,
+      "description": "Output signal indicating FIFO is ready to accept data."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "TL-UL",
+      "port": "io_enq_bits_a_opcode",
+      "width": 3,
+      "description": "Opcode for the enqueue operation."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "TL-UL",
+      "port": "io_enq_bits_a_param",
+      "width": 3,
+      "description": "Parameter for the enqueue operation."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "TL-UL",
+      "port": "io_enq_bits_a_size",
+      "width": 5,
+      "description": "Size of the data for the enqueue operation."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "TL-UL",
+      "port": "io_enq_bits_a_source",
+      "width": 6,
+      "description": "Source ID for the enqueue operation."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "TL-UL",
+      "port": "io_enq_bits_a_address",
+      "width": 32,
+      "description": "Address for the enqueue operation."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "TL-UL",
+      "port": "io_enq_bits_a_data",
+      "width": 256,
+      "description": "Data payload for the enqueue operation."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "TL-UL",
+      "port": "io_deq_valid",
+      "width": 1,
+      "description": "Output signal indicating valid data for dequeue operation."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "TL-UL",
+      "port": "io_deq_ready",
+      "width": 1,
+      "description": "Input signal indicating readiness to accept dequeued data."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "TL-UL",
+      "port": "io_deq_bits_a_opcode",
+      "width": 3,
+      "description": "Opcode for the dequeue operation."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "TL-UL",
+      "port": "io_deq_bits_a_data",
+      "width": 256,
+      "description": "Data payload for the dequeue operation."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "DEPTH",
+      "type": "int",
+      "default": 2,
+      "description": "Depth of the FIFO buffer."
+    },
+    {
+      "name": "DATA_WIDTH",
+      "type": "int",
+      "default": 361,
+      "description": "Width of the data stored in the FIFO."
+    }
+  ],
+  "performance": {
+    "max_clock_frequency_mhz": 500,
+    "latency_cycles": 1,
+    "throughput": "1 transaction per clock cycle"
+  },
+  "architecture": {
+    "type": "memory",
+    "features": [
+      "TileLink Ultra-Lite (TL-UL) protocol support",
+      "Synchronous FIFO with enqueue and dequeue operations",
+      "Flow control with ready/valid handshake",
+      "Data integrity checks"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "TileLink",
+      "type": "bus",
+      "description": "TileLink Ultra-Lite (TL-UL) protocol support for communication."
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "Queue2_AChannelWithSpare_tb"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/google-coral/coralnpu"
+  },
+  "artifacts": {
+    "total_rtl_lines": 498
+  },
+  "categories": [
+    {
+      "main_category": "Memory Subsystems",
+      "sub_category": "FIFOs & Buffers"
+    }
+  ],
+  "keywords": [
+    "FIFO",
+    "TileLink",
+    "Buffer",
+    "CoralNPU"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:50:13Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/coralnpu-TlulFifoSync.sv",
+    "rtl/coralnpu-TlulFifoSync.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

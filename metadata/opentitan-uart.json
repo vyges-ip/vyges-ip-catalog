@@ -1,0 +1,192 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-uart",
+  "version": "0.1.0",
+  "description": "A UART peripheral IP block from the OpenTitan project, supporting TL-UL protocol for register access, FIFO-based RX/TX buffering, and integrity error detection.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-13T01:58:57Z",
+  "updated": "2026-04-13T01:58:57Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "d2f24af56cfaadfec57b2d4974f57aac27aac0fb",
+    "ip_path": "hw/ip/uart",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "Incoming TL-UL bus interface for register access."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "Outgoing TL-UL bus interface for register responses."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input for synchronous operation."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset input."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "intg_err_o",
+      "width": 1,
+      "description": "Integrity error interrupt output."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "EnableRacl",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable RACL functionality."
+    },
+    {
+      "name": "RaclErrorRsp",
+      "type": "bit",
+      "default": 1,
+      "description": "Enable RACL error response translation."
+    },
+    {
+      "name": "RxFifoDepth",
+      "type": "int",
+      "default": 64,
+      "description": "Depth of the RX FIFO buffer."
+    },
+    {
+      "name": "TxFifoDepth",
+      "type": "int",
+      "default": 32,
+      "description": "Depth of the TX FIFO buffer."
+    },
+    {
+      "name": "NumRegs",
+      "type": "int",
+      "default": 13,
+      "description": "Number of registers in the UART block."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "TL-UL bus interface for register access",
+      "FIFO-based RX/TX buffering",
+      "Integrity error detection and reporting",
+      "Configurable RACL policy support"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TL-UL protocol package for bus communication."
+    },
+    {
+      "name": "uart_reg_pkg",
+      "type": "library",
+      "description": "Package containing UART register definitions and data structures."
+    },
+    {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Assertion library for design verification."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://opentitan.org/book/"
+  },
+  "artifacts": {
+    "total_rtl_lines": 3190
+  },
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "Serial Interfaces"
+    }
+  ],
+  "keywords": [
+    "UART",
+    "TL-UL",
+    "FIFO",
+    "OpenTitan",
+    "Peripheral"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-13"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-13T01:58:57Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

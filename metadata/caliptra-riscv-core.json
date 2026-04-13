@@ -1,0 +1,362 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-riscv-core",
+  "version": "0.1.0",
+  "description": "The Caliptra RISC-V core is a high-performance, configurable RISC-V processor designed for secure embedded applications, featuring DMA, debug, and memory management capabilities.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T05:09:14Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "82eed18aedc14b03bfb8d9dce873c866e1eda22e",
+    "ip_path": "src/riscv_core/veer_el2",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "Main clock input for the core."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "free_clk",
+      "width": 1,
+      "description": "Free-running clock input."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_l",
+      "width": 1,
+      "description": "Active-low reset signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_awvalid",
+      "width": 1,
+      "description": "AXI write address valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "dma_axi_awready",
+      "width": 1,
+      "description": "AXI write address ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_wvalid",
+      "width": 1,
+      "description": "AXI write data valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "dma_axi_wready",
+      "width": 1,
+      "description": "AXI write data ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "dma_axi_bvalid",
+      "width": 1,
+      "description": "AXI write response valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_bready",
+      "width": 1,
+      "description": "AXI write response ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_arvalid",
+      "width": 1,
+      "description": "AXI read address valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "dma_axi_arready",
+      "width": 1,
+      "description": "AXI read address ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "dma_axi_rvalid",
+      "width": 1,
+      "description": "AXI read data valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "dma_axi_rready",
+      "width": 1,
+      "description": "AXI read data ready signal."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "DMA_BUF_DEPTH",
+      "type": "int",
+      "default": 5,
+      "description": "Depth of the DMA buffer."
+    },
+    {
+      "name": "DMA_BUS_TAG",
+      "type": "int",
+      "default": 4,
+      "description": "Tag width for DMA bus transactions."
+    },
+    {
+      "name": "DMA_BUS_ID",
+      "type": "int",
+      "default": 2,
+      "description": "ID width for DMA bus transactions."
+    },
+    {
+      "name": "DMA_BUS_PRTY",
+      "type": "int",
+      "default": 3,
+      "description": "Priority width for DMA bus transactions."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "processor",
+    "features": [
+      "RISC-V ISA support",
+      "DMA controller",
+      "Debug interface",
+      "ECC error handling",
+      "AXI bus interface"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "el2_pkg",
+      "type": "library",
+      "description": "Package containing common definitions and parameters for the VeeR core."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl"
+  },
+  "artifacts": {
+    "total_rtl_lines": 27621
+  },
+  "categories": [
+    {
+      "main_category": "Processing Cores",
+      "sub_category": "RISC-V"
+    }
+  ],
+  "keywords": [
+    "RISC-V",
+    "DMA",
+    "AXI",
+    "ECC",
+    "Debug"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:09:14Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/common_defines.sv",
+    "rtl/dbg/el2_dbg.sv",
+    "rtl/dec/el2_dec.sv",
+    "rtl/dec/el2_dec_decode_ctl.sv",
+    "rtl/dec/el2_dec_gpr_ctl.sv",
+    "rtl/dec/el2_dec_ib_ctl.sv",
+    "rtl/dec/el2_dec_pmp_ctl.sv",
+    "rtl/dec/el2_dec_tlu_ctl.sv",
+    "rtl/dec/el2_dec_trigger.sv",
+    "rtl/el2_dma_ctrl.sv",
+    "rtl/el2_mem.sv",
+    "rtl/el2_pic_ctrl.sv",
+    "rtl/el2_pmp.sv",
+    "rtl/el2_veer.sv",
+    "rtl/el2_veer_wrapper.sv",
+    "rtl/exu/el2_exu.sv",
+    "rtl/exu/el2_exu_alu_ctl.sv",
+    "rtl/exu/el2_exu_div_ctl.sv",
+    "rtl/exu/el2_exu_mul_ctl.sv",
+    "rtl/ifu/el2_ifu.sv",
+    "rtl/ifu/el2_ifu_aln_ctl.sv",
+    "rtl/ifu/el2_ifu_bp_ctl.sv",
+    "rtl/ifu/el2_ifu_compress_ctl.sv",
+    "rtl/ifu/el2_ifu_ic_mem.sv",
+    "rtl/ifu/el2_ifu_iccm_mem.sv",
+    "rtl/ifu/el2_ifu_ifc_ctl.sv",
+    "rtl/ifu/el2_ifu_mem_ctl.sv",
+    "rtl/include/el2_def.sv",
+    "rtl/lib/ahb_to_axi4.sv",
+    "rtl/lib/axi4_to_ahb.sv",
+    "rtl/lib/beh_lib.sv",
+    "rtl/lib/el2_lib.sv",
+    "rtl/lib/el2_mem_if.sv",
+    "rtl/lib/mem_lib.sv",
+    "rtl/lsu/el2_lsu.sv",
+    "rtl/lsu/el2_lsu_addrcheck.sv",
+    "rtl/lsu/el2_lsu_bus_buffer.sv",
+    "rtl/lsu/el2_lsu_bus_intf.sv",
+    "rtl/lsu/el2_lsu_clkdomain.sv",
+    "rtl/lsu/el2_lsu_dccm_ctl.sv",
+    "rtl/lsu/el2_lsu_dccm_mem.sv",
+    "rtl/lsu/el2_lsu_ecc.sv",
+    "rtl/lsu/el2_lsu_lsc_ctl.sv",
+    "rtl/lsu/el2_lsu_stbuf.sv",
+    "rtl/lsu/el2_lsu_trigger.sv",
+    "rtl/dmi/dmi_jtag_to_core_sync.v",
+    "rtl/dmi/dmi_mux.v",
+    "rtl/dmi/dmi_wrapper.v",
+    "rtl/dmi/rvjtag_tap.v",
+    "rtl/el2_param.vh",
+    "rtl/el2_pdef.vh",
+    "rtl/include/el2_dec_csr_equ_m.svh",
+    "rtl/include/el2_dec_csr_equ_mu.svh",
+    "rtl/common_defines.sv",
+    "rtl/dbg/el2_dbg.sv",
+    "rtl/dec/el2_dec.sv",
+    "rtl/dec/el2_dec_decode_ctl.sv",
+    "rtl/dec/el2_dec_gpr_ctl.sv",
+    "rtl/dec/el2_dec_ib_ctl.sv",
+    "rtl/dec/el2_dec_pmp_ctl.sv",
+    "rtl/dec/el2_dec_tlu_ctl.sv",
+    "rtl/dec/el2_dec_trigger.sv",
+    "rtl/el2_dma_ctrl.sv",
+    "rtl/el2_mem.sv",
+    "rtl/el2_pic_ctrl.sv",
+    "rtl/el2_pmp.sv",
+    "rtl/el2_veer.sv",
+    "rtl/el2_veer_wrapper.sv",
+    "rtl/exu/el2_exu.sv",
+    "rtl/exu/el2_exu_alu_ctl.sv",
+    "rtl/exu/el2_exu_div_ctl.sv",
+    "rtl/exu/el2_exu_mul_ctl.sv",
+    "rtl/ifu/el2_ifu.sv",
+    "rtl/ifu/el2_ifu_aln_ctl.sv",
+    "rtl/ifu/el2_ifu_bp_ctl.sv",
+    "rtl/ifu/el2_ifu_compress_ctl.sv",
+    "rtl/ifu/el2_ifu_ic_mem.sv",
+    "rtl/ifu/el2_ifu_iccm_mem.sv",
+    "rtl/ifu/el2_ifu_ifc_ctl.sv",
+    "rtl/ifu/el2_ifu_mem_ctl.sv",
+    "rtl/include/el2_def.sv",
+    "rtl/lib/ahb_to_axi4.sv",
+    "rtl/lib/axi4_to_ahb.sv",
+    "rtl/lib/beh_lib.sv",
+    "rtl/lib/el2_lib.sv",
+    "rtl/lib/el2_mem_if.sv",
+    "rtl/lib/mem_lib.sv",
+    "rtl/lsu/el2_lsu.sv",
+    "rtl/lsu/el2_lsu_addrcheck.sv",
+    "rtl/lsu/el2_lsu_bus_buffer.sv",
+    "rtl/lsu/el2_lsu_bus_intf.sv",
+    "rtl/lsu/el2_lsu_clkdomain.sv",
+    "rtl/lsu/el2_lsu_dccm_ctl.sv",
+    "rtl/lsu/el2_lsu_dccm_mem.sv",
+    "rtl/lsu/el2_lsu_ecc.sv",
+    "rtl/lsu/el2_lsu_lsc_ctl.sv",
+    "rtl/lsu/el2_lsu_stbuf.sv",
+    "rtl/lsu/el2_lsu_trigger.sv",
+    "rtl/dmi/dmi_jtag_to_core_sync.v",
+    "rtl/dmi/dmi_mux.v",
+    "rtl/dmi/dmi_wrapper.v",
+    "rtl/dmi/rvjtag_tap.v",
+    "rtl/el2_param.vh",
+    "rtl/el2_pdef.vh",
+    "rtl/include/el2_dec_csr_equ_m.svh",
+    "rtl/include/el2_dec_csr_equ_mu.svh"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

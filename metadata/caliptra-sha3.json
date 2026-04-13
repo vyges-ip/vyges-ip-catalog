@@ -1,0 +1,313 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-sha3",
+  "version": "0.1.0",
+  "description": "A hardware implementation of the SHA-3 cryptographic hash function, including support for KMAC, SHAKE, and cSHAKE modes, with an AHB-Lite interface for integration.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T05:09:06Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "82eed18aedc14b03bfb8d9dce873c866e1eda22e",
+    "ip_path": "src/sha3",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "System clock input"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "reset_n",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "haddr_i",
+      "width": 32,
+      "description": "AHB-Lite address input"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hwdata_i",
+      "width": 32,
+      "description": "AHB-Lite write data input"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hsel_i",
+      "width": 1,
+      "description": "AHB-Lite select signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hwrite_i",
+      "width": 1,
+      "description": "AHB-Lite write enable signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hready_i",
+      "width": 1,
+      "description": "AHB-Lite ready signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "htrans_i",
+      "width": 2,
+      "description": "AHB-Lite transfer type"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hsize_i",
+      "width": 3,
+      "description": "AHB-Lite transfer size"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "hresp_o",
+      "width": 1,
+      "description": "AHB-Lite response signal"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "hreadyout_o",
+      "width": 1,
+      "description": "AHB-Lite ready output signal"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AHB-Lite",
+      "port": "hrdata_o",
+      "width": 32,
+      "description": "AHB-Lite read data output"
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "error_intr",
+      "width": 1,
+      "description": "Error interrupt signal"
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "notif_intr",
+      "width": 1,
+      "description": "Notification interrupt signal"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "AHB_DATA_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the AHB data bus"
+    },
+    {
+      "name": "AHB_ADDR_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the AHB address bus"
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "SHA-3 cryptographic hash function",
+      "KMAC support",
+      "SHAKE and cSHAKE modes",
+      "AHB-Lite interface",
+      "Keccak-based hashing"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "caliptra_tlul_pkg",
+      "type": "library",
+      "description": "Package for TileLink-UL interface definitions"
+    },
+    {
+      "name": "caliptra_prim_mubi_pkg",
+      "type": "library",
+      "description": "Package for multi-bit upsets and related utilities"
+    },
+    {
+      "name": "sha3_param_pkg",
+      "type": "library",
+      "description": "Package for SHA-3 parameter definitions"
+    },
+    {
+      "name": "sha3_reg_pkg",
+      "type": "library",
+      "description": "Package for SHA-3 register definitions"
+    },
+    {
+      "name": "kmac_pkg",
+      "type": "library",
+      "description": "Package for KMAC-related parameters and types"
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl"
+  },
+  "artifacts": {
+    "total_rtl_lines": 13422
+  },
+  "categories": [
+    {
+      "main_category": "Security IP",
+      "sub_category": "Crypto Engines"
+    }
+  ],
+  "keywords": [
+    "SHA-3",
+    "KMAC",
+    "SHAKE",
+    "cSHAKE",
+    "AHB-Lite",
+    "Keccak"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01T05:09:06Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:09:06Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/kmac.sv",
+    "rtl/kmac_app.sv",
+    "rtl/kmac_core.sv",
+    "rtl/kmac_entropy.sv",
+    "rtl/kmac_errchk.sv",
+    "rtl/kmac_msgfifo.sv",
+    "rtl/kmac_pkg.sv",
+    "rtl/kmac_reg_pkg.sv",
+    "rtl/kmac_reg_top.sv",
+    "rtl/kmac_staterd.sv",
+    "rtl/ot_keccak_2share.sv",
+    "rtl/ot_keccak_round.sv",
+    "rtl/ot_sha3.sv",
+    "rtl/ot_sha3_pkg.sv",
+    "rtl/ot_sha3pad.sv",
+    "rtl/sha3_ctrl.sv",
+    "rtl/sha3_param_pkg.sv",
+    "rtl/sha3_reg.sv",
+    "rtl/sha3_reg_pkg.sv",
+    "rtl/sha3_reg_uvm.sv",
+    "rtl/kmac.sv",
+    "rtl/kmac_app.sv",
+    "rtl/kmac_core.sv",
+    "rtl/kmac_entropy.sv",
+    "rtl/kmac_errchk.sv",
+    "rtl/kmac_msgfifo.sv",
+    "rtl/kmac_pkg.sv",
+    "rtl/kmac_reg_pkg.sv",
+    "rtl/kmac_reg_top.sv",
+    "rtl/kmac_staterd.sv",
+    "rtl/ot_keccak_2share.sv",
+    "rtl/ot_keccak_round.sv",
+    "rtl/ot_sha3.sv",
+    "rtl/ot_sha3_pkg.sv",
+    "rtl/ot_sha3pad.sv",
+    "rtl/sha3_ctrl.sv",
+    "rtl/sha3_param_pkg.sv",
+    "rtl/sha3_reg.sv",
+    "rtl/sha3_reg_pkg.sv",
+    "rtl/sha3_reg_uvm.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

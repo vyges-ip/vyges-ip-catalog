@@ -1,0 +1,250 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-sha512",
+  "version": "0.1.0",
+  "description": "SHA-512/384/256/224 cryptographic hash engine with 1024-bit block processing, 80-round computation, KeyVault integration for secure key/block input and digest output, PCR Vault hash generation, and restore capability for incremental hashing. AHB-Lite slave interface. Extracted from CHIPS Alliance Caliptra Root of Trust.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T20:52:56Z",
+  "updated": "2026-03-27T20:52:56Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "ip_path": "src/sha512",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "ahb",
+      "width": 32,
+      "description": "AHB-Lite slave via sha512_ctrl wrapper. 32-bit external data bus."
+    },
+    {
+      "type": "keyvault",
+      "direction": "both",
+      "protocol": "kv_read/kv_write",
+      "port": "kv",
+      "description": "KeyVault read (2 ports: key + block) and write (1 port: digest) interfaces."
+    },
+    {
+      "type": "pcr_vault",
+      "direction": "both",
+      "protocol": "pv_read/pv_write",
+      "port": "pv",
+      "description": "PCR Vault interface for PCR hash generation and signing hash output."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "port": "error_intr",
+      "description": "Error interrupt."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "port": "notif_intr",
+      "description": "Completion notification interrupt."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "port": "clk",
+      "description": "System clock."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "port": "reset_n",
+      "polarity": "active_low",
+      "description": "Asynchronous active-low reset."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "ADDR_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Address bus width."
+    },
+    {
+      "name": "DATA_WIDTH",
+      "type": "int",
+      "default": 64,
+      "description": "Internal data path width (64-bit for SHA-512)."
+    }
+  ],
+  "performance": {
+    "block_size": 1024,
+    "digest_sizes": {
+      "SHA-512": 512,
+      "SHA-384": 384,
+      "SHA-512/256": 256,
+      "SHA-512/224": 224
+    },
+    "rounds": 80,
+    "data_width": 64,
+    "hash_modes": [
+      "SHA-512",
+      "SHA-384",
+      "SHA-512/256",
+      "SHA-512/224"
+    ]
+  },
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "SHA-512, SHA-384, SHA-512/256, SHA-512/224 hash computation (FIPS 180-4)",
+      "1024-bit message block processing with 80 rounds",
+      "64-bit working memory (W array) for message expansion",
+      "Per-mode initial hash constants (H0-H7)",
+      "Restore capability for incremental/streaming hashing",
+      "KeyVault read client for secure key and block input",
+      "KeyVault write client for secure digest output",
+      "PCR Vault hash generation and signing hash",
+      "Zeroize command for clearing sensitive state",
+      "Block register locking during hash operations",
+      "PeakRDL-generated register file"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A",
+      "GF22",
+      "TSMC"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado",
+      "Quartus"
+    ],
+    "devices": [
+      "Artix-7",
+      "Ultrascale+"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "caliptra-libs",
+      "type": "library",
+      "description": "AHB slave interface, clock gating, synchronizers"
+    },
+    {
+      "name": "keyvault",
+      "type": "integration",
+      "description": "KeyVault read/write clients"
+    },
+    {
+      "name": "pcrvault",
+      "type": "integration",
+      "description": "PCR Vault interface"
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "systemverilog",
+      "formal",
+      "uvmf"
+    ],
+    "status": "upstream_passing",
+    "simulators": [
+      "vcs",
+      "verilator"
+    ],
+    "coverage": "functional",
+    "formal_verification": "100% coverage across all 4 SHA modes (LUBIS EDA)",
+    "test_cases": [
+      {
+        "name": "sha512_ctrl_32bit_tb",
+        "description": "AHB-Lite 32-bit interface testbench",
+        "status": "passing"
+      },
+      {
+        "name": "sha512_formal",
+        "description": "Formal verification for all 4 modes, 100% coverage",
+        "status": "passing"
+      },
+      {
+        "name": "sha512_uvmf",
+        "description": "UVM framework with active/passive agents",
+        "status": "passing"
+      }
+    ]
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl/tree/main/src/sha512",
+    "caliptra_spec": "https://chipsalliance.github.io/Caliptra/"
+  },
+  "artifacts": {
+    "rtl": [
+      "rtl/sha512_params_pkg.sv",
+      "rtl/sha512_reg_pkg.sv",
+      "rtl/sha512.sv",
+      "rtl/sha512_core.v",
+      "rtl/sha512_w_mem.v",
+      "rtl/sha512_k_constants.v",
+      "rtl/sha512_h_constants.v",
+      "rtl/sha512_reg.sv"
+    ],
+    "total_rtl_lines": 6019
+  },
+  "categories": {
+    "primary": "security",
+    "secondary": [
+      "crypto",
+      "hash"
+    ],
+    "tags": [
+      "sha512",
+      "sha384",
+      "caliptra",
+      "root-of-trust",
+      "hash",
+      "keyvault",
+      "pcr",
+      "ahb",
+      "chips-alliance"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 1,
+    "fpga_validated": false,
+    "formal_verified": true,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "manual (gold-standard pass 2026-03-27)",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T20:52:56Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

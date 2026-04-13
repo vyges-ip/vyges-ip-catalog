@@ -1,0 +1,306 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-lc-ctrl",
+  "version": "0.1.0",
+  "description": "The OpenTitan Life Cycle Controller (lc_ctrl) is a hardware block responsible for managing the life cycle states of the chip, including secure transitions, integrity checks, and error handling.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:05:21Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "ip_path": "hw/ip/lc_ctrl",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active-low",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 1,
+      "description": "TileLink host-to-device interface"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 1,
+      "description": "TileLink device-to-host interface"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "TL-UL",
+      "port": "tl_win_o",
+      "width": 1,
+      "description": "TileLink window output interface"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "TL-UL",
+      "port": "tl_win_i",
+      "width": 1,
+      "description": "TileLink window input interface"
+    },
+    {
+      "type": "signal",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "intg_err_o",
+      "width": 1,
+      "description": "Integrity check error output signal"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "SiliconCreatorIdWidth",
+      "type": "int",
+      "default": 16,
+      "description": "Width of the Silicon Creator ID field"
+    },
+    {
+      "name": "ProductIdWidth",
+      "type": "int",
+      "default": 16,
+      "description": "Width of the Product ID field"
+    },
+    {
+      "name": "RevisionIdWidth",
+      "type": "int",
+      "default": 8,
+      "description": "Width of the Revision ID field"
+    },
+    {
+      "name": "NumTokenWords",
+      "type": "int",
+      "default": 4,
+      "description": "Number of token words"
+    },
+    {
+      "name": "CsrLcStateWidth",
+      "type": "int",
+      "default": 30,
+      "description": "Width of the CSR LC state field"
+    },
+    {
+      "name": "CsrLcCountWidth",
+      "type": "int",
+      "default": 5,
+      "description": "Width of the CSR LC count field"
+    },
+    {
+      "name": "CsrLcIdStateWidth",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the CSR LC ID state field"
+    },
+    {
+      "name": "CsrOtpTestCtrlWidth",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the OTP test control CSR"
+    },
+    {
+      "name": "CsrOtpTestStatusWidth",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the OTP test status CSR"
+    },
+    {
+      "name": "NumDeviceIdWords",
+      "type": "int",
+      "default": 8,
+      "description": "Number of device ID words"
+    },
+    {
+      "name": "NumManufStateWords",
+      "type": "int",
+      "default": 8,
+      "description": "Number of manufacturing state words"
+    },
+    {
+      "name": "NumAlerts",
+      "type": "int",
+      "default": 3,
+      "description": "Number of alert signals"
+    },
+    {
+      "name": "RegsAw",
+      "type": "int",
+      "default": 8,
+      "description": "Address width for registers"
+    },
+    {
+      "name": "DmiAw",
+      "type": "int",
+      "default": 12,
+      "description": "Address width for DMI interface"
+    },
+    {
+      "name": "NumRegsRegs",
+      "type": "int",
+      "default": 35,
+      "description": "Number of registers for the regs interface"
+    },
+    {
+      "name": "NumRegsDmi",
+      "type": "int",
+      "default": 0,
+      "description": "Number of registers for the DMI interface"
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Life cycle state management",
+      "Secure state transitions",
+      "Integrity error detection",
+      "TileLink interface support",
+      "Integration with OTP memory"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "prim_util_pkg",
+      "type": "library",
+      "description": "Utility package for primitive operations"
+    },
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TileLink Ultra-Lite protocol package"
+    },
+    {
+      "name": "lc_ctrl_reg_pkg",
+      "type": "library",
+      "description": "Register package for LC controller"
+    },
+    {
+      "name": "lc_ctrl_state_pkg",
+      "type": "library",
+      "description": "State encoding package for LC controller"
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/lowRISC/opentitan"
+  },
+  "artifacts": {
+    "total_rtl_lines": 5624
+  },
+  "categories": [
+    {
+      "main_category": "Security IP",
+      "sub_category": "Fuse Controllers"
+    }
+  ],
+  "keywords": [
+    "life cycle",
+    "security",
+    "state management",
+    "TileLink",
+    "OpenTitan"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T23:05:21Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:05:21Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/lc_ctrl.sv",
+    "rtl/lc_ctrl_dmi_reg_top.sv",
+    "rtl/lc_ctrl_fsm.sv",
+    "rtl/lc_ctrl_kmac_if.sv",
+    "rtl/lc_ctrl_pkg.sv",
+    "rtl/lc_ctrl_reg_pkg.sv",
+    "rtl/lc_ctrl_regs_reg_top.sv",
+    "rtl/lc_ctrl_signal_decode.sv",
+    "rtl/lc_ctrl_state_decode.sv",
+    "rtl/lc_ctrl_state_pkg.sv",
+    "rtl/lc_ctrl_state_transition.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

@@ -1,0 +1,199 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-lc-ctrl",
+  "version": "0.1.0",
+  "description": "The Caliptra Life Cycle Controller (LC-CTRL) manages the life cycle states of a device, including secure transitions, state encoding, and error handling.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:43:10Z",
+  "updated": "2026-03-27T21:43:10Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "ip_path": "src/lc_ctrl",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "lc_ctrl_bus",
+      "width": 32,
+      "description": "TileLink Uncached Lightweight interface for register access."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock input for the LC controller."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_n",
+      "width": 1,
+      "description": "Active-low reset input for the LC controller."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "lc_ctrl_irq",
+      "width": 1,
+      "description": "Interrupt signal for life cycle state changes or errors."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "LcValueWidth",
+      "type": "int",
+      "default": 16,
+      "description": "Width of individual life cycle values."
+    },
+    {
+      "name": "NumLcStateValues",
+      "type": "int",
+      "default": 20,
+      "description": "Number of life cycle state values."
+    },
+    {
+      "name": "NumLcStates",
+      "type": "int",
+      "default": 21,
+      "description": "Total number of life cycle states."
+    },
+    {
+      "name": "NumSocDbgStateValues",
+      "type": "int",
+      "default": 2,
+      "description": "Number of SoC debug state values."
+    },
+    {
+      "name": "NumOwnershipStateValues",
+      "type": "int",
+      "default": 8,
+      "description": "Number of ownership state values."
+    },
+    {
+      "name": "NumAuthStateValues",
+      "type": "int",
+      "default": 2,
+      "description": "Number of authentication state values."
+    },
+    {
+      "name": "NumLcCountValues",
+      "type": "int",
+      "default": 24,
+      "description": "Number of life cycle counter values."
+    },
+    {
+      "name": "NumLcCountStates",
+      "type": "int",
+      "default": 25,
+      "description": "Number of life cycle counter states."
+    },
+    {
+      "name": "NumLcIdStates",
+      "type": "int",
+      "default": 2,
+      "description": "Number of life cycle ID states."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Life cycle state management",
+      "Secure state transitions",
+      "ECC-based state encoding",
+      "CSR interface for state access",
+      "Error detection and reporting"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "caliptra-prim-util-pkg",
+      "type": "library",
+      "description": "Utility package for primitive operations."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl"
+  },
+  "artifacts": {
+    "total_rtl_lines": 1195
+  },
+  "categories": {
+    "primary": "security",
+    "secondary": [
+      "state-management",
+      "peripherals"
+    ],
+    "tags": [
+      "life-cycle",
+      "state-encoding",
+      "secure-boot",
+      "hardware-security"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T21:43:10Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:43:10Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

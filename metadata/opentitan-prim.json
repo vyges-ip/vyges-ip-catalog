@@ -1,0 +1,180 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-prim",
+  "version": "0.1.0",
+  "description": "A collection of foundational primitives for digital design, including error correction codes (SECDED), clock gating, FIFOs, and cryptographic primitives, developed as part of the OpenTitan project.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-13T02:05:32Z",
+  "updated": "2026-04-13T02:05:32Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "d2f24af56cfaadfec57b2d4974f57aac27aac0fb",
+    "ip_path": "hw/ip/prim",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "both",
+      "protocol": "custom",
+      "port": "prim_fifo_async",
+      "width": 32,
+      "description": "Asynchronous FIFO interface for data transfer."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock input for synchronous operations."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "rst_n",
+      "width": 1,
+      "description": "Active-low reset signal."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "SecdedHsiao",
+      "type": "enum",
+      "default": 0,
+      "description": "SECDED type using Hsiao codes."
+    },
+    {
+      "name": "SecdedHamming",
+      "type": "enum",
+      "default": 1,
+      "description": "SECDED type using Hamming codes."
+    },
+    {
+      "name": "SecdedInvHsiao",
+      "type": "enum",
+      "default": 2,
+      "description": "SECDED type using inverted Hsiao codes."
+    },
+    {
+      "name": "SecdedInvHamming",
+      "type": "enum",
+      "default": 3,
+      "description": "SECDED type using inverted Hamming codes."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Single Error Correction and Double Error Detection (SECDED)",
+      "Clock gating and synchronization primitives",
+      "FIFO implementations (synchronous and asynchronous)",
+      "Cryptographic primitives (ASCON, SHA2, PRINCE)"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "prim_util_pkg",
+      "type": "library",
+      "description": "Utility package for common functions and definitions."
+    },
+    {
+      "name": "prim_secded_pkg",
+      "type": "library",
+      "description": "Package for SECDED error correction codes."
+    },
+    {
+      "name": "prim_count_pkg",
+      "type": "library",
+      "description": "Package for counter-related utilities."
+    },
+    {
+      "name": "prim_subreg_pkg",
+      "type": "library",
+      "description": "Package for register access specifications."
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "tb_prim_fifo",
+      "tb_prim_secded",
+      "tb_prim_clock_gating"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/lowRISC/opentitan/tree/d2f24af56cfaadfec57b2d4974f57aac27aac0fb/hw/ip/prim"
+  },
+  "artifacts": {
+    "total_rtl_lines": 25110
+  },
+  "categories": [
+    {
+      "main_category": "Base Libraries",
+      "sub_category": "Error Correction Codes"
+    }
+  ],
+  "keywords": [
+    "SECDED",
+    "error correction",
+    "clock gating",
+    "FIFO",
+    "cryptography",
+    "OpenTitan"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-13"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-13T02:05:32Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

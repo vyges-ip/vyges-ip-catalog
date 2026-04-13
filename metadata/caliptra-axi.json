@@ -1,0 +1,217 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-axi",
+  "version": "0.1.0",
+  "description": "AXI4 Manager DMA block for high-performance data transfer, supporting configurable address, data, and user widths.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:43:25Z",
+  "updated": "2026-03-27T21:43:25Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "ip_path": "src/axi",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI4",
+      "port": "m_axi_w_if",
+      "width": 64,
+      "description": "AXI4 write manager interface for data transfer."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI4",
+      "port": "m_axi_r_if",
+      "width": 64,
+      "description": "AXI4 read manager interface for data transfer."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock signal for synchronous operation."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_n",
+      "width": 1,
+      "description": "Active-low reset signal."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "notif_intr",
+      "width": 1,
+      "description": "Notification interrupt signal."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "error_intr",
+      "width": 1,
+      "description": "Error interrupt signal."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "AW",
+      "type": "int",
+      "default": 64,
+      "description": "Address width for AXI transactions."
+    },
+    {
+      "name": "DW",
+      "type": "int",
+      "default": 32,
+      "description": "Data width for AXI transactions."
+    },
+    {
+      "name": "BC",
+      "type": "int",
+      "default": 4,
+      "description": "Byte count derived from data width."
+    },
+    {
+      "name": "BW",
+      "type": "int",
+      "default": 2,
+      "description": "Byte count width derived from byte count."
+    },
+    {
+      "name": "UW",
+      "type": "int",
+      "default": 32,
+      "description": "User width for AXI transactions."
+    },
+    {
+      "name": "IW",
+      "type": "int",
+      "default": 1,
+      "description": "ID width for AXI transactions."
+    },
+    {
+      "name": "ID_NUM",
+      "type": "int",
+      "default": 2,
+      "description": "Number of IDs derived from ID width."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "bus",
+    "features": [
+      "AXI4 protocol support",
+      "DMA controller for high-speed data transfer",
+      "Interrupt handling for notifications and errors",
+      "Configurable address, data, and user widths"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "axi_pkg",
+      "type": "library",
+      "description": "AXI protocol definitions and constants."
+    },
+    {
+      "name": "axi_dma_reg_pkg",
+      "type": "library",
+      "description": "Register definitions for AXI DMA controller."
+    },
+    {
+      "name": "soc_ifc_pkg",
+      "type": "library",
+      "description": "SOC interface definitions for integration."
+    },
+    {
+      "name": "kv_defines_pkg",
+      "type": "library",
+      "description": "Key-value interface definitions."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl"
+  },
+  "artifacts": {
+    "total_rtl_lines": 10590
+  },
+  "categories": {
+    "primary": "bus",
+    "secondary": [
+      "dma",
+      "axi"
+    ],
+    "tags": [
+      "AXI4",
+      "DMA",
+      "bus",
+      "interrupt"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T21:43:25Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:43:25Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

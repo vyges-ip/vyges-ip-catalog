@@ -1,0 +1,231 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-hmac-drbg",
+  "version": "0.1.0",
+  "description": "A silicon-proven HMAC-based Deterministic Random Bit Generator (DRBG) compliant with NIST SP 800-90A and RFC 6979, generating 384-bit random values using entropy and nonce inputs.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T05:09:10Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "82eed18aedc14b03bfb8d9dce873c866e1eda22e",
+    "ip_path": "src/hmac_drbg",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock signal for the module."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "reset_n",
+      "width": 1,
+      "description": "Active-low reset signal."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "zeroize",
+      "width": 1,
+      "description": "Signal to zeroize internal state."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "init_cmd",
+      "width": 1,
+      "description": "Command to initialize the DRBG."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "next_cmd",
+      "width": 1,
+      "description": "Command to generate the next random value."
+    },
+    {
+      "type": "status",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "ready",
+      "width": 1,
+      "description": "Indicates the module is ready for operation."
+    },
+    {
+      "type": "status",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "valid",
+      "width": 1,
+      "description": "Indicates the generated random value is valid."
+    },
+    {
+      "type": "data",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "lfsr_seed",
+      "width": 384,
+      "description": "Seed value for the internal LFSR."
+    },
+    {
+      "type": "data",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "entropy",
+      "width": 384,
+      "description": "Entropy input for random number generation."
+    },
+    {
+      "type": "data",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "nonce",
+      "width": 384,
+      "description": "Nonce input for random number generation."
+    },
+    {
+      "type": "data",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "drbg",
+      "width": 384,
+      "description": "Generated 384-bit random value."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "REG_SIZE",
+      "type": "int",
+      "default": 384,
+      "description": "Bit-width of the random number and internal registers."
+    },
+    {
+      "name": "HMAC_DRBG_PRIME",
+      "type": "bit",
+      "default": "384'hFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC7634D81F4372DDF581A0DB248B0A77AECEC196ACCC52973",
+      "description": "Prime value used for range checking of generated random numbers."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "HMAC-based DRBG compliant with NIST SP 800-90A and RFC 6979",
+      "384-bit random number generation",
+      "No reseed process",
+      "Entropy and nonce inputs"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "hmac_core",
+      "type": "core",
+      "description": "HMAC core used for cryptographic operations."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl"
+  },
+  "artifacts": {
+    "total_rtl_lines": 391
+  },
+  "categories": [
+    {
+      "main_category": "Security IP",
+      "sub_category": "True Random Number Generators (TRNG)"
+    }
+  ],
+  "keywords": [
+    "HMAC",
+    "DRBG",
+    "NIST SP 800-90A",
+    "RFC 6979",
+    "SHA-384",
+    "Random Number Generator",
+    "Security"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:09:10Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/hmac_drbg.sv",
+    "rtl/hmac_drbg.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

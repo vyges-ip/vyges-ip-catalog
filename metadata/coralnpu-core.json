@@ -1,0 +1,204 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "coralnpu-core",
+  "version": "0.1.0",
+  "description": "CoralNPU RISC-V Core implementing RV32IMF_Zve32x with scalar, floating-point, and vector pipelines, L1 caches, tightly coupled memory (TCM), and TileLink/AXI interfaces. Designed for high-performance AI/ML workloads.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T05:49:46Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/google-coral/coralnpu",
+    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
+    "ip_path": "hdl/chisel",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TileLink",
+      "port": "io_busPort_addr_0",
+      "width": 32,
+      "description": "TileLink master interface for address channel."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TileLink",
+      "port": "io_busPort_data_0",
+      "width": 32,
+      "description": "TileLink master interface for data channel."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clock",
+      "width": 1,
+      "description": "System clock input."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "reset",
+      "width": 1,
+      "description": "System reset input."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "standard",
+      "port": "io_linkPort_valid",
+      "width": 1,
+      "description": "Interrupt signal for external communication."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "RV32IMF_Zve32x",
+      "type": "enum",
+      "default": "enabled",
+      "description": "RISC-V ISA extensions supported by the core."
+    },
+    {
+      "name": "L1_CACHE_SIZE",
+      "type": "int",
+      "default": 32,
+      "description": "Size of the L1 cache in kilobytes."
+    },
+    {
+      "name": "TCM_SIZE",
+      "type": "int",
+      "default": 64,
+      "description": "Size of the tightly coupled memory in kilobytes."
+    }
+  ],
+  "performance": {
+    "frequency": "500MHz",
+    "dmips": 2.5,
+    "power": "50mW"
+  },
+  "architecture": {
+    "type": "processor",
+    "features": [
+      "RISC-V RV32IMF_Zve32x ISA",
+      "Scalar pipeline",
+      "Floating-point pipeline",
+      "Vector processing pipeline",
+      "L1 instruction and data caches",
+      "Tightly coupled memory (TCM)",
+      "TileLink and AXI interfaces"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "TileLink",
+      "type": "bus",
+      "description": "TileLink bus protocol for memory and peripheral communication."
+    },
+    {
+      "name": "AXI",
+      "type": "bus",
+      "description": "AXI bus protocol for high-speed data transfer."
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "core_tb",
+      "cache_tb",
+      "tcm_tb"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/google-coral/coralnpu"
+  },
+  "artifacts": {
+    "total_rtl_lines": 17885
+  },
+  "categories": [
+    {
+      "main_category": "Processing Cores",
+      "sub_category": "Custom ISAs"
+    }
+  ],
+  "keywords": [
+    "RISC-V",
+    "AI/ML",
+    "Vector Processing",
+    "Floating Point",
+    "TileLink",
+    "AXI"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01T05:49:46Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:49:46Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/coralnpu-Core.sv",
+    "rtl/coralnpu-Core.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

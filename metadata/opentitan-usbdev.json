@@ -1,0 +1,315 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-usbdev",
+  "version": "0.1.0",
+  "description": "A USB device controller IP core from the OpenTitan project, supporting USB 2.0 Full-Speed communication with features such as packet handling, endpoint management, and integrity checking.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:06:08Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "ip_path": "hw/ip/usbdev",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Main clock input for the USB device controller."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal for the main clock domain."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_aon_i",
+      "width": 1,
+      "description": "Always-on clock input for the USB device controller."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_aon_ni",
+      "width": 1,
+      "description": "Active-low reset signal for the always-on clock domain."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "TileLink host-to-device interface."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "TileLink device-to-host interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "TL-UL",
+      "port": "tl_win_o",
+      "width": 32,
+      "description": "TileLink window output interface."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "TL-UL",
+      "port": "tl_win_i",
+      "width": 32,
+      "description": "TileLink window input interface."
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "usbdev_reg2hw_t",
+      "port": "reg2hw",
+      "width": 1,
+      "description": "Register-to-hardware interface for write operations."
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "usbdev_hw2reg_t",
+      "port": "hw2reg",
+      "width": 1,
+      "description": "Hardware-to-register interface for read operations."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "intg_err_o",
+      "width": 1,
+      "description": "Integrity error output signal for alert generation."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "AW",
+      "type": "int",
+      "default": 12,
+      "description": "Address width for the register interface."
+    },
+    {
+      "name": "DW",
+      "type": "int",
+      "default": 32,
+      "description": "Data width for the register interface."
+    },
+    {
+      "name": "DBW",
+      "type": "int",
+      "default": 4,
+      "description": "Byte width for the register interface."
+    },
+    {
+      "name": "NEndpoints",
+      "type": "int",
+      "default": 12,
+      "description": "Number of USB endpoints supported by the device."
+    },
+    {
+      "name": "NumAlerts",
+      "type": "int",
+      "default": 1,
+      "description": "Number of alert signals supported by the device."
+    },
+    {
+      "name": "BlockAw",
+      "type": "int",
+      "default": 12,
+      "description": "Address width within the USB device block."
+    },
+    {
+      "name": "NumRegs",
+      "type": "int",
+      "default": 43,
+      "description": "Number of registers for every interface."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "USB 2.0 Full-Speed device controller",
+      "Support for multiple endpoints",
+      "Packet integrity checking",
+      "TileLink interface for host communication",
+      "Interrupt generation for error handling"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TileLink Ultra-Lite protocol package."
+    },
+    {
+      "name": "usbdev_reg_pkg",
+      "type": "library",
+      "description": "Register package for USB device controller."
+    },
+    {
+      "name": "usbdev_pkg",
+      "type": "library",
+      "description": "USB device package containing data structures and constants."
+    },
+    {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Primitive assertions for design verification."
+    },
+    {
+      "name": "prim_reg_we_check",
+      "type": "library",
+      "description": "Primitive module for write enable checking."
+    },
+    {
+      "name": "tlul_adapter_reg",
+      "type": "library",
+      "description": "TileLink adapter for register interface."
+    },
+    {
+      "name": "tlul_socket_1n",
+      "type": "library",
+      "description": "TileLink 1-to-N socket for interconnect."
+    },
+    {
+      "name": "tlul_rsp_intg_gen",
+      "type": "library",
+      "description": "TileLink response integrity generator."
+    },
+    {
+      "name": "tlul_cmd_intg_chk",
+      "type": "library",
+      "description": "TileLink command integrity checker."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://opentitan.org/book/"
+  },
+  "artifacts": {
+    "total_rtl_lines": 15942
+  },
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "Serial Interfaces"
+    }
+  ],
+  "keywords": [
+    "USB",
+    "USB 2.0",
+    "Full-Speed",
+    "TileLink",
+    "OpenTitan",
+    "Peripheral"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:06:08Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/usb_consts_pkg.sv",
+    "rtl/usb_fs_nb_in_pe.sv",
+    "rtl/usb_fs_nb_out_pe.sv",
+    "rtl/usb_fs_nb_pe.sv",
+    "rtl/usb_fs_rx.sv",
+    "rtl/usb_fs_tx.sv",
+    "rtl/usb_fs_tx_mux.sv",
+    "rtl/usbdev.sv",
+    "rtl/usbdev_aon_wake.sv",
+    "rtl/usbdev_counter.sv",
+    "rtl/usbdev_iomux.sv",
+    "rtl/usbdev_linkstate.sv",
+    "rtl/usbdev_pkg.sv",
+    "rtl/usbdev_reg_pkg.sv",
+    "rtl/usbdev_reg_top.sv",
+    "rtl/usbdev_usbif.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

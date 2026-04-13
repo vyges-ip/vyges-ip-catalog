@@ -1,0 +1,186 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "vyges-gpio-lite",
+  "version": "0.1.0",
+  "description": "Lightweight GPIO peripheral with a configurable number of pins, per-pin direction control, edge-triggered interrupts, and a TL-UL slave interface. Designed for integration into TileLink-based SoCs.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-29T21:09:20Z",
+  "updated": "2026-03-29T21:09:20Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/vyges/vyges-gpio-lite",
+    "commit": "253e96f492dc7f58ab9794b1c755c931603fb334",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active-low",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset input signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 1,
+      "description": "TileLink Uncached Lightweight (TL-UL) input interface"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 1,
+      "description": "TileLink Uncached Lightweight (TL-UL) output interface"
+    },
+    {
+      "type": "gpio",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "gpio_i",
+      "width": "NUM_PINS",
+      "description": "Input GPIO pins"
+    },
+    {
+      "type": "gpio",
+      "direction": "output",
+      "protocol": "standard",
+      "port": "gpio_o",
+      "width": "NUM_PINS",
+      "description": "Output GPIO pins"
+    },
+    {
+      "type": "gpio",
+      "direction": "output",
+      "protocol": "standard",
+      "port": "gpio_oe_o",
+      "width": "NUM_PINS",
+      "description": "GPIO output enable signals"
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "active-high",
+      "port": "intr_gpio_o",
+      "width": 1,
+      "description": "GPIO interrupt output signal"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "NUM_PINS",
+      "type": "int",
+      "default": 32,
+      "description": "Number of GPIO pins (1 to 32)"
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Configurable number of GPIO pins (1-32)",
+      "Per-pin direction control (input/output)",
+      "Per-pin edge-triggered interrupts (rising, falling, or both)",
+      "2-FF metastability synchronizer for input signals",
+      "Atomic bit-set and bit-clear registers for output data",
+      "Write-1-to-clear interrupt status",
+      "Single-cycle TL-UL response"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "opentitan-tlul",
+      "type": "library",
+      "description": "Provides tlul_pkg (TL-UL struct types and opcodes)"
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/vyges/vyges-gpio-lite"
+  },
+  "artifacts": {
+    "total_rtl_lines": 214
+  },
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "Parallel Interfaces"
+    }
+  ],
+  "keywords": [
+    "GPIO",
+    "TL-UL",
+    "TileLink",
+    "Peripheral",
+    "Configurable Pins",
+    "Interrupts"
+  ],
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-29T21:09:20Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-29T21:09:20Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

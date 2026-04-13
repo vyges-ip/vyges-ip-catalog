@@ -1,0 +1,256 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "spi-controller",
+  "version": "0.1.0",
+  "description": "A configurable SPI master controller with APB interface, supporting all four SPI modes, FIFO buffering, interrupt generation, DMA support, and power management features. Designed for ASIC and FPGA implementations.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:43:19Z",
+  "updated": "2026-03-27T21:43:19Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/vyges/spi-controller",
+    "commit": "b8611d4bc7656e69db12595cca7bc9a1db3a3f48",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "pclk_i",
+      "width": 1,
+      "description": "APB clock input"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active_low",
+      "port": "presetn_i",
+      "width": 1,
+      "description": "APB reset input (active low)"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB",
+      "port": "psel_i",
+      "width": 1,
+      "description": "APB select input"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB",
+      "port": "penable_i",
+      "width": 1,
+      "description": "APB enable input"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB",
+      "port": "pwrite_i",
+      "width": 1,
+      "description": "APB write input"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB",
+      "port": "paddr_i",
+      "width": 8,
+      "description": "APB address input"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB",
+      "port": "pwdata_i",
+      "width": 32,
+      "description": "APB write data input"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB",
+      "port": "prdata_o",
+      "width": 32,
+      "description": "APB read data output"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB",
+      "port": "pready_o",
+      "width": 1,
+      "description": "APB ready output"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "APB",
+      "port": "pslverr_o",
+      "width": 1,
+      "description": "APB slave error output"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "SPI",
+      "port": "spi_clk_o",
+      "width": 1,
+      "description": "SPI clock output"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "SPI",
+      "port": "spi_mosi_o",
+      "width": 1,
+      "description": "SPI master out, slave in"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "SPI",
+      "port": "spi_miso_i",
+      "width": 1,
+      "description": "SPI master in, slave out"
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "SPI",
+      "port": "spi_csn_o",
+      "width": 4,
+      "description": "SPI chip select (active low) - multi-slave support"
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "spi_irq_o",
+      "width": 1,
+      "description": "SPI interrupt output"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "DATA_WIDTH",
+      "type": "int",
+      "default": 8,
+      "description": "Configurable data width: 8, 16, or 32 bits"
+    },
+    {
+      "name": "FIFO_DEPTH",
+      "type": "int",
+      "default": 16,
+      "description": "Configurable FIFO depth: 4 to 64 entries"
+    },
+    {
+      "name": "MAX_FREQ_MHZ",
+      "type": "int",
+      "default": 100,
+      "description": "Maximum operating frequency in MHz"
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "APB v2.0 compliant interface",
+      "Configurable SPI modes (CPOL/CPHA combinations)",
+      "FIFO buffering for transmit and receive",
+      "Interrupt generation capabilities",
+      "DMA support for high-throughput applications",
+      "Power management with clock gating",
+      "Configurable data width (8, 16, 32 bits)",
+      "Configurable FIFO depth (4-64 entries)"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "spi_fifo",
+      "type": "core",
+      "description": "FIFO module for transmit and receive buffering"
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://vyges.github.io/spi-controller/"
+  },
+  "artifacts": {
+    "total_rtl_lines": 626
+  },
+  "categories": {
+    "primary": "communication",
+    "secondary": [
+      "peripheral",
+      "serial"
+    ],
+    "tags": [
+      "SPI",
+      "APB",
+      "FIFO",
+      "DMA",
+      "interrupt",
+      "power management"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T21:43:19Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:43:19Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

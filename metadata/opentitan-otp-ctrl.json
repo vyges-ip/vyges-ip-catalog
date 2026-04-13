@@ -1,0 +1,238 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-otp-ctrl",
+  "version": "0.1.0",
+  "description": "The OpenTitan OTP Controller package provides parameterized data structures and interfaces for managing OTP memory, lifecycle states, and cryptographic key handling.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:05:30Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "ip_path": "hw/ip/otp_ctrl",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "otp_device_id_t",
+      "width": 256,
+      "description": "OTP device ID interface."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "otp_manuf_state_t",
+      "width": 256,
+      "description": "OTP manufacturing state interface."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "otp_lc_data_t",
+      "width": 0,
+      "description": "Lifecycle control data interface."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "otp_keymgr_key_t",
+      "width": 0,
+      "description": "Key manager key interface."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "DeviceIdWidth",
+      "type": "int",
+      "default": 256,
+      "description": "Width of the OTP device ID."
+    },
+    {
+      "name": "ManufStateWidth",
+      "type": "int",
+      "default": 256,
+      "description": "Width of the manufacturing state."
+    },
+    {
+      "name": "ScrmblKeyWidth",
+      "type": "int",
+      "default": 128,
+      "description": "Width of the scrambling key."
+    },
+    {
+      "name": "ScrmblBlockWidth",
+      "type": "int",
+      "default": 64,
+      "description": "Width of the scrambling block."
+    },
+    {
+      "name": "NvmKeySeedWidth",
+      "type": "int",
+      "default": 256,
+      "description": "Width of the NVM key seed."
+    },
+    {
+      "name": "SramKeySeedWidth",
+      "type": "int",
+      "default": 128,
+      "description": "Width of the SRAM key seed."
+    },
+    {
+      "name": "KeyMgrKeyWidth",
+      "type": "int",
+      "default": 256,
+      "description": "Width of the key manager key."
+    },
+    {
+      "name": "NvmKeyWidth",
+      "type": "int",
+      "default": 128,
+      "description": "Width of the NVM key."
+    },
+    {
+      "name": "SramKeyWidth",
+      "type": "int",
+      "default": 128,
+      "description": "Width of the SRAM key."
+    },
+    {
+      "name": "SramNonceWidth",
+      "type": "int",
+      "default": 128,
+      "description": "Width of the SRAM nonce."
+    },
+    {
+      "name": "OtbnKeyWidth",
+      "type": "int",
+      "default": 128,
+      "description": "Width of the OTBN key."
+    },
+    {
+      "name": "OtbnNonceWidth",
+      "type": "int",
+      "default": 64,
+      "description": "Width of the OTBN nonce."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "OTP memory management",
+      "Lifecycle state handling",
+      "Cryptographic key generation and management",
+      "Support for NVM and SRAM key handling",
+      "Lifecycle control interface"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "lc_ctrl_state_pkg",
+      "type": "library",
+      "description": "Lifecycle control state package."
+    },
+    {
+      "name": "lc_ctrl_pkg",
+      "type": "library",
+      "description": "Lifecycle control package."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/lowRISC/opentitan"
+  },
+  "artifacts": {
+    "total_rtl_lines": 197
+  },
+  "categories": [
+    {
+      "main_category": "Security IP",
+      "sub_category": "Fuse Controllers"
+    }
+  ],
+  "keywords": [
+    "OTP",
+    "security",
+    "lifecycle",
+    "key management",
+    "scrambling"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27T23:05:30Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:05:30Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/otp_ctrl_pkg.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

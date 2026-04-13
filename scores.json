@@ -1,0 +1,2175 @@
+{
+  "scorer_ref": "v1",
+  "ip_count": 130,
+  "aggregate": 93,
+  "tiers": {
+    "Good": 130,
+    "Medium": 0,
+    "High-risk": 0
+  },
+  "ips": [
+    {
+      "ip": "fast-fourier-transform-ip",
+      "score": 100,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": []
+    },
+    {
+      "ip": "ibex",
+      "score": 100,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": []
+    },
+    {
+      "ip": "openfasoc-temp-sensor",
+      "score": 100,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": []
+    },
+    {
+      "ip": "opentitan-flash-ctrl",
+      "score": 100,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": []
+    },
+    {
+      "ip": "opentitan-rv-core-ibex",
+      "score": 100,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": []
+    },
+    {
+      "ip": "opentitan-uart",
+      "score": 100,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": []
+    },
+    {
+      "ip": "vyges-rv-plic-lite",
+      "score": 100,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": []
+    },
+    {
+      "ip": "vyges-spi-host-lite",
+      "score": 100,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": []
+    },
+    {
+      "ip": "32bit-risc-core",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "adams-bridge",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "caliptra-aes",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "caliptra-csrng",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "caliptra-ecc",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "caliptra-entropy-src",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "caliptra-hmac",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "caliptra-sha256",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "caliptra-sha512",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "caliptra-soc-ifc",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "canakari",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "coralnpu-core",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "coralnpu-i2c-master",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "coralnpu-rvv-backend",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "coralnpu-subsystem",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "coralnpu-tlul-fifo",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "cva6",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "fastvdma",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "opentitan-hmac",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "opentitan-lowrisc-ibex",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "opentitan-prim",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "opentitan-prim-generic",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "picorv32",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "pwm-controller",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "rocket-chip",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "serv",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "sky130-delta-sigma-adc",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "veer-eh1",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "veer-eh2",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "verilog-axi",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "verilog-axis",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "verilog-ethernet",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "verilog-i2c",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "verilog-pcie",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "verilog-uart",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "verilog-wishbone",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "caliptra-doe",
+      "score": 94,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 6,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "parameters: parameters[].description"
+      ]
+    },
+    {
+      "ip": "caliptra-ahb-lite-bus",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-axi",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-datavault",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-keyvault",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-lc-ctrl",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-pcrvault",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-riscv-core",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-sha3",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-spi-host",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-tlul",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-uart",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "coralnpu-axi2tlul",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "coralnpu-rvv-common-lib",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "coralnpu-spi2tlul",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "coralnpu-tlul2axi",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "cv32e40p",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "cve2",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "hilbert-transformer",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "i3c-core",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-adc-ctrl",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-aes",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-aon-timer",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-ascon",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-csrng",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-dma",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-edn",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-entropy-src",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-i2c",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-keymgr",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-keymgr-dpe",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-kmac",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-lc-ctrl",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-mbx",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-otbn",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-otp-macro",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-pattgen",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-rom-ctrl",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-rv-dm",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-rv-timer",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-soc-dbg-ctrl",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-spi-device",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-spi-host",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-sram-ctrl",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-sysrst-ctrl",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-tlul",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-usbdev",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "riscv-boom",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "spi-controller",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "uart-controller",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "veer-el2",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "vyges-clkmgr-lite",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "vyges-gpio-lite",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "vyges-pinmux-lite",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "vyges-rstmgr-lite",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-kmac",
+      "score": 90,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus"
+      ]
+    },
+    {
+      "ip": "coralnpu-rvv-core",
+      "score": 90,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus"
+      ]
+    },
+    {
+      "ip": "coralnpu-scalar-units",
+      "score": 90,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 0,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "parameters: parameters (none declared)"
+      ]
+    },
+    {
+      "ip": "hardfloat",
+      "score": 90,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 0,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "parameters: parameters (none declared)"
+      ]
+    },
+    {
+      "ip": "opentitan-racl-ctrl",
+      "score": 90,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 0,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "parameters: parameters (none declared)"
+      ]
+    },
+    {
+      "ip": "sd-card-controller",
+      "score": 90,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus"
+      ]
+    },
+    {
+      "ip": "sky130-comparator",
+      "score": 90,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 0,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "parameters: parameters (none declared)"
+      ]
+    },
+    {
+      "ip": "sky130-ct-dsm",
+      "score": 90,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 0,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "parameters: parameters (none declared)"
+      ]
+    },
+    {
+      "ip": "sky130-sar-adc",
+      "score": 90,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus"
+      ]
+    },
+    {
+      "ip": "vexriscv",
+      "score": 90,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 10,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "implementation: asic{} or fpga{}"
+      ]
+    },
+    {
+      "ip": "caliptra-hmac-drbg",
+      "score": 85,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-sha512-masked",
+      "score": 85,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "coralnpu-clock-gate",
+      "score": 85,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "coralnpu-rst-sync",
+      "score": 85,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "mlow-codec",
+      "score": 85,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-prim-asap7",
+      "score": 85,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-prim-xilinx-ultrascale",
+      "score": 85,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-edn",
+      "score": 83,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 13,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=clock",
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-libs",
+      "score": 83,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 13,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=clock",
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "caliptra-prim",
+      "score": 83,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 13,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=clock",
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "coralnpu-dbus2axi",
+      "score": 83,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 13,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=clock",
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "coralnpu-l1-dcache",
+      "score": 83,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 0,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "parameters: parameters (none declared)",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "coralnpu-l1-icache",
+      "score": 83,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 0,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "parameters: parameters (none declared)",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "coralnpu-tlul-pkg",
+      "score": 83,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 13,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=clock",
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-otp-ctrl",
+      "score": 83,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 13,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=clock",
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-prim-xilinx",
+      "score": 83,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 13,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=clock",
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "riscduino-pwm",
+      "score": 83,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 6,
+        "implementation": 10,
+        "verification": 15,
+        "provenance": 7
+      },
+      "gaps": [
+        "parameters: parameters[].description",
+        "implementation: asic{} or fpga{}",
+        "provenance: maintainers[]"
+      ]
+    },
+    {
+      "ip": "sky130-potentiometric-dac",
+      "score": 83,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 13,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=clock",
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "sky130-bandgap-reference",
+      "score": 80,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 5,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=clock",
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].type=bus"
+      ]
+    },
+    {
+      "ip": "sky130-opamp",
+      "score": 80,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 5,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=clock",
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].type=bus"
+      ]
+    },
+    {
+      "ip": "tlul-apb-adapter",
+      "score": 80,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 5,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=clock",
+        "interfaces: interfaces[].type=reset",
+        "verification: test.coverage",
+        "verification: test.testbenches"
+      ]
+    }
+  ]
+}

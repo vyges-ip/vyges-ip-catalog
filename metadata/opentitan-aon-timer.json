@@ -1,0 +1,202 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-aon-timer",
+  "version": "0.1.0",
+  "description": "The Always-On Timer (AON Timer) is a low-power timer module from the OpenTitan project, featuring wakeup and watchdog timer functionalities with support for TL-UL bus interface and integrity checks.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:04:53Z",
+  "updated": "2026-03-27T23:04:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "ip_path": "hw/ip/aon_timer",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "TL-UL host-to-device interface for communication."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "TL-UL device-to-host interface for communication."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Primary clock input for the module."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_aon_i",
+      "width": 1,
+      "description": "Always-on clock input for low-power operation."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal for the primary clock domain."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_aon_ni",
+      "width": 1,
+      "description": "Active-low reset signal for the always-on clock domain."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "intg_err_o",
+      "width": 1,
+      "description": "Output signal indicating integrity check errors."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "EnableRacl",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable or disable the RACL interface."
+    },
+    {
+      "name": "RaclErrorRsp",
+      "type": "bit",
+      "default": 1,
+      "description": "Enable or disable RACL error response."
+    },
+    {
+      "name": "RaclPolicySelVec",
+      "type": "enum",
+      "default": "0",
+      "description": "RACL policy selection vector for register access control."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Wakeup timer with configurable thresholds",
+      "Watchdog timer with bark and bite thresholds",
+      "TL-UL bus interface with integrity checks",
+      "Support for always-on clock domain",
+      "Register access control (RACL) support"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TL-UL protocol package for bus communication."
+    },
+    {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Assertion library for design verification."
+    },
+    {
+      "name": "prim_reg_we_check",
+      "type": "library",
+      "description": "Primitive for write enable checking."
+    },
+    {
+      "name": "prim_reg_cdc",
+      "type": "library",
+      "description": "Primitive for clock domain crossing in registers."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://opentitan.org/book/"
+  },
+  "artifacts": {
+    "total_rtl_lines": 1984
+  },
+  "categories": [
+    {
+      "main_category": "Base Libraries",
+      "sub_category": "Counters & Timers"
+    }
+  ],
+  "keywords": [
+    "OpenTitan",
+    "AON Timer",
+    "TL-UL",
+    "Watchdog Timer",
+    "Wakeup Timer"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:04:53Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

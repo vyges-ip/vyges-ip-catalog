@@ -1,0 +1,298 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "caliptra-aes",
+  "version": "0.1.0",
+  "description": "AES-128/192/256 cryptographic accelerator supporting ECB, CBC, CFB-128, OFB, CTR, and GCM (authenticated encryption with GHASH) modes. Features first-order Domain-Oriented Masking (DOM) for side-channel resistance, EDN entropy interface for PRNG reseeding, Key Manager sideload, and Caliptra KeyVault integration. Caliptra TL-UL slave interface. Extracted from CHIPS Alliance Caliptra Root of Trust.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T20:52:56Z",
+  "updated": "2026-03-27T20:52:56Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "ip_path": "src/aes",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl",
+      "width": 32,
+      "description": "Caliptra TileLink-UL slave. Register-based control and data interface for key, IV, data input/output, and status."
+    },
+    {
+      "type": "sideload",
+      "direction": "input",
+      "protocol": "keymgr",
+      "port": "keymgr_key_i",
+      "width": 256,
+      "description": "Key Manager sideload interface. Hardware key injection without exposing key material to software."
+    },
+    {
+      "type": "entropy",
+      "direction": "both",
+      "protocol": "EDN",
+      "port": "edn",
+      "description": "Entropy Distribution Network interface for PRNG reseeding. Separate clock domain (clk_edn_i/rst_edn_ni)."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "alert",
+      "port": "alert_tx_o",
+      "width": 2,
+      "description": "Two alerts: fatal_fault (integrity/FSM error) and recov_ctrl_update_err (shadowed register mismatch)."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "port": "clk_i",
+      "description": "Main clock input."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "port": "rst_ni",
+      "polarity": "active_low",
+      "description": "Asynchronous active-low reset."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "caliptra",
+      "port": "caliptra2aes",
+      "description": "Caliptra control signals: KeyVault enable, key release size, clear secrets."
+    },
+    {
+      "type": "status",
+      "direction": "output",
+      "protocol": "caliptra",
+      "port": "aes2caliptra",
+      "description": "Caliptra status signals: KeyVault data out, key in use, ECB decrypt operation."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "AES192Enable",
+      "type": "bit",
+      "default": 1,
+      "description": "Enable AES-192 key length support. Set to 0 to save area."
+    },
+    {
+      "name": "AESGCMEnable",
+      "type": "bit",
+      "default": 1,
+      "description": "Enable GCM mode with hardware GHASH. Set to 0 to save area."
+    },
+    {
+      "name": "SecMasking",
+      "type": "bit",
+      "default": 1,
+      "description": "Enable first-order Boolean masking of cipher core for SCA resistance."
+    },
+    {
+      "name": "SecSBoxImpl",
+      "type": "enum",
+      "default": "SBoxImplDom",
+      "description": "S-Box implementation: SBoxImplLut, SBoxImplCanright, SBoxImplCanrightMasked, SBoxImplCanrightMaskedNoreuse, SBoxImplDom."
+    },
+    {
+      "name": "SecStartTriggerDelay",
+      "type": "int",
+      "default": 0,
+      "description": "Configurable delay for SCA measurement trigger."
+    },
+    {
+      "name": "SecAllowForcingMasks",
+      "type": "bit",
+      "default": 0,
+      "description": "Allow forcing mask values via register for SCA evaluation."
+    },
+    {
+      "name": "SecSkipPRNGReseeding",
+      "type": "bit",
+      "default": 0,
+      "description": "Skip PRNG reseeding for SCA testing (not for production)."
+    }
+  ],
+  "performance": {
+    "latency": {
+      "unmasked_aes128": "12 cycles per 128-bit block",
+      "unmasked_aes192": "14 cycles per 128-bit block",
+      "unmasked_aes256": "16 cycles per 128-bit block",
+      "dom_aes128": "56 cycles per 128-bit block",
+      "dom_aes192": "66 cycles per 128-bit block",
+      "dom_aes256": "72 cycles per 128-bit block"
+    },
+    "sbox_parallelism": 16,
+    "data_width": 128,
+    "key_widths": [
+      128,
+      192,
+      256
+    ]
+  },
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "AES-128/192/256 encryption and decryption",
+      "ECB, CBC, CFB-128, OFB, CTR cipher block modes",
+      "GCM authenticated encryption with hardware GHASH",
+      "First-order Domain-Oriented Masking (DOM) for SCA resistance",
+      "16 parallel S-Boxes per round",
+      "On-the-fly round-key generation",
+      "Trivium-based PRNG for masking with configurable reseed rate",
+      "LFSR-based PRNG for clearing/zeroization",
+      "Sparse FSM encoding (N/P complementary pairs) for fault injection resistance",
+      "Shadowed control registers for glitch detection",
+      "Key Manager sideload (hardware key injection)",
+      "Caliptra KeyVault read/write integration",
+      "EDN entropy interface with dual-clock FIFO",
+      "Lifecycle escalation response",
+      "Automatic and manual trigger modes"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A",
+      "GF22",
+      "TSMC"
+    ],
+    "estimated_gate_count": "~100k equivalent gates (DOM masked)"
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado",
+      "Quartus"
+    ],
+    "devices": [
+      "Artix-7",
+      "Ultrascale+"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "caliptra-prim",
+      "type": "library",
+      "description": "Caliptra primitives: FSM, alerts, FIFOs, LFSR, mux, integrity"
+    },
+    {
+      "name": "caliptra-tlul",
+      "type": "bus",
+      "description": "TileLink-UL bus adapters"
+    },
+    {
+      "name": "keyvault",
+      "type": "integration",
+      "description": "KeyVault definitions and interfaces"
+    },
+    {
+      "name": "edn",
+      "type": "integration",
+      "description": "Entropy Distribution Network"
+    },
+    {
+      "name": "lc_ctrl",
+      "type": "integration",
+      "description": "Lifecycle controller for escalation"
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "coverage"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional",
+    "notes": "Coverage interfaces in coverage/ directory. Full testbenches in Caliptra integration test suite."
+  },
+  "documentation": {
+    "upstream": "https://github.com/chipsalliance/caliptra-rtl/tree/main/src/aes",
+    "caliptra_spec": "https://chipsalliance.github.io/Caliptra/"
+  },
+  "artifacts": {
+    "rtl": [
+      "rtl/aes_pkg.sv",
+      "rtl/aes.sv",
+      "rtl/aes_core.sv",
+      "rtl/aes_cipher_core.sv",
+      "rtl/aes_cipher_control.sv",
+      "rtl/aes_control.sv",
+      "rtl/aes_key_expand.sv",
+      "rtl/aes_sub_bytes.sv",
+      "rtl/aes_shift_rows.sv",
+      "rtl/aes_mix_columns.sv",
+      "rtl/aes_ghash.sv",
+      "rtl/aes_ctr.sv",
+      "rtl/aes_sbox.sv",
+      "rtl/aes_sbox_dom.sv",
+      "rtl/aes_sbox_canright.sv",
+      "rtl/aes_sbox_canright_masked.sv",
+      "rtl/aes_sbox_lut.sv",
+      "rtl/aes_prng_masking.sv",
+      "rtl/aes_prng_clearing.sv",
+      "rtl/aes_reg_top.sv",
+      "rtl/aes_clp_wrapper.sv",
+      "rtl/aes_clp_reg.sv"
+    ],
+    "total_rtl_lines": 20757
+  },
+  "categories": {
+    "primary": "security",
+    "secondary": [
+      "crypto",
+      "accelerator"
+    ],
+    "tags": [
+      "aes",
+      "caliptra",
+      "root-of-trust",
+      "encryption",
+      "gcm",
+      "masking",
+      "dom",
+      "side-channel",
+      "tl-ul",
+      "chips-alliance"
+    ]
+  },
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 1,
+    "fpga_validated": false,
+    "formal_verified": true,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "manual (gold-standard pass 2026-03-27)",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T20:52:56Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

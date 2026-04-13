@@ -1,0 +1,181 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "verilog-ethernet",
+  "version": "0.1.0",
+  "description": "A comprehensive collection of Ethernet-related components for gigabit, 10G, and 25G packet processing, including MAC, PHY, IP, UDP, ARP, and PTP modules with support for 8-bit and 64-bit datapaths.",
+  "license": "MIT",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T21:42:37Z",
+  "updated": "2026-03-27T21:42:37Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/alexforencich/verilog-ethernet",
+    "commit": "77320a9471d19c7dd383914bc049e02d9f4f1ffb",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "AXI-Stream",
+      "port": "s_axis_tdata",
+      "width": 64,
+      "description": "Input data bus for AXI-Stream interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AXI-Stream",
+      "port": "m_axis_tdata",
+      "width": 64,
+      "description": "Output data bus for AXI-Stream interface."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "Clock",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock input signal."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "Active High",
+      "port": "rst",
+      "width": 1,
+      "description": "Active-high reset signal."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "DATA_WIDTH",
+      "type": "int",
+      "default": 64,
+      "description": "Width of the data bus in bits."
+    },
+    {
+      "name": "KEEP_WIDTH",
+      "type": "int",
+      "default": 8,
+      "description": "Width of the keep signal for AXI-Stream interface."
+    },
+    {
+      "name": "FRAME_FIFO_DEPTH",
+      "type": "int",
+      "default": 4096,
+      "description": "Depth of the frame FIFO in words."
+    },
+    {
+      "name": "PTP_ENABLE",
+      "type": "bit",
+      "default": 1,
+      "description": "Enable or disable Precision Time Protocol (PTP) support."
+    }
+  ],
+  "performance": {
+    "max_data_rate": "25 Gbps",
+    "latency": "Low",
+    "throughput": "High"
+  },
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Gigabit Ethernet MAC",
+      "10G/25G Ethernet MAC",
+      "10G/25G PCS/PMA PHY",
+      "UDP/IP/ARP stack",
+      "PTP clock synchronization"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7",
+      "Kintex-7",
+      "Virtex-7",
+      "Zynq UltraScale+"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "cocotbext-eth",
+      "type": "library",
+      "description": "Cocotb extension for Ethernet testing."
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "cocotb"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/alexforencich/verilog-ethernet"
+  },
+  "artifacts": {
+    "total_rtl_lines": 35839
+  },
+  "categories": {
+    "primary": "networking",
+    "secondary": [
+      "communication",
+      "ethernet"
+    ],
+    "tags": [
+      "ethernet",
+      "mac",
+      "phy",
+      "udp",
+      "ip",
+      "ptp",
+      "networking"
+    ]
+  },
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": true,
+    "formal_verified": false,
+    "maintained": false,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T21:42:37Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

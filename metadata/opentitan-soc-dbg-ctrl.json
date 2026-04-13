@@ -1,0 +1,245 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opentitan-soc-dbg-ctrl",
+  "version": "0.1.0",
+  "description": "The OpenTitan SoC Debug Controller manages debug policies, lifecycle states, and alert mechanisms for secure debugging in silicon devices.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-27T23:05:53Z",
+  "updated": "2026-04-02T03:11:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/lowRISC/opentitan",
+    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "ip_path": "hw/ip/soc_dbg_ctrl",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "TL-UL",
+      "port": "core_tl_i",
+      "width": 32,
+      "description": "Core-side TL-UL host-to-device bus interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "TL-UL",
+      "port": "core_tl_o",
+      "width": 32,
+      "description": "Core-side TL-UL device-to-host bus interface."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "TL-UL",
+      "port": "jtag_tl_i",
+      "width": 32,
+      "description": "JTAG-side TL-UL host-to-device bus interface."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "TL-UL",
+      "port": "jtag_tl_o",
+      "width": 32,
+      "description": "JTAG-side TL-UL device-to-host bus interface."
+    },
+    {
+      "type": "alert",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "alert_rx_i",
+      "width": "NumAlerts",
+      "description": "Alert receiver interface for incoming alerts."
+    },
+    {
+      "type": "alert",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "alert_tx_o",
+      "width": "NumAlerts",
+      "description": "Alert transmitter interface for outgoing alerts."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "rst_shadowed_ni",
+      "width": 1,
+      "description": "Active-low shadowed reset signal."
+    },
+    {
+      "type": "debug_policy",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "soc_dbg_policy_bus_o",
+      "width": "variable",
+      "description": "Debug policy bus distributed across the SoC."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "AlertAsyncOn",
+      "type": "bit",
+      "default": "{NumAlerts{1'b1}}",
+      "description": "Specifies whether alerts are asynchronous."
+    },
+    {
+      "name": "AlertSkewCycles",
+      "type": "int",
+      "default": 1,
+      "description": "Number of cycles tolerated for differential skew on alert signals."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Debug policy management",
+      "Lifecycle state handling",
+      "Alert signal processing",
+      "Secure debug enablement"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "prim_alert_pkg",
+      "type": "library",
+      "description": "Package for alert signal handling."
+    },
+    {
+      "name": "lc_ctrl_pkg",
+      "type": "library",
+      "description": "Lifecycle controller package."
+    },
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "Package for TL-UL bus protocol."
+    },
+    {
+      "name": "soc_dbg_ctrl_pkg",
+      "type": "library",
+      "description": "Package for debug control policy definitions."
+    },
+    {
+      "name": "soc_dbg_ctrl_reg_pkg",
+      "type": "library",
+      "description": "Package for debug control register definitions."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/lowRISC/opentitan"
+  },
+  "artifacts": {
+    "total_rtl_lines": 2164
+  },
+  "categories": [
+    {
+      "main_category": "Security IP",
+      "sub_category": "Secure Boot Blocks"
+    }
+  ],
+  "keywords": [
+    "debug",
+    "security",
+    "OpenTitan",
+    "lifecycle",
+    "alert"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-27"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-27T23:05:53Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/soc_dbg_ctrl.sv",
+    "rtl/soc_dbg_ctrl_core_reg_top.sv",
+    "rtl/soc_dbg_ctrl_decode.sv",
+    "rtl/soc_dbg_ctrl_jtag_reg_top.sv",
+    "rtl/soc_dbg_ctrl_pkg.sv",
+    "rtl/soc_dbg_ctrl_reg_pkg.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

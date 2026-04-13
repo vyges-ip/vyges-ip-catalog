@@ -1,0 +1,166 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "vyges-clkmgr-lite",
+  "version": "0.1.0",
+  "description": "Lightweight clock manager with a TL-UL register interface, supporting up to 4 configurable clock domains with per-clock integer dividers and glitch-free gating.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-28T01:51:59Z",
+  "updated": "2026-03-28T01:51:59Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/vyges/vyges-clkmgr-lite",
+    "commit": "9f558f2a42b68c37e373aef916d826dad9e7b936",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Input clock signal."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active-low",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 1,
+      "description": "TL-UL host-to-device interface."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 1,
+      "description": "TL-UL device-to-host interface."
+    },
+    {
+      "type": "clock",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "clk_o",
+      "width": "NUM_CLOCKS",
+      "description": "Array of output clock signals."
+    },
+    {
+      "type": "status",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "clk_status_o",
+      "width": "NUM_CLOCKS",
+      "description": "Array of clock status signals indicating active clocks."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "NUM_CLOCKS",
+      "type": "int",
+      "default": 4,
+      "description": "Number of output clock domains."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Up to 4 configurable clock domains",
+      "Per-clock 8-bit integer divider (div-by-1 to div-by-256)",
+      "Software-controlled clock gating",
+      "Glitch-free clock gating",
+      "Single-cycle TL-UL response"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TL-UL protocol package for host-to-device and device-to-host communication."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/vyges/vyges-clkmgr-lite"
+  },
+  "artifacts": {
+    "total_rtl_lines": 168
+  },
+  "categories": [
+    {
+      "main_category": "Timing & Clocking",
+      "sub_category": "Clock Managers"
+    }
+  ],
+  "keywords": [
+    "clock manager",
+    "TL-UL",
+    "glitch-free gating",
+    "clock divider"
+  ],
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-28T01:51:59Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-28T01:51:59Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

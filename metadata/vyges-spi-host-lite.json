@@ -1,0 +1,243 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "vyges-spi-host-lite",
+  "version": "0.1.0",
+  "description": "Lightweight SPI master controller with TL-UL slave interface, supporting SPI modes 0\u20133, configurable clock divider, and interrupt-driven TX/RX FIFO operations.",
+  "license": "Apache-2.0",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-03-28T01:51:56Z",
+  "updated": "2026-03-28T01:51:56Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/vyges/vyges-spi-host-lite",
+    "commit": "b9c1d206503d4123b45794c13b4cb5fd729eac9e",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "System clock input."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low system reset input."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 1,
+      "description": "TL-UL host-to-device interface input.",
+      "signals": [
+        {
+          "name": "tl_i",
+          "direction": "input",
+          "type": "bus",
+          "description": "TL-UL host-to-device (tl_h2d_t struct)"
+        },
+        {
+          "name": "tl_o",
+          "direction": "output",
+          "type": "bus",
+          "description": "TL-UL device-to-host (tl_d2h_t struct)"
+        }
+      ]
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 1,
+      "description": "TL-UL device-to-host interface output.",
+      "signals": [
+        {
+          "name": "tl_i",
+          "direction": "input",
+          "type": "bus",
+          "description": "TL-UL host-to-device (tl_h2d_t struct)"
+        },
+        {
+          "name": "tl_o",
+          "direction": "output",
+          "type": "bus",
+          "description": "TL-UL device-to-host (tl_d2h_t struct)"
+        }
+      ]
+    },
+    {
+      "type": "serial",
+      "direction": "output",
+      "protocol": "SPI",
+      "port": "spi_sclk_o",
+      "width": 1,
+      "description": "SPI clock output."
+    },
+    {
+      "type": "serial",
+      "direction": "output",
+      "protocol": "SPI",
+      "port": "spi_cs_no",
+      "width": 1,
+      "description": "SPI chip-select output (active low)."
+    },
+    {
+      "type": "serial",
+      "direction": "output",
+      "protocol": "SPI",
+      "port": "spi_mosi_o",
+      "width": 1,
+      "description": "SPI master-out slave-in data output."
+    },
+    {
+      "type": "serial",
+      "direction": "input",
+      "protocol": "SPI",
+      "port": "spi_miso_i",
+      "width": 1,
+      "description": "SPI master-in slave-out data input."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "intr_tx_empty_o",
+      "width": 1,
+      "description": "Interrupt output for TX FIFO empty condition."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "intr_rx_full_o",
+      "width": 1,
+      "description": "Interrupt output for RX FIFO full condition."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "intr_idle_o",
+      "width": 1,
+      "description": "Interrupt output for SPI idle condition."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "FIFO_DEPTH",
+      "type": "int",
+      "default": 8,
+      "description": "Configurable depth of TX and RX FIFOs (number of entries)."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "peripheral",
+    "features": [
+      "Supports SPI modes 0\u20133 (CPOL/CPHA configurable)",
+      "Configurable clock divider (SCLK = clk_i / (2 * (div+1)))",
+      "8/16/32-bit transfer length",
+      "TX and RX FIFOs with configurable depth",
+      "Single chip-select output (active low)",
+      "Interrupt-driven operation (tx_empty, rx_full, idle)"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [],
+  "test": {
+    "testbenches": [
+      {
+        "name": "soc_integration",
+        "path": "tb/cocotb/",
+        "framework": "cocotb",
+        "simulators": [
+          "verilator"
+        ],
+        "description": "SoC-level integration verified in edge-sensor-soc"
+      }
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/vyges/vyges-spi-host-lite"
+  },
+  "artifacts": {
+    "total_rtl_lines": 411
+  },
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "Serial Interfaces"
+    }
+  ],
+  "keywords": [
+    "SPI",
+    "TL-UL",
+    "FIFO",
+    "Interrupts",
+    "Peripheral"
+  ],
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-03-28"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-03-28T01:51:56Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "branding": {
+    "display_name": "SPI Host"
+  }
+}

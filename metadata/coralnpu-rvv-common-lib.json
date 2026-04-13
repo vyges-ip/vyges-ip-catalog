@@ -1,0 +1,336 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "coralnpu-rvv-common-lib",
+  "version": "0.1.0",
+  "description": "A parameterized multi-port synchronous FIFO library supporting multi-push and multi-pop operations, with configurable depth, data width, and advanced features like almost-full/empty flags and data sorting.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T05:12:54Z",
+  "updated": "2026-04-02T04:30:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/google-coral/coralnpu",
+    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
+    "ip_path": "hdl/verilog/rvv/common",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock input signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active-low",
+      "port": "rst_n",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "push",
+      "width": "M",
+      "description": "Push control signal with M bits for multi-push operations"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "datain",
+      "width": "M * T",
+      "description": "Input data bus with M entries of type T"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "full",
+      "width": 1,
+      "description": "Indicates if the FIFO is full"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "almost_full",
+      "width": "M",
+      "description": "Indicates near-full status for each push operation"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "pop",
+      "width": "N",
+      "description": "Pop control signal with N bits for multi-pop operations"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "dataout",
+      "width": "N * T",
+      "description": "Output data bus with N entries of type T"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "empty",
+      "width": 1,
+      "description": "Indicates if the FIFO is empty"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "almost_empty",
+      "width": "N",
+      "description": "Indicates near-empty status for each pop operation"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "clear",
+      "width": 1,
+      "description": "Clears the FIFO contents"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "fifo_data",
+      "width": "DEPTH * T",
+      "description": "FIFO data sorted based on the read pointer"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "wptr",
+      "width": "DEPTH_BITS",
+      "description": "Write pointer"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "rptr",
+      "width": "DEPTH_BITS",
+      "description": "Read pointer"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "entry_count",
+      "width": "DEPTH_BITS + 1",
+      "description": "Number of occupied entries in the FIFO"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "T",
+      "type": "bit",
+      "default": "logic [7:0]",
+      "description": "Data type and width for FIFO entries"
+    },
+    {
+      "name": "M",
+      "type": "int",
+      "default": 4,
+      "description": "Width of the push signal (number of simultaneous pushes)"
+    },
+    {
+      "name": "N",
+      "type": "int",
+      "default": 4,
+      "description": "Width of the pop signal (number of simultaneous pops)"
+    },
+    {
+      "name": "DEPTH",
+      "type": "int",
+      "default": 16,
+      "description": "Depth of the FIFO"
+    },
+    {
+      "name": "POP_CLEAR",
+      "type": "bit",
+      "default": 0,
+      "description": "Clear data once popped"
+    },
+    {
+      "name": "ASYNC_RSTN",
+      "type": "bit",
+      "default": 0,
+      "description": "Asynchronous reset enable"
+    },
+    {
+      "name": "CHAOS_PUSH",
+      "type": "bit",
+      "default": 0,
+      "description": "Support for disorderly push operations"
+    },
+    {
+      "name": "DATAOUT_REG",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable registered output for dataout signal"
+    },
+    {
+      "name": "FULL_PUSH",
+      "type": "bit",
+      "default": 0,
+      "description": "Support push and pop operations when FIFO is full"
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "memory",
+    "features": [
+      "Synchronous FIFO",
+      "Multi-push and multi-pop support",
+      "Configurable depth and data width",
+      "Almost-full and almost-empty flags",
+      "Data sorting based on read pointer"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "cdffr",
+      "type": "library",
+      "description": "Clocked D flip-flop with reset"
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/google-coral/coralnpu"
+  },
+  "artifacts": {
+    "total_rtl_lines": 1535
+  },
+  "categories": [
+    {
+      "main_category": "Memory Subsystems",
+      "sub_category": "FIFOs & Buffers"
+    }
+  ],
+  "keywords": [
+    "FIFO",
+    "multi-port",
+    "synchronous",
+    "parameterized",
+    "CoralNPU"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T05:12:54Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/adder.sv",
+    "rtl/arb_round_robin.sv",
+    "rtl/barrel_shifter.sv",
+    "rtl/cdffr.sv",
+    "rtl/compressor_3_2.sv",
+    "rtl/compressor_4_2.sv",
+    "rtl/dff.sv",
+    "rtl/edff.sv",
+    "rtl/edff_2d.sv",
+    "rtl/fifo_flopped.sv",
+    "rtl/fifo_flopped_2w2r.sv",
+    "rtl/fifo_flopped_4w2r.sv",
+    "rtl/handshake_ff.sv",
+    "rtl/handshake_multi_fifo.sv",
+    "rtl/multi_fifo.sv",
+    "rtl/openFifo4_flopped_ptr.sv",
+    "rtl/openFifo8_flopped_2w2r.sv",
+    "rtl/adder.sv",
+    "rtl/arb_round_robin.sv",
+    "rtl/barrel_shifter.sv",
+    "rtl/cdffr.sv",
+    "rtl/compressor_3_2.sv",
+    "rtl/compressor_4_2.sv",
+    "rtl/dff.sv",
+    "rtl/edff.sv",
+    "rtl/edff_2d.sv",
+    "rtl/fifo_flopped.sv",
+    "rtl/fifo_flopped_2w2r.sv",
+    "rtl/fifo_flopped_4w2r.sv",
+    "rtl/handshake_ff.sv",
+    "rtl/handshake_multi_fifo.sv",
+    "rtl/multi_fifo.sv",
+    "rtl/openFifo4_flopped_ptr.sv",
+    "rtl/openFifo8_flopped_2w2r.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": false,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

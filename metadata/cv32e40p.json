@@ -1,0 +1,179 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "cv32e40p",
+  "version": "0.1.0",
+  "description": "The CV32E40P is a 32-bit RISC-V processor core with optional PULP extensions, hardware loops, and floating-point support.",
+  "license": "Solderpad-0.51",
+  "maturity": "rtl_verified",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-01T06:14:09Z",
+  "updated": "2026-04-01T06:14:09Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/openhwgroup/cv32e40p",
+    "commit": "e1891cd1f76082420c9035d82be55a7c7d6a80db",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "OBI",
+      "port": "obi_master",
+      "width": 32,
+      "description": "Open Bus Interface for memory and peripheral access."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "System clock input."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_n",
+      "width": 1,
+      "description": "Active-low system reset."
+    },
+    {
+      "type": "interrupt",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "irq",
+      "width": 16,
+      "description": "Interrupt request lines."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "COREV_PULP",
+      "type": "int",
+      "default": 0,
+      "description": "Enable PULP ISA extensions."
+    },
+    {
+      "name": "COREV_CLUSTER",
+      "type": "int",
+      "default": 0,
+      "description": "Enable PULP cluster interface."
+    },
+    {
+      "name": "FPU",
+      "type": "int",
+      "default": 0,
+      "description": "Enable floating-point unit."
+    },
+    {
+      "name": "FPU_ADDMUL_LAT",
+      "type": "int",
+      "default": 0,
+      "description": "Pipeline stages for floating-point addition/multiplication."
+    },
+    {
+      "name": "FPU_OTHERS_LAT",
+      "type": "int",
+      "default": 0,
+      "description": "Pipeline stages for other floating-point operations."
+    }
+  ],
+  "performance": {},
+  "architecture": {
+    "type": "processor",
+    "features": [
+      "32-bit RISC-V ISA",
+      "PULP extensions",
+      "hardware loops",
+      "optional floating-point unit"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "pulp_platform_common_cells",
+      "type": "library",
+      "description": "Common cells library for PULP platform."
+    },
+    {
+      "name": "pulp_platform_fpnew",
+      "type": "library",
+      "description": "Floating-point unit library for PULP platform."
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/openhwgroup/cv32e40p"
+  },
+  "artifacts": {
+    "total_rtl_lines": 43788
+  },
+  "categories": [
+    {
+      "main_category": "Processing Cores",
+      "sub_category": "RISC-V"
+    }
+  ],
+  "keywords": [
+    "RISC-V",
+    "processor",
+    "PULP",
+    "floating-point",
+    "hardware loops"
+  ],
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-01"
+  },
+  "meta": {
+    "template": {
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-01T06:14:09Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}
