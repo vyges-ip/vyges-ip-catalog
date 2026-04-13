@@ -1,6 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-04-13T04:00:46+00:00",
+  "generated_at": "2026-04-13T04:16:35+00:00",
+  "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 133,
   "with_metadata": 130,

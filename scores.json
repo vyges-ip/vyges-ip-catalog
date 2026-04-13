@@ -1,10 +1,10 @@
 {
   "scorer_ref": "v1",
   "ip_count": 130,
-  "aggregate": 93,
+  "aggregate": 92,
   "tiers": {
-    "Good": 130,
-    "Medium": 0,
+    "Good": 129,
+    "Medium": 1,
     "High-risk": 0
   },
   "ips": [
@@ -52,34 +52,6 @@
     },
     {
       "ip": "opentitan-flash-ctrl",
-      "score": 100,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 25,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 15,
-        "provenance": 10
-      },
-      "gaps": []
-    },
-    {
-      "ip": "opentitan-rv-core-ibex",
-      "score": 100,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 25,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 15,
-        "provenance": 10
-      },
-      "gaps": []
-    },
-    {
-      "ip": "opentitan-uart",
       "score": 100,
       "tier": "Good",
       "breakdown": {
@@ -266,22 +238,6 @@
     },
     {
       "ip": "caliptra-soc-ifc",
-      "score": 98,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 23,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 15,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].bus.signals"
-      ]
-    },
-    {
-      "ip": "canakari",
       "score": 98,
       "tier": "Good",
       "breakdown": {
@@ -901,6 +857,23 @@
       ]
     },
     {
+      "ip": "canakari",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
       "ip": "coralnpu-axi2tlul",
       "score": 93,
       "tier": "Good",
@@ -1479,6 +1452,23 @@
       ]
     },
     {
+      "ip": "opentitan-uart",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
       "ip": "opentitan-usbdev",
       "score": 93,
       "tier": "Good",
@@ -1665,22 +1655,6 @@
     },
     {
       "ip": "coralnpu-scalar-units",
-      "score": 90,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 25,
-        "parameters": 0,
-        "implementation": 20,
-        "verification": 15,
-        "provenance": 10
-      },
-      "gaps": [
-        "parameters: parameters (none declared)"
-      ]
-    },
-    {
-      "ip": "hardfloat",
       "score": 90,
       "tier": "Good",
       "breakdown": {
@@ -2080,6 +2054,25 @@
       ]
     },
     {
+      "ip": "opentitan-rv-core-ibex",
+      "score": 83,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 13,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=clock",
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
       "ip": "riscduino-pwm",
       "score": 83,
       "tier": "Good",
@@ -2168,6 +2161,24 @@
         "interfaces: interfaces[].type=clock",
         "interfaces: interfaces[].type=reset",
         "verification: test.coverage",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "hardfloat",
+      "score": 60,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 0,
+        "parameters": 0,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces (none declared)",
+        "parameters: parameters (none declared)",
         "verification: test.testbenches"
       ]
     }

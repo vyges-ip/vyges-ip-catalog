@@ -1,9 +1,9 @@
 # Vyges IP Catalog — Metadata Quality Scores
 
-- **Aggregate:** 93/100
+- **Aggregate:** 92/100
 - **IPs scored:** 130
-- **Good (≥80):** 130
-- **Medium (60–79):** 0
+- **Good (≥80):** 129
+- **Medium (60–79):** 1
 - **High-risk (<60):** 0
 - **Scorer:** [vyges/metadata-scorer-action@v1](https://github.com/vyges/metadata-scorer-action/tree/v1)
 
@@ -11,6 +11,7 @@
 
 | IP | Score | Tier | Top gap |
 |---|---:|---|---|
+| `hardfloat` | 60 | Medium | interfaces: interfaces (none declared) |
 | `sky130-bandgap-reference` | 80 | Good | interfaces: interfaces[].type=clock |
 | `sky130-opamp` | 80 | Good | interfaces: interfaces[].type=clock |
 | `tlul-apb-adapter` | 80 | Good | interfaces: interfaces[].type=clock |
@@ -23,14 +24,13 @@
 | `coralnpu-tlul-pkg` | 83 | Good | interfaces: interfaces[].type=clock |
 | `opentitan-otp-ctrl` | 83 | Good | interfaces: interfaces[].type=clock |
 | `opentitan-prim-xilinx` | 83 | Good | interfaces: interfaces[].type=clock |
+| `opentitan-rv-core-ibex` | 83 | Good | interfaces: interfaces[].type=clock |
 | `riscduino-pwm` | 83 | Good | parameters: parameters[].description |
 | `sky130-potentiometric-dac` | 83 | Good | interfaces: interfaces[].type=clock |
 | `caliptra-hmac-drbg` | 85 | Good | interfaces: interfaces[].type=bus |
 | `caliptra-sha512-masked` | 85 | Good | interfaces: interfaces[].type=bus |
 | `coralnpu-clock-gate` | 85 | Good | interfaces: interfaces[].type=bus |
 | `coralnpu-rst-sync` | 85 | Good | interfaces: interfaces[].type=bus |
-| `mlow-codec` | 85 | Good | interfaces: interfaces[].type=bus |
-| `opentitan-prim-asap7` | 85 | Good | interfaces: interfaces[].type=bus |
 
 ## Top 20 (highest scores)
 
@@ -40,8 +40,6 @@
 | `ibex` | 100 |
 | `openfasoc-temp-sensor` | 100 |
 | `opentitan-flash-ctrl` | 100 |
-| `opentitan-rv-core-ibex` | 100 |
-| `opentitan-uart` | 100 |
 | `vyges-rv-plic-lite` | 100 |
 | `vyges-spi-host-lite` | 100 |
 | `32bit-risc-core` | 98 |
@@ -54,5 +52,7 @@
 | `caliptra-sha256` | 98 |
 | `caliptra-sha512` | 98 |
 | `caliptra-soc-ifc` | 98 |
-| `canakari` | 98 |
 | `coralnpu-core` | 98 |
+| `coralnpu-i2c-master` | 98 |
+| `coralnpu-rvv-backend` | 98 |
+| `coralnpu-subsystem` | 98 |
