@@ -2,8 +2,8 @@
   "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
   "x-version": "1.0.0",
   "name": "opentitan-rv-dm",
-  "version": "0.1.0",
-  "description": "The OpenTitan RISC-V Debug Module (rv_dm) provides a debug interface for RISC-V cores, supporting JTAG and TL-UL protocols for debugging and memory access.",
+  "version": "0.1.1",
+  "description": "OpenTitan RISC-V Debug Module (rv_dm). Implements RISC-V Debug Spec 0.13 with JTAG TAP (default) or TL-UL-based DMI (UseDmiInterface=1). Exposes two TL-UL slave regions (regs at +0x0, mem/ROM+buffer at +0x800), one TL-UL host port for system bus access (sba), and a per-hart debug_req/unavailable interface to the CPU. Integrated with OpenTitan lifecycle controller, alert_handler, OTP, and RACL.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -14,11 +14,11 @@
     "digital"
   ],
   "created": "2026-03-27T23:05:49Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "updated": "2026-04-16T04:22:21Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/rv_dm",
     "private": false,
     "containsEncryptedPayload": false,
@@ -39,7 +39,15 @@
       "protocol": "standard",
       "port": "clk_i",
       "width": 1,
-      "description": "Clock input signal"
+      "description": "System clock"
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clk_lc_i",
+      "width": 1,
+      "description": "Lifecycle-controller clock. Declared so that topgen connects the correct clk/rst domains; can be tied to clk_i for single-domain integrations."
     },
     {
       "type": "reset",
@@ -47,86 +55,316 @@
       "protocol": "active-low",
       "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset signal"
+      "description": "Async active-low reset \u2014 connect to power-on reset (NOT system reset)"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active-low",
+      "port": "rst_lc_ni",
+      "width": 1,
+      "description": "Async active-low lifecycle reset \u2014 only used for NDM reset tracking"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active-low",
+      "port": "scan_rst_ni",
+      "width": 1,
+      "description": "Async active-low scan-mode reset"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "lc_ctrl_mubi4",
+      "port": "lc_hw_debug_clr_i",
+      "width": 4,
+      "description": "SEC_CM LC_HW_DEBUG_CLR.INTERSIG.MUBI \u2014 lifecycle signal clearing HW debug state"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "lc_ctrl_mubi4",
+      "port": "lc_hw_debug_en_i",
+      "width": 4,
+      "description": "SEC_CM LC_HW_DEBUG_EN.INTERSIG.MUBI \u2014 HW debug lifecycle enable (live, from lifecycle controller)"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "lc_ctrl_mubi4",
+      "port": "lc_dft_en_i",
+      "width": 4,
+      "description": "SEC_CM LC_DFT_EN.INTERSIG.MUBI \u2014 DFT lifecycle enable"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "lc_ctrl_mubi4",
+      "port": "pinmux_hw_debug_en_i",
+      "width": 4,
+      "description": "HW debug lifecycle enable (latched version from pinmux, only used for JTAG/TAP gating)"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "lc_ctrl_mubi4",
+      "port": "lc_check_byp_en_i",
+      "width": 4,
+      "description": "Lifecycle-check-bypass enable"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "lc_ctrl_mubi4",
+      "port": "lc_escalate_en_i",
+      "width": 4,
+      "description": "Lifecycle escalation enable"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "lc_ctrl_mubi4",
+      "port": "lc_init_done_i",
+      "width": 4,
+      "description": "Lifecycle init-done indicator \u2014 used to clear NDM latch after LC re-initialization"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "strap_en_i",
+      "width": 1,
+      "description": "Strap sampling enable"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "strap_en_override_i",
+      "width": 1,
+      "description": "Strap sampling enable override"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "prim_mubi8",
+      "port": "otp_dis_rv_dm_late_debug_i",
+      "width": 8,
+      "description": "SEC_CM OTP_DIS_RV_DM_LATE_DEBUG.INTERSIG.MUBI \u2014 disablement signal from OTP HW_CFG1 partition"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "prim_mubi4",
+      "port": "scanmode_i",
+      "width": 4,
+      "description": "Scan-mode indicator (multi-bit unknown-safe encoded)"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "next_dm_addr_i",
+      "width": 32,
+      "description": "Static word address of the next debug module in the debug chain (0x0 means this is the leaf)"
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "standard",
+      "port": "ndmreset_req_o",
+      "width": 1,
+      "description": "Non-debug module reset request (to CPU/system reset tree)"
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "standard",
+      "port": "dmactive_o",
+      "width": 1,
+      "description": "Debug module is active \u2014 gates debug functionality"
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "standard",
+      "port": "debug_req_o",
+      "width": "NrHarts",
+      "description": "Async per-hart debug request to CPU"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "unavailable_i",
+      "width": "NrHarts",
+      "description": "Per-hart availability indicator (1 = hart unavailable, e.g. powered down)"
     },
     {
       "type": "bus",
       "direction": "slave",
       "protocol": "TL-UL",
-      "port": "tl_i",
+      "port": "regs_tl_d",
       "width": 32,
-      "description": "TileLink host-to-device interface"
+      "description": "TL-UL slave \u2014 CSR access (dmcontrol/dmstatus/abstractcs/command/etc.). Typically at debug_module.base_address + 0x0."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "mem_tl_d",
+      "width": 32,
+      "description": "TL-UL slave \u2014 debug ROM + program buffer for execution-based debug. Typically at debug_module.base_address + 0x800."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "dbg_tl_d",
+      "width": 32,
+      "description": "TL-UL slave \u2014 TL-UL-based DMI alternative to JTAG. Only active when UseDmiInterface=1. Tie off for JTAG-only integrations."
     },
     {
       "type": "bus",
       "direction": "master",
       "protocol": "TL-UL",
-      "port": "tl_o",
+      "port": "sba_tl_h",
       "width": 32,
-      "description": "TileLink device-to-host interface"
-    },
-    {
-      "type": "custom",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "reg2hw",
-      "width": 34,
-      "description": "Register-to-hardware interface for control signals"
+      "description": "TL-UL host \u2014 System Bus Access for debugger-initiated memory R/W. Wire as an additional xbar host."
     },
     {
       "type": "custom",
       "direction": "input",
-      "protocol": "custom",
-      "port": "racl_policies_i",
-      "width": 3,
-      "description": "RACL policy vector input"
+      "protocol": "prim_alert",
+      "port": "alert_rx_i",
+      "width": "NumAlerts",
+      "description": "Alert handler RX (differential diff-pair encoded). Tie off safely for integrations without alert_handler."
     },
     {
       "type": "custom",
       "direction": "output",
-      "protocol": "custom",
+      "protocol": "prim_alert",
+      "port": "alert_tx_o",
+      "width": "NumAlerts",
+      "description": "Alert handler TX (differential diff-pair encoded)"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "racl_policy_vec",
+      "port": "racl_policies_i",
+      "width": "NumRegsRegs",
+      "description": "RACL policy vector input (top_racl_pkg::racl_policy_vec_t). Tie to '0 when EnableRacl=0."
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "racl_error_log",
       "port": "racl_error_o",
       "width": 1,
-      "description": "RACL error log output"
+      "description": "RACL error log output (top_racl_pkg::racl_error_log_t)"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "jtag_tap",
+      "port": "jtag_i",
+      "width": 1,
+      "description": "JTAG TAP request struct (jtag_pkg::jtag_req_t) \u2014 contains tck, tms, tdi, trst_n. Unpack at top-wrapper boundary to 4 physical pins."
     },
     {
       "type": "custom",
       "direction": "output",
-      "protocol": "custom",
-      "port": "intg_err_o",
+      "protocol": "jtag_tap",
+      "port": "jtag_o",
       "width": 1,
-      "description": "Integrity check error output"
+      "description": "JTAG TAP response struct (jtag_pkg::jtag_rsp_t) \u2014 contains tdo, tdo_oe. Unpack at top-wrapper boundary."
     }
   ],
   "parameters": [
     {
+      "name": "IdcodeValue",
+      "type": "logic [31:0]",
+      "default": "32'h0000_0001",
+      "description": "32-bit IDCODE register value reported on JTAG. Typically encodes (manufacturer ID, design ID, version)."
+    },
+    {
+      "name": "UseDmiInterface",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable TL-UL-based DMI on dbg_tl_d port as alternative to JTAG TAP. 0 = JTAG-only (default)."
+    },
+    {
+      "name": "SecVolatileRawUnlockEn",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable volatile RAW-unlock debug escape \u2014 production OFF."
+    },
+    {
+      "name": "AlertAsyncOn",
+      "type": "logic [NumAlerts-1:0]",
+      "default": "{NumAlerts{1'b1}}",
+      "description": "Per-alert async clock-crossing mode. Default: all alerts treated as async."
+    },
+    {
+      "name": "AlertSkewCycles",
+      "type": "int unsigned",
+      "default": 1,
+      "description": "Number of cycles differential skew tolerated on alert signals"
+    },
+    {
+      "name": "TlulHostUserRsvdBits",
+      "type": "logic [tlul_pkg::RsvdWidth-1:0]",
+      "default": 0,
+      "description": "Reserved user bits on TL-UL host (sba) a_user struct"
+    },
+    {
       "name": "EnableRacl",
       "type": "bit",
       "default": 0,
-      "description": "Enable RACL functionality"
+      "description": "Enable Register Access Control Logic (RACL) policy enforcement"
     },
     {
       "name": "RaclErrorRsp",
       "type": "bit",
-      "default": 1,
-      "description": "Enable RACL error response"
+      "default": "EnableRacl",
+      "description": "Return TL-UL error response on RACL violation (defaults to EnableRacl)"
     },
     {
-      "name": "RaclPolicySelVec",
-      "type": "array",
-      "default": "{rv_dm_reg_pkg::NumRegsRegs{0}}",
-      "description": "RACL policy selection vector"
+      "name": "RaclPolicySelVecRegs",
+      "type": "top_racl_pkg::racl_policy_sel_t[]",
+      "default": "{NumRegsRegs{0}}",
+      "description": "RACL policy selection vector, one entry per CSR in the regs block"
+    },
+    {
+      "name": "NrHarts",
+      "type": "int",
+      "default": 1,
+      "description": "From rv_dm_reg_pkg \u2014 number of harts the debug module supports. 1 for single-core Ibex."
+    },
+    {
+      "name": "NumAlerts",
+      "type": "int",
+      "default": 1,
+      "description": "From rv_dm_reg_pkg \u2014 number of alerts emitted by this IP"
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "RISC-V debug module",
-      "JTAG interface",
-      "TileLink UL protocol support",
-      "Register access control logic (RACL)",
-      "Integrity error detection and reporting"
+      "RISC-V Debug Spec 0.13 compliant debug module",
+      "JTAG TAP (default) or TL-UL-based DMI (UseDmiInterface=1)",
+      "Two TL-UL slave regions: regs (dmcontrol/dmstatus/abstract) and mem (debug ROM + program buffer)",
+      "TL-UL host port (sba) for system bus access \u2014 debugger-initiated memory R/W",
+      "Per-hart debug_req/unavailable signalling (NrHarts configurable)",
+      "NDM reset request output to CPU/system reset tree",
+      "OpenTitan lifecycle controller integration (7 lc_ctrl_mubi4 inputs)",
+      "OpenTitan alert_handler integration (prim_alert rx/tx pairs)",
+      "OpenTitan OTP HW_CFG1 integration (otp_dis_rv_dm_late_debug)",
+      "Register Access Control Logic (RACL) policy enforcement",
+      "Scan and DFT mode support"
     ]
   },
   "asic": {
@@ -145,34 +383,64 @@
   },
   "dependencies": [
     {
+      "name": "rv_dm_reg_pkg",
+      "type": "package",
+      "description": "This IP's own register package \u2014 defines NumRegsRegs, NumAlerts, NrHarts"
+    },
+    {
+      "name": "jtag_pkg",
+      "type": "package",
+      "description": "JTAG TAP struct types (jtag_req_t / jtag_rsp_t) \u2014 included in this IP at rtl/jtag_pkg.sv"
+    },
+    {
       "name": "tlul_pkg",
-      "type": "library",
-      "description": "TileLink UL protocol package"
+      "type": "package",
+      "description": "TileLink UL protocol package (tl_h2d_t / tl_d2h_t, RsvdWidth). Source: vyges-ip/opentitan-tlul"
+    },
+    {
+      "name": "lc_ctrl_pkg",
+      "type": "package",
+      "description": "OpenTitan lifecycle controller package \u2014 lc_tx_t, On, Off constants. Source: lowRISC/opentitan/hw/ip/lc_ctrl/rtl/lc_ctrl_pkg.sv (NOT yet mirrored to vyges-ip)"
+    },
+    {
+      "name": "prim_mubi_pkg",
+      "type": "package",
+      "description": "OpenTitan multi-bit unknown-safe encoding \u2014 mubi4_t, mubi8_t, MuBi4True/False, MuBi8True/False. Source: vyges-ip/opentitan-prim"
+    },
+    {
+      "name": "prim_alert_pkg",
+      "type": "package",
+      "description": "OpenTitan alert_handler RX/TX diff-pair encoding \u2014 alert_rx_t, alert_tx_t. Source: vyges-ip/opentitan-prim"
+    },
+    {
+      "name": "top_racl_pkg",
+      "type": "package",
+      "description": "OpenTitan-top RACL types \u2014 racl_policy_vec_t, racl_policy_sel_t, racl_error_log_t. Source: lowRISC/opentitan/hw/top_earlgrey/rtl/top_racl_pkg.sv (NOT yet mirrored to vyges-ip; soc-generator emits a skeleton)"
     },
     {
       "name": "prim_assert",
       "type": "library",
-      "description": "Primitive assertion library"
+      "description": "Primitive assertion library. Source: vyges-ip/opentitan-prim"
     },
     {
       "name": "prim_reg_we_check",
       "type": "library",
-      "description": "Primitive register write enable checker"
-    },
-    {
-      "name": "tlul_adapter_reg",
-      "type": "library",
-      "description": "TileLink register adapter"
+      "description": "Primitive register write-enable checker. Source: vyges-ip/opentitan-prim"
     },
     {
       "name": "prim_subreg",
       "type": "library",
-      "description": "Primitive sub-register module"
+      "description": "Primitive sub-register module. Source: vyges-ip/opentitan-prim"
     },
     {
       "name": "prim_subreg_ext",
       "type": "library",
-      "description": "Extended primitive sub-register module"
+      "description": "Extended primitive sub-register module. Source: vyges-ip/opentitan-prim"
+    },
+    {
+      "name": "tlul_adapter_reg",
+      "type": "library",
+      "description": "TileLink register adapter. Source: vyges-ip/opentitan-tlul"
     }
   ],
   "test": {
@@ -181,7 +449,7 @@
     "coverage": "functional"
   },
   "documentation": {
-    "upstream": "https://opentitan.org/book/"
+    "upstream": "https://opentitan.org/book/hw/ip/rv_dm/"
   },
   "artifacts": {
     "total_rtl_lines": 13197
@@ -198,7 +466,10 @@
     "OpenTitan",
     "TileLink",
     "JTAG",
-    "RACL"
+    "DMI",
+    "SBA",
+    "RACL",
+    "Lifecycle"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -206,7 +477,7 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T23:05:49Z"
+    "last_activity": "2026-04-16T04:22:21Z"
   },
   "meta": {
     "template": {

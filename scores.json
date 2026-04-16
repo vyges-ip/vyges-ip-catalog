@@ -1,10 +1,10 @@
 {
   "scorer_ref": "v1",
-  "ip_count": 130,
+  "ip_count": 134,
   "aggregate": 92,
   "tiers": {
-    "Good": 129,
-    "Medium": 1,
+    "Good": 131,
+    "Medium": 3,
     "High-risk": 0
   },
   "ips": [
@@ -430,6 +430,22 @@
     },
     {
       "ip": "picorv32",
+      "score": 98,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "pulp-riscv-dbg",
       "score": 98,
       "tier": "Good",
       "breakdown": {
@@ -1622,6 +1638,23 @@
       ]
     },
     {
+      "ip": "vyges-rv-dbg-tlul",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
       "ip": "caliptra-kmac",
       "score": 90,
       "tier": "Good",
@@ -2161,6 +2194,41 @@
         "interfaces: interfaces[].type=clock",
         "interfaces: interfaces[].type=reset",
         "verification: test.coverage",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "tech_cells_generic",
+      "score": 65,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 0,
+        "parameters": 0,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces (none declared)",
+        "parameters: parameters (none declared)"
+      ]
+    },
+    {
+      "ip": "common_cells",
+      "score": 60,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 0,
+        "parameters": 0,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces (none declared)",
+        "parameters: parameters (none declared)",
         "verification: test.testbenches"
       ]
     },

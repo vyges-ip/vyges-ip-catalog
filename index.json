@@ -1,11 +1,11 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-04-16T02:24:02+00:00",
-  "generated_sha": "3015bbd81bbaea8bb4b55260c81795aad06918b0",
+  "generated_at": "2026-04-16T07:26:54+00:00",
+  "generated_sha": "648193f6eff526d26523485fc22509122af97561",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
-  "repo_count": 133,
-  "with_metadata": 130,
+  "repo_count": 137,
+  "with_metadata": 134,
   "without_metadata": 0,
   "ips": [
     {
@@ -268,6 +268,15 @@
       "default_branch": "main",
       "metadata_path": "metadata/canakari.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/canakari/main/vyges-metadata.json"
+    },
+    {
+      "repo": "vyges-ip/common_cells",
+      "name": "common_cells",
+      "version": "1.24.0",
+      "content_hash": "061a3b952252adfa0277c8dcf177763b7e859a6faa8a7ddec099bff753d08213",
+      "default_branch": "main",
+      "metadata_path": "metadata/common_cells.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/common_cells/main/vyges-metadata.json"
     },
     {
       "repo": "vyges-ip/coralnpu-axi2tlul",
@@ -785,8 +794,8 @@
     {
       "repo": "vyges-ip/opentitan-rv-dm",
       "name": "opentitan-rv-dm",
-      "version": "0.1.0",
-      "content_hash": "8a2117cf9895be82938e78e38edffd274a3e192326f551ac6a9ecc2c8d347448",
+      "version": "0.1.1",
+      "content_hash": "2dae3a718ac693abb2cfb4f9df5f69886c27aebe8ae386a9468294745543556b",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-rv-dm.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-rv-dm/main/vyges-metadata.json"
@@ -880,6 +889,15 @@
       "default_branch": "main",
       "metadata_path": "metadata/picorv32.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/picorv32/main/vyges-metadata.json"
+    },
+    {
+      "repo": "vyges-ip/pulp-riscv-dbg",
+      "name": "pulp-riscv-dbg",
+      "version": "0.1.0",
+      "content_hash": "f48f9da6a967094aeac7e47d64c547a8f76fdb8dd721d7ed5f16d63565b62499",
+      "default_branch": "main",
+      "metadata_path": "metadata/pulp-riscv-dbg.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/pulp-riscv-dbg/main/vyges-metadata.json"
     },
     {
       "repo": "vyges-ip/pwm-controller",
@@ -1006,6 +1024,15 @@
       "default_branch": "main",
       "metadata_path": "metadata/spi-controller.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/spi-controller/main/vyges-metadata.json"
+    },
+    {
+      "repo": "vyges-ip/tech_cells_generic",
+      "name": "tech_cells_generic",
+      "version": "0.2.3",
+      "content_hash": "78fffcfcd73c35720ddbc01c953ee35f76e2e524caac82c4155649ca9cff374e",
+      "default_branch": "main",
+      "metadata_path": "metadata/tech_cells_generic.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/tech_cells_generic/main/vyges-metadata.json"
     },
     {
       "repo": "vyges-ip/tlul-apb-adapter",
@@ -1159,6 +1186,15 @@
       "default_branch": "main",
       "metadata_path": "metadata/vyges-rstmgr-lite.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-rstmgr-lite/main/vyges-metadata.json"
+    },
+    {
+      "repo": "vyges-ip/vyges-rv-dbg-tlul",
+      "name": "vyges-rv-dbg-tlul",
+      "version": "0.1.0",
+      "content_hash": "61567f25f63ac07e1599d5f781b305e74a9dc775b4b3ec881da54f11e9bde04f",
+      "default_branch": "main",
+      "metadata_path": "metadata/vyges-rv-dbg-tlul.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-rv-dbg-tlul/main/vyges-metadata.json"
     },
     {
       "repo": "vyges-ip/vyges-rv-plic-lite",

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "common_cells",
+  "version": "1.24.0",
+  "description": "PULP's shared SystemVerilog utility library \u2014 FIFOs, CDC primitives, arbiters, counters, one-hot encoders, stream elements. Used by pulp-riscv-dbg and many other PULP IPs as a base dependency.",
+  "license": "SHL-0.51",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-16T04:22:21Z",
+  "updated": "2026-04-16T04:22:21Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/pulp-platform/common_cells",
+    "commit": "b74f0ad63600762ef101cf1d3365d19dfbb3123b",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [],
+  "parameters": [],
+  "performance": {},
+  "architecture": {
+    "type": "library",
+    "features": [
+      "FIFOs: fifo_v3, fifo_async_fwft, stream_fifo",
+      "CDC: sync, cdc_2phase, cdc_2phase_clearable, cdc_fifo_gray, cdc_reset_ctrlr",
+      "Arbitration: rr_arb_tree, rrarbiter, stream_arbiter",
+      "Encoding: onehot_to_bin, lzc (leading-zero count), popcount",
+      "Stream: stream_delay, stream_fork, stream_filter, stream_register",
+      "Counters: counter, delta_counter, mv_filter"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A",
+      "gf180mcuD",
+      "asap7",
+      "any-generic-standard-cell"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado",
+      "Yosys",
+      "Quartus"
+    ],
+    "devices": [
+      "Artix-7",
+      "Ultrascale+",
+      "generic"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "tech_cells_generic",
+      "type": "library",
+      "source": "vyges-ip/tech_cells_generic",
+      "description": "For tie-cell and clock-gate instantiations"
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "formal"
+  },
+  "documentation": {
+    "upstream": "https://github.com/pulp-platform/common_cells"
+  },
+  "artifacts": {
+    "total_rtl_lines": 12000
+  },
+  "categories": [
+    {
+      "main_category": "Building Blocks",
+      "sub_category": "Utility Library"
+    }
+  ],
+  "keywords": [
+    "PULP",
+    "common cells",
+    "FIFO",
+    "CDC",
+    "arbiter",
+    "utility",
+    "SystemVerilog"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 50,
+    "fpga_validated": true,
+    "formal_verified": true,
+    "maintained": true,
+    "last_activity": "2026-04-16T04:22:21Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "vyges-manual",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-16T04:22:21Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [],
+  "rtl_quality": {
+    "module_prefixed": false,
+    "defines_prefixed": false,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": true,
+    "no_translate_pragmas": true,
+    "lint_clean": true,
+    "no_casex": true,
+    "width_clean": true,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}

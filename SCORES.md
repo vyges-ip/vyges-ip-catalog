@@ -1,9 +1,9 @@
 # Vyges IP Catalog — Metadata Quality Scores
 
 - **Aggregate:** 92/100
-- **IPs scored:** 130
-- **Good (≥80):** 129
-- **Medium (60–79):** 1
+- **IPs scored:** 134
+- **Good (≥80):** 131
+- **Medium (60–79):** 3
 - **High-risk (<60):** 0
 - **Scorer:** [vyges/metadata-scorer-action@v1](https://github.com/vyges/metadata-scorer-action/tree/v1)
 
@@ -11,7 +11,9 @@
 
 | IP | Score | Tier | Top gap |
 |---|---:|---|---|
+| `common_cells` | 60 | Medium | interfaces: interfaces (none declared) |
 | `hardfloat` | 60 | Medium | interfaces: interfaces (none declared) |
+| `tech_cells_generic` | 65 | Medium | interfaces: interfaces (none declared) |
 | `sky130-bandgap-reference` | 80 | Good | interfaces: interfaces[].type=clock |
 | `sky130-opamp` | 80 | Good | interfaces: interfaces[].type=clock |
 | `tlul-apb-adapter` | 80 | Good | interfaces: interfaces[].type=clock |
@@ -29,8 +31,6 @@
 | `sky130-potentiometric-dac` | 83 | Good | interfaces: interfaces[].type=clock |
 | `caliptra-hmac-drbg` | 85 | Good | interfaces: interfaces[].type=bus |
 | `caliptra-sha512-masked` | 85 | Good | interfaces: interfaces[].type=bus |
-| `coralnpu-clock-gate` | 85 | Good | interfaces: interfaces[].type=bus |
-| `coralnpu-rst-sync` | 85 | Good | interfaces: interfaces[].type=bus |
 
 ## Top 20 (highest scores)
 

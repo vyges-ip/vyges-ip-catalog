@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "tech_cells_generic",
+  "version": "0.2.3",
+  "description": "Technology-abstract cells (clock gating/mux/inverter/buffer, power cells, SRAM) used by PULP-platform IPs. Generic implementations suitable for simulation and ASIC synthesis; Xilinx-targeted variants under fpga/.",
+  "license": "SHL-0.51",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-04-16T04:22:21Z",
+  "updated": "2026-04-16T04:22:21Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/pulp-platform/tech_cells_generic",
+    "commit": "fca524a1174f6363ba0e778f37b9f398257d4b8f",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [],
+  "parameters": [],
+  "performance": {},
+  "architecture": {
+    "type": "library",
+    "features": [
+      "Clock gating / mux / inverter / buffer / delay (tc_clk_*)",
+      "Power cells (tc_pwr_*)",
+      "Technology-abstract SRAM (tc_sram, tc_sram_impl)",
+      "Xilinx-targeted FPGA variants (tc_clk_xilinx, tc_sram_xilinx, pad_functional_xilinx)",
+      "Deprecated PULP-prefixed aliases (pulp_clk_cells, cluster_clk_cells, etc.)"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A",
+      "gf180mcuD",
+      "asap7",
+      "any-generic-standard-cell"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado",
+      "Yosys",
+      "Quartus"
+    ],
+    "devices": [
+      "Artix-7",
+      "Ultrascale+",
+      "generic"
+    ]
+  },
+  "dependencies": [],
+  "test": {
+    "testbenches": [
+      "src/test/"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/pulp-platform/tech_cells_generic"
+  },
+  "artifacts": {
+    "total_rtl_lines": 1200
+  },
+  "categories": [
+    {
+      "main_category": "Building Blocks",
+      "sub_category": "Tech-Abstract Cells"
+    }
+  ],
+  "keywords": [
+    "PULP",
+    "tech cells",
+    "clock gating",
+    "SRAM",
+    "FPGA"
+  ],
+  "trust": {
+    "verification_level": "silicon_proven",
+    "tapeout_count": 20,
+    "fpga_validated": true,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-16T04:22:21Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "vyges-manual",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-16T04:22:21Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "rtl/tc_clk.sv",
+    "rtl/tc_pwr.sv",
+    "rtl/tc_sram.sv",
+    "rtl/tc_sram_impl.sv",
+    "fpga/tc_clk_xilinx.sv",
+    "fpga/tc_sram_xilinx.sv",
+    "fpga/pad_functional_xilinx.sv"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": false,
+    "header_guards": false,
+    "one_module_per_file": false,
+    "self_contained_includes": true,
+    "no_translate_pragmas": true,
+    "lint_clean": false,
+    "no_casex": true,
+    "width_clean": false,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": []
+}
