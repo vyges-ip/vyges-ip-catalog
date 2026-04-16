@@ -1,11 +1,11 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-04-16T13:23:41+00:00",
-  "generated_sha": "1e612c248912d9a56feef8c59f47d2b411fa1f80",
+  "generated_at": "2026-04-16T19:08:04+00:00",
+  "generated_sha": "4e7574c7e4e6a6c00d00b14f65693b42f9427a07",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
-  "repo_count": 137,
-  "with_metadata": 134,
+  "repo_count": 138,
+  "with_metadata": 135,
   "without_metadata": 0,
   "ips": [
     {
@@ -268,6 +268,15 @@
       "default_branch": "main",
       "metadata_path": "metadata/canakari.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/canakari/main/vyges-metadata.json"
+    },
+    {
+      "repo": "vyges-ip/cf-sram",
+      "name": "cf-sram",
+      "version": "1.0.0",
+      "content_hash": "396671fb4d8d0a6173ea472f824d4faf268fff34c8953e4d49e2e974577538b4",
+      "default_branch": "main",
+      "metadata_path": "metadata/cf-sram.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-sram/main/vyges-metadata.json"
     },
     {
       "repo": "vyges-ip/common_cells",
@@ -1191,7 +1200,7 @@
       "repo": "vyges-ip/vyges-rv-dbg-tlul",
       "name": "vyges-rv-dbg-tlul",
       "version": "0.1.0",
-      "content_hash": "61567f25f63ac07e1599d5f781b305e74a9dc775b4b3ec881da54f11e9bde04f",
+      "content_hash": "c80480dbcef2dce53ada8f72d5270c65b979bb1cb714a5db4575973da66b401f",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-rv-dbg-tlul.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-rv-dbg-tlul/main/vyges-metadata.json"

@@ -1,10 +1,10 @@
 {
   "scorer_ref": "v1",
-  "ip_count": 134,
-  "aggregate": 92,
+  "ip_count": 135,
+  "aggregate": 91,
   "tiers": {
     "Good": 131,
-    "Medium": 3,
+    "Medium": 4,
     "High-risk": 0
   },
   "ips": [
@@ -2194,6 +2194,25 @@
         "interfaces: interfaces[].type=clock",
         "interfaces: interfaces[].type=reset",
         "verification: test.coverage",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "cf-sram",
+      "score": 70,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 10,
+        "parameters": 0,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].type=bus",
+        "parameters: parameters (none declared)",
         "verification: test.testbenches"
       ]
     },

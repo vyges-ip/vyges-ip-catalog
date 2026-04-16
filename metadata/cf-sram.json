@@ -1,0 +1,289 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "cf-sram",
+  "version": "1.0.0",
+  "description": "ChipFoundry CF_SRAM_1024x32 \u2014 single-port synchronous SRAM in SKY130 technology. 1024 words \u00d7 32 bits, bit-enable write, separate data-in/data-out pins. Commercial-quality hardened macro (GDS/LEF/LIB/stub Verilog). Apache 2.0 licensed. Default SRAM for Vyges soc-generator on Sky130 ASIC targets; replaces OpenRAM-generated sky130_sram_2kbyte_1rw1r_32x512_8 which had known LVS/DRC issues.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic"
+  ],
+  "design_type": [
+    "digital",
+    "memory"
+  ],
+  "created": "2026-04-16T15:00:00Z",
+  "updated": "2026-04-16T15:00:00Z",
+  "source": {
+    "type": "bundle",
+    "url": "https://github.com/vyges-ip/cf-sram",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "CLKin",
+      "width": 1,
+      "description": "Synchronous memory clock"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "EN",
+      "width": 1,
+      "description": "Active-high memory enable"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "R_WB",
+      "width": 1,
+      "description": "Read (high) / Write (low) select"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "AD",
+      "width": 10,
+      "description": "Word address [9:0] \u2014 1024 entries"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "DI",
+      "width": 32,
+      "description": "Data-in bus"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "BEN",
+      "width": 32,
+      "description": "Per-bit write enable (active high)"
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "standard",
+      "port": "DO",
+      "width": 32,
+      "description": "Data-out bus \u2014 flowthrough-latched on read, holds previous on idle"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "TM",
+      "width": 1,
+      "description": "Test mode enable (tie 1'b0 in normal use)"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "SM",
+      "width": 1,
+      "description": "Scan mode enable (tie 1'b0 in normal use)"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "WLBI",
+      "width": 1,
+      "description": "Word-line bias input (tie 1'b0 in normal use)"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "WLOFF",
+      "width": 1,
+      "description": "Word-line off (tie 1'b0 in normal use)"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "ScanInCC",
+      "width": 1,
+      "description": "Scan-chain input for timing test (tie 1'b0 in normal use)"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "ScanInDL",
+      "width": 1,
+      "description": "Scan-chain input for data-left test (tie 1'b0 in normal use)"
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "ScanInDR",
+      "width": 1,
+      "description": "Scan-chain input for data-right test (tie 1'b0 in normal use)"
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "standard",
+      "port": "ScanOutCC",
+      "width": 1,
+      "description": "Scan-chain output (leave unconnected in normal use)"
+    }
+  ],
+  "parameters": [],
+  "performance": {
+    "access_time_ns_tt_1v8_25c": null,
+    "note": "See lib/CF_SRAM_1024x32_tt_180V_25C.lib for characterized timing"
+  },
+  "architecture": {
+    "type": "memory",
+    "features": [
+      "1024 words \u00d7 32 bits = 4 KiB per instance",
+      "Single-port, synchronous, flow-through",
+      "Active-high bit-enable (per-bit write granularity)",
+      "Read/Write select via single R_WB pin",
+      "Scan/DFT ports (WLBI, WLOFF, TM, SM, ScanIn{CC,DL,DR}, ScanOutCC) \u2014 tie to 1'b0 for functional use",
+      "Independent power domain pins: vpwra (array), vpwrp (periphery), vpwrm (memory), vpwrac (array cap), vpwrpc (periphery cap), vgnd, vpb (NWELL bias), vnb (PWELL bias)"
+    ],
+    "dimensions": {
+      "x_um": 387.87,
+      "y_um": 303.315,
+      "area_mm2": 0.118
+    }
+  },
+  "asic": {
+    "flavor": "hard-macro",
+    "technology": [
+      "sky130A"
+    ],
+    "corners": [
+      "tt_180V_25C",
+      "ff_195V_100C",
+      "ss_160V_100C"
+    ]
+  },
+  "fpga": {
+    "toolchain": [],
+    "devices": [],
+    "note": "Hard macro is ASIC-only. For FPGA targets, use inferred BRAM or a behavioral model."
+  },
+  "dependencies": [],
+  "test": {
+    "testbenches": [],
+    "status": "vendor_characterized",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "datasheet": "README.md"
+  },
+  "artifacts": {
+    "gds_bytes": 9000000,
+    "lef_bytes": 28000,
+    "lib_bytes_per_corner": 350000
+  },
+  "categories": [
+    {
+      "main_category": "Memory",
+      "sub_category": "SRAM"
+    }
+  ],
+  "keywords": [
+    "SRAM",
+    "memory",
+    "ChipFoundry",
+    "Sky130",
+    "hard-macro",
+    "chipIgnite",
+    "single-port"
+  ],
+  "trust": {
+    "verification_level": "silicon_characterized",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-16T15:00:00Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "vyges-manual",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-16T15:00:00Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "rtl_files": [
+    "hdl/CF_SRAM_1024x32_stub.v",
+    "hdl/CF_SRAM_1024x32.tt_180V_25C.v"
+  ],
+  "hardened_files": [
+    "gds/CF_SRAM_1024x32.gds",
+    "lef/CF_SRAM_1024x32.lef",
+    "lib/CF_SRAM_1024x32_tt_180V_25C.lib",
+    "lib/CF_SRAM_1024x32_ff_195V_100C.lib",
+    "lib/CF_SRAM_1024x32_ss_160V_100C.lib"
+  ],
+  "rtl_quality": {
+    "module_prefixed": true,
+    "defines_prefixed": true,
+    "header_guards": false,
+    "one_module_per_file": true,
+    "self_contained_includes": true,
+    "no_translate_pragmas": true,
+    "lint_clean": true,
+    "no_casex": true,
+    "width_clean": true,
+    "no_sv_keyword_conflicts": true
+  },
+  "defines": [],
+  "soc_integration": {
+    "openlane_extra_lefs": [
+      "lef/CF_SRAM_1024x32.lef"
+    ],
+    "openlane_extra_libs": [
+      "lib/CF_SRAM_1024x32_tt_180V_25C.lib"
+    ],
+    "openlane_extra_gds": [
+      "gds/CF_SRAM_1024x32.gds"
+    ],
+    "pdn_macro_connections_regex": [
+      ".*u_bank[0-9]+ vpwra vgnd vccd1 vssd1",
+      ".*u_bank[0-9]+ vpwrp vgnd vccd1 vssd1",
+      ".*u_bank[0-9]+ vpwrm vgnd vccd1 vssd1",
+      ".*u_bank[0-9]+ vpwrac vgnd vccd1 vssd1",
+      ".*u_bank[0-9]+ vpwrpc vgnd vccd1 vssd1",
+      ".*u_bank[0-9]+ vpb vnb vccd1 vssd1"
+    ],
+    "ignore_disconnected_modules": [
+      "CF_SRAM_1024x32"
+    ],
+    "magic_ext_abstract_cells": [
+      "CF_SRAM_.*"
+    ],
+    "scan_pin_tie_off_note": "7 scan/test input pins (WLBI, WLOFF, TM, SM, ScanIn{CC,DL,DR}) and ScanOutCC output should be tied off at RTL instantiation; the IGNORE_DISCONNECTED_MODULES waiver bypasses the post-synth disconnected-pin checker for these tied-off pins."
+  }
+}
