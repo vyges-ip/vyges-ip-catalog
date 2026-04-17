@@ -14,7 +14,7 @@
     "digital"
   ],
   "created": "2026-04-13T02:05:32Z",
-  "updated": "2026-04-13T02:05:32Z",
+  "updated": "2026-04-16T21:20:00Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
@@ -108,28 +108,7 @@
       "Artix-7"
     ]
   },
-  "dependencies": [
-    {
-      "name": "prim_util_pkg",
-      "type": "library",
-      "description": "Utility package for common functions and definitions."
-    },
-    {
-      "name": "prim_secded_pkg",
-      "type": "library",
-      "description": "Package for SECDED error correction codes."
-    },
-    {
-      "name": "prim_count_pkg",
-      "type": "library",
-      "description": "Package for counter-related utilities."
-    },
-    {
-      "name": "prim_subreg_pkg",
-      "type": "library",
-      "description": "Package for register access specifications."
-    }
-  ],
+  "dependencies": [],
   "test": {
     "testbenches": [
       "tb_prim_fifo",
