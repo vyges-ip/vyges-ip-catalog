@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "coralnpu-clock-gate",
   "version": "0.1.0",
-  "description": "A clock gating module designed for power optimization in Coral NPU systems, enabling selective clock signal propagation based on enable signals.",
+  "description": "A clock gating module designed for power optimization in Coral NPU systems, enabling selective clock signal propagation based on enable conditions.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,8 +13,8 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-01T05:13:01Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:10:51Z",
+  "updated": "2026-04-19T06:10:51Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
@@ -36,34 +36,34 @@
     {
       "type": "clock",
       "direction": "input",
-      "protocol": "standard",
+      "protocol": "generic",
       "port": "clk_in",
       "width": 1,
       "description": "Input clock signal to be gated."
     },
     {
-      "type": "clock",
-      "direction": "output",
-      "protocol": "standard",
-      "port": "clk_out",
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "reset_n",
       "width": 1,
-      "description": "Output gated clock signal."
+      "description": "Active-low reset signal."
     },
     {
       "type": "control",
       "direction": "input",
-      "protocol": "standard",
+      "protocol": "generic",
       "port": "enable",
       "width": 1,
-      "description": "Enable signal to control clock gating."
+      "description": "Enable signal for clock gating."
     },
     {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "standard",
-      "port": "reset_n",
+      "type": "clock",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "clk_out",
       "width": 1,
-      "description": "Active-low reset signal."
+      "description": "Output gated clock signal."
     }
   ],
   "parameters": [
@@ -71,16 +71,16 @@
       "name": "USE_RESET",
       "type": "bit",
       "default": 1,
-      "description": "Enable or disable the reset functionality."
+      "description": "Enable reset functionality in the clock gate."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "Clock gating for power optimization",
-      "Enable-based clock control",
-      "Optional reset functionality"
+      "clock gating",
+      "power optimization",
+      "reset support"
     ]
   },
   "asic": {
@@ -126,30 +126,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-01"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-01T05:13:01Z"
+      "generated_at": "2026-04-19T06:10:51Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

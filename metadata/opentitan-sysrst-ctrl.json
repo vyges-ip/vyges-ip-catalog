@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-sysrst-ctrl",
   "version": "0.1.0",
-  "description": "The sysrst_ctrl module is a system reset controller for OpenTitan, providing configurable reset, wakeup, and interrupt handling functionality with support for alert signaling and input inversion.",
+  "description": "The sysrst_ctrl is a system reset controller IP block from the OpenTitan project. It provides functionality for managing system reset, wakeup, and interrupt requests, as well as handling various input/output signals and alerts.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:06:02Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:48Z",
+  "updated": "2026-04-19T06:12:48Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/sysrst_ctrl",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,113 +34,228 @@
   ],
   "interfaces": [
     {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Always-on 24MHz clock for configuration."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "clk_aon_i",
+      "width": 1,
+      "description": "Always-on 200KHz clock for logic."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Power-on reset for the 24MHz clock."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "rst_aon_ni",
+      "width": 1,
+      "description": "Power-on reset for the 200KHz clock."
+    },
+    {
       "type": "bus",
       "direction": "slave",
       "protocol": "TL-UL",
       "port": "tl_i",
-      "width": 32,
-      "description": "TileLink host-to-device interface for register access."
+      "width": 1,
+      "description": "TileLink host-to-device interface."
     },
     {
       "type": "bus",
       "direction": "master",
       "protocol": "TL-UL",
       "port": "tl_o",
-      "width": 32,
-      "description": "TileLink device-to-host interface for register responses."
-    },
-    {
-      "type": "clock",
-      "direction": "input",
-      "port": "clk_i",
       "width": 1,
-      "description": "24MHz always-on clock for configuration logic."
-    },
-    {
-      "type": "clock",
-      "direction": "input",
-      "port": "clk_aon_i",
-      "width": 1,
-      "description": "200KHz always-on clock for logic operations."
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "port": "rst_ni",
-      "width": 1,
-      "description": "Power-on reset for the 24MHz clock domain."
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "port": "rst_aon_ni",
-      "width": 1,
-      "description": "Power-on reset for the 200KHz clock domain."
+      "description": "TileLink device-to-host interface."
     },
     {
       "type": "interrupt",
       "direction": "output",
+      "protocol": "custom",
       "port": "intr_event_detected_o",
       "width": 1,
-      "description": "Interrupt signal for event detection to PLIC."
+      "description": "Event interrupt to PLIC, on bus clock."
     },
     {
-      "type": "alert",
-      "direction": "input",
-      "port": "alert_rx_i",
-      "width": 1,
-      "description": "Alert receiver interface for incoming alerts."
-    },
-    {
-      "type": "alert",
+      "type": "interrupt",
       "direction": "output",
-      "port": "alert_tx_o",
+      "protocol": "custom",
+      "port": "wkup_req_o",
       "width": 1,
-      "description": "Alert transmitter interface for outgoing alerts."
+      "description": "Wakeup request to power manager, on AON clock."
+    },
+    {
+      "type": "reset",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "rst_req_o",
+      "width": 1,
+      "description": "Reset request to reset manager, on AON clock."
     },
     {
       "type": "gpio",
       "direction": "input",
+      "protocol": "custom",
+      "port": "cio_ac_present_i",
+      "width": 1,
+      "description": "Indicates if AC power is present."
+    },
+    {
+      "type": "gpio",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "cio_ec_rst_l_i",
+      "width": 1,
+      "description": "EC reset signal asserted by another system agent."
+    },
+    {
+      "type": "gpio",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "cio_key0_in_i",
+      "width": 1,
+      "description": "Input for VolUp button or keyboard matrix column."
+    },
+    {
+      "type": "gpio",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "cio_key1_in_i",
+      "width": 1,
+      "description": "Input for VolDown button or keyboard matrix row."
+    },
+    {
+      "type": "gpio",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "cio_key2_in_i",
+      "width": 1,
+      "description": "Input for a configurable button or keyboard matrix row."
+    },
+    {
+      "type": "gpio",
+      "direction": "input",
+      "protocol": "custom",
       "port": "cio_pwrb_in_i",
       "width": 1,
-      "description": "Power button input signal."
+      "description": "Input for power button."
+    },
+    {
+      "type": "gpio",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "cio_lid_open_i",
+      "width": 1,
+      "description": "Indicates if the lid is open."
+    },
+    {
+      "type": "gpio",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "cio_flash_wp_l_i",
+      "width": 1,
+      "description": "Read-back of the flash write-protect output pad."
     },
     {
       "type": "gpio",
       "direction": "output",
+      "protocol": "custom",
+      "port": "cio_bat_disable_o",
+      "width": 1,
+      "description": "Signal to disconnect the battery."
+    },
+    {
+      "type": "gpio",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "cio_flash_wp_l_o",
+      "width": 1,
+      "description": "Signal to assert flash write-protect."
+    },
+    {
+      "type": "gpio",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "cio_ec_rst_l_o",
+      "width": 1,
+      "description": "Signal to assert EC reset."
+    },
+    {
+      "type": "gpio",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "cio_key0_out_o",
+      "width": 1,
+      "description": "Passthrough or inverted output for key0."
+    },
+    {
+      "type": "gpio",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "cio_key1_out_o",
+      "width": 1,
+      "description": "Passthrough or inverted output for key1."
+    },
+    {
+      "type": "gpio",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "cio_key2_out_o",
+      "width": 1,
+      "description": "Passthrough or inverted output for key2."
+    },
+    {
+      "type": "gpio",
+      "direction": "output",
+      "protocol": "custom",
       "port": "cio_pwrb_out_o",
       "width": 1,
-      "description": "Power button output signal with optional inversion."
+      "description": "Passthrough or inverted output for power button."
+    },
+    {
+      "type": "gpio",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "cio_z3_wakeup_o",
+      "width": 1,
+      "description": "Signal to exit from Z4 sleep mode and enter Z3 mode."
     }
   ],
   "parameters": [
     {
       "name": "AlertAsyncOn",
       "type": "bit",
-      "default": "1'b1",
+      "default": "{NumAlerts{1'b1}}",
       "description": "Determines if alerts are asynchronous."
     },
     {
       "name": "AlertSkewCycles",
       "type": "int",
       "default": 1,
-      "description": "Number of cycles tolerated for differential skew on alert signals."
-    },
-    {
-      "name": "NumAlerts",
-      "type": "int",
-      "default": 1,
-      "description": "Number of alert signals supported."
+      "description": "Number of cycles a differential skew is tolerated on the alert signal."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "Configurable reset and wakeup handling",
-      "Interrupt generation for event detection",
-      "Alert signaling with configurable parameters",
-      "Input signal inversion and synchronization"
+      "System reset control",
+      "Wakeup and interrupt management",
+      "Input signal inversion and synchronization",
+      "Alert handling with configurable parameters"
     ]
   },
   "asic": {
@@ -161,12 +276,12 @@
     {
       "name": "prim_alert_pkg",
       "type": "library",
-      "description": "Provides alert signaling primitives."
+      "description": "Primitive alert package for alert handling."
     },
     {
       "name": "tlul_pkg",
       "type": "library",
-      "description": "Defines TileLink Ultra-Lite protocol types."
+      "description": "TileLink Ultra-Lite protocol package."
     }
   ],
   "test": {
@@ -175,7 +290,7 @@
     "coverage": "functional"
   },
   "documentation": {
-    "upstream": "https://github.com/lowRISC/opentitan/tree/master/hw/ip/sysrst_ctrl"
+    "upstream": "https://github.com/lowRISC/opentitan"
   },
   "artifacts": {
     "total_rtl_lines": 9543
@@ -187,12 +302,12 @@
     }
   ],
   "keywords": [
+    "reset controller",
+    "system reset",
     "OpenTitan",
-    "System Reset Controller",
-    "TileLink",
-    "Alert Signaling",
-    "Interrupts",
-    "Reset Management"
+    "wakeup",
+    "interrupts",
+    "alert handling"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -200,43 +315,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T23:06:02Z"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:06:02Z"
+      "generated_at": "2026-04-19T06:12:48Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/sysrst_ctrl.sv",
-    "rtl/sysrst_ctrl_autoblock.sv",
-    "rtl/sysrst_ctrl_combo.sv",
-    "rtl/sysrst_ctrl_comboact.sv",
-    "rtl/sysrst_ctrl_detect.sv",
-    "rtl/sysrst_ctrl_intr.sv",
-    "rtl/sysrst_ctrl_keyintr.sv",
-    "rtl/sysrst_ctrl_pin.sv",
-    "rtl/sysrst_ctrl_pkg.sv",
-    "rtl/sysrst_ctrl_reg_pkg.sv",
-    "rtl/sysrst_ctrl_reg_top.sv",
-    "rtl/sysrst_ctrl_ulp.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

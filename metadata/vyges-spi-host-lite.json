@@ -14,7 +14,7 @@
     "digital"
   ],
   "created": "2026-03-28T01:51:56Z",
-  "updated": "2026-03-28T01:51:56Z",
+  "updated": "2026-04-17T18:33:40Z",
   "source": {
     "type": "git",
     "url": "https://github.com/vyges/vyges-spi-host-lite",
@@ -55,29 +55,7 @@
       "protocol": "TL-UL",
       "port": "tl_i",
       "width": 1,
-      "description": "TL-UL host-to-device interface input.",
-      "signals": [
-        {
-          "name": "tl_i",
-          "direction": "input",
-          "type": "bus",
-          "description": "TL-UL host-to-device (tl_h2d_t struct)"
-        },
-        {
-          "name": "tl_o",
-          "direction": "output",
-          "type": "bus",
-          "description": "TL-UL device-to-host (tl_d2h_t struct)"
-        }
-      ]
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "TL-UL",
-      "port": "tl_o",
-      "width": 1,
-      "description": "TL-UL device-to-host interface output.",
+      "description": "TileLink UL register-access interface.",
       "signals": [
         {
           "name": "tl_i",

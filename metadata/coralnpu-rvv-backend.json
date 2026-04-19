@@ -3,9 +3,9 @@
   "x-version": "1.0.0",
   "name": "coralnpu-rvv-backend",
   "version": "0.1.0",
-  "description": "A backend vector processing unit for the CoralNPU, implementing RISC-V Vector Extension (RVV) with support for decoding, dispatching, and executing vector operations.",
+  "description": "IP imported from https://github.com/google-coral/coralnpu",
   "license": "Apache-2.0",
-  "maturity": "production",
+  "maturity": "draft",
   "target": [
     "asic",
     "fpga"
@@ -13,323 +13,46 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-01T05:12:51Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:11:02Z",
+  "updated": "2026-04-19T06:11:02Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
-    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
-    "ip_path": "hdl/verilog/rvv",
+    "commit": "2dec130e5c81ad562bd10037b0245412dc0a7217",
     "private": false,
-    "containsEncryptedPayload": false,
     "indexing": true
   },
   "maintainers": [
     {
       "name": "Vyges",
       "email": "team@vyges.com",
-      "url": "https://vyges.com",
       "github": "vyges"
     }
   ],
-  "interfaces": [
-    {
-      "type": "clock",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "clk",
-      "width": 1,
-      "description": "Clock signal for the backend."
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "active-low",
-      "port": "rst_n",
-      "width": 1,
-      "description": "Active-low reset signal."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "custom",
-      "port": "de_uop_valid",
-      "width": "NUM_DE_INST * NUM_DE_UOP",
-      "description": "Validity signals for decoded micro-operations."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "custom",
-      "port": "de_uop",
-      "width": "NUM_DE_INST * NUM_DE_UOP",
-      "description": "Decoded micro-operations."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "uop_index_remain",
-      "width": "UOP_INDEX_WIDTH",
-      "description": "Remaining micro-operation index."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "pop",
-      "width": "NUM_DE_INST",
-      "description": "Pop signals for the command queue."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "push",
-      "width": "NUM_DE_UOP",
-      "description": "Push signals for the Uops Queue."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "uop",
-      "width": "NUM_DE_UOP",
-      "description": "Micro-operations to be pushed into the Uops Queue."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "custom",
-      "port": "uq_ready",
-      "width": "NUM_DE_UOP",
-      "description": "Ready signals from the Uops Queue."
-    },
-    {
-      "type": "signal",
-      "direction": "input",
-      "protocol": "custom",
-      "port": "trap_flush_rvv",
-      "width": 1,
-      "description": "Trap flush signal for RVV."
-    }
-  ],
-  "parameters": [
-    {
-      "name": "NUM_DE_INST",
-      "type": "int",
-      "default": 2,
-      "description": "Number of decode instructions supported."
-    },
-    {
-      "name": "NUM_DE_UOP",
-      "type": "int",
-      "default": 6,
-      "description": "Number of micro-operations supported per instruction."
-    },
-    {
-      "name": "UOP_INDEX_WIDTH",
-      "type": "int",
-      "default": 8,
-      "description": "Bit-width of the micro-operation index."
-    }
-  ],
-  "performance": {},
+  "interfaces": [],
+  "parameters": [],
   "architecture": {
-    "type": "coprocessor",
-    "features": [
-      "RISC-V Vector Extension (RVV) support",
-      "Micro-operation decoding and dispatch",
-      "Vector arithmetic and logic operations",
-      "Support for vector load/store and reduction operations"
-    ]
-  },
-  "asic": {
-    "flavor": "digital",
-    "technology": [
-      "sky130A"
-    ]
-  },
-  "fpga": {
-    "toolchain": [
-      "Vivado"
-    ],
-    "devices": [
-      "Artix-7"
-    ]
-  },
-  "dependencies": [
-    {
-      "name": "rvv_backend.svh",
-      "type": "library",
-      "description": "Shared header file for RVV backend definitions."
-    }
-  ],
-  "test": {
-    "testbenches": [
-      "Aligner_tb.sv",
-      "MultiFifo_tb.sv"
-    ],
-    "status": "upstream_passing",
-    "coverage": "functional"
-  },
-  "documentation": {
-    "upstream": "https://github.com/google-coral/coralnpu"
-  },
-  "artifacts": {
-    "total_rtl_lines": 29597
+    "type": "peripheral",
+    "features": []
   },
   "categories": [
     {
-      "main_category": "Processing Cores",
-      "sub_category": "Vector Processors"
+      "main_category": "Miscellaneous",
+      "sub_category": "Custom Accelerators"
     }
   ],
-  "keywords": [
-    "RVV",
-    "RISC-V",
-    "Vector Processing",
-    "CoralNPU"
-  ],
   "trust": {
-    "verification_level": "silicon_proven",
-    "tapeout_count": 0,
-    "fpga_validated": false,
-    "formal_verified": false,
-    "maintained": true,
-    "last_activity": "2026-04-01T05:12:51Z"
+    "verification_level": "unknown",
+    "maintained": true
   },
+  "_note": "AI enrichment failed. Manual population needed.",
   "meta": {
     "template": {
-      "generator": "github-models-ai",
-      "template_version": "1.0.0",
-      "generated_at": "2026-04-01T05:12:51Z"
+      "generator": "upstream-sync-fallback",
+      "generated_at": "2026-04-19T06:11:02Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/Aligner.sv",
-    "rtl/MultiFifo.sv",
-    "rtl/RvvCore.sv",
-    "rtl/RvvFrontEnd.sv",
-    "rtl/rvv_backend.sv",
-    "rtl/rvv_backend_alu.sv",
-    "rtl/rvv_backend_alu_unit.sv",
-    "rtl/rvv_backend_alu_unit_addsub.sv",
-    "rtl/rvv_backend_alu_unit_execution_p1.sv",
-    "rtl/rvv_backend_alu_unit_mask.sv",
-    "rtl/rvv_backend_alu_unit_mask_viota.sv",
-    "rtl/rvv_backend_alu_unit_other.sv",
-    "rtl/rvv_backend_alu_unit_shift.sv",
-    "rtl/rvv_backend_arb.sv",
-    "rtl/rvv_backend_decode.sv",
-    "rtl/rvv_backend_decode_ctrl.sv",
-    "rtl/rvv_backend_decode_de2.sv",
-    "rtl/rvv_backend_decode_unit.sv",
-    "rtl/rvv_backend_decode_unit_ari.sv",
-    "rtl/rvv_backend_decode_unit_ari_de2.sv",
-    "rtl/rvv_backend_decode_unit_de2.sv",
-    "rtl/rvv_backend_decode_unit_lsu.sv",
-    "rtl/rvv_backend_decode_unit_lsu_de2.sv",
-    "rtl/rvv_backend_dispatch.sv",
-    "rtl/rvv_backend_dispatch_bypass.sv",
-    "rtl/rvv_backend_dispatch_ctrl.sv",
-    "rtl/rvv_backend_dispatch_operand.sv",
-    "rtl/rvv_backend_dispatch_opr_byte_type.sv",
-    "rtl/rvv_backend_dispatch_raw_uop_rob.sv",
-    "rtl/rvv_backend_dispatch_raw_uop_uop.sv",
-    "rtl/rvv_backend_dispatch_structure_hazard.sv",
-    "rtl/rvv_backend_div.sv",
-    "rtl/rvv_backend_div_unit.sv",
-    "rtl/rvv_backend_div_unit_divider.sv",
-    "rtl/rvv_backend_fdiv_wrapper.sv",
-    "rtl/rvv_backend_fma.sv",
-    "rtl/rvv_backend_fma_wrapper.sv",
-    "rtl/rvv_backend_freduction.sv",
-    "rtl/rvv_backend_lsu_remap.sv",
-    "rtl/rvv_backend_mac_unit.sv",
-    "rtl/rvv_backend_mul_unit.sv",
-    "rtl/rvv_backend_mul_unit_mul8.sv",
-    "rtl/rvv_backend_mulmac.sv",
-    "rtl/rvv_backend_pmtrdt.sv",
-    "rtl/rvv_backend_pmtrdt_unit.sv",
-    "rtl/rvv_backend_pmtrdt_unit_permutation.sv",
-    "rtl/rvv_backend_pmtrdt_unit_reduction.sv",
-    "rtl/rvv_backend_pmtrdt_unit_reduction_alu.sv",
-    "rtl/rvv_backend_retire.sv",
-    "rtl/rvv_backend_retire_waw.sv",
-    "rtl/rvv_backend_rob.sv",
-    "rtl/rvv_backend_sqrt7_rec7.sv",
-    "rtl/rvv_backend_vrf.sv",
-    "rtl/rvv_backend_vrf_reg.sv",
-    "rtl/Aligner.sv",
-    "rtl/MultiFifo.sv",
-    "rtl/RvvCore.sv",
-    "rtl/RvvFrontEnd.sv",
-    "rtl/rvv_backend.sv",
-    "rtl/rvv_backend_alu.sv",
-    "rtl/rvv_backend_alu_unit.sv",
-    "rtl/rvv_backend_alu_unit_addsub.sv",
-    "rtl/rvv_backend_alu_unit_execution_p1.sv",
-    "rtl/rvv_backend_alu_unit_mask.sv",
-    "rtl/rvv_backend_alu_unit_mask_viota.sv",
-    "rtl/rvv_backend_alu_unit_other.sv",
-    "rtl/rvv_backend_alu_unit_shift.sv",
-    "rtl/rvv_backend_arb.sv",
-    "rtl/rvv_backend_decode.sv",
-    "rtl/rvv_backend_decode_ctrl.sv",
-    "rtl/rvv_backend_decode_de2.sv",
-    "rtl/rvv_backend_decode_unit.sv",
-    "rtl/rvv_backend_decode_unit_ari.sv",
-    "rtl/rvv_backend_decode_unit_ari_de2.sv",
-    "rtl/rvv_backend_decode_unit_de2.sv",
-    "rtl/rvv_backend_decode_unit_lsu.sv",
-    "rtl/rvv_backend_decode_unit_lsu_de2.sv",
-    "rtl/rvv_backend_dispatch.sv",
-    "rtl/rvv_backend_dispatch_bypass.sv",
-    "rtl/rvv_backend_dispatch_ctrl.sv",
-    "rtl/rvv_backend_dispatch_operand.sv",
-    "rtl/rvv_backend_dispatch_opr_byte_type.sv",
-    "rtl/rvv_backend_dispatch_raw_uop_rob.sv",
-    "rtl/rvv_backend_dispatch_raw_uop_uop.sv",
-    "rtl/rvv_backend_dispatch_structure_hazard.sv",
-    "rtl/rvv_backend_div.sv",
-    "rtl/rvv_backend_div_unit.sv",
-    "rtl/rvv_backend_div_unit_divider.sv",
-    "rtl/rvv_backend_fdiv_wrapper.sv",
-    "rtl/rvv_backend_fma.sv",
-    "rtl/rvv_backend_fma_wrapper.sv",
-    "rtl/rvv_backend_freduction.sv",
-    "rtl/rvv_backend_lsu_remap.sv",
-    "rtl/rvv_backend_mac_unit.sv",
-    "rtl/rvv_backend_mul_unit.sv",
-    "rtl/rvv_backend_mul_unit_mul8.sv",
-    "rtl/rvv_backend_mulmac.sv",
-    "rtl/rvv_backend_pmtrdt.sv",
-    "rtl/rvv_backend_pmtrdt_unit.sv",
-    "rtl/rvv_backend_pmtrdt_unit_permutation.sv",
-    "rtl/rvv_backend_pmtrdt_unit_reduction.sv",
-    "rtl/rvv_backend_pmtrdt_unit_reduction_alu.sv",
-    "rtl/rvv_backend_retire.sv",
-    "rtl/rvv_backend_retire_waw.sv",
-    "rtl/rvv_backend_rob.sv",
-    "rtl/rvv_backend_sqrt7_rec7.sv",
-    "rtl/rvv_backend_vrf.sv",
-    "rtl/rvv_backend_vrf_reg.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

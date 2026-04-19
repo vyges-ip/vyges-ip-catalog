@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-prim-xilinx",
   "version": "0.1.0",
-  "description": "Bidirectional IO buffer for Xilinx FPGAs with inversion and virtual open drain features, supporting various pad types including analog and bidirectional configurations.",
+  "description": "A collection of Xilinx-specific primitives for OpenTitan, including bidirectional IO buffers, clock gating, clock multiplexing, and single-port RAMs.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:05:46Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:12:34Z",
+  "updated": "2026-04-19T06:12:34Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/prim_xilinx",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,60 +34,60 @@
   ],
   "interfaces": [
     {
-      "type": "bus",
-      "direction": "bidirectional",
+      "type": "inout",
+      "direction": "both",
       "protocol": "custom",
       "port": "inout_io",
       "width": 1,
-      "description": "Bidirectional pad interface."
+      "description": "Bidirectional pad for IO operations."
     },
     {
-      "type": "signal",
+      "type": "output",
       "direction": "output",
       "protocol": "custom",
       "port": "in_o",
       "width": 1,
-      "description": "Output data after inversion."
+      "description": "Processed input data from the pad."
     },
     {
-      "type": "signal",
+      "type": "output",
       "direction": "output",
       "protocol": "custom",
       "port": "in_raw_o",
       "width": 1,
-      "description": "Uninverted output data."
+      "description": "Raw, uninverted input data from the pad."
     },
     {
-      "type": "signal",
+      "type": "input",
       "direction": "input",
       "protocol": "custom",
       "port": "ie_i",
       "width": 1,
-      "description": "Input enable signal."
+      "description": "Input enable signal for the pad."
     },
     {
-      "type": "signal",
+      "type": "input",
       "direction": "input",
       "protocol": "custom",
       "port": "out_i",
       "width": 1,
-      "description": "Output data signal."
+      "description": "Output data to drive the pad."
     },
     {
-      "type": "signal",
+      "type": "input",
       "direction": "input",
       "protocol": "custom",
       "port": "oe_i",
       "width": 1,
-      "description": "Output enable signal."
+      "description": "Output enable signal for the pad."
     },
     {
-      "type": "signal",
+      "type": "input",
       "direction": "input",
       "protocol": "custom",
       "port": "attr_i",
-      "width": 1,
-      "description": "Additional pad attributes."
+      "width": "variable",
+      "description": "Additional pad attributes such as slew rate, drive strength, and pull-up/down settings."
     }
   ],
   "parameters": [
@@ -95,23 +95,22 @@
       "name": "PadType",
       "type": "enum",
       "default": "BidirStd",
-      "description": "Defines the pad type (e.g., bidirectional, analog)."
+      "description": "Specifies the type of pad (e.g., bidirectional, input-only, analog)."
     },
     {
       "name": "ScanRole",
       "type": "enum",
       "default": "NoScan",
-      "description": "Defines the scan role for the pad."
+      "description": "Specifies the scan role for the pad (not used in Xilinx variant)."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "Bidirectional IO buffer",
-      "Input inversion",
+      "Bidirectional IO buffer with input inversion",
       "Virtual open drain emulation",
-      "Support for multiple pad types"
+      "Support for Xilinx-specific primitives like IBUF and IOBUF"
     ]
   },
   "asic": {
@@ -132,12 +131,12 @@
     {
       "name": "prim_pkg",
       "type": "library",
-      "description": "Package defining technology-specific parameters."
+      "description": "Base package for primitive definitions and constants."
     },
     {
       "name": "prim_xilinx_pkg",
       "type": "library",
-      "description": "Package for Xilinx-specific primitives and configurations."
+      "description": "Xilinx-specific package for primitive configurations."
     }
   ],
   "test": {
@@ -153,17 +152,16 @@
   },
   "categories": [
     {
-      "main_category": "Interface Controllers",
-      "sub_category": "High-Speed Interfaces"
+      "main_category": "Base Libraries",
+      "sub_category": "Pipeline & Bypass Logic"
     }
   ],
   "keywords": [
-    "Xilinx",
-    "IO buffer",
     "OpenTitan",
-    "FPGA",
-    "bidirectional",
-    "virtual open drain"
+    "Xilinx",
+    "IO Buffer",
+    "Clock Gating",
+    "Clock Multiplexing"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -171,61 +169,16 @@
     "fpga_validated": true,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T23:05:46Z"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:05:46Z"
+      "generated_at": "2026-04-19T06:12:34Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/prim_and2.sv",
-    "rtl/prim_buf.sv",
-    "rtl/prim_clock_buf.sv",
-    "rtl/prim_clock_gating.sv",
-    "rtl/prim_clock_mux2.sv",
-    "rtl/prim_flop.sv",
-    "rtl/prim_flop_en.sv",
-    "rtl/prim_pad_attr.sv",
-    "rtl/prim_pad_wrapper.sv",
-    "rtl/prim_pkg.sv",
-    "rtl/prim_ram_1p.sv",
-    "rtl/prim_xilinx_pkg.sv",
-    "rtl/prim_xilinx_rom.sv",
-    "rtl/prim_xnor2.sv",
-    "rtl/prim_xor2.sv",
-    "rtl/prim_and2.sv",
-    "rtl/prim_buf.sv",
-    "rtl/prim_clock_buf.sv",
-    "rtl/prim_clock_gating.sv",
-    "rtl/prim_clock_mux2.sv",
-    "rtl/prim_flop.sv",
-    "rtl/prim_flop_en.sv",
-    "rtl/prim_pad_attr.sv",
-    "rtl/prim_pad_wrapper.sv",
-    "rtl/prim_pkg.sv",
-    "rtl/prim_ram_1p.sv",
-    "rtl/prim_xilinx_pkg.sv",
-    "rtl/prim_xilinx_rom.sv",
-    "rtl/prim_xnor2.sv",
-    "rtl/prim_xor2.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

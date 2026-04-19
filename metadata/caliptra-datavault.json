@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "caliptra-datavault",
   "version": "0.1.0",
-  "description": "The Caliptra DataVault is a hardware block for secure storage and management of sensitive data, featuring lockable and non-lockable registers, scratch registers, and data vault entries with configurable access control.",
+  "description": "Caliptra DataVault is a register block for secure storage and access control of sensitive data, including sticky and non-sticky registers, lockable scratch registers, and data vault entries.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T21:43:20Z",
-  "updated": "2026-03-27T21:43:20Z",
+  "created": "2026-04-19T06:10:16Z",
+  "updated": "2026-04-19T06:10:16Z",
   "source": {
     "type": "git",
     "url": "https://github.com/chipsalliance/caliptra-rtl",
-    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "commit": "f4f60f90852635b9e92bb9d23a07b977f6e7ba2c",
     "ip_path": "src/datavault",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,28 +34,12 @@
   ],
   "interfaces": [
     {
-      "type": "clock",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "clk",
-      "width": 1,
-      "description": "Clock signal for the DataVault module."
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "rst",
-      "width": 1,
-      "description": "Reset signal for the DataVault module."
-    },
-    {
       "type": "bus",
       "direction": "input",
       "protocol": "custom",
       "port": "s_cpuif_req",
       "width": 1,
-      "description": "CPU interface request signal."
+      "description": "CPU interface request signal"
     },
     {
       "type": "bus",
@@ -63,7 +47,7 @@
       "protocol": "custom",
       "port": "s_cpuif_req_is_wr",
       "width": 1,
-      "description": "CPU interface write request signal."
+      "description": "CPU interface write request signal"
     },
     {
       "type": "bus",
@@ -71,7 +55,7 @@
       "protocol": "custom",
       "port": "s_cpuif_addr",
       "width": 11,
-      "description": "Address bus for CPU interface."
+      "description": "CPU interface address bus"
     },
     {
       "type": "bus",
@@ -79,7 +63,7 @@
       "protocol": "custom",
       "port": "s_cpuif_wr_data",
       "width": 32,
-      "description": "Write data bus for CPU interface."
+      "description": "CPU interface write data bus"
     },
     {
       "type": "bus",
@@ -87,7 +71,7 @@
       "protocol": "custom",
       "port": "s_cpuif_wr_biten",
       "width": 32,
-      "description": "Write byte enable signals for CPU interface."
+      "description": "CPU interface write byte enable signals"
     },
     {
       "type": "bus",
@@ -95,7 +79,7 @@
       "protocol": "custom",
       "port": "s_cpuif_req_stall_wr",
       "width": 1,
-      "description": "Write stall signal for CPU interface."
+      "description": "CPU interface write stall signal"
     },
     {
       "type": "bus",
@@ -103,7 +87,7 @@
       "protocol": "custom",
       "port": "s_cpuif_req_stall_rd",
       "width": 1,
-      "description": "Read stall signal for CPU interface."
+      "description": "CPU interface read stall signal"
     },
     {
       "type": "bus",
@@ -111,7 +95,7 @@
       "protocol": "custom",
       "port": "s_cpuif_rd_ack",
       "width": 1,
-      "description": "Read acknowledgment signal for CPU interface."
+      "description": "CPU interface read acknowledgment signal"
     },
     {
       "type": "bus",
@@ -119,7 +103,7 @@
       "protocol": "custom",
       "port": "s_cpuif_rd_err",
       "width": 1,
-      "description": "Read error signal for CPU interface."
+      "description": "CPU interface read error signal"
     },
     {
       "type": "bus",
@@ -127,7 +111,7 @@
       "protocol": "custom",
       "port": "s_cpuif_rd_data",
       "width": 32,
-      "description": "Read data bus for CPU interface."
+      "description": "CPU interface read data bus"
     },
     {
       "type": "bus",
@@ -135,7 +119,7 @@
       "protocol": "custom",
       "port": "s_cpuif_wr_ack",
       "width": 1,
-      "description": "Write acknowledgment signal for CPU interface."
+      "description": "CPU interface write acknowledgment signal"
     },
     {
       "type": "bus",
@@ -143,83 +127,53 @@
       "protocol": "custom",
       "port": "s_cpuif_wr_err",
       "width": 1,
-      "description": "Write error signal for CPU interface."
+      "description": "CPU interface write error signal"
     },
     {
       "type": "custom",
       "direction": "input",
       "protocol": "custom",
       "port": "hwif_in",
-      "width": "variable",
-      "description": "Hardware interface input signals."
+      "width": "struct",
+      "description": "Hardware interface input structure"
     },
     {
       "type": "custom",
       "direction": "output",
       "protocol": "custom",
       "port": "hwif_out",
-      "width": "variable",
-      "description": "Hardware interface output signals."
+      "width": "struct",
+      "description": "Hardware interface output structure"
     }
   ],
   "parameters": [
     {
-      "name": "DV_ADDR_W",
-      "type": "int",
-      "default": 13,
-      "description": "Address width for the DataVault."
-    },
-    {
-      "name": "DV_DATA_W",
+      "name": "DV_REG_DATA_WIDTH",
       "type": "int",
       "default": 32,
-      "description": "Data width for the DataVault."
+      "description": "Width of the data bus for the register block"
     },
     {
-      "name": "STICKY_DV_NUM_ENTRIES",
+      "name": "DV_REG_MIN_ADDR_WIDTH",
       "type": "int",
-      "default": 10,
-      "description": "Number of sticky DataVault entries."
+      "default": 11,
+      "description": "Minimum address width for the register block"
     },
     {
-      "name": "DV_NUM_ENTRIES",
+      "name": "DV_REG_ADDR_WIDTH",
       "type": "int",
-      "default": 10,
-      "description": "Number of non-sticky DataVault entries."
-    },
-    {
-      "name": "LOCK_SCRATCH_NUM_ENTRIES",
-      "type": "int",
-      "default": 10,
-      "description": "Number of lockable scratch registers."
-    },
-    {
-      "name": "STICKY_LOCK_SCRATCH_NUM_ENTRIES",
-      "type": "int",
-      "default": 8,
-      "description": "Number of sticky lockable scratch registers."
-    },
-    {
-      "name": "NONSTICKY_SCRATCH_NUM_ENTRIES",
-      "type": "int",
-      "default": 8,
-      "description": "Number of non-sticky scratch registers."
-    },
-    {
-      "name": "DV_NUM_DWORDS",
-      "type": "int",
-      "default": 12,
-      "description": "Number of double words per DataVault entry."
+      "default": 11,
+      "description": "Address width for the register block"
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "Lockable and non-lockable registers",
-      "Sticky and non-sticky data vault entries",
-      "Configurable access control",
-      "Support for CPU interface with read/write operations"
+      "Sticky and non-sticky registers",
+      "Lockable scratch registers",
+      "Data vault entries with access control",
+      "CPU interface for secure data access"
     ]
   },
   "asic": {
@@ -239,8 +193,8 @@
   "dependencies": [
     {
       "name": "PeakRDL-regblock",
-      "type": "tool",
-      "description": "SystemVerilog generator used to create the register block."
+      "type": "library",
+      "description": "SystemVerilog register block generator used for RTL generation"
     }
   ],
   "test": {
@@ -254,32 +208,31 @@
   "artifacts": {
     "total_rtl_lines": 1193
   },
-  "categories": {
-    "primary": "security",
-    "secondary": [
-      "memory",
-      "peripheral"
-    ],
-    "tags": [
-      "data-vault",
-      "secure-storage",
-      "registers",
-      "hardware-security"
-    ]
-  },
+  "categories": [
+    {
+      "main_category": "Security IP",
+      "sub_category": "Secure Boot Blocks"
+    }
+  ],
+  "keywords": [
+    "DataVault",
+    "SecureStorage",
+    "Registers",
+    "Caliptra"
+  ],
   "trust": {
     "verification_level": "silicon_proven",
     "tapeout_count": 0,
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T21:43:20Z"
+    "last_activity": "2026-04-19T06:10:16Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T21:43:20Z"
+      "generated_at": "2026-04-19T06:10:16Z"
     },
     "schema": {
       "version": "1.0.0"

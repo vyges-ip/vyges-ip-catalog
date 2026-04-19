@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-mbx",
   "version": "0.1.0",
-  "description": "The opentitan-mbx is a mailbox peripheral IP block designed for secure communication between hardware and software components. It supports TL-UL protocol, integrity checks, and includes features for error handling and secure register access.",
+  "description": "The opentitan-mbx is a mailbox peripheral IP block designed for secure communication between hardware and software components. It supports TL-UL protocol, integrity checks, and configurable access control policies.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:11:00Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:22Z",
+  "updated": "2026-04-19T06:12:22Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "e34333f9b38b01f5c07ef1177ca08408effe7653",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/mbx",
     "private": false,
     "containsEncryptedPayload": false,
@@ -39,7 +39,7 @@
       "protocol": "TL-UL",
       "port": "tl_i",
       "width": 32,
-      "description": "Incoming TL-UL bus interface for communication."
+      "description": "TL-UL host-to-device interface for incoming transactions."
     },
     {
       "type": "bus",
@@ -47,56 +47,76 @@
       "protocol": "TL-UL",
       "port": "tl_o",
       "width": 32,
-      "description": "Outgoing TL-UL bus interface for communication."
+      "description": "TL-UL device-to-host interface for outgoing transactions."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_win_o",
+      "width": 32,
+      "description": "TL-UL interface for windowed outbound transactions."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_win_i",
+      "width": 32,
+      "description": "TL-UL interface for windowed inbound transactions."
     },
     {
       "type": "clock",
       "direction": "input",
       "port": "clk_i",
       "width": 1,
-      "description": "Clock input signal."
+      "description": "Clock input for the mailbox."
     },
     {
       "type": "reset",
       "direction": "input",
       "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset signal."
+      "description": "Active-low reset input for the mailbox."
     },
     {
-      "type": "custom",
+      "type": "bus",
       "direction": "output",
+      "protocol": "custom",
       "port": "reg2hw",
-      "width": 1,
-      "description": "Output interface for hardware register writes."
+      "width": 32,
+      "description": "Mailbox register-to-hardware interface for write operations."
     },
     {
-      "type": "custom",
+      "type": "bus",
       "direction": "input",
+      "protocol": "custom",
       "port": "hw2reg",
-      "width": 1,
-      "description": "Input interface for hardware register reads."
+      "width": 32,
+      "description": "Mailbox hardware-to-register interface for read operations."
     },
     {
-      "type": "custom",
+      "type": "bus",
       "direction": "input",
+      "protocol": "custom",
       "port": "racl_policies_i",
-      "width": 1,
-      "description": "Input for RACL policy vector."
+      "width": 32,
+      "description": "Input for RACL policy configuration."
     },
     {
-      "type": "custom",
+      "type": "bus",
       "direction": "output",
+      "protocol": "custom",
       "port": "racl_error_o",
-      "width": 1,
-      "description": "Output for RACL error log."
+      "width": 32,
+      "description": "Output for RACL error logging."
     },
     {
-      "type": "custom",
+      "type": "signal",
       "direction": "output",
       "port": "intg_err_o",
       "width": 1,
-      "description": "Output for integrity check errors."
+      "description": "Integrity error output signal."
     }
   ],
   "parameters": [
@@ -115,18 +135,18 @@
     {
       "name": "RaclPolicySelVec",
       "type": "enum",
-      "default": "{mbx_reg_pkg::NumRegsCore{0}}",
-      "description": "RACL policy selection vector."
+      "default": "0",
+      "description": "Vector of RACL policy selectors."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "Mailbox communication between hardware and software",
+      "Mailbox communication",
       "TL-UL protocol support",
-      "Integrity check and error handling",
-      "RACL policy enforcement"
+      "Integrity checks",
+      "Configurable RACL policies"
     ]
   },
   "asic": {
@@ -147,37 +167,27 @@
     {
       "name": "tlul_pkg",
       "type": "library",
-      "description": "TileLink Uncached Lightweight (TL-UL) protocol package."
+      "description": "TL-UL protocol package for transaction-level communication."
     },
     {
       "name": "mbx_reg_pkg",
       "type": "library",
-      "description": "Mailbox register package containing data structures and parameters."
+      "description": "Mailbox register package for register definitions and structures."
     },
     {
       "name": "prim_assert",
       "type": "library",
-      "description": "Primitive assertions for design verification."
+      "description": "Assertion library for design verification."
     },
     {
       "name": "prim_reg_we_check",
       "type": "library",
-      "description": "Primitive module for write enable checking."
+      "description": "Primitive for write enable checking."
     },
     {
       "name": "tlul_adapter_reg",
-      "type": "core",
-      "description": "TileLink adapter for register interface."
-    },
-    {
-      "name": "tlul_cmd_intg_chk",
-      "type": "core",
-      "description": "TileLink command integrity checker."
-    },
-    {
-      "name": "tlul_rsp_intg_gen",
-      "type": "core",
-      "description": "TileLink response integrity generator."
+      "type": "library",
+      "description": "TL-UL adapter for register interface."
     }
   ],
   "test": {
@@ -193,17 +203,16 @@
   },
   "categories": [
     {
-      "main_category": "Security IP",
-      "sub_category": "Secure Boot Blocks"
+      "main_category": "Interface Controllers",
+      "sub_category": "Parallel Interfaces"
     }
   ],
   "keywords": [
-    "OpenTitan",
-    "Mailbox",
+    "mailbox",
     "TL-UL",
     "RACL",
-    "Integrity Check",
-    "Secure Communication"
+    "integrity-checks",
+    "OpenTitan"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -211,41 +220,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T23:11:00Z"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:11:00Z"
+      "generated_at": "2026-04-19T06:12:22Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/mbx.sv",
-    "rtl/mbx_core_reg_top.sv",
-    "rtl/mbx_fsm.sv",
-    "rtl/mbx_hostif.sv",
-    "rtl/mbx_imbx.sv",
-    "rtl/mbx_ombx.sv",
-    "rtl/mbx_reg_pkg.sv",
-    "rtl/mbx_soc_reg_top.sv",
-    "rtl/mbx_sramrwarb.sv",
-    "rtl/mbx_sysif.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-rv-timer",
   "version": "0.1.0",
-  "description": "A RISC-V compliant timer module from the OpenTitan project, providing multi-hart timer functionality with support for register access control and integrity checks.",
+  "description": "The OpenTitan RV Timer is a configurable RISC-V timer module that provides multi-hart timer functionality with support for interrupts, register access control, and integrity checks.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:05:53Z",
-  "updated": "2026-03-27T23:05:53Z",
+  "created": "2026-04-19T06:12:43Z",
+  "updated": "2026-04-19T06:12:43Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/rv_timer",
     "private": false,
     "containsEncryptedPayload": false,
@@ -44,10 +44,10 @@
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "active-low",
+      "protocol": "generic",
       "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset input signal"
+      "description": "Active-low reset signal"
     },
     {
       "type": "bus",
@@ -55,7 +55,7 @@
       "protocol": "TL-UL",
       "port": "tl_i",
       "width": 32,
-      "description": "TileLink host-to-device interface"
+      "description": "Incoming TL-UL bus interface"
     },
     {
       "type": "bus",
@@ -63,14 +63,22 @@
       "protocol": "TL-UL",
       "port": "tl_o",
       "width": 32,
-      "description": "TileLink device-to-host interface"
+      "description": "Outgoing TL-UL bus interface"
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "intg_err_o",
+      "width": 1,
+      "description": "Integrity error output signal"
     },
     {
       "type": "custom",
       "direction": "output",
       "protocol": "custom",
       "port": "reg2hw",
-      "width": 160,
+      "width": 156,
       "description": "Register-to-hardware interface for write operations"
     },
     {
@@ -78,7 +86,7 @@
       "direction": "input",
       "protocol": "custom",
       "port": "hw2reg",
-      "width": 66,
+      "width": 68,
       "description": "Hardware-to-register interface for read operations"
     },
     {
@@ -86,7 +94,7 @@
       "direction": "input",
       "protocol": "custom",
       "port": "racl_policies_i",
-      "width": 10,
+      "width": "variable",
       "description": "Input for RACL policy vector"
     },
     {
@@ -94,16 +102,8 @@
       "direction": "output",
       "protocol": "custom",
       "port": "racl_error_o",
-      "width": 1,
+      "width": "variable",
       "description": "Output for RACL error log"
-    },
-    {
-      "type": "interrupt",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "intg_err_o",
-      "width": 1,
-      "description": "Integrity error output signal"
     }
   ],
   "parameters": [
@@ -124,6 +124,24 @@
       "type": "enum",
       "default": "{rv_timer_reg_pkg::NumRegs{0}}",
       "description": "RACL policy selection vector"
+    },
+    {
+      "name": "AW",
+      "type": "int",
+      "default": 9,
+      "description": "Address width"
+    },
+    {
+      "name": "DW",
+      "type": "int",
+      "default": 32,
+      "description": "Data width"
+    },
+    {
+      "name": "DBW",
+      "type": "int",
+      "default": 4,
+      "description": "Byte width"
     }
   ],
   "performance": {},
@@ -131,9 +149,10 @@
     "type": "peripheral",
     "features": [
       "Multi-hart timer functionality",
-      "TileLink interface for communication",
       "Register access control logic (RACL)",
-      "Integrity check and error reporting"
+      "Integrity check mechanisms",
+      "Support for TL-UL bus protocol",
+      "Configurable timer parameters"
     ]
   },
   "asic": {
@@ -154,27 +173,27 @@
     {
       "name": "tlul_pkg",
       "type": "library",
-      "description": "TileLink Ultra-Lite protocol package"
+      "description": "TL-UL bus protocol package"
     },
     {
-      "name": "prim_assert",
+      "name": "prim_assert.sv",
       "type": "library",
-      "description": "Primitive assertion library for OpenTitan"
+      "description": "Assertion primitives for OpenTitan"
     },
     {
       "name": "prim_reg_we_check",
       "type": "library",
-      "description": "Primitive register write enable checker"
+      "description": "Primitive for register write enable checks"
     },
     {
-      "name": "tlul_adapter_reg",
-      "type": "core",
-      "description": "TileLink register adapter"
-    },
-    {
-      "name": "rv_timer_reg_pkg",
+      "name": "tlul_cmd_intg_chk",
       "type": "library",
-      "description": "Register package for RV Timer"
+      "description": "TL-UL command integrity check module"
+    },
+    {
+      "name": "tlul_rsp_intg_gen",
+      "type": "library",
+      "description": "TL-UL response integrity generation module"
     }
   ],
   "test": {
@@ -195,12 +214,11 @@
     }
   ],
   "keywords": [
+    "timer",
     "RISC-V",
-    "Timer",
     "OpenTitan",
-    "TileLink",
-    "RACL",
-    "Integrity Check"
+    "TL-UL",
+    "multi-hart"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -208,13 +226,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T23:05:53Z"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:05:53Z"
+      "generated_at": "2026-04-19T06:12:43Z"
     },
     "schema": {
       "version": "1.0.0"

@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-otp-ctrl",
   "version": "0.1.0",
-  "description": "The OpenTitan OTP Controller package provides parameterized data structures and interfaces for managing OTP memory, lifecycle states, and cryptographic key handling.",
+  "description": "The OpenTitan OTP Controller (otp_ctrl) is a hardware block responsible for managing the One-Time Programmable (OTP) memory, including secure key storage, lifecycle state management, and key scrambling for secure operations.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:05:30Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:26Z",
+  "updated": "2026-04-19T06:12:26Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/otp_ctrl",
     "private": false,
     "containsEncryptedPayload": false,
@@ -39,7 +39,7 @@
       "protocol": "custom",
       "port": "otp_device_id_t",
       "width": 256,
-      "description": "OTP device ID interface."
+      "description": "Device ID interface for OTP memory."
     },
     {
       "type": "bus",
@@ -47,23 +47,23 @@
       "protocol": "custom",
       "port": "otp_manuf_state_t",
       "width": 256,
-      "description": "OTP manufacturing state interface."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "custom",
-      "port": "otp_lc_data_t",
-      "width": 0,
-      "description": "Lifecycle control data interface."
+      "description": "Manufacturing state interface for OTP memory."
     },
     {
       "type": "bus",
       "direction": "input",
       "protocol": "custom",
       "port": "otp_keymgr_key_t",
-      "width": 0,
-      "description": "Key manager key interface."
+      "width": 256,
+      "description": "Key manager interface for OTP key management."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "otp_lc_data_t",
+      "width": 512,
+      "description": "Lifecycle control data interface for OTP memory."
     }
   ],
   "parameters": [
@@ -71,73 +71,73 @@
       "name": "DeviceIdWidth",
       "type": "int",
       "default": 256,
-      "description": "Width of the OTP device ID."
+      "description": "Width of the device ID in bits."
     },
     {
       "name": "ManufStateWidth",
       "type": "int",
       "default": 256,
-      "description": "Width of the manufacturing state."
+      "description": "Width of the manufacturing state in bits."
     },
     {
       "name": "ScrmblKeyWidth",
       "type": "int",
       "default": 128,
-      "description": "Width of the scrambling key."
+      "description": "Width of the scrambling key in bits."
     },
     {
       "name": "ScrmblBlockWidth",
       "type": "int",
       "default": 64,
-      "description": "Width of the scrambling block."
+      "description": "Width of the scrambling block in bits."
     },
     {
       "name": "NvmKeySeedWidth",
       "type": "int",
       "default": 256,
-      "description": "Width of the NVM key seed."
+      "description": "Width of the non-volatile memory key seed in bits."
     },
     {
       "name": "SramKeySeedWidth",
       "type": "int",
       "default": 128,
-      "description": "Width of the SRAM key seed."
+      "description": "Width of the SRAM key seed in bits."
     },
     {
       "name": "KeyMgrKeyWidth",
       "type": "int",
       "default": 256,
-      "description": "Width of the key manager key."
+      "description": "Width of the key manager key in bits."
     },
     {
       "name": "NvmKeyWidth",
       "type": "int",
       "default": 128,
-      "description": "Width of the NVM key."
+      "description": "Width of the non-volatile memory key in bits."
     },
     {
       "name": "SramKeyWidth",
       "type": "int",
       "default": 128,
-      "description": "Width of the SRAM key."
+      "description": "Width of the SRAM key in bits."
     },
     {
       "name": "SramNonceWidth",
       "type": "int",
       "default": 128,
-      "description": "Width of the SRAM nonce."
+      "description": "Width of the SRAM nonce in bits."
     },
     {
       "name": "OtbnKeyWidth",
       "type": "int",
       "default": 128,
-      "description": "Width of the OTBN key."
+      "description": "Width of the OTBN key in bits."
     },
     {
       "name": "OtbnNonceWidth",
       "type": "int",
       "default": 64,
-      "description": "Width of the OTBN nonce."
+      "description": "Width of the OTBN nonce in bits."
     }
   ],
   "performance": {},
@@ -145,10 +145,9 @@
     "type": "peripheral",
     "features": [
       "OTP memory management",
-      "Lifecycle state handling",
-      "Cryptographic key generation and management",
-      "Support for NVM and SRAM key handling",
-      "Lifecycle control interface"
+      "Key scrambling for secure operations",
+      "Lifecycle state management",
+      "Support for key broadcasting"
     ]
   },
   "asic": {
@@ -169,12 +168,12 @@
     {
       "name": "lc_ctrl_state_pkg",
       "type": "library",
-      "description": "Lifecycle control state package."
+      "description": "Lifecycle control state package for OTP lifecycle management."
     },
     {
       "name": "lc_ctrl_pkg",
       "type": "library",
-      "description": "Lifecycle control package."
+      "description": "Lifecycle control package for OTP lifecycle management."
     }
   ],
   "test": {
@@ -197,8 +196,8 @@
   "keywords": [
     "OTP",
     "security",
-    "lifecycle",
     "key management",
+    "lifecycle",
     "scrambling"
   ],
   "trust": {
@@ -207,32 +206,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T23:05:30Z"
+    "last_activity": "2026-04-19T06:12:26Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:05:30Z"
+      "generated_at": "2026-04-19T06:12:26Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/otp_ctrl_pkg.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

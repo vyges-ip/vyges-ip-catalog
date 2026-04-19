@@ -3,9 +3,9 @@
   "x-version": "1.0.0",
   "name": "coralnpu-tlul-pkg",
   "version": "0.1.0",
-  "description": "The coralnpu-tlul-pkg provides a TileLink Ultra-Lite (TL-UL) interface package for the Coral NPU, including data and command integrity checks and user-defined extensions.",
+  "description": "IP imported from https://github.com/google-coral/coralnpu",
   "license": "Apache-2.0",
-  "maturity": "production",
+  "maturity": "draft",
   "target": [
     "asic",
     "fpga"
@@ -13,175 +13,46 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-01T05:12:57Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:11:16Z",
+  "updated": "2026-04-19T06:11:16Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
-    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
-    "ip_path": "fpga/ip/coralnpu_tlul",
+    "commit": "2dec130e5c81ad562bd10037b0245412dc0a7217",
     "private": false,
-    "containsEncryptedPayload": false,
     "indexing": true
   },
   "maintainers": [
     {
       "name": "Vyges",
       "email": "team@vyges.com",
-      "url": "https://vyges.com",
       "github": "vyges"
     }
   ],
-  "interfaces": [
-    {
-      "type": "bus",
-      "direction": "both",
-      "protocol": "TL-UL",
-      "port": "tl_h2d_t",
-      "width": 128,
-      "description": "TileLink Host-to-Device interface with 128-bit data width."
-    },
-    {
-      "type": "bus",
-      "direction": "both",
-      "protocol": "TL-UL",
-      "port": "tl_d2h_t",
-      "width": 128,
-      "description": "TileLink Device-to-Host interface with 128-bit data width."
-    }
-  ],
-  "parameters": [
-    {
-      "name": "ArbiterImpl",
-      "type": "string",
-      "default": "PPC",
-      "description": "Specifies the arbitration implementation."
-    },
-    {
-      "name": "TL_DW",
-      "type": "int",
-      "default": 128,
-      "description": "Data width for TileLink interface."
-    },
-    {
-      "name": "TL_DBW",
-      "type": "int",
-      "default": 16,
-      "description": "Data byte width for TileLink interface, derived from TL_DW."
-    },
-    {
-      "name": "TL_SZW",
-      "type": "int",
-      "default": 7,
-      "description": "Size width for TileLink interface, derived from TL_DW."
-    },
-    {
-      "name": "TL_AIW",
-      "type": "int",
-      "default": 8,
-      "description": "Address source ID width for TileLink interface."
-    }
-  ],
-  "performance": {},
+  "interfaces": [],
+  "parameters": [],
   "architecture": {
     "type": "peripheral",
-    "features": [
-      "TileLink Ultra-Lite (TL-UL) protocol support",
-      "128-bit data width",
-      "Command and data integrity checks",
-      "User-defined extensions for TileLink transactions"
-    ]
-  },
-  "asic": {
-    "flavor": "digital",
-    "technology": [
-      "sky130A"
-    ]
-  },
-  "fpga": {
-    "toolchain": [
-      "Vivado"
-    ],
-    "devices": [
-      "Artix-7"
-    ]
-  },
-  "dependencies": [
-    {
-      "name": "tlul_pkg",
-      "type": "library",
-      "description": "TileLink Ultra-Lite protocol package."
-    },
-    {
-      "name": "top_pkg",
-      "type": "library",
-      "description": "Top-level package for CoralNPU."
-    },
-    {
-      "name": "prim_mubi_pkg",
-      "type": "library",
-      "description": "Package for multi-bit integrity types."
-    }
-  ],
-  "test": {
-    "testbenches": [],
-    "status": "upstream_passing",
-    "coverage": "functional"
-  },
-  "documentation": {
-    "upstream": "https://github.com/google-coral/coralnpu"
-  },
-  "artifacts": {
-    "total_rtl_lines": 122
+    "features": []
   },
   "categories": [
     {
-      "main_category": "Interface Controllers",
-      "sub_category": "Parallel Interfaces"
+      "main_category": "Miscellaneous",
+      "sub_category": "Custom Accelerators"
     }
   ],
-  "keywords": [
-    "TileLink",
-    "TL-UL",
-    "CoralNPU",
-    "Integrity Checks",
-    "128-bit"
-  ],
   "trust": {
-    "verification_level": "silicon_proven",
-    "tapeout_count": 0,
-    "fpga_validated": false,
-    "formal_verified": false,
-    "maintained": true,
-    "last_activity": "2026-04-01"
+    "verification_level": "unknown",
+    "maintained": true
   },
+  "_note": "AI enrichment failed. Manual population needed.",
   "meta": {
     "template": {
-      "generator": "github-models-ai",
-      "template_version": "1.0.0",
-      "generated_at": "2026-04-01T05:12:57Z"
+      "generator": "upstream-sync-fallback",
+      "generated_at": "2026-04-19T06:11:16Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/coralnpu_tlul_pkg_128.sv",
-    "rtl/coralnpu_tlul_pkg_32.sv",
-    "rtl/coralnpu_tlul_pkg_128.sv",
-    "rtl/coralnpu_tlul_pkg_32.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

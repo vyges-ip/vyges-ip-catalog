@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T21:31:07Z",
-  "updated": "2026-03-27T21:31:07Z",
+  "created": "2026-04-19T06:10:51Z",
+  "updated": "2026-04-19T06:10:51Z",
   "source": {
     "type": "git",
     "url": "https://github.com/chipsalliance/caliptra-rtl",
-    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "commit": "f4f60f90852635b9e92bb9d23a07b977f6e7ba2c",
     "ip_path": "src/spi_host",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,92 +34,12 @@
   ],
   "interfaces": [
     {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "AHB-Lite",
-      "port": "haddr_i",
-      "width": 32,
-      "description": "AHB address input"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "AHB-Lite",
-      "port": "hwdata_i",
-      "width": 64,
-      "description": "AHB write data input"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "AHB-Lite",
-      "port": "hsel_i",
-      "width": 1,
-      "description": "AHB select input"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "AHB-Lite",
-      "port": "hwrite_i",
-      "width": 1,
-      "description": "AHB write enable input"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "AHB-Lite",
-      "port": "hready_i",
-      "width": 1,
-      "description": "AHB ready input"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "AHB-Lite",
-      "port": "htrans_i",
-      "width": 2,
-      "description": "AHB transfer type input"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "AHB-Lite",
-      "port": "hsize_i",
-      "width": 3,
-      "description": "AHB transfer size input"
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "AHB-Lite",
-      "port": "hresp_o",
-      "width": 1,
-      "description": "AHB response output"
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "AHB-Lite",
-      "port": "hreadyout_o",
-      "width": 1,
-      "description": "AHB ready output"
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "AHB-Lite",
-      "port": "hrdata_o",
-      "width": 64,
-      "description": "AHB read data output"
-    },
-    {
       "type": "clock",
       "direction": "input",
-      "protocol": "clk",
+      "protocol": "generic",
       "port": "clk_i",
       "width": 1,
-      "description": "Clock input"
+      "description": "Clock input signal"
     },
     {
       "type": "reset",
@@ -127,7 +47,87 @@
       "protocol": "active-low",
       "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset input"
+      "description": "Active-low reset signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "haddr_i",
+      "width": 32,
+      "description": "AHB-Lite address input"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hwdata_i",
+      "width": 64,
+      "description": "AHB-Lite write data input"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hsel_i",
+      "width": 1,
+      "description": "AHB-Lite select signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hwrite_i",
+      "width": 1,
+      "description": "AHB-Lite write enable signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hready_i",
+      "width": 1,
+      "description": "AHB-Lite ready input signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "htrans_i",
+      "width": 2,
+      "description": "AHB-Lite transfer type"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hsize_i",
+      "width": 3,
+      "description": "AHB-Lite transfer size"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hresp_o",
+      "width": 1,
+      "description": "AHB-Lite response output"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hreadyout_o",
+      "width": 1,
+      "description": "AHB-Lite ready output signal"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hrdata_o",
+      "width": 64,
+      "description": "AHB-Lite read data output"
     },
     {
       "type": "signal",
@@ -143,7 +143,7 @@
       "protocol": "custom",
       "port": "intg_err_o",
       "width": 1,
-      "description": "Integrity error output"
+      "description": "Integrity error output signal"
     },
     {
       "type": "signal",
@@ -151,7 +151,7 @@
       "protocol": "custom",
       "port": "devmode_i",
       "width": 1,
-      "description": "Device mode input for error handling"
+      "description": "Device mode input signal"
     }
   ],
   "parameters": [
@@ -166,42 +166,6 @@
       "type": "int",
       "default": 32,
       "description": "Width of the AHB address bus"
-    },
-    {
-      "name": "ByteOrder",
-      "type": "bit",
-      "default": 1,
-      "description": "Byte order configuration"
-    },
-    {
-      "name": "NumCS",
-      "type": "int",
-      "default": 2,
-      "description": "Number of chip selects"
-    },
-    {
-      "name": "TxDepth",
-      "type": "int",
-      "default": 72,
-      "description": "Depth of the transmit FIFO"
-    },
-    {
-      "name": "RxDepth",
-      "type": "int",
-      "default": 64,
-      "description": "Depth of the receive FIFO"
-    },
-    {
-      "name": "CmdDepth",
-      "type": "int",
-      "default": 4,
-      "description": "Depth of the command queue"
-    },
-    {
-      "name": "NumAlerts",
-      "type": "int",
-      "default": 1,
-      "description": "Number of alert signals"
     }
   ],
   "performance": {},
@@ -209,10 +173,10 @@
     "type": "peripheral",
     "features": [
       "AMBA AHB-Lite interface",
-      "Configurable data width and address width",
-      "FIFO-based data handling",
-      "Command queue with configurable depth",
-      "Error detection and integrity checks"
+      "Configurable data widths",
+      "Command queue support",
+      "Error detection and handling",
+      "FIFO-based data buffering"
     ]
   },
   "asic": {
@@ -233,7 +197,7 @@
     {
       "name": "caliptra-prim",
       "type": "library",
-      "description": "Primitive library for Caliptra project"
+      "description": "Primitive library for Caliptra RTL components"
     }
   ],
   "test": {
@@ -247,33 +211,32 @@
   "artifacts": {
     "total_rtl_lines": 4449
   },
-  "categories": {
-    "primary": "peripheral",
-    "secondary": [
-      "spi",
-      "communication"
-    ],
-    "tags": [
-      "spi",
-      "ahb-lite",
-      "peripheral",
-      "communication",
-      "caliptra"
-    ]
-  },
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "Serial Interfaces"
+    }
+  ],
+  "keywords": [
+    "SPI",
+    "AHB-Lite",
+    "Serial Interface",
+    "Peripheral",
+    "Caliptra"
+  ],
   "trust": {
     "verification_level": "silicon_proven",
     "tapeout_count": 0,
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T21:31:07Z"
+    "last_activity": "2026-04-19T06:10:51Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T21:31:07Z"
+      "generated_at": "2026-04-19T06:10:51Z"
     },
     "schema": {
       "version": "1.0.0"

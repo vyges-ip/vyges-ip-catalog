@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-prim-asap7",
   "version": "0.1.0",
-  "description": "A collection of primitive modules for the OpenTitan project, implemented using the ASAP7 technology node. Includes clock gating, flip-flops, logic gates, and constant generation.",
+  "description": "A collection of primitive modules for the OpenTitan project implemented in ASAP7 technology, including clock buffers, enable flip-flops, and logic gates.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -12,12 +12,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:11:05Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:12:32Z",
+  "updated": "2026-04-19T06:12:32Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "e34333f9b38b01f5c07ef1177ca08408effe7653",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/prim_asap7",
     "private": false,
     "containsEncryptedPayload": false,
@@ -35,42 +35,42 @@
     {
       "type": "clock",
       "direction": "input",
-      "protocol": "custom",
+      "protocol": "generic",
       "port": "clk_i",
       "width": 1,
-      "description": "Clock input signal"
+      "description": "Clock input signal."
     },
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "custom",
+      "protocol": "generic",
       "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset input signal"
+      "description": "Active-low reset signal."
     },
     {
-      "type": "control",
+      "type": "bus",
       "direction": "input",
-      "protocol": "custom",
+      "protocol": "generic",
       "port": "en_i",
       "width": 1,
-      "description": "Enable signal for the flip-flop"
+      "description": "Enable signal for the flip-flop."
     },
     {
-      "type": "data",
+      "type": "bus",
       "direction": "input",
-      "protocol": "custom",
+      "protocol": "generic",
       "port": "d_i",
       "width": "Width",
-      "description": "Data input signal"
+      "description": "Data input bus."
     },
     {
-      "type": "data",
+      "type": "bus",
       "direction": "output",
-      "protocol": "custom",
+      "protocol": "generic",
       "port": "q_o",
       "width": "Width",
-      "description": "Data output signal"
+      "description": "Data output bus."
     }
   ],
   "parameters": [
@@ -78,29 +78,27 @@
       "name": "Width",
       "type": "int",
       "default": 1,
-      "description": "Width of the data input and output signals"
+      "description": "Width of the data bus."
     },
     {
       "name": "EnSecBuf",
       "type": "bit",
       "default": 0,
-      "description": "Enable secondary buffer for the enable signal"
+      "description": "Enable secondary buffer for the enable signal."
     },
     {
       "name": "ResetValue",
       "type": "bit",
       "default": 0,
-      "description": "Default reset value for the flip-flop output"
+      "description": "Default reset value for the flip-flop."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "ASAP7 technology node",
-      "Clock gating",
-      "Flip-flops with enable and reset",
-      "Logic gates and constant generation"
+      "Enable flip-flop with secondary buffer option",
+      "ASAP7 technology primitives for clock gating and logic"
     ]
   },
   "asic": {
@@ -117,7 +115,7 @@
     {
       "name": "prim_assert",
       "type": "library",
-      "description": "Assertion library used for verification"
+      "description": "Assertion library used for verification."
     }
   ],
   "test": {
@@ -140,11 +138,9 @@
   "keywords": [
     "OpenTitan",
     "ASAP7",
-    "flip-flops",
+    "flip-flop",
     "clock gating",
-    "logic gates",
-    "reset",
-    "enable"
+    "logic primitives"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -152,59 +148,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T23:11:05Z"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:11:05Z"
+      "generated_at": "2026-04-19T06:12:32Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/prim_and2.sv",
-    "rtl/prim_buf.sv",
-    "rtl/prim_clock_buf.sv",
-    "rtl/prim_clock_gating.sv",
-    "rtl/prim_clock_inv.sv",
-    "rtl/prim_clock_mux2.sv",
-    "rtl/prim_const.sv",
-    "rtl/prim_const_sec.sv",
-    "rtl/prim_flop.sv",
-    "rtl/prim_flop_en.sv",
-    "rtl/prim_flop_no_rst.sv",
-    "rtl/prim_pkg.sv",
-    "rtl/prim_xnor2.sv",
-    "rtl/prim_xor2.sv",
-    "rtl/prim_and2.sv",
-    "rtl/prim_buf.sv",
-    "rtl/prim_clock_buf.sv",
-    "rtl/prim_clock_gating.sv",
-    "rtl/prim_clock_inv.sv",
-    "rtl/prim_clock_mux2.sv",
-    "rtl/prim_const.sv",
-    "rtl/prim_const_sec.sv",
-    "rtl/prim_flop.sv",
-    "rtl/prim_flop_en.sv",
-    "rtl/prim_flop_no_rst.sv",
-    "rtl/prim_pkg.sv",
-    "rtl/prim_xnor2.sv",
-    "rtl/prim_xor2.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

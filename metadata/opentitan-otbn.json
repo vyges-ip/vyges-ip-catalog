@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-otbn",
   "version": "0.1.0",
-  "description": "The OTBN (OpenTitan Big Number) is a 32-bit RISC-V-based cryptographic accelerator designed for high-performance, secure cryptographic operations, including big number arithmetic and memory scrambling.",
+  "description": "The OTBN (OpenTitan Big Number) is a 32-bit RISC-V-based cryptographic accelerator designed for efficient execution of cryptographic algorithms, including big number arithmetic and secure memory scrambling.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:11:06Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:23Z",
+  "updated": "2026-04-19T06:12:23Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "e34333f9b38b01f5c07ef1177ca08408effe7653",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/otbn",
     "private": false,
     "containsEncryptedPayload": false,
@@ -39,7 +39,7 @@
       "protocol": "custom",
       "port": "clk_i",
       "width": 1,
-      "description": "Clock input for OTBN core."
+      "description": "Primary clock input for OTBN."
     },
     {
       "type": "reset",
@@ -47,7 +47,7 @@
       "protocol": "custom",
       "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset for OTBN core."
+      "description": "Active-low reset signal for OTBN."
     },
     {
       "type": "clock",
@@ -63,31 +63,31 @@
       "protocol": "custom",
       "port": "rst_otp_ni",
       "width": 1,
-      "description": "Active-low reset for OTP key interface."
+      "description": "Active-low reset signal for OTP key interface."
     },
     {
       "type": "bus",
       "direction": "output",
       "protocol": "custom",
       "port": "otbn_otp_key_o",
-      "width": 384,
-      "description": "OTP key request output."
+      "width": 256,
+      "description": "Output port for OTP key request."
     },
     {
       "type": "bus",
       "direction": "input",
       "protocol": "custom",
       "port": "otbn_otp_key_i",
-      "width": 384,
-      "description": "OTP key response input."
+      "width": 256,
+      "description": "Input port for OTP key response."
     },
     {
       "type": "bus",
       "direction": "output",
       "protocol": "custom",
       "port": "otbn_dmem_scramble_key_o",
-      "width": 384,
-      "description": "Scrambling key for data memory."
+      "width": 256,
+      "description": "Output port for DMEM scramble key."
     },
     {
       "type": "bus",
@@ -95,31 +95,15 @@
       "protocol": "custom",
       "port": "otbn_dmem_scramble_nonce_o",
       "width": 256,
-      "description": "Scrambling nonce for data memory."
-    },
-    {
-      "type": "signal",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "otbn_dmem_scramble_valid_o",
-      "width": 1,
-      "description": "Indicates validity of data memory scrambling key and nonce."
-    },
-    {
-      "type": "signal",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "otbn_dmem_scramble_key_seed_valid_o",
-      "width": 1,
-      "description": "Indicates validity of data memory scrambling key seed."
+      "description": "Output port for DMEM scramble nonce."
     },
     {
       "type": "bus",
       "direction": "output",
       "protocol": "custom",
       "port": "otbn_imem_scramble_key_o",
-      "width": 384,
-      "description": "Scrambling key for instruction memory."
+      "width": 256,
+      "description": "Output port for IMEM scramble key."
     },
     {
       "type": "bus",
@@ -127,74 +111,10 @@
       "protocol": "custom",
       "port": "otbn_imem_scramble_nonce_o",
       "width": 256,
-      "description": "Scrambling nonce for instruction memory."
+      "description": "Output port for IMEM scramble nonce."
     },
     {
-      "type": "signal",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "otbn_imem_scramble_valid_o",
-      "width": 1,
-      "description": "Indicates validity of instruction memory scrambling key and nonce."
-    },
-    {
-      "type": "signal",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "otbn_imem_scramble_key_seed_valid_o",
-      "width": 1,
-      "description": "Indicates validity of instruction memory scrambling key seed."
-    },
-    {
-      "type": "signal",
-      "direction": "input",
-      "protocol": "custom",
-      "port": "otbn_dmem_scramble_sec_wipe_i",
-      "width": 1,
-      "description": "Triggers secure wipe of data memory scrambling key."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "custom",
-      "port": "otbn_dmem_scramble_sec_wipe_key_i",
-      "width": 384,
-      "description": "Secure wipe key for data memory scrambling."
-    },
-    {
-      "type": "signal",
-      "direction": "input",
-      "protocol": "custom",
-      "port": "otbn_imem_scramble_sec_wipe_i",
-      "width": 1,
-      "description": "Triggers secure wipe of instruction memory scrambling key."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "custom",
-      "port": "otbn_imem_scramble_sec_wipe_key_i",
-      "width": 384,
-      "description": "Secure wipe key for instruction memory scrambling."
-    },
-    {
-      "type": "signal",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "otbn_dmem_scramble_key_req_busy_o",
-      "width": 1,
-      "description": "Indicates if data memory scrambling key request is busy."
-    },
-    {
-      "type": "signal",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "otbn_imem_scramble_key_req_busy_o",
-      "width": 1,
-      "description": "Indicates if instruction memory scrambling key request is busy."
-    },
-    {
-      "type": "signal",
+      "type": "interrupt",
       "direction": "output",
       "protocol": "custom",
       "port": "state_error_o",
@@ -214,16 +134,40 @@
       "type": "int",
       "default": "otbn_pkg::RndCnstOtbnNonceDefault",
       "description": "Default seed for scrambling nonce."
+    },
+    {
+      "name": "NumAlerts",
+      "type": "int",
+      "default": 2,
+      "description": "Number of alert signals supported by OTBN."
+    },
+    {
+      "name": "BlockAw",
+      "type": "int",
+      "default": 16,
+      "description": "Address width within the OTBN block."
+    },
+    {
+      "name": "NumRegs",
+      "type": "int",
+      "default": 11,
+      "description": "Number of registers for each interface."
+    },
+    {
+      "name": "WLEN",
+      "type": "int",
+      "default": 256,
+      "description": "Data path width for big number instructions, in bits."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "coprocessor",
     "features": [
-      "256-bit wide data path for big number operations",
-      "Instruction and data memory scrambling with secure key management",
-      "Support for secure memory wiping",
-      "Custom RISC-V ISA extensions for cryptographic operations"
+      "256-bit wide data path for big number arithmetic",
+      "Secure memory scrambling for instruction and data memory",
+      "RISC-V based cryptographic accelerator",
+      "Support for secure key and nonce generation"
     ]
   },
   "asic": {
@@ -244,17 +188,17 @@
     {
       "name": "otp_ctrl_pkg",
       "type": "library",
-      "description": "Package providing OTP key and nonce types for secure memory scrambling."
+      "description": "Package providing OTP key and nonce types for scrambling."
     },
     {
-      "name": "prim_assert",
+      "name": "otbn_pkg",
       "type": "library",
-      "description": "Assertion library for design verification."
+      "description": "Package defining global constants and types for OTBN."
     },
     {
-      "name": "prim_secded_pkg",
+      "name": "otbn_reg_pkg",
       "type": "library",
-      "description": "Package for SECDED error correction codes."
+      "description": "Package defining register structures for OTBN."
     }
   ],
   "test": {
@@ -266,7 +210,7 @@
     "upstream": "https://github.com/lowRISC/opentitan"
   },
   "artifacts": {
-    "total_rtl_lines": 14704
+    "total_rtl_lines": 14709
   },
   "categories": [
     {
@@ -275,12 +219,11 @@
     }
   ],
   "keywords": [
+    "OTBN",
     "RISC-V",
     "cryptography",
-    "big number",
-    "secure memory",
-    "scrambling",
-    "OpenTitan"
+    "big number arithmetic",
+    "secure memory"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -288,61 +231,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:11:06Z"
+      "generated_at": "2026-04-19T06:12:23Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/otbn.sv",
-    "rtl/otbn_alu_base.sv",
-    "rtl/otbn_alu_bignum.sv",
-    "rtl/otbn_controller.sv",
-    "rtl/otbn_core.sv",
-    "rtl/otbn_decoder.sv",
-    "rtl/otbn_instruction_fetch.sv",
-    "rtl/otbn_loop_controller.sv",
-    "rtl/otbn_lsu.sv",
-    "rtl/otbn_mac_bignum.sv",
-    "rtl/otbn_mac_bignum_fsm.sv",
-    "rtl/otbn_mod_result_selector.sv",
-    "rtl/otbn_pkg.sv",
-    "rtl/otbn_predecode.sv",
-    "rtl/otbn_reg_pkg.sv",
-    "rtl/otbn_reg_top.sv",
-    "rtl/otbn_rf_base.sv",
-    "rtl/otbn_rf_base_ff.sv",
-    "rtl/otbn_rf_base_fpga.sv",
-    "rtl/otbn_rf_bignum.sv",
-    "rtl/otbn_rf_bignum_ff.sv",
-    "rtl/otbn_rf_bignum_fpga.sv",
-    "rtl/otbn_rnd.sv",
-    "rtl/otbn_scramble_ctrl.sv",
-    "rtl/otbn_stack.sv",
-    "rtl/otbn_start_stop_control.sv",
-    "rtl/otbn_vec_adder.sv",
-    "rtl/otbn_vec_multiplier.sv",
-    "rtl/otbn_vec_shifter.sv",
-    "rtl/otbn_vec_transposer.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

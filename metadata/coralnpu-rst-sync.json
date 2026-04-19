@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "coralnpu-rst-sync",
   "version": "0.1.0",
-  "description": "A reset synchronization module designed for the Coral NPU, ensuring reliable reset signal propagation across clock domains.",
+  "description": "A reset synchronization module for the Coral NPU, ensuring proper reset signal propagation across clock domains.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,8 +13,8 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-01T05:13:03Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:11:00Z",
+  "updated": "2026-04-19T06:11:00Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
@@ -70,8 +70,8 @@
   "architecture": {
     "type": "peripheral",
     "features": [
-      "Multi-stage reset synchronization",
-      "Clock domain crossing support"
+      "Reset signal synchronization across clock domains",
+      "Configurable synchronization stages"
     ]
   },
   "asic": {
@@ -107,9 +107,11 @@
     }
   ],
   "keywords": [
-    "reset synchronization",
+    "reset",
+    "synchronization",
     "clock domain crossing",
-    "Coral NPU"
+    "CDC",
+    "CoralNPU"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -117,30 +119,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-01T05:13:03Z"
+    "last_activity": "2026-04-19T06:11:00Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-01T05:13:03Z"
+      "generated_at": "2026-04-19T06:11:00Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

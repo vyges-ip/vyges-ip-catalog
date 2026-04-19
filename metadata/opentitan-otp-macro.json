@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-otp-macro",
   "version": "0.1.0",
-  "description": "The OpenTitan OTP Macro is a secure one-time programmable memory subsystem designed for storing critical security assets, featuring integrity checks, RACL policy enforcement, and TL-UL interface support.",
+  "description": "The OpenTitan OTP Macro is a secure one-time programmable memory subsystem designed for storing critical security data, with support for integrity checks, error reporting, and RACL policy enforcement.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:05:29Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:27Z",
+  "updated": "2026-04-19T06:12:27Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/otp_macro",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,12 +34,28 @@
   ],
   "interfaces": [
     {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
       "type": "bus",
       "direction": "slave",
       "protocol": "TL-UL",
       "port": "tl_i",
       "width": 32,
-      "description": "TL-UL host-to-device interface for command and data input."
+      "description": "TileLink host-to-device interface"
     },
     {
       "type": "bus",
@@ -47,63 +63,47 @@
       "protocol": "TL-UL",
       "port": "tl_o",
       "width": 32,
-      "description": "TL-UL device-to-host interface for response and data output."
+      "description": "TileLink device-to-host interface"
     },
     {
-      "type": "clock",
-      "direction": "input",
-      "protocol": "none",
-      "port": "clk_i",
-      "width": 1,
-      "description": "Clock input for the OTP macro."
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "none",
-      "port": "rst_ni",
-      "width": 1,
-      "description": "Active-low reset input for the OTP macro."
-    },
-    {
-      "type": "bus",
+      "type": "custom",
       "direction": "output",
-      "protocol": "custom",
+      "protocol": "otp_macro_reg_pkg::otp_macro_prim_reg2hw_t",
       "port": "reg2hw",
       "width": 32,
-      "description": "Register-to-hardware interface for write operations."
+      "description": "Output interface for hardware write operations"
     },
     {
-      "type": "bus",
+      "type": "custom",
       "direction": "input",
-      "protocol": "custom",
+      "protocol": "otp_macro_reg_pkg::otp_macro_prim_hw2reg_t",
       "port": "hw2reg",
       "width": 32,
-      "description": "Hardware-to-register interface for read operations."
+      "description": "Input interface for hardware read operations"
     },
     {
-      "type": "bus",
+      "type": "custom",
       "direction": "input",
-      "protocol": "custom",
+      "protocol": "top_racl_pkg::racl_policy_vec_t",
       "port": "racl_policies_i",
-      "width": 256,
-      "description": "Input for RACL policy vector."
+      "width": 8,
+      "description": "Input interface for RACL policies"
     },
     {
-      "type": "bus",
+      "type": "custom",
       "direction": "output",
-      "protocol": "custom",
+      "protocol": "top_racl_pkg::racl_error_log_t",
       "port": "racl_error_o",
-      "width": 32,
-      "description": "Output for RACL error log."
+      "width": 1,
+      "description": "Output interface for RACL error logging"
     },
     {
-      "type": "signal",
+      "type": "interrupt",
       "direction": "output",
-      "protocol": "none",
+      "protocol": "generic",
       "port": "intg_err_o",
       "width": 1,
-      "description": "Integrity error output signal."
+      "description": "Integrity error output signal"
     }
   ],
   "parameters": [
@@ -111,19 +111,19 @@
       "name": "EnableRacl",
       "type": "bit",
       "default": 0,
-      "description": "Enables RACL policy enforcement."
+      "description": "Enable RACL policy enforcement"
     },
     {
       "name": "RaclErrorRsp",
       "type": "bit",
       "default": 1,
-      "description": "Enables RACL error response."
+      "description": "Enable RACL error response"
     },
     {
       "name": "RaclPolicySelVec",
-      "type": "enum",
-      "default": "{otp_macro_reg_pkg::NumRegsPrim{0}}",
-      "description": "RACL policy selection vector."
+      "type": "top_racl_pkg::racl_policy_sel_t",
+      "default": "'{otp_macro_reg_pkg::NumRegsPrim{0}}",
+      "description": "Vector of RACL policy selectors"
     }
   ],
   "performance": {},
@@ -131,9 +131,9 @@
     "type": "memory",
     "features": [
       "One-time programmable memory",
-      "Integrity check mechanisms",
+      "Integrity check and error reporting",
       "RACL policy enforcement",
-      "TL-UL bus interface"
+      "TileLink interface support"
     ]
   },
   "asic": {
@@ -152,24 +152,24 @@
   },
   "dependencies": [
     {
-      "name": "tlul_pkg",
+      "name": "prim_assert",
       "type": "library",
-      "description": "TileLink Ultra-Lite protocol package."
+      "description": "Assertion library for OpenTitan"
     },
     {
-      "name": "otp_macro_pkg",
+      "name": "tlul_pkg",
       "type": "library",
-      "description": "OTP macro package containing type definitions and parameters."
+      "description": "TileLink Ultra-Lite protocol package"
     },
     {
       "name": "otp_macro_reg_pkg",
       "type": "library",
-      "description": "Register package for OTP macro."
+      "description": "Package containing OTP macro register definitions"
     },
     {
-      "name": "prim_assert",
+      "name": "top_racl_pkg",
       "type": "library",
-      "description": "Primitive assertion library."
+      "description": "Package containing RACL policy definitions"
     }
   ],
   "test": {
@@ -185,16 +185,17 @@
   },
   "categories": [
     {
-      "main_category": "Memory Subsystems",
+      "main_category": "Security IP",
       "sub_category": "Fuse Controllers"
     }
   ],
   "keywords": [
+    "OpenTitan",
     "OTP",
-    "memory",
-    "security",
+    "One-Time Programmable Memory",
+    "Security",
     "RACL",
-    "integrity"
+    "TileLink"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -202,35 +203,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27"
+    "last_activity": "2026-04-19T06:12:27Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:05:29Z"
+      "generated_at": "2026-04-19T06:12:27Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/otp_macro.sv",
-    "rtl/otp_macro_pkg.sv",
-    "rtl/otp_macro_prim_reg_top.sv",
-    "rtl/otp_macro_reg_pkg.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

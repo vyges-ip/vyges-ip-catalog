@@ -462,5 +462,9 @@
       "jtag.tdo_pin"
     ],
     "schema_source": "vyges-ip-internal/soc_spec/schema/split/soc-debug-module.json"
+  },
+  "upstream": {
+    "repo": "https://github.com/vyges/vyges-rv-dbg-tlul",
+    "commit": "7c9e27100b1ba76f1c2d5205a18a571840f9ab75"
   }
 }

@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "coralnpu-scalar-units",
   "version": "0.1.0",
-  "description": "Scalar execution units for the CoralNPU, including an ALU, multiplier (MLU), and divider (DVU). Designed for efficient scalar operations in neural processing units.",
+  "description": "The CoralNPU Scalar Units provide arithmetic and logic operations, including ALU, DVU, and MLU functionalities, designed for efficient scalar computations in neural processing units.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-01T05:50:10Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:11:09Z",
+  "updated": "2026-04-19T06:11:09Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
-    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
+    "commit": "2dec130e5c81ad562bd10037b0245412dc0a7217",
     "ip_path": "hdl/chisel",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,95 +34,109 @@
   ],
   "interfaces": [
     {
-      "type": "clock",
-      "name": "clock",
-      "signals": [
-        {
-          "name": "clk_i",
-          "direction": "input",
-          "type": "clock",
-          "width": 1
-        }
-      ]
-    },
-    {
-      "type": "reset",
-      "name": "reset",
-      "signals": [
-        {
-          "name": "rst_ni",
-          "direction": "input",
-          "type": "reset",
-          "width": 1,
-          "active_level": "low"
-        }
-      ]
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_in_0_valid",
+      "width": 1,
+      "description": "Input valid signal for port 0"
     },
     {
       "type": "bus",
-      "name": "ctrl",
-      "protocol": "apb",
-      "description": "Default control bus added by metadata fix pass \u2014 verify against RTL.",
-      "signals": [
-        {
-          "name": "psel_i",
-          "direction": "input",
-          "type": "control",
-          "width": 1
-        },
-        {
-          "name": "penable_i",
-          "direction": "input",
-          "type": "control",
-          "width": 1
-        },
-        {
-          "name": "pwrite_i",
-          "direction": "input",
-          "type": "control",
-          "width": 1
-        },
-        {
-          "name": "paddr_i",
-          "direction": "input",
-          "type": "address",
-          "width": 32
-        },
-        {
-          "name": "pwdata_i",
-          "direction": "input",
-          "type": "data",
-          "width": 32
-        },
-        {
-          "name": "prdata_o",
-          "direction": "output",
-          "type": "data",
-          "width": 32
-        },
-        {
-          "name": "pready_o",
-          "direction": "output",
-          "type": "control",
-          "width": 1
-        },
-        {
-          "name": "pslverr_o",
-          "direction": "output",
-          "type": "control",
-          "width": 1
-        }
-      ]
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_in_0_ready",
+      "width": 1,
+      "description": "Output ready signal for port 0"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_in_0_bits_addr",
+      "width": 5,
+      "description": "Input address bits for port 0"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_in_0_bits_op",
+      "width": 3,
+      "description": "Input operation bits for port 0"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_out_valid",
+      "width": 1,
+      "description": "Output valid signal"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_out_ready",
+      "width": 1,
+      "description": "Output ready signal"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_out_bits_addr",
+      "width": 5,
+      "description": "Output address bits"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_out_bits_op",
+      "width": 3,
+      "description": "Output operation bits"
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "clock",
+      "port": "clock",
+      "width": 1,
+      "description": "Clock signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "reset",
+      "port": "reset",
+      "width": 1,
+      "description": "Reset signal"
     }
   ],
-  "parameters": [],
+  "parameters": [
+    {
+      "name": "ADDR_WIDTH",
+      "type": "int",
+      "default": 5,
+      "description": "Width of the address bus"
+    },
+    {
+      "name": "OP_WIDTH",
+      "type": "int",
+      "default": 3,
+      "description": "Width of the operation bus"
+    }
+  ],
   "performance": {},
   "architecture": {
     "type": "coprocessor",
     "features": [
       "Arithmetic Logic Unit (ALU)",
-      "Multiplier Unit (MLU)",
-      "Divider Unit (DVU)"
+      "Division Unit (DVU)",
+      "Multiplication Unit (MLU)",
+      "4-input arbitration",
+      "Queue-based data buffering"
     ]
   },
   "asic": {
@@ -139,16 +153,15 @@
       "Artix-7"
     ]
   },
-  "dependencies": [],
+  "dependencies": [
+    {
+      "name": "Chisel",
+      "type": "library",
+      "description": "Hardware construction language used for RTL generation"
+    }
+  ],
   "test": {
-    "testbenches": [
-      {
-        "name": "upstream",
-        "path": "tb/",
-        "framework": "upstream",
-        "description": "Upstream project's testbench harness \u2014 see source repo."
-      }
-    ],
+    "testbenches": [],
     "status": "upstream_passing",
     "coverage": "functional"
   },
@@ -156,7 +169,7 @@
     "upstream": "https://github.com/google-coral/coralnpu"
   },
   "artifacts": {
-    "total_rtl_lines": 0
+    "total_rtl_lines": 1171
   },
   "categories": [
     {
@@ -165,11 +178,13 @@
     }
   ],
   "keywords": [
+    "NPU",
     "scalar",
     "ALU",
-    "MLU",
     "DVU",
-    "neural processing"
+    "MLU",
+    "arbitration",
+    "queue"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -177,37 +192,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-01"
+    "last_activity": "2026-04-19T06:11:09Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-01T05:50:10Z"
+      "generated_at": "2026-04-19T06:11:09Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/coralnpu-Alu.sv",
-    "rtl/coralnpu-Dvu.sv",
-    "rtl/coralnpu-Mlu.sv",
-    "rtl/coralnpu-Alu.sv",
-    "rtl/coralnpu-Dvu.sv",
-    "rtl/coralnpu-Mlu.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

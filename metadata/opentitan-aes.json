@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-aes",
   "version": "0.1.0",
-  "description": "A silicon-proven AES cryptographic engine supporting multiple modes of operation, including ECB, CBC, CFB, OFB, CTR, and GCM, with optional masking and integrity checking.",
+  "description": "A silicon-proven AES cryptographic accelerator from the OpenTitan project, supporting multiple modes of operation, key masking, and secure key storage.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:04:55Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:02Z",
+  "updated": "2026-04-19T06:12:02Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/aes",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,12 +34,36 @@
   ],
   "interfaces": [
     {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active-low",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active-low",
+      "port": "rst_shadowed_ni",
+      "width": 1,
+      "description": "Active-low shadowed reset signal"
+    },
+    {
       "type": "bus",
       "direction": "slave",
       "protocol": "TL-UL",
       "port": "tl_i",
       "width": 32,
-      "description": "TileLink host-to-device interface for configuration and data input."
+      "description": "TileLink host-to-device interface"
     },
     {
       "type": "bus",
@@ -47,71 +71,47 @@
       "protocol": "TL-UL",
       "port": "tl_o",
       "width": 32,
-      "description": "TileLink device-to-host interface for configuration and data output."
-    },
-    {
-      "type": "clock",
-      "direction": "input",
-      "protocol": "N/A",
-      "port": "clk_i",
-      "width": 1,
-      "description": "Clock input signal."
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "N/A",
-      "port": "rst_ni",
-      "width": 1,
-      "description": "Active-low reset signal."
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "N/A",
-      "port": "rst_shadowed_ni",
-      "width": 1,
-      "description": "Active-low shadowed reset signal."
+      "description": "TileLink device-to-host interface"
     },
     {
       "type": "output",
       "direction": "output",
       "protocol": "custom",
       "port": "reg2hw",
-      "width": 32,
-      "description": "Register-to-hardware interface for write operations."
+      "width": 35,
+      "description": "Register-to-hardware interface for write operations"
     },
     {
       "type": "input",
       "direction": "input",
       "protocol": "custom",
       "port": "hw2reg",
-      "width": 32,
-      "description": "Hardware-to-register interface for read operations."
+      "width": 35,
+      "description": "Hardware-to-register interface for read operations"
     },
     {
       "type": "output",
       "direction": "output",
-      "protocol": "N/A",
+      "protocol": "generic",
       "port": "shadowed_storage_err_o",
       "width": 1,
-      "description": "Indicates shadowed storage error."
+      "description": "Shadowed storage error signal"
     },
     {
       "type": "output",
       "direction": "output",
-      "protocol": "N/A",
+      "protocol": "generic",
       "port": "shadowed_update_err_o",
       "width": 1,
-      "description": "Indicates shadowed update error."
+      "description": "Shadowed update error signal"
     },
     {
       "type": "output",
       "direction": "output",
-      "protocol": "N/A",
+      "protocol": "generic",
       "port": "intg_err_o",
       "width": 1,
-      "description": "Indicates integrity check error."
+      "description": "Integrity check error signal"
     }
   ],
   "parameters": [
@@ -119,58 +119,138 @@
       "name": "AW",
       "type": "int",
       "default": 8,
-      "description": "Address width for register interface."
+      "description": "Address width for the register interface"
     },
     {
       "name": "DW",
       "type": "int",
       "default": 32,
-      "description": "Data width for register interface."
+      "description": "Data width for the register interface"
     },
     {
       "name": "DBW",
       "type": "int",
       "default": 4,
-      "description": "Byte width for register interface."
+      "description": "Byte width for the register interface"
+    },
+    {
+      "name": "NumRegsKey",
+      "type": "int",
+      "default": 8,
+      "description": "Number of key registers"
+    },
+    {
+      "name": "NumRegsIv",
+      "type": "int",
+      "default": 4,
+      "description": "Number of IV registers"
+    },
+    {
+      "name": "NumRegsData",
+      "type": "int",
+      "default": 4,
+      "description": "Number of data registers"
+    },
+    {
+      "name": "NumAlerts",
+      "type": "int",
+      "default": 2,
+      "description": "Number of alert signals"
+    },
+    {
+      "name": "BlockAw",
+      "type": "int",
+      "default": 8,
+      "description": "Address width within the block"
+    },
+    {
+      "name": "NumRegs",
+      "type": "int",
+      "default": 35,
+      "description": "Total number of registers in the block"
     },
     {
       "name": "ClearStatusOnFatalAlert",
       "type": "bit",
       "default": 0,
-      "description": "Determines if fatal alerts clear all status and trigger bits."
+      "description": "Flag to clear all status and trigger bits on a fatal alert"
     },
     {
       "name": "NumSharesKey",
       "type": "int",
       "default": 2,
-      "description": "Number of shares for the initial key."
+      "description": "Number of key shares"
     },
     {
       "name": "SliceSizeCtr",
       "type": "int",
       "default": 16,
-      "description": "Size of counter slices in bits."
+      "description": "Size of counter slices in bits"
     },
     {
-      "name": "GCMDegree",
+      "name": "NumSlicesCtr",
+      "type": "int",
+      "default": 8,
+      "description": "Number of counter slices"
+    },
+    {
+      "name": "SliceIdxWidth",
+      "type": "int",
+      "default": 3,
+      "description": "Width of slice index"
+    },
+    {
+      "name": "SliceIdxMaxInc32",
+      "type": "int",
+      "default": 1,
+      "description": "Maximum slice index for inc32 in GCM mode"
+    },
+    {
+      "name": "WidthPRDClearing",
+      "type": "int",
+      "default": 64,
+      "description": "Width of pseudo-random data for clearing"
+    },
+    {
+      "name": "WidthPRDSBox",
+      "type": "int",
+      "default": 8,
+      "description": "Width of pseudo-random data per S-Box"
+    },
+    {
+      "name": "WidthPRDData",
       "type": "int",
       "default": 128,
-      "description": "Degree of the GF(2^128) irreducible polynomial for AES-GCM."
+      "description": "Width of pseudo-random data for the data path"
+    },
+    {
+      "name": "WidthPRDKey",
+      "type": "int",
+      "default": 32,
+      "description": "Width of pseudo-random data for key expansion"
+    },
+    {
+      "name": "WidthPRDMasking",
+      "type": "int",
+      "default": 160,
+      "description": "Total width of pseudo-random data for masking"
+    },
+    {
+      "name": "ClearingLfsrWidth",
+      "type": "int",
+      "default": 64,
+      "description": "Width of the LFSR used for clearing"
     }
   ],
-  "performance": {
-    "throughput": "variable",
-    "latency": "variable",
-    "frequency": "up to 500 MHz"
-  },
+  "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "AES-128/192/256 encryption and decryption",
-      "Support for ECB, CBC, CFB, OFB, CTR, and GCM modes",
-      "First-order masking for side-channel resistance",
-      "Shadowed registers for fault injection resistance",
-      "TileLink interface for configuration and data transfer"
+      "AES encryption and decryption",
+      "Support for multiple modes (e.g., ECB, CBC, GCM)",
+      "Key masking for enhanced security",
+      "Shadowed registers for secure key storage",
+      "Integrity error detection and reporting"
     ]
   },
   "asic": {
@@ -191,22 +271,32 @@
     {
       "name": "tlul_pkg",
       "type": "library",
-      "description": "TileLink Ultra-Lite protocol package."
+      "description": "TileLink Uncached Lightweight (TL-UL) protocol package"
     },
     {
       "name": "aes_reg_pkg",
       "type": "library",
-      "description": "AES register package for hardware-software interface."
-    },
-    {
-      "name": "prim_util_pkg",
-      "type": "library",
-      "description": "Primitive utilities package."
+      "description": "AES register package for data structures and parameters"
     },
     {
       "name": "prim_assert",
       "type": "library",
-      "description": "Assertion primitives for design verification."
+      "description": "Primitive assertions for design verification"
+    },
+    {
+      "name": "prim_reg_we_check",
+      "type": "library",
+      "description": "Primitive for write enable checking"
+    },
+    {
+      "name": "tlul_adapter_reg",
+      "type": "library",
+      "description": "TileLink adapter for register interface"
+    },
+    {
+      "name": "tlul_rsp_intg_gen",
+      "type": "library",
+      "description": "TileLink response integrity generation"
     }
   ],
   "test": {
@@ -215,7 +305,7 @@
     "coverage": "functional"
   },
   "documentation": {
-    "upstream": "https://github.com/lowRISC/opentitan/tree/7fbd85829ec6354ef6497df69536cefe862c1f5a/hw/ip/aes"
+    "upstream": "https://github.com/lowRISC/opentitan/tree/46cc36599f56f60b344afb031185a85fc8654e68/hw/ip/aes"
   },
   "artifacts": {
     "total_rtl_lines": 17198
@@ -228,19 +318,11 @@
   ],
   "keywords": [
     "AES",
-    "cryptography",
     "encryption",
     "decryption",
+    "cryptography",
     "security",
-    "hardware",
-    "OpenTitan",
-    "TileLink",
-    "GCM",
-    "CTR",
-    "CBC",
-    "OFB",
-    "CFB",
-    "ECB"
+    "OpenTitan"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -248,71 +330,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T23:04:55Z"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:04:55Z"
+      "generated_at": "2026-04-19T06:12:02Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/aes.sv",
-    "rtl/aes_cipher_control.sv",
-    "rtl/aes_cipher_control_fsm.sv",
-    "rtl/aes_cipher_control_fsm_n.sv",
-    "rtl/aes_cipher_control_fsm_p.sv",
-    "rtl/aes_cipher_core.sv",
-    "rtl/aes_control.sv",
-    "rtl/aes_control_fsm.sv",
-    "rtl/aes_control_fsm_n.sv",
-    "rtl/aes_control_fsm_p.sv",
-    "rtl/aes_core.sv",
-    "rtl/aes_ctr.sv",
-    "rtl/aes_ctr_fsm.sv",
-    "rtl/aes_ctr_fsm_n.sv",
-    "rtl/aes_ctr_fsm_p.sv",
-    "rtl/aes_ctrl_gcm_reg_shadowed.sv",
-    "rtl/aes_ctrl_reg_shadowed.sv",
-    "rtl/aes_ghash.sv",
-    "rtl/aes_ghash_wrap.sv",
-    "rtl/aes_key_expand.sv",
-    "rtl/aes_mix_columns.sv",
-    "rtl/aes_mix_single_column.sv",
-    "rtl/aes_pkg.sv",
-    "rtl/aes_prng_clearing.sv",
-    "rtl/aes_prng_masking.sv",
-    "rtl/aes_reduced_round.sv",
-    "rtl/aes_reg_pkg.sv",
-    "rtl/aes_reg_status.sv",
-    "rtl/aes_reg_top.sv",
-    "rtl/aes_sbox.sv",
-    "rtl/aes_sbox_canright.sv",
-    "rtl/aes_sbox_canright_masked.sv",
-    "rtl/aes_sbox_canright_masked_noreuse.sv",
-    "rtl/aes_sbox_canright_pkg.sv",
-    "rtl/aes_sbox_dom.sv",
-    "rtl/aes_sbox_lut.sv",
-    "rtl/aes_sel_buf_chk.sv",
-    "rtl/aes_shift_rows.sv",
-    "rtl/aes_sub_bytes.sv",
-    "rtl/aes_wrap.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-keymgr",
   "version": "0.1.0",
-  "description": "The OpenTitan Key Manager is a hardware block responsible for secure key generation, storage, and management, supporting key derivation, reseeding, and sideloading for cryptographic operations.",
+  "description": "The OpenTitan Key Manager is a security IP block responsible for managing cryptographic keys, supporting operations such as key generation, reseeding, and sideloading for secure hardware environments.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:05:14Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:13Z",
+  "updated": "2026-04-19T06:12:13Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/keymgr",
     "private": false,
     "containsEncryptedPayload": false,
@@ -39,7 +39,7 @@
       "protocol": "generic",
       "port": "clk_i",
       "width": 1,
-      "description": "Primary clock input for the key manager."
+      "description": "Clock input for the key manager."
     },
     {
       "type": "reset",
@@ -47,145 +47,97 @@
       "protocol": "generic",
       "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset signal for the primary clock domain."
-    },
-    {
-      "type": "clock",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "clk_edn_i",
-      "width": 1,
-      "description": "Clock input for the entropy distribution network (EDN)."
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "rst_edn_ni",
-      "width": 1,
-      "description": "Active-low reset signal for the EDN clock domain."
+      "description": "Active-low reset input for the key manager."
     },
     {
       "type": "bus",
       "direction": "input",
       "protocol": "generic",
-      "port": "reseed_req_i",
+      "port": "en_i",
       "width": 1,
-      "description": "Request signal to initiate a reseed operation."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "generic",
-      "port": "reseed_ack_o",
-      "width": 1,
-      "description": "Acknowledgment signal for a reseed request."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "generic",
-      "port": "reseed_done_o",
-      "width": 1,
-      "description": "Indicates the completion of a reseed operation."
+      "description": "Lifecycle enforcement enable signal."
     },
     {
       "type": "bus",
       "direction": "input",
       "protocol": "generic",
-      "port": "reseed_interval_i",
-      "width": 16,
-      "description": "Interval for automatic reseeding."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "edn_o",
-      "width": "edn_pkg::edn_req_t",
-      "description": "Output request to the entropy distribution network (EDN)."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "custom",
-      "port": "edn_i",
-      "width": "edn_pkg::edn_rsp_t",
-      "description": "Input response from the entropy distribution network (EDN)."
+      "port": "op_start_i",
+      "width": 1,
+      "description": "Signal to start a key manager operation."
     },
     {
       "type": "bus",
       "direction": "input",
       "protocol": "generic",
-      "port": "lfsr_en_i",
-      "width": 1,
-      "description": "Enable signal for the linear feedback shift register (LFSR)."
+      "port": "op_i",
+      "width": 3,
+      "description": "Operation type for the key manager."
     },
     {
       "type": "bus",
       "direction": "output",
       "protocol": "generic",
-      "port": "seed_en_o",
+      "port": "op_done_o",
       "width": 1,
-      "description": "Enable signal for the seed output."
+      "description": "Indicates completion of the current operation."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "kmac_data_i",
+      "width": 512,
+      "description": "Input data for KMAC operations."
     },
     {
       "type": "bus",
       "direction": "output",
       "protocol": "generic",
-      "port": "seed_o",
-      "width": "LfsrWidth",
-      "description": "Seed output from the LFSR."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "generic",
-      "port": "cnt_err_o",
-      "width": 1,
-      "description": "Error signal for the reseed counter."
+      "port": "key_o",
+      "width": 256,
+      "description": "Generated cryptographic key output."
     }
   ],
   "parameters": [
     {
+      "name": "KmacEnMasking",
+      "type": "bit",
+      "default": 1,
+      "description": "Enable masking for KMAC operations."
+    },
+    {
       "name": "KeyWidth",
       "type": "int",
       "default": 256,
-      "description": "Width of the cryptographic keys."
+      "description": "Width of cryptographic keys managed by the key manager."
     },
     {
       "name": "CDIs",
       "type": "int",
       "default": 2,
-      "description": "Number of Compound Device Identifiers (CDIs)."
+      "description": "Number of Compound Device Identifiers (CDIs) supported."
     },
     {
-      "name": "LfsrWidth",
+      "name": "CdiWidth",
       "type": "int",
-      "default": 64,
-      "description": "Width of the Linear Feedback Shift Register (LFSR)."
+      "default": 2,
+      "description": "Width of CDI selection signals."
     },
     {
-      "name": "KeyMgrStages",
+      "name": "Shares",
       "type": "int",
-      "default": 3,
-      "description": "Number of key manager stages."
-    },
-    {
-      "name": "EdnWidth",
-      "type": "int",
-      "default": "edn_pkg::ENDPOINT_BUS_WIDTH",
-      "description": "Width of the EDN interface."
+      "default": 2,
+      "description": "Number of key shares for redundancy and security."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "Key derivation and management",
-      "Entropy reseeding",
-      "Sideload key support",
-      "Integration with EDN and LFSR"
+      "Key generation and management",
+      "Support for KMAC operations",
+      "Key sideloading for hardware modules",
+      "Lifecycle enforcement and fault detection"
     ]
   },
   "asic": {
@@ -204,14 +156,29 @@
   },
   "dependencies": [
     {
-      "name": "prim_edn_req",
-      "type": "core",
-      "description": "Entropy distribution network request module."
+      "name": "prim_util_pkg",
+      "type": "library",
+      "description": "Utility package for primitive operations."
     },
     {
-      "name": "prim_count",
-      "type": "core",
-      "description": "Generic counter module used for reseed interval counting."
+      "name": "keymgr_pkg",
+      "type": "library",
+      "description": "Package defining key manager parameters and types."
+    },
+    {
+      "name": "keymgr_reg_pkg",
+      "type": "library",
+      "description": "Package defining key manager register parameters."
+    },
+    {
+      "name": "otp_ctrl_pkg",
+      "type": "library",
+      "description": "Package for OTP controller integration."
+    },
+    {
+      "name": "prim_mubi_pkg",
+      "type": "library",
+      "description": "Package for multi-bit utilities."
     }
   ],
   "test": {
@@ -233,9 +200,8 @@
   ],
   "keywords": [
     "key management",
-    "entropy",
-    "reseed",
     "cryptography",
+    "security",
     "OpenTitan"
   ],
   "trust": {
@@ -244,45 +210,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T23:05:14Z"
+    "last_activity": "2026-04-19T06:12:13Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:05:14Z"
+      "generated_at": "2026-04-19T06:12:13Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/keymgr.sv",
-    "rtl/keymgr_cfg_en.sv",
-    "rtl/keymgr_ctrl.sv",
-    "rtl/keymgr_data_en_state.sv",
-    "rtl/keymgr_err.sv",
-    "rtl/keymgr_input_checks.sv",
-    "rtl/keymgr_kmac_if.sv",
-    "rtl/keymgr_op_state_ctrl.sv",
-    "rtl/keymgr_pkg.sv",
-    "rtl/keymgr_reg_pkg.sv",
-    "rtl/keymgr_reg_top.sv",
-    "rtl/keymgr_reseed_ctrl.sv",
-    "rtl/keymgr_sideload_key.sv",
-    "rtl/keymgr_sideload_key_ctrl.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

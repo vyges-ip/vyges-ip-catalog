@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "caliptra-soc-ifc",
   "version": "0.1.0",
-  "description": "The Caliptra SoC Interface (SOC_IFC) provides a secure communication interface between the host processor and the Caliptra subsystem, including mailbox and SHA-512 accelerator functionalities.",
+  "description": "The Caliptra SoC Interface (SoC-IFC) module provides a bridge between the SoC and the Caliptra subsystem, supporting AXI, AHB-Lite, and mailbox communication protocols, along with interrupt handling and secure boot functionality.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T21:43:15Z",
-  "updated": "2026-03-27T21:43:15Z",
+  "created": "2026-04-19T06:10:48Z",
+  "updated": "2026-04-19T06:10:48Z",
   "source": {
     "type": "git",
     "url": "https://github.com/chipsalliance/caliptra-rtl",
-    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "commit": "f4f60f90852635b9e92bb9d23a07b977f6e7ba2c",
     "ip_path": "src/soc_ifc",
     "private": false,
     "containsEncryptedPayload": false,
@@ -39,81 +39,175 @@
       "protocol": "generic",
       "port": "clk",
       "width": 1,
-      "description": "System clock input."
+      "description": "Primary clock input for the SoC interface."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_cg",
+      "width": 1,
+      "description": "Clock gating signal for the SoC interface."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "soc_ifc_clk_cg",
+      "width": 1,
+      "description": "Clock gating signal for the SoC interface."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rdc_clk_cg",
+      "width": 1,
+      "description": "Clock gating signal for the RDC."
     },
     {
       "type": "reset",
       "direction": "input",
       "protocol": "generic",
-      "port": "rst_b",
+      "port": "cptra_rst_b",
       "width": 1,
-      "description": "Active-low reset signal."
+      "description": "Reset signal for the SoC interface."
     },
     {
       "type": "bus",
-      "direction": "input",
+      "direction": "slave",
       "protocol": "AXI",
-      "port": "req_data",
-      "width": "SOC_IFC_REQ_T_WIDTH",
-      "description": "Incoming request data from AXI or AHB."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "AXI",
-      "port": "rdata",
+      "port": "s_axi_w_if",
       "width": 32,
-      "description": "Read data output."
+      "description": "AXI write interface for the SoC."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "s_axi_r_if",
+      "width": 32,
+      "description": "AXI read interface for the SoC."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "m_axi_w_if",
+      "width": 32,
+      "description": "AXI write interface for the manager."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "AXI",
+      "port": "m_axi_r_if",
+      "width": 32,
+      "description": "AXI read interface for the manager."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "haddr_i",
+      "width": 18,
+      "description": "AHB-Lite address input."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AHB-Lite",
+      "port": "hwdata_i",
+      "width": 32,
+      "description": "AHB-Lite write data input."
     },
     {
       "type": "interrupt",
       "direction": "output",
       "protocol": "generic",
-      "port": "error_intr",
+      "port": "cptra_error_fatal",
       "width": 1,
-      "description": "Error interrupt signal."
+      "description": "Fatal error interrupt for the SoC."
     },
     {
       "type": "interrupt",
       "direction": "output",
       "protocol": "generic",
-      "port": "notif_intr",
+      "port": "cptra_error_non_fatal",
       "width": 1,
-      "description": "Notification interrupt signal."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "generic",
-      "port": "sha_sram_req_addr",
-      "width": "CPTRA_MBOX_ADDR_W",
-      "description": "Address for SRAM requests."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "sha_sram_resp",
-      "width": "CPTRA_MBOX_SRAM_RESP_T_WIDTH",
-      "description": "Response data from SRAM."
+      "description": "Non-fatal error interrupt for the SoC."
     }
   ],
   "parameters": [
     {
-      "name": "DATA_WIDTH",
+      "name": "AXI_ADDR_WIDTH",
+      "type": "int",
+      "default": 18,
+      "description": "Width of the AXI address bus."
+    },
+    {
+      "name": "AXI_DATA_WIDTH",
       "type": "int",
       "default": 32,
-      "description": "Width of the data bus in bits."
+      "description": "Width of the AXI data bus."
+    },
+    {
+      "name": "AXI_ID_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the AXI ID bus."
+    },
+    {
+      "name": "AXI_USER_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the AXI user signal."
+    },
+    {
+      "name": "AHB_ADDR_WIDTH",
+      "type": "int",
+      "default": 18,
+      "description": "Width of the AHB address bus."
+    },
+    {
+      "name": "AHB_DATA_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the AHB data bus."
+    },
+    {
+      "name": "AXIM_ADDR_WIDTH",
+      "type": "int",
+      "default": 48,
+      "description": "Width of the AXI Manager address bus."
+    },
+    {
+      "name": "AXIM_DATA_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the AXI Manager data bus."
+    },
+    {
+      "name": "AXIM_ID_WIDTH",
+      "type": "int",
+      "default": 5,
+      "description": "Width of the AXI Manager ID bus."
+    },
+    {
+      "name": "AXIM_USER_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the AXI Manager user signal."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "Secure mailbox interface",
-      "SHA-512 accelerator",
-      "AXI/AHB request handling",
-      "Interrupt generation for error and notifications"
+      "AXI and AHB-Lite bus interfaces",
+      "Mailbox communication",
+      "Interrupt handling",
+      "Secure boot support"
     ]
   },
   "asic": {
@@ -132,27 +226,18 @@
   },
   "dependencies": [
     {
-      "name": "soc_ifc_pkg",
+      "name": "caliptra_reg_defines",
       "type": "library",
-      "description": "Package containing definitions for SOC interface types and constants."
+      "description": "Register definitions for Caliptra."
     },
     {
-      "name": "mbox_pkg",
+      "name": "caliptra_macros",
       "type": "library",
-      "description": "Package for mailbox-related definitions."
-    },
-    {
-      "name": "sha512_acc_csr_pkg",
-      "type": "library",
-      "description": "Package for SHA-512 accelerator control and status registers."
+      "description": "Macro definitions for Caliptra."
     }
   ],
   "test": {
-    "testbenches": [
-      "rtl/mbox_csr_uvm.sv",
-      "rtl/sha512_acc_csr_uvm.sv",
-      "rtl/soc_ifc_reg_uvm.sv"
-    ],
+    "testbenches": [],
     "status": "upstream_passing",
     "coverage": "functional"
   },
@@ -162,33 +247,33 @@
   "artifacts": {
     "total_rtl_lines": 22835
   },
-  "categories": {
-    "primary": "security",
-    "secondary": [
-      "communication",
-      "cryptography"
-    ],
-    "tags": [
-      "SHA-512",
-      "mailbox",
-      "AXI",
-      "AHB",
-      "secure interface"
-    ]
-  },
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "Parallel Interfaces"
+    }
+  ],
+  "keywords": [
+    "SoC Interface",
+    "AXI",
+    "AHB-Lite",
+    "Mailbox",
+    "Interrupts",
+    "Secure Boot"
+  ],
   "trust": {
     "verification_level": "silicon_proven",
     "tapeout_count": 0,
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T21:43:15Z"
+    "last_activity": "2026-04-19T06:10:48Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T21:43:15Z"
+      "generated_at": "2026-04-19T06:10:48Z"
     },
     "schema": {
       "version": "1.0.0"

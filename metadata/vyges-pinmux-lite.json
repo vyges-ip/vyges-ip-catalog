@@ -1,11 +1,14 @@
 {
   "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
-  "x-version": "1.0.0",
   "name": "vyges-pinmux-lite",
   "version": "0.1.0",
-  "description": "Lightweight pin multiplexer with a configurable number of IO pins, supporting up to 4 functions per pin, output enable override, pull-up/pull-down enable, and a TL-UL slave interface for software configuration.",
+  "description": "Lightweight pin multiplexer with native TL-UL slave interface. Per-pin function select (4 functions), output enable, pull-up/pull-down control, 2-FF input synchronizer. For IO pad ring configuration.",
+  "category": "infrastructure",
   "license": "Apache-2.0",
-  "maturity": "rtl_verified",
+  "owner": "Vyges Inc.",
+  "maturity": "development",
+  "created": "2026-03-28T15:24:56Z",
+  "updated": "2026-03-28T15:24:56Z",
   "target": [
     "asic",
     "fpga"
@@ -13,153 +16,198 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-28T15:37:59Z",
-  "updated": "2026-03-28T15:37:59Z",
-  "source": {
-    "type": "git",
-    "url": "https://github.com/vyges/vyges-pinmux-lite",
-    "commit": "1968e3de7063be23ccb48407389ecf4395aa3372",
-    "ip_path": ".",
-    "private": false,
-    "containsEncryptedPayload": false,
-    "indexing": true
-  },
-  "maintainers": [
-    {
-      "name": "Vyges",
-      "email": "team@vyges.com",
-      "url": "https://vyges.com",
-      "github": "vyges"
-    }
-  ],
+  "top_module": "pinmux_lite",
   "interfaces": [
     {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "TL-UL",
-      "port": "tl_i",
-      "width": 32,
-      "description": "TL-UL slave interface input"
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "TL-UL",
-      "port": "tl_o",
-      "width": 32,
-      "description": "TL-UL slave interface output"
-    },
-    {
+      "name": "clock",
       "type": "clock",
-      "direction": "input",
-      "port": "clk_i",
-      "width": 1,
-      "description": "Clock input"
+      "signals": [
+        {
+          "name": "clk_i",
+          "direction": "input",
+          "width": 1
+        }
+      ]
     },
     {
+      "name": "reset",
       "type": "reset",
-      "direction": "input",
-      "port": "rst_ni",
-      "width": 1,
-      "description": "Active-low reset input"
+      "signals": [
+        {
+          "name": "rst_ni",
+          "direction": "input",
+          "width": 1
+        }
+      ]
     },
     {
-      "type": "data",
-      "direction": "input",
-      "port": "func_a_out_i",
-      "width": "NUM_PINS",
-      "description": "Function A output data"
+      "name": "tl_slave",
+      "type": "bus",
+      "protocol": "tl-ul",
+      "role": "device",
+      "signals": [
+        {
+          "name": "tl_i",
+          "direction": "input",
+          "width": 1,
+          "type": "tl_h2d_t"
+        },
+        {
+          "name": "tl_o",
+          "direction": "output",
+          "width": 1,
+          "type": "tl_d2h_t"
+        }
+      ]
     },
     {
-      "type": "control",
-      "direction": "input",
-      "port": "func_a_oe_i",
-      "width": "NUM_PINS",
-      "description": "Function A output enable"
+      "name": "func_a",
+      "type": "io",
+      "description": "Function A peripheral interface (e.g. UART)",
+      "signals": [
+        {
+          "name": "func_a_out_i",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "func_a_oe_i",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "func_a_in_o",
+          "direction": "output",
+          "width": 16
+        }
+      ]
     },
     {
-      "type": "data",
-      "direction": "output",
-      "port": "func_a_in_o",
-      "width": "NUM_PINS",
-      "description": "Function A input data"
+      "name": "func_b",
+      "type": "io",
+      "description": "Function B peripheral interface (e.g. SPI)",
+      "signals": [
+        {
+          "name": "func_b_out_i",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "func_b_oe_i",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "func_b_in_o",
+          "direction": "output",
+          "width": 16
+        }
+      ]
     },
     {
-      "type": "data",
-      "direction": "input",
-      "port": "func_b_out_i",
-      "width": "NUM_PINS",
-      "description": "Function B output data"
+      "name": "func_c",
+      "type": "io",
+      "description": "Function C peripheral interface (reserved)",
+      "signals": [
+        {
+          "name": "func_c_out_i",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "func_c_oe_i",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "func_c_in_o",
+          "direction": "output",
+          "width": 16
+        }
+      ]
     },
     {
-      "type": "control",
-      "direction": "input",
-      "port": "func_b_oe_i",
-      "width": "NUM_PINS",
-      "description": "Function B output enable"
+      "name": "pads",
+      "type": "io",
+      "description": "External pad interface",
+      "signals": [
+        {
+          "name": "pad_out_o",
+          "direction": "output",
+          "width": 16
+        },
+        {
+          "name": "pad_oe_o",
+          "direction": "output",
+          "width": 16
+        },
+        {
+          "name": "pad_in_i",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "pad_pull_en_o",
+          "direction": "output",
+          "width": 16
+        },
+        {
+          "name": "pad_pull_sel_o",
+          "direction": "output",
+          "width": 16
+        }
+      ]
+    }
+  ],
+  "registers": [
+    {
+      "name": "PIN_FUNC0",
+      "offset": "0x00",
+      "width": 32,
+      "access": "RW",
+      "description": "Function select for pins 0-15 (2 bits per pin)"
     },
     {
-      "type": "data",
-      "direction": "output",
-      "port": "func_b_in_o",
-      "width": "NUM_PINS",
-      "description": "Function B input data"
+      "name": "PIN_FUNC1",
+      "offset": "0x04",
+      "width": 32,
+      "access": "RW",
+      "description": "Function select for pins 16-31"
     },
     {
-      "type": "data",
-      "direction": "input",
-      "port": "func_c_out_i",
-      "width": "NUM_PINS",
-      "description": "Function C output data"
+      "name": "PIN_OE",
+      "offset": "0x10",
+      "width": 32,
+      "access": "RW",
+      "description": "Output enable per pin"
     },
     {
-      "type": "control",
-      "direction": "input",
-      "port": "func_c_oe_i",
-      "width": "NUM_PINS",
-      "description": "Function C output enable"
+      "name": "PIN_OUT",
+      "offset": "0x14",
+      "width": 32,
+      "access": "RW",
+      "description": "GPIO output value per pin"
     },
     {
-      "type": "data",
-      "direction": "output",
-      "port": "func_c_in_o",
-      "width": "NUM_PINS",
-      "description": "Function C input data"
+      "name": "PIN_IN",
+      "offset": "0x18",
+      "width": 32,
+      "access": "RO",
+      "description": "Sampled input value per pin (2-FF sync)"
     },
     {
-      "type": "data",
-      "direction": "output",
-      "port": "pad_out_o",
-      "width": "NUM_PINS",
-      "description": "Pad output data"
+      "name": "PIN_PULL",
+      "offset": "0x1C",
+      "width": 32,
+      "access": "RW",
+      "description": "Pull enable per pin"
     },
     {
-      "type": "control",
-      "direction": "output",
-      "port": "pad_oe_o",
-      "width": "NUM_PINS",
-      "description": "Pad output enable"
-    },
-    {
-      "type": "data",
-      "direction": "input",
-      "port": "pad_in_i",
-      "width": "NUM_PINS",
-      "description": "Pad input data"
-    },
-    {
-      "type": "control",
-      "direction": "output",
-      "port": "pad_pull_en_o",
-      "width": "NUM_PINS",
-      "description": "Pad pull enable"
-    },
-    {
-      "type": "control",
-      "direction": "output",
-      "port": "pad_pull_sel_o",
-      "width": "NUM_PINS",
-      "description": "Pad pull direction (1=up, 0=down)"
+      "name": "PIN_PULLSEL",
+      "offset": "0x20",
+      "width": 32,
+      "access": "RW",
+      "description": "Pull direction (1=up, 0=down)"
     }
   ],
   "parameters": [
@@ -173,76 +221,30 @@
       "name": "NUM_FUNCS",
       "type": "int",
       "default": 4,
-      "description": "Number of functions per pin (2-bit select)"
+      "description": "Functions per pin (2-bit select)"
     }
   ],
-  "performance": {},
-  "architecture": {
-    "type": "peripheral",
-    "features": [
-      "Configurable number of IO pins",
-      "Per-pin 4-function mux",
-      "Output enable override",
-      "Pull-up/pull-down enable",
-      "2-FF input synchronizer",
-      "TL-UL slave interface"
-    ]
-  },
-  "asic": {
-    "flavor": "digital",
-    "technology": [
-      "sky130A"
-    ]
-  },
-  "fpga": {
-    "toolchain": [
-      "Vivado"
-    ],
-    "devices": [
-      "Artix-7"
-    ]
-  },
-  "dependencies": [],
-  "test": {
-    "testbenches": [],
-    "status": "upstream_passing",
-    "coverage": "functional"
-  },
-  "documentation": {
-    "upstream": "https://github.com/vyges/vyges-pinmux-lite"
-  },
-  "artifacts": {
-    "total_rtl_lines": 234
-  },
-  "categories": [
+  "dependencies": [
     {
-      "main_category": "Interface Controllers",
-      "sub_category": "Parallel Interfaces"
+      "name": "opentitan-tlul",
+      "reason": "tlul_pkg types (tl_h2d_t, tl_d2h_t)"
     }
-  ],
-  "keywords": [
-    "pinmux",
-    "TL-UL",
-    "GPIO",
-    "configurable IO",
-    "peripheral"
   ],
   "trust": {
-    "verification_level": "simulation_passing",
+    "verification_level": "unverified",
     "tapeout_count": 0,
     "fpga_validated": false,
-    "formal_verified": false,
-    "maintained": true,
-    "last_activity": "2026-03-28"
+    "maintained": true
   },
+  "rtl_files": [
+    "rtl/pinmux_lite.sv"
+  ],
   "meta": {
     "template": {
-      "generator": "github-models-ai",
-      "template_version": "1.0.0",
-      "generated_at": "2026-03-28T15:37:59Z"
-    },
-    "schema": {
-      "version": "1.0.0"
+      "generator": "manual (gold-standard 2026-03-28)"
     }
+  },
+  "branding": {
+    "display_name": "Pin Mux"
   }
 }

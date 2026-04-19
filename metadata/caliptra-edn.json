@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "caliptra-edn",
   "version": "0.1.0",
-  "description": "The caliptra-edn IP is a hardware block designed to manage entropy distribution for cryptographic operations. It provides interfaces for entropy requests and responses, supporting FIPS-compliant entropy sources.",
+  "description": "The caliptra-edn IP is a peripheral module that provides an Entropy Distribution Network (EDN) interface for secure entropy distribution, supporting FIPS-compliant and non-FIPS modes.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-01T05:09:13Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:10:21Z",
+  "updated": "2026-04-19T06:10:21Z",
   "source": {
     "type": "git",
     "url": "https://github.com/chipsalliance/caliptra-rtl",
-    "commit": "82eed18aedc14b03bfb8d9dce873c866e1eda22e",
+    "commit": "f4f60f90852635b9e92bb9d23a07b977f6e7ba2c",
     "ip_path": "src/edn",
     "private": false,
     "containsEncryptedPayload": false,
@@ -39,7 +39,7 @@
       "protocol": "custom",
       "port": "edn_req",
       "width": 1,
-      "description": "Entropy distribution request signal."
+      "description": "Entropy request signal from the consumer."
     },
     {
       "type": "bus",
@@ -47,7 +47,7 @@
       "protocol": "custom",
       "port": "edn_ack",
       "width": 1,
-      "description": "Acknowledgment signal for entropy requests."
+      "description": "Acknowledgment signal to the consumer."
     },
     {
       "type": "bus",
@@ -55,7 +55,7 @@
       "protocol": "custom",
       "port": "edn_fips",
       "width": 1,
-      "description": "Indicates FIPS-compliant entropy source."
+      "description": "Indicates whether the entropy is FIPS-compliant."
     },
     {
       "type": "bus",
@@ -63,7 +63,7 @@
       "protocol": "custom",
       "port": "edn_bus",
       "width": 32,
-      "description": "Entropy data bus for distributed entropy."
+      "description": "Entropy data bus for the consumer."
     }
   ],
   "parameters": [
@@ -71,7 +71,7 @@
       "name": "ENDPOINT_BUS_WIDTH",
       "type": "int",
       "default": 32,
-      "description": "Width of the endpoint bus for entropy distribution."
+      "description": "Width of the endpoint bus for entropy data."
     },
     {
       "name": "FIPS_ENDPOINT_BUS_WIDTH",
@@ -94,7 +94,7 @@
     {
       "name": "BOOT_UNINSTANTIATE",
       "type": "int",
-      "default": 32,
+      "default": 5,
       "description": "Command value for boot uninstantiate operation."
     }
   ],
@@ -102,9 +102,10 @@
   "architecture": {
     "type": "peripheral",
     "features": [
-      "Entropy distribution for cryptographic operations",
-      "FIPS-compliant entropy source support",
-      "Finite state machine for boot and auto modes"
+      "Entropy distribution network (EDN) interface",
+      "FIPS-compliant entropy support",
+      "State machine for boot and auto modes",
+      "Custom sparse FSM encoding for state transitions"
     ]
   },
   "asic": {
@@ -125,12 +126,12 @@
     {
       "name": "entropy_src_pkg",
       "type": "library",
-      "description": "Provides FIPS-compliant entropy source definitions."
+      "description": "Provides FIPS_BUS_WIDTH parameter for FIPS-compliant entropy."
     },
     {
       "name": "csrng_pkg",
       "type": "library",
-      "description": "Provides CSRNG command definitions."
+      "description": "Provides CSRNG command types for entropy generation."
     }
   ],
   "test": {
@@ -152,10 +153,11 @@
   ],
   "keywords": [
     "entropy",
+    "EDN",
     "FIPS",
-    "cryptography",
-    "TRNG",
-    "Caliptra"
+    "CSRNG",
+    "security",
+    "random number generator"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -163,33 +165,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-01"
+    "last_activity": "2026-04-19T06:10:21Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-01T05:09:13Z"
+      "generated_at": "2026-04-19T06:10:21Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/edn_pkg.sv",
-    "rtl/edn_pkg.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

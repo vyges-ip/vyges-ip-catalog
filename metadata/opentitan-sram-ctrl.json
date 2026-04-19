@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-sram-ctrl",
   "version": "0.1.0",
-  "description": "A silicon-proven SRAM controller from the OpenTitan project, providing secure memory access with integrity checks and support for RACL policies.",
+  "description": "A silicon-proven SRAM controller from the OpenTitan project, providing secure memory access with integrity checks, error detection, and support for TL-UL protocol.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:06:03Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:46Z",
+  "updated": "2026-04-19T06:12:46Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/sram_ctrl",
     "private": false,
     "containsEncryptedPayload": false,
@@ -36,7 +36,7 @@
     {
       "type": "clock",
       "direction": "input",
-      "protocol": "standard",
+      "protocol": "N/A",
       "port": "clk_i",
       "width": 1,
       "description": "Clock input signal"
@@ -44,7 +44,7 @@
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "active-low",
+      "protocol": "N/A",
       "port": "rst_ni",
       "width": 1,
       "description": "Active-low reset signal"
@@ -54,7 +54,7 @@
       "direction": "slave",
       "protocol": "TL-UL",
       "port": "tl_i",
-      "width": 1,
+      "width": 32,
       "description": "TileLink host-to-device interface"
     },
     {
@@ -62,27 +62,43 @@
       "direction": "master",
       "protocol": "TL-UL",
       "port": "tl_o",
-      "width": 1,
+      "width": 32,
       "description": "TileLink device-to-host interface"
     },
     {
-      "type": "custom",
+      "type": "data",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "reg2hw",
+      "width": 32,
+      "description": "Data written to hardware registers"
+    },
+    {
+      "type": "data",
       "direction": "input",
-      "protocol": "RACL",
+      "protocol": "custom",
+      "port": "hw2reg",
+      "width": 32,
+      "description": "Data read from hardware registers"
+    },
+    {
+      "type": "data",
+      "direction": "input",
+      "protocol": "custom",
       "port": "racl_policies_i",
-      "width": "top_racl_pkg::racl_policy_vec_t",
+      "width": 9,
       "description": "RACL policy input vector"
     },
     {
-      "type": "custom",
+      "type": "data",
       "direction": "output",
-      "protocol": "RACL",
+      "protocol": "custom",
       "port": "racl_error_o",
-      "width": "top_racl_pkg::racl_error_log_t",
+      "width": 1,
       "description": "RACL error log output"
     },
     {
-      "type": "signal",
+      "type": "interrupt",
       "direction": "output",
       "protocol": "custom",
       "port": "intg_err_o",
@@ -106,61 +122,19 @@
     {
       "name": "RaclPolicySelVec",
       "type": "enum",
-      "default": "'{sram_ctrl_reg_pkg::NumRegsRam{0}}",
+      "default": "{sram_ctrl_reg_pkg::NumRegsRegs{0}}",
       "description": "RACL policy selection vector"
-    },
-    {
-      "name": "DataWidth",
-      "type": "int",
-      "default": "32 + tlul_pkg::DataIntgWidth",
-      "description": "Width of the RAM data including integrity bits"
-    },
-    {
-      "name": "NonceWidth",
-      "type": "int",
-      "default": 64,
-      "description": "Width of the nonce used for security"
-    },
-    {
-      "name": "LfsrWidth",
-      "type": "int",
-      "default": 64,
-      "description": "Width of the LFSR used for random number generation"
-    },
-    {
-      "name": "LfsrOutWidth",
-      "type": "int",
-      "default": 32,
-      "description": "Output width of the LFSR"
-    },
-    {
-      "name": "NumAlerts",
-      "type": "int",
-      "default": 1,
-      "description": "Number of alert signals"
-    },
-    {
-      "name": "RegsAw",
-      "type": "int",
-      "default": 6,
-      "description": "Address width for registers"
-    },
-    {
-      "name": "NumRegsRegs",
-      "type": "int",
-      "default": 9,
-      "description": "Number of registers for each interface"
     }
   ],
   "performance": {},
   "architecture": {
     "type": "memory",
     "features": [
-      "SRAM controller with integrity check",
-      "Support for RACL policies",
+      "SRAM control",
       "TileLink UL interface",
-      "Random number generation using LFSR",
-      "Error logging and reporting"
+      "Integrity check and error detection",
+      "RACL policy support",
+      "Register interface for hardware communication"
     ]
   },
   "asic": {
@@ -184,24 +158,29 @@
       "description": "TileLink UL protocol package"
     },
     {
-      "name": "sram_ctrl_pkg",
-      "type": "library",
-      "description": "Package containing SRAM controller parameters and types"
-    },
-    {
-      "name": "sram_ctrl_reg_pkg",
-      "type": "library",
-      "description": "Package containing register definitions for SRAM controller"
-    },
-    {
-      "name": "otp_ctrl_pkg",
-      "type": "library",
-      "description": "Package for OTP controller parameters and types"
-    },
-    {
       "name": "prim_assert",
       "type": "library",
-      "description": "Assertion primitives for OpenTitan"
+      "description": "Primitive assertions for design verification"
+    },
+    {
+      "name": "prim_reg_we_check",
+      "type": "library",
+      "description": "Primitive for write enable checking"
+    },
+    {
+      "name": "tlul_adapter_reg",
+      "type": "core",
+      "description": "TileLink register adapter"
+    },
+    {
+      "name": "tlul_cmd_intg_chk",
+      "type": "core",
+      "description": "TileLink command integrity checker"
+    },
+    {
+      "name": "tlul_rsp_intg_gen",
+      "type": "core",
+      "description": "TileLink response integrity generator"
     }
   ],
   "test": {
@@ -225,9 +204,10 @@
     "SRAM",
     "controller",
     "TileLink",
-    "RACL",
     "OpenTitan",
-    "integrity check"
+    "RACL",
+    "integrity",
+    "error detection"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -235,36 +215,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T23:06:03Z"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:06:03Z"
+      "generated_at": "2026-04-19T06:12:46Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/sram_ctrl.sv",
-    "rtl/sram_ctrl_pkg.sv",
-    "rtl/sram_ctrl_ram_reg_top.sv",
-    "rtl/sram_ctrl_reg_pkg.sv",
-    "rtl/sram_ctrl_regs_reg_top.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

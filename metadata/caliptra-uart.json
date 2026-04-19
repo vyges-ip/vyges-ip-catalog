@@ -3,9 +3,9 @@
   "x-version": "1.0.0",
   "name": "caliptra-uart",
   "version": "0.1.0",
-  "description": "A UART peripheral with an AMBA AHB-Lite interface, supporting configurable data and address widths, register-based control, and error detection mechanisms.",
+  "description": "IP imported from https://github.com/chipsalliance/caliptra-rtl",
   "license": "Apache-2.0",
-  "maturity": "production",
+  "maturity": "draft",
   "target": [
     "asic",
     "fpga"
@@ -13,221 +13,43 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T21:43:11Z",
-  "updated": "2026-03-27T21:43:11Z",
+  "created": "2026-04-19T06:10:53Z",
+  "updated": "2026-04-19T06:10:53Z",
   "source": {
     "type": "git",
     "url": "https://github.com/chipsalliance/caliptra-rtl",
-    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
-    "ip_path": "src/uart",
+    "commit": "f4f60f90852635b9e92bb9d23a07b977f6e7ba2c",
     "private": false,
-    "containsEncryptedPayload": false,
     "indexing": true
   },
   "maintainers": [
     {
       "name": "Vyges",
       "email": "team@vyges.com",
-      "url": "https://vyges.com",
       "github": "vyges"
     }
   ],
-  "interfaces": [
-    {
-      "type": "clock",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "clk_i",
-      "width": 1,
-      "description": "Clock input signal"
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "active-low",
-      "port": "rst_ni",
-      "width": 1,
-      "description": "Active-low reset input signal"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "AHB-Lite",
-      "port": "haddr_i",
-      "width": 32,
-      "description": "AHB-Lite address input"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "AHB-Lite",
-      "port": "hwdata_i",
-      "width": 64,
-      "description": "AHB-Lite write data input"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "AHB-Lite",
-      "port": "hsel_i",
-      "width": 1,
-      "description": "AHB-Lite slave select input"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "AHB-Lite",
-      "port": "hwrite_i",
-      "width": 1,
-      "description": "AHB-Lite write enable input"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "AHB-Lite",
-      "port": "hready_i",
-      "width": 1,
-      "description": "AHB-Lite ready input"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "AHB-Lite",
-      "port": "htrans_i",
-      "width": 2,
-      "description": "AHB-Lite transfer type input"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "AHB-Lite",
-      "port": "hsize_i",
-      "width": 3,
-      "description": "AHB-Lite transfer size input"
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "AHB-Lite",
-      "port": "hresp_o",
-      "width": 1,
-      "description": "AHB-Lite response output"
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "AHB-Lite",
-      "port": "hreadyout_o",
-      "width": 1,
-      "description": "AHB-Lite ready output"
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "AHB-Lite",
-      "port": "hrdata_o",
-      "width": 64,
-      "description": "AHB-Lite read data output"
-    },
-    {
-      "type": "interrupt",
-      "direction": "output",
-      "protocol": "generic",
-      "port": "intg_err_o",
-      "width": 1,
-      "description": "Integrity error interrupt output"
-    },
-    {
-      "type": "config",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "devmode_i",
-      "width": 1,
-      "description": "Device mode configuration input"
-    }
-  ],
-  "parameters": [
-    {
-      "name": "AHBDataWidth",
-      "type": "int",
-      "default": 64,
-      "description": "Width of the AHB data bus"
-    },
-    {
-      "name": "AHBAddrWidth",
-      "type": "int",
-      "default": 32,
-      "description": "Width of the AHB address bus"
-    }
-  ],
-  "performance": {},
+  "interfaces": [],
+  "parameters": [],
   "architecture": {
     "type": "peripheral",
-    "features": [
-      "AMBA AHB-Lite slave interface",
-      "Configurable data and address widths",
-      "Register-based control and status",
-      "Error detection and reporting"
-    ]
+    "features": []
   },
-  "asic": {
-    "flavor": "digital",
-    "technology": [
-      "sky130A"
-    ]
-  },
-  "fpga": {
-    "toolchain": [
-      "Vivado"
-    ],
-    "devices": [
-      "Artix-7"
-    ]
-  },
-  "dependencies": [
+  "categories": [
     {
-      "name": "caliptra-prim",
-      "type": "library",
-      "description": "Primitive modules for Caliptra designs"
+      "main_category": "Miscellaneous",
+      "sub_category": "Custom Accelerators"
     }
   ],
-  "test": {
-    "testbenches": [],
-    "status": "upstream_passing",
-    "coverage": "functional"
-  },
-  "documentation": {
-    "upstream": "https://github.com/chipsalliance/caliptra-rtl"
-  },
-  "artifacts": {
-    "total_rtl_lines": 3030
-  },
-  "categories": {
-    "primary": "peripherals",
-    "secondary": [
-      "communication",
-      "serial"
-    ],
-    "tags": [
-      "UART",
-      "AHB-Lite",
-      "peripheral",
-      "communication"
-    ]
-  },
   "trust": {
-    "verification_level": "silicon_proven",
-    "tapeout_count": 0,
-    "fpga_validated": false,
-    "formal_verified": false,
-    "maintained": true,
-    "last_activity": "2026-03-27T21:43:11Z"
+    "verification_level": "unknown",
+    "maintained": true
   },
+  "_note": "AI enrichment failed. Manual population needed.",
   "meta": {
     "template": {
-      "generator": "github-models-ai",
-      "template_version": "1.0.0",
-      "generated_at": "2026-03-27T21:43:11Z"
+      "generator": "upstream-sync-fallback",
+      "generated_at": "2026-04-19T06:10:53Z"
     },
     "schema": {
       "version": "1.0.0"

@@ -2,10 +2,10 @@
   "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
   "x-version": "1.0.0",
   "name": "common_cells",
-  "version": "1.24.0",
-  "description": "PULP's shared SystemVerilog utility library \u2014 FIFOs, CDC primitives, arbiters, counters, one-hot encoders, stream elements. Used by pulp-riscv-dbg and many other PULP IPs as a base dependency.",
+  "version": "0.1.0",
+  "description": "A collection of reusable RTL modules for common digital design tasks, including clock domain crossing, FIFOs, counters, and synchronization primitives.",
   "license": "SHL-0.51",
-  "maturity": "production",
+  "maturity": "rtl_verified",
   "target": [
     "asic",
     "fpga"
@@ -13,12 +13,13 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-16T04:22:21Z",
-  "updated": "2026-04-16T04:22:21Z",
+  "created": "2026-04-19T06:10:49Z",
+  "updated": "2026-04-19T06:10:49Z",
   "source": {
     "type": "git",
     "url": "https://github.com/pulp-platform/common_cells",
     "commit": "b74f0ad63600762ef101cf1d3365d19dfbb3123b",
+    "ip_path": ".",
     "private": false,
     "containsEncryptedPayload": false,
     "indexing": true
@@ -31,105 +32,206 @@
       "github": "vyges"
     }
   ],
-  "interfaces": [],
-  "parameters": [],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "a_clk_i",
+      "width": 1,
+      "description": "Clock input for side A."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "a_rst_ni",
+      "width": 1,
+      "description": "Active-low asynchronous reset for side A."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "a_clear_i",
+      "width": 1,
+      "description": "Clear request input for side A."
+    },
+    {
+      "type": "control",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "a_clear_o",
+      "width": 1,
+      "description": "Clear signal output for side A."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "a_clear_ack_i",
+      "width": 1,
+      "description": "Clear acknowledgment input for side A."
+    },
+    {
+      "type": "control",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "a_isolate_o",
+      "width": 1,
+      "description": "Isolation signal output for side A."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "a_isolate_ack_i",
+      "width": 1,
+      "description": "Isolation acknowledgment input for side A."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "b_clk_i",
+      "width": 1,
+      "description": "Clock input for side B."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "b_rst_ni",
+      "width": 1,
+      "description": "Active-low asynchronous reset for side B."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "b_clear_i",
+      "width": 1,
+      "description": "Clear request input for side B."
+    },
+    {
+      "type": "control",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "b_clear_o",
+      "width": 1,
+      "description": "Clear signal output for side B."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "b_clear_ack_i",
+      "width": 1,
+      "description": "Clear acknowledgment input for side B."
+    },
+    {
+      "type": "control",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "b_isolate_o",
+      "width": 1,
+      "description": "Isolation signal output for side B."
+    },
+    {
+      "type": "control",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "b_isolate_ack_i",
+      "width": 1,
+      "description": "Isolation acknowledgment input for side B."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "SYNC_STAGES",
+      "type": "int",
+      "default": 2,
+      "description": "Number of synchronization stages for clear signal request/acknowledge."
+    },
+    {
+      "name": "CLEAR_ON_ASYNC_RESET",
+      "type": "bit",
+      "default": 1,
+      "description": "Enable asynchronous reset to trigger a clear request."
+    }
+  ],
   "performance": {},
   "architecture": {
-    "type": "library",
+    "type": "peripheral",
     "features": [
-      "FIFOs: fifo_v3, fifo_async_fwft, stream_fifo",
-      "CDC: sync, cdc_2phase, cdc_2phase_clearable, cdc_fifo_gray, cdc_reset_ctrlr",
-      "Arbitration: rr_arb_tree, rrarbiter, stream_arbiter",
-      "Encoding: onehot_to_bin, lzc (leading-zero count), popcount",
-      "Stream: stream_delay, stream_fork, stream_filter, stream_register",
-      "Counters: counter, delta_counter, mv_filter"
+      "Clock domain crossing synchronization",
+      "4-phase handshaking protocol",
+      "Support for asynchronous reset"
     ]
   },
   "asic": {
     "flavor": "digital",
     "technology": [
-      "sky130A",
-      "gf180mcuD",
-      "asap7",
-      "any-generic-standard-cell"
+      "sky130A"
     ]
   },
   "fpga": {
     "toolchain": [
-      "Vivado",
-      "Yosys",
-      "Quartus"
+      "Vivado"
     ],
     "devices": [
-      "Artix-7",
-      "Ultrascale+",
-      "generic"
+      "Artix-7"
     ]
   },
   "dependencies": [
     {
-      "name": "tech_cells_generic",
+      "name": "cdc_reset_ctrlr_pkg",
       "type": "library",
-      "source": "vyges-ip/tech_cells_generic",
-      "description": "For tie-cell and clock-gate instantiations"
+      "description": "Package containing definitions for CDC reset controller."
     }
   ],
   "test": {
     "testbenches": [],
     "status": "upstream_passing",
-    "coverage": "formal"
+    "coverage": "functional"
   },
   "documentation": {
     "upstream": "https://github.com/pulp-platform/common_cells"
   },
   "artifacts": {
-    "total_rtl_lines": 12000
+    "total_rtl_lines": 11593
   },
   "categories": [
     {
-      "main_category": "Building Blocks",
-      "sub_category": "Utility Library"
+      "main_category": "Base Libraries",
+      "sub_category": "Pipeline & Bypass Logic"
     }
   ],
   "keywords": [
-    "PULP",
-    "common cells",
-    "FIFO",
     "CDC",
-    "arbiter",
-    "utility",
-    "SystemVerilog"
+    "reset synchronization",
+    "clock domain crossing",
+    "FIFO",
+    "counters",
+    "arbiters",
+    "timing"
   ],
   "trust": {
-    "verification_level": "silicon_proven",
-    "tapeout_count": 50,
-    "fpga_validated": true,
-    "formal_verified": true,
+    "verification_level": "simulation_passing",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-16T04:22:21Z"
+    "last_activity": "2026-04-19T06:10:49Z"
   },
   "meta": {
     "template": {
-      "generator": "vyges-manual",
+      "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-16T04:22:21Z"
+      "generated_at": "2026-04-19T06:10:49Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [],
-  "rtl_quality": {
-    "module_prefixed": false,
-    "defines_prefixed": false,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": true,
-    "no_translate_pragmas": true,
-    "lint_clean": true,
-    "no_casex": true,
-    "width_clean": true,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

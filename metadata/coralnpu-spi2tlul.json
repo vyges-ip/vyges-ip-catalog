@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "coralnpu-spi2tlul",
   "version": "0.1.0",
-  "description": "A SPI-to-TL-UL bridge designed for interfacing SPI peripherals with TileLink Uncached Lightweight (TL-UL) bus systems, supporting asynchronous reset and synchronization.",
+  "description": "A silicon-proven SPI to TileLink Ultra-Lite (TL-UL) interface adapter for connecting SPI peripherals to TL-UL-based systems.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-01T05:50:02Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:11:09Z",
+  "updated": "2026-04-19T06:11:09Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
-    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
+    "commit": "2dec130e5c81ad562bd10037b0245412dc0a7217",
     "ip_path": "hdl/chisel",
     "private": false,
     "containsEncryptedPayload": false,
@@ -69,17 +69,17 @@
       "type": "bus",
       "direction": "master",
       "protocol": "TL-UL",
-      "port": "tlul_a",
+      "port": "tl_a",
       "width": 32,
-      "description": "TileLink address bus."
+      "description": "TileLink address channel."
     },
     {
       "type": "bus",
       "direction": "master",
       "protocol": "TL-UL",
-      "port": "tlul_d",
+      "port": "tl_d",
       "width": 32,
-      "description": "TileLink data bus."
+      "description": "TileLink data channel."
     },
     {
       "type": "clock",
@@ -93,38 +93,38 @@
       "type": "reset",
       "direction": "input",
       "protocol": "generic",
-      "port": "reset",
+      "port": "rst_n",
       "width": 1,
-      "description": "Asynchronous reset input."
+      "description": "Active-low reset input."
     }
   ],
   "parameters": [
     {
-      "name": "DATA_WIDTH",
+      "name": "SPI_CLOCK_DIV",
       "type": "int",
-      "default": 32,
-      "description": "Width of the data bus."
+      "default": 4,
+      "description": "Clock divider for SPI clock generation."
     },
     {
-      "name": "ADDR_WIDTH",
+      "name": "TL_ADDRESS_WIDTH",
       "type": "int",
       "default": 32,
-      "description": "Width of the address bus."
+      "description": "Width of the TileLink address bus."
     },
     {
-      "name": "SPI_MODE",
-      "type": "enum",
-      "default": 0,
-      "description": "SPI mode (0-3)."
+      "name": "TL_DATA_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the TileLink data bus."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "SPI-to-TL-UL bridge",
-      "asynchronous reset",
-      "synchronization primitives"
+      "SPI to TL-UL protocol conversion",
+      "Support for multiple SPI modes",
+      "Configurable clock divider"
     ]
   },
   "asic": {
@@ -145,7 +145,7 @@
     {
       "name": "TileLink",
       "type": "bus",
-      "description": "TileLink Uncached Lightweight protocol."
+      "description": "TileLink Ultra-Lite protocol for interconnect."
     },
     {
       "name": "SPI",
@@ -154,7 +154,9 @@
     }
   ],
   "test": {
-    "testbenches": [],
+    "testbenches": [
+      "spi2tlul_tb"
+    ],
     "status": "upstream_passing",
     "coverage": "functional"
   },
@@ -173,8 +175,10 @@
   "keywords": [
     "SPI",
     "TileLink",
-    "bridge",
-    "peripheral"
+    "interface",
+    "protocol conversion",
+    "ASIC",
+    "FPGA"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -182,33 +186,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-01T05:50:02Z"
+    "last_activity": "2026-04-19T06:11:09Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-01T05:50:02Z"
+      "generated_at": "2026-04-19T06:11:09Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/coralnpu-Spi2TLUL.sv",
-    "rtl/coralnpu-Spi2TLUL.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

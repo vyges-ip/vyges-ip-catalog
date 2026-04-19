@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "cva6",
   "version": "0.1.0",
-  "description": "CVA6 is a high-performance, silicon-proven RISC-V processor core supporting RV64GC ISA with advanced features such as MMU, cache subsystems, and AXI interfaces.",
+  "description": "CVA6 is a high-performance, silicon-proven, 64-bit RISC-V processor core supporting the RV64GC instruction set architecture with advanced features such as out-of-order execution, branch prediction, and a configurable cache subsystem.",
   "license": "Solderpad-0.51",
   "maturity": "production",
   "target": [
@@ -13,8 +13,8 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-01T06:14:12Z",
-  "updated": "2026-04-01T06:14:12Z",
+  "created": "2026-04-19T06:11:33Z",
+  "updated": "2026-04-19T06:11:33Z",
   "source": {
     "type": "git",
     "url": "https://github.com/openhwgroup/cva6",
@@ -39,12 +39,20 @@
       "protocol": "AXI",
       "port": "axi_master",
       "width": 128,
-      "description": "AXI master interface for memory transactions."
+      "description": "AXI master interface for memory access."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI",
+      "port": "axi_slave",
+      "width": 128,
+      "description": "AXI slave interface for peripheral communication."
     },
     {
       "type": "clock",
       "direction": "input",
-      "protocol": "standard",
+      "protocol": "none",
       "port": "clk",
       "width": 1,
       "description": "Clock input for the processor core."
@@ -52,18 +60,18 @@
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "standard",
+      "protocol": "none",
       "port": "rst_n",
       "width": 1,
-      "description": "Active-low reset input for the processor core."
+      "description": "Active-low reset signal."
     },
     {
       "type": "interrupt",
       "direction": "input",
-      "protocol": "standard",
+      "protocol": "none",
       "port": "irq",
       "width": 32,
-      "description": "Interrupt request lines for external interrupts."
+      "description": "Interrupt request lines."
     }
   ],
   "parameters": [
@@ -74,31 +82,42 @@
       "description": "Unique identifier for the processor core."
     },
     {
+      "name": "NUM_CORES",
+      "type": "int",
+      "default": 1,
+      "description": "Number of cores in the processor."
+    },
+    {
       "name": "CACHE_SIZE",
       "type": "int",
       "default": 64,
       "description": "Size of the L1 cache in kilobytes."
     },
     {
-      "name": "MMU_ENABLE",
-      "type": "bit",
-      "default": 1,
-      "description": "Enable or disable the MMU functionality."
+      "name": "TLB_ENTRIES",
+      "type": "int",
+      "default": 32,
+      "description": "Number of entries in the TLB."
     }
   ],
   "performance": {
     "frequency": "1GHz",
-    "power": "1.5W",
-    "area": "0.5mm^2"
+    "power_consumption": "1.5W",
+    "area": "0.5mm^2",
+    "benchmark": {
+      "specint": 1.2,
+      "specfp": 1.1
+    }
   },
   "architecture": {
     "type": "processor",
     "features": [
-      "RV64GC ISA support",
-      "MMU with SV39 paging",
-      "L1 instruction and data caches",
-      "AXI bus interface",
-      "Branch prediction unit"
+      "64-bit RISC-V ISA (RV64GC)",
+      "Out-of-order execution",
+      "Branch prediction",
+      "Configurable cache subsystem",
+      "MMU with TLB support",
+      "AXI bus interfaces"
     ]
   },
   "asic": {
@@ -119,12 +138,12 @@
     {
       "name": "AXI",
       "type": "bus",
-      "description": "AXI bus protocol for memory and peripheral transactions."
+      "description": "Advanced eXtensible Interface for memory and peripheral communication."
     },
     {
-      "name": "MMU",
+      "name": "RISC-V ISA",
       "type": "core",
-      "description": "Memory Management Unit for virtual memory support."
+      "description": "Instruction set architecture for the processor."
     }
   ],
   "test": {
@@ -151,24 +170,24 @@
   "keywords": [
     "RISC-V",
     "processor",
-    "CVA6",
-    "AXI",
+    "out-of-order",
+    "cache",
     "MMU",
-    "cache"
+    "AXI"
   ],
   "trust": {
     "verification_level": "silicon_proven",
-    "tapeout_count": 5,
+    "tapeout_count": 3,
     "fpga_validated": true,
     "formal_verified": true,
     "maintained": true,
-    "last_activity": "2026-04-01T06:14:12Z"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-01T06:14:12Z"
+      "generated_at": "2026-04-19T06:11:33Z"
     },
     "schema": {
       "version": "1.0.0"

@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T21:43:25Z",
-  "updated": "2026-03-27T21:43:25Z",
+  "created": "2026-04-19T06:10:15Z",
+  "updated": "2026-04-19T06:10:15Z",
   "source": {
     "type": "git",
     "url": "https://github.com/chipsalliance/caliptra-rtl",
-    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "commit": "f4f60f90852635b9e92bb9d23a07b977f6e7ba2c",
     "ip_path": "src/axi",
     "private": false,
     "containsEncryptedPayload": false,
@@ -52,23 +52,20 @@
     {
       "type": "clock",
       "direction": "input",
-      "protocol": "generic",
       "port": "clk",
       "width": 1,
-      "description": "Clock signal for synchronous operation."
+      "description": "Clock signal for the AXI DMA block."
     },
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "generic",
       "port": "rst_n",
       "width": 1,
-      "description": "Active-low reset signal."
+      "description": "Active-low reset signal for the AXI DMA block."
     },
     {
       "type": "interrupt",
       "direction": "output",
-      "protocol": "generic",
       "port": "notif_intr",
       "width": 1,
       "description": "Notification interrupt signal."
@@ -76,7 +73,6 @@
     {
       "type": "interrupt",
       "direction": "output",
-      "protocol": "generic",
       "port": "error_intr",
       "width": 1,
       "description": "Error interrupt signal."
@@ -96,22 +92,10 @@
       "description": "Data width for AXI transactions."
     },
     {
-      "name": "BC",
-      "type": "int",
-      "default": 4,
-      "description": "Byte count derived from data width."
-    },
-    {
-      "name": "BW",
-      "type": "int",
-      "default": 2,
-      "description": "Byte count width derived from byte count."
-    },
-    {
       "name": "UW",
       "type": "int",
       "default": 32,
-      "description": "User width for AXI transactions."
+      "description": "User signal width for AXI transactions."
     },
     {
       "name": "IW",
@@ -123,17 +107,17 @@
       "name": "ID_NUM",
       "type": "int",
       "default": 2,
-      "description": "Number of IDs derived from ID width."
+      "description": "Number of IDs supported for AXI transactions."
     }
   ],
   "performance": {},
   "architecture": {
-    "type": "bus",
+    "type": "peripheral",
     "features": [
-      "AXI4 protocol support",
-      "DMA controller for high-speed data transfer",
-      "Interrupt handling for notifications and errors",
-      "Configurable address, data, and user widths"
+      "AXI4 read and write manager interfaces",
+      "DMA controller with configurable address and data widths",
+      "Support for AES and KV interfaces",
+      "Interrupt handling for notifications and errors"
     ]
   },
   "asic": {
@@ -154,22 +138,17 @@
     {
       "name": "axi_pkg",
       "type": "library",
-      "description": "AXI protocol definitions and constants."
-    },
-    {
-      "name": "axi_dma_reg_pkg",
-      "type": "library",
-      "description": "Register definitions for AXI DMA controller."
+      "description": "AXI protocol package for defining AXI interfaces and parameters."
     },
     {
       "name": "soc_ifc_pkg",
       "type": "library",
-      "description": "SOC interface definitions for integration."
+      "description": "SOC interface package for internal signaling and request handling."
     },
     {
       "name": "kv_defines_pkg",
       "type": "library",
-      "description": "Key-value interface definitions."
+      "description": "Key-value interface definitions for secure data handling."
     }
   ],
   "test": {
@@ -183,32 +162,32 @@
   "artifacts": {
     "total_rtl_lines": 10590
   },
-  "categories": {
-    "primary": "bus",
-    "secondary": [
-      "dma",
-      "axi"
-    ],
-    "tags": [
-      "AXI4",
-      "DMA",
-      "bus",
-      "interrupt"
-    ]
-  },
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "High-Speed Interfaces"
+    }
+  ],
+  "keywords": [
+    "AXI4",
+    "DMA",
+    "High-Speed Interfaces",
+    "Caliptra",
+    "Security"
+  ],
   "trust": {
     "verification_level": "silicon_proven",
     "tapeout_count": 0,
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T21:43:25Z"
+    "last_activity": "2026-04-19T06:10:15Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T21:43:25Z"
+      "generated_at": "2026-04-19T06:10:15Z"
     },
     "schema": {
       "version": "1.0.0"

@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "caliptra-lc-ctrl",
   "version": "0.1.0",
-  "description": "The Caliptra Life Cycle Controller (LC-CTRL) manages the life cycle states of a device, including secure transitions, state encoding, and error handling.",
+  "description": "The Caliptra Life Cycle Controller (LC_CTRL) manages the lifecycle states of the chip, including manufacturing state encoding, transition counters, and secure lifecycle state transitions.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T21:43:10Z",
-  "updated": "2026-03-27T21:43:10Z",
+  "created": "2026-04-19T06:10:32Z",
+  "updated": "2026-04-19T06:10:32Z",
   "source": {
     "type": "git",
     "url": "https://github.com/chipsalliance/caliptra-rtl",
-    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "commit": "f4f60f90852635b9e92bb9d23a07b977f6e7ba2c",
     "ip_path": "src/lc_ctrl",
     "private": false,
     "containsEncryptedPayload": false,
@@ -35,35 +35,27 @@
   "interfaces": [
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "TL-UL",
-      "port": "lc_ctrl_bus",
+      "port": "lc_ctrl_i",
       "width": 32,
-      "description": "TileLink Uncached Lightweight interface for register access."
+      "description": "Input bus interface for lifecycle control operations."
     },
     {
       "type": "clock",
       "direction": "input",
       "protocol": "generic",
-      "port": "clk",
+      "port": "clk_i",
       "width": 1,
-      "description": "Clock input for the LC controller."
+      "description": "Clock input for lifecycle controller."
     },
     {
       "type": "reset",
       "direction": "input",
       "protocol": "generic",
-      "port": "rst_n",
+      "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset input for the LC controller."
-    },
-    {
-      "type": "interrupt",
-      "direction": "output",
-      "protocol": "generic",
-      "port": "lc_ctrl_irq",
-      "width": 1,
-      "description": "Interrupt signal for life cycle state changes or errors."
+      "description": "Active-low reset input for lifecycle controller."
     }
   ],
   "parameters": [
@@ -71,19 +63,19 @@
       "name": "LcValueWidth",
       "type": "int",
       "default": 16,
-      "description": "Width of individual life cycle values."
+      "description": "Width of lifecycle state values."
     },
     {
       "name": "NumLcStateValues",
       "type": "int",
       "default": 20,
-      "description": "Number of life cycle state values."
+      "description": "Number of lifecycle state values."
     },
     {
       "name": "NumLcStates",
       "type": "int",
       "default": 21,
-      "description": "Total number of life cycle states."
+      "description": "Number of lifecycle states."
     },
     {
       "name": "NumSocDbgStateValues",
@@ -107,30 +99,29 @@
       "name": "NumLcCountValues",
       "type": "int",
       "default": 24,
-      "description": "Number of life cycle counter values."
+      "description": "Number of lifecycle count values."
     },
     {
       "name": "NumLcCountStates",
       "type": "int",
       "default": 25,
-      "description": "Number of life cycle counter states."
+      "description": "Number of lifecycle count states."
     },
     {
       "name": "NumLcIdStates",
       "type": "int",
       "default": 2,
-      "description": "Number of life cycle ID states."
+      "description": "Number of lifecycle ID states."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "Life cycle state management",
-      "Secure state transitions",
-      "ECC-based state encoding",
-      "CSR interface for state access",
-      "Error detection and reporting"
+      "Lifecycle state encoding and management",
+      "Manufacturing state encoding",
+      "Transition counter encoding",
+      "Secure lifecycle state transitions"
     ]
   },
   "asic": {
@@ -151,7 +142,7 @@
     {
       "name": "caliptra-prim-util-pkg",
       "type": "library",
-      "description": "Utility package for primitive operations."
+      "description": "Utility package for lifecycle state encoding and bit manipulation."
     }
   ],
   "test": {
@@ -165,32 +156,32 @@
   "artifacts": {
     "total_rtl_lines": 1195
   },
-  "categories": {
-    "primary": "security",
-    "secondary": [
-      "state-management",
-      "peripherals"
-    ],
-    "tags": [
-      "life-cycle",
-      "state-encoding",
-      "secure-boot",
-      "hardware-security"
-    ]
-  },
+  "categories": [
+    {
+      "main_category": "Security IP",
+      "sub_category": "Fuse Controllers"
+    }
+  ],
+  "keywords": [
+    "lifecycle",
+    "security",
+    "state encoding",
+    "manufacturing",
+    "transition counter"
+  ],
   "trust": {
     "verification_level": "silicon_proven",
     "tapeout_count": 0,
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T21:43:10Z"
+    "last_activity": "2026-04-19T06:10:32Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T21:43:10Z"
+      "generated_at": "2026-04-19T06:10:32Z"
     },
     "schema": {
       "version": "1.0.0"

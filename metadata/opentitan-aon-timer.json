@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-aon-timer",
   "version": "0.1.0",
-  "description": "The Always-On Timer (AON Timer) is a low-power timer module from the OpenTitan project, featuring wakeup and watchdog timer functionalities with support for TL-UL bus interface and integrity checks.",
+  "description": "The Always-On Timer (aon_timer) is a low-power timer module from the OpenTitan project. It provides wakeup and watchdog timer functionality with support for register access control and integrity checks.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:04:53Z",
-  "updated": "2026-03-27T23:04:53Z",
+  "created": "2026-04-19T06:12:01Z",
+  "updated": "2026-04-19T06:12:01Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/aon_timer",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,33 +34,25 @@
   ],
   "interfaces": [
     {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "TL-UL",
-      "port": "tl_i",
-      "width": 32,
-      "description": "TL-UL host-to-device interface for communication."
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "TL-UL",
-      "port": "tl_o",
-      "width": 32,
-      "description": "TL-UL device-to-host interface for communication."
-    },
-    {
       "type": "clock",
       "direction": "input",
-      "protocol": "generic",
+      "protocol": "standard",
       "port": "clk_i",
       "width": 1,
       "description": "Primary clock input for the module."
     },
     {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset input for the primary clock domain."
+    },
+    {
       "type": "clock",
       "direction": "input",
-      "protocol": "generic",
+      "protocol": "standard",
       "port": "clk_aon_i",
       "width": 1,
       "description": "Always-on clock input for low-power operation."
@@ -68,26 +60,66 @@
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "generic",
-      "port": "rst_ni",
-      "width": 1,
-      "description": "Active-low reset signal for the primary clock domain."
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "generic",
+      "protocol": "standard",
       "port": "rst_aon_ni",
       "width": 1,
-      "description": "Active-low reset signal for the always-on clock domain."
+      "description": "Active-low reset input for the always-on clock domain."
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TL-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "TileLink UL input interface for register access."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "TileLink UL output interface for register access."
     },
     {
       "type": "interrupt",
       "direction": "output",
-      "protocol": "generic",
+      "protocol": "custom",
       "port": "intg_err_o",
       "width": 1,
-      "description": "Output signal indicating integrity check errors."
+      "description": "Integrity error output signal for alert generation."
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "reg2hw",
+      "width": 249,
+      "description": "Register-to-hardware interface for write operations."
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "hw2reg",
+      "width": 249,
+      "description": "Hardware-to-register interface for read operations."
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "racl_policies_i",
+      "width": 14,
+      "description": "Input for RACL policy vector."
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "racl_error_o",
+      "width": 1,
+      "description": "Output for RACL error log."
     }
   ],
   "parameters": [
@@ -95,7 +127,7 @@
       "name": "EnableRacl",
       "type": "bit",
       "default": 0,
-      "description": "Enable or disable the RACL interface."
+      "description": "Enable or disable RACL functionality."
     },
     {
       "name": "RaclErrorRsp",
@@ -106,8 +138,8 @@
     {
       "name": "RaclPolicySelVec",
       "type": "enum",
-      "default": "0",
-      "description": "RACL policy selection vector for register access control."
+      "default": "{aon_timer_reg_pkg::NumRegs{0}}",
+      "description": "RACL policy selection vector for each register."
     }
   ],
   "performance": {},
@@ -116,9 +148,8 @@
     "features": [
       "Wakeup timer with configurable thresholds",
       "Watchdog timer with bark and bite thresholds",
-      "TL-UL bus interface with integrity checks",
-      "Support for always-on clock domain",
-      "Register access control (RACL) support"
+      "Register access control (RACL) support",
+      "Integrity check and error reporting"
     ]
   },
   "asic": {
@@ -138,8 +169,8 @@
   "dependencies": [
     {
       "name": "tlul_pkg",
-      "type": "library",
-      "description": "TL-UL protocol package for bus communication."
+      "type": "bus",
+      "description": "TileLink UL protocol package for bus communication."
     },
     {
       "name": "prim_assert",
@@ -149,12 +180,22 @@
     {
       "name": "prim_reg_we_check",
       "type": "library",
-      "description": "Primitive for write enable checking."
+      "description": "Primitive for register write enable checking."
     },
     {
-      "name": "prim_reg_cdc",
-      "type": "library",
-      "description": "Primitive for clock domain crossing in registers."
+      "name": "tlul_adapter_reg",
+      "type": "core",
+      "description": "TileLink adapter for register interface."
+    },
+    {
+      "name": "tlul_cmd_intg_chk",
+      "type": "core",
+      "description": "TileLink command integrity checker."
+    },
+    {
+      "name": "tlul_rsp_intg_gen",
+      "type": "core",
+      "description": "TileLink response integrity generator."
     }
   ],
   "test": {
@@ -177,9 +218,11 @@
   "keywords": [
     "OpenTitan",
     "AON Timer",
-    "TL-UL",
     "Watchdog Timer",
-    "Wakeup Timer"
+    "Wakeup Timer",
+    "RACL",
+    "TileLink",
+    "Low Power"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -187,13 +230,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27"
+    "last_activity": "2026-04-19T06:12:01Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:04:53Z"
+      "generated_at": "2026-04-19T06:12:01Z"
     },
     "schema": {
       "version": "1.0.0"

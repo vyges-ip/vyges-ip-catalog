@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-usbdev",
   "version": "0.1.0",
-  "description": "A USB device controller IP core from the OpenTitan project, supporting USB 2.0 Full-Speed communication with features such as packet handling, endpoint management, and integrity checking.",
+  "description": "The OpenTitan USB Device Controller (usbdev) is a USB 2.0 Full-Speed device controller IP core with support for multiple endpoints, data integrity checks, and register-based configuration. It is designed for secure and reliable USB communication in silicon Root of Trust (RoT) applications.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:06:08Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:51Z",
+  "updated": "2026-04-19T06:12:51Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/usbdev",
     "private": false,
     "containsEncryptedPayload": false,
@@ -71,7 +71,7 @@
       "protocol": "TL-UL",
       "port": "tl_i",
       "width": 32,
-      "description": "TileLink host-to-device interface."
+      "description": "TileLink host-to-device interface for register access."
     },
     {
       "type": "bus",
@@ -79,7 +79,7 @@
       "protocol": "TL-UL",
       "port": "tl_o",
       "width": 32,
-      "description": "TileLink device-to-host interface."
+      "description": "TileLink device-to-host interface for register access."
     },
     {
       "type": "bus",
@@ -87,7 +87,7 @@
       "protocol": "TL-UL",
       "port": "tl_win_o",
       "width": 32,
-      "description": "TileLink window output interface."
+      "description": "TileLink host-to-device interface for windowed access."
     },
     {
       "type": "bus",
@@ -95,22 +95,22 @@
       "protocol": "TL-UL",
       "port": "tl_win_i",
       "width": 32,
-      "description": "TileLink window input interface."
+      "description": "TileLink device-to-host interface for windowed access."
     },
     {
       "type": "custom",
       "direction": "output",
-      "protocol": "usbdev_reg2hw_t",
+      "protocol": "usbdev_reg_pkg::usbdev_reg2hw_t",
       "port": "reg2hw",
-      "width": 1,
+      "width": 43,
       "description": "Register-to-hardware interface for write operations."
     },
     {
       "type": "custom",
       "direction": "input",
-      "protocol": "usbdev_hw2reg_t",
+      "protocol": "usbdev_reg_pkg::usbdev_hw2reg_t",
       "port": "hw2reg",
-      "width": 1,
+      "width": 43,
       "description": "Hardware-to-register interface for read operations."
     },
     {
@@ -139,7 +139,7 @@
       "name": "DBW",
       "type": "int",
       "default": 4,
-      "description": "Byte width for the register interface."
+      "description": "Data byte width, derived from data width."
     },
     {
       "name": "NEndpoints",
@@ -171,10 +171,10 @@
     "type": "peripheral",
     "features": [
       "USB 2.0 Full-Speed device controller",
-      "Support for multiple endpoints",
-      "Packet integrity checking",
-      "TileLink interface for host communication",
-      "Interrupt generation for error handling"
+      "Multiple endpoint support",
+      "Data integrity checks",
+      "Register-based configuration",
+      "TileLink interface"
     ]
   },
   "asic": {
@@ -193,6 +193,11 @@
   },
   "dependencies": [
     {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Assertion library for design verification."
+    },
+    {
       "name": "tlul_pkg",
       "type": "library",
       "description": "TileLink Ultra-Lite protocol package."
@@ -205,37 +210,12 @@
     {
       "name": "usbdev_pkg",
       "type": "library",
-      "description": "USB device package containing data structures and constants."
+      "description": "USB device controller package."
     },
     {
-      "name": "prim_assert",
+      "name": "usb_consts_pkg",
       "type": "library",
-      "description": "Primitive assertions for design verification."
-    },
-    {
-      "name": "prim_reg_we_check",
-      "type": "library",
-      "description": "Primitive module for write enable checking."
-    },
-    {
-      "name": "tlul_adapter_reg",
-      "type": "library",
-      "description": "TileLink adapter for register interface."
-    },
-    {
-      "name": "tlul_socket_1n",
-      "type": "library",
-      "description": "TileLink 1-to-N socket for interconnect."
-    },
-    {
-      "name": "tlul_rsp_intg_gen",
-      "type": "library",
-      "description": "TileLink response integrity generator."
-    },
-    {
-      "name": "tlul_cmd_intg_chk",
-      "type": "library",
-      "description": "TileLink command integrity checker."
+      "description": "USB constants package."
     }
   ],
   "test": {
@@ -257,7 +237,6 @@
   ],
   "keywords": [
     "USB",
-    "USB 2.0",
     "Full-Speed",
     "TileLink",
     "OpenTitan",
@@ -269,47 +248,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:06:08Z"
+      "generated_at": "2026-04-19T06:12:51Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/usb_consts_pkg.sv",
-    "rtl/usb_fs_nb_in_pe.sv",
-    "rtl/usb_fs_nb_out_pe.sv",
-    "rtl/usb_fs_nb_pe.sv",
-    "rtl/usb_fs_rx.sv",
-    "rtl/usb_fs_tx.sv",
-    "rtl/usb_fs_tx_mux.sv",
-    "rtl/usbdev.sv",
-    "rtl/usbdev_aon_wake.sv",
-    "rtl/usbdev_counter.sv",
-    "rtl/usbdev_iomux.sv",
-    "rtl/usbdev_linkstate.sv",
-    "rtl/usbdev_pkg.sv",
-    "rtl/usbdev_reg_pkg.sv",
-    "rtl/usbdev_reg_top.sv",
-    "rtl/usbdev_usbif.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "caliptra-tlul",
   "version": "0.1.0",
-  "description": "TileLink UL adapter for SRAM-like devices, supporting byte-level integrity handling and readback checks for secure data transactions.",
+  "description": "A TileLink UL adapter for SRAM-like devices, supporting byte-level writes with optional integrity and readback checks.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-06T03:29:42Z",
-  "updated": "2026-04-06T03:29:42Z",
+  "created": "2026-04-19T06:10:53Z",
+  "updated": "2026-04-19T06:10:53Z",
   "source": {
     "type": "git",
     "url": "https://github.com/chipsalliance/caliptra-rtl",
-    "commit": "82eed18aedc14b03bfb8d9dce873c866e1eda22e",
+    "commit": "f4f60f90852635b9e92bb9d23a07b977f6e7ba2c",
     "ip_path": "src/caliptra_tlul",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,108 +34,108 @@
   ],
   "interfaces": [
     {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
       "type": "bus",
       "direction": "input",
       "protocol": "TL-UL",
       "port": "tl_i",
-      "width": 32,
-      "description": "TileLink host-to-device input interface."
+      "width": 128,
+      "description": "TileLink host-to-device input bus"
     },
     {
       "type": "bus",
       "direction": "output",
       "protocol": "TL-UL",
       "port": "tl_o",
-      "width": 32,
-      "description": "TileLink device-to-host output interface."
+      "width": 128,
+      "description": "TileLink device-to-host output bus"
     },
     {
       "type": "bus",
       "direction": "output",
       "protocol": "TL-UL",
       "port": "tl_sram_o",
-      "width": 32,
-      "description": "TileLink output interface for SRAM-like devices."
+      "width": 128,
+      "description": "TileLink SRAM output bus"
     },
     {
       "type": "bus",
       "direction": "input",
       "protocol": "TL-UL",
       "port": "tl_sram_i",
-      "width": 32,
-      "description": "TileLink input interface for SRAM-like devices."
-    },
-    {
-      "type": "clock",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "clk_i",
-      "width": 1,
-      "description": "Clock input signal."
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "rst_ni",
-      "width": 1,
-      "description": "Active-low reset signal."
+      "width": 128,
+      "description": "TileLink SRAM input bus"
     },
     {
       "type": "signal",
       "direction": "input",
-      "protocol": "generic",
+      "protocol": "custom",
       "port": "error_i",
       "width": 1,
-      "description": "Error input signal indicating transaction issues."
+      "description": "Indicates if the incoming transaction already has an error"
     },
     {
       "type": "signal",
       "direction": "output",
-      "protocol": "generic",
+      "protocol": "custom",
       "port": "error_o",
       "width": 1,
-      "description": "Error output signal indicating transaction issues."
+      "description": "Indicates if there is an error in the transaction"
     },
     {
       "type": "signal",
       "direction": "output",
-      "protocol": "generic",
+      "protocol": "custom",
       "port": "alert_o",
       "width": 1,
-      "description": "Alert signal for critical conditions."
+      "description": "Alert signal for error conditions"
     },
     {
       "type": "signal",
       "direction": "output",
-      "protocol": "generic",
+      "protocol": "custom",
       "port": "compound_txn_in_progress_o",
       "width": 1,
-      "description": "Indicates if a compound transaction is in progress."
+      "description": "Indicates if a compound transaction is in progress"
     },
     {
       "type": "signal",
       "direction": "input",
-      "protocol": "generic",
+      "protocol": "custom",
       "port": "readback_en_i",
       "width": 4,
-      "description": "Enable signal for readback checks."
+      "description": "Enable signal for readback checks"
     },
     {
       "type": "signal",
       "direction": "input",
-      "protocol": "generic",
+      "protocol": "custom",
       "port": "wr_collision_i",
       "width": 1,
-      "description": "Indicates write collision conditions."
+      "description": "Indicates a write collision"
     },
     {
       "type": "signal",
       "direction": "input",
-      "protocol": "generic",
+      "protocol": "custom",
       "port": "write_pending_i",
       "width": 1,
-      "description": "Indicates if a write transaction is pending."
+      "description": "Indicates if a write is pending"
     }
   ],
   "parameters": [
@@ -143,19 +143,19 @@
       "name": "EnableIntg",
       "type": "bit",
       "default": 0,
-      "description": "Enable integrity handling at byte level."
+      "description": "Enable integrity handling at byte level"
     },
     {
       "name": "Outstanding",
       "type": "int",
       "default": 1,
-      "description": "Maximum number of outstanding transactions."
+      "description": "Maximum number of outstanding transactions"
     },
     {
       "name": "EnableReadback",
       "type": "bit",
       "default": 0,
-      "description": "Enable readback checks for transactions."
+      "description": "Enable readback checks on all transactions (requires EnableIntg to be 1)"
     }
   ],
   "performance": {},
@@ -163,9 +163,9 @@
     "type": "peripheral",
     "features": [
       "TileLink UL protocol support",
-      "Byte-level integrity handling",
-      "Readback checks for secure transactions",
-      "Error propagation and handling"
+      "Byte-level write integrity handling",
+      "Optional readback verification",
+      "Error handling and propagation"
     ]
   },
   "asic": {
@@ -186,12 +186,12 @@
     {
       "name": "caliptra_prim_mubi_pkg",
       "type": "library",
-      "description": "Package for multi-bit utilities and constants."
+      "description": "Multi-bit utilities for Caliptra"
     },
     {
       "name": "caliptra_prim_util_pkg",
       "type": "library",
-      "description": "Package for utility functions and constants."
+      "description": "Utility functions for Caliptra"
     }
   ],
   "test": {
@@ -216,7 +216,8 @@
     "SRAM",
     "Integrity",
     "Adapter",
-    "Security"
+    "Caliptra",
+    "OpenTitan"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -224,13 +225,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-06T03:29:42Z"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-06T03:29:42Z"
+      "generated_at": "2026-04-19T06:10:53Z"
     },
     "schema": {
       "version": "1.0.0"

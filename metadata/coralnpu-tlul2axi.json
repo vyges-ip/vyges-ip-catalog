@@ -3,9 +3,9 @@
   "x-version": "1.0.0",
   "name": "coralnpu-tlul2axi",
   "version": "0.1.0",
-  "description": "A TileLink-to-AXI bridge designed for Coral NPU systems, enabling seamless protocol conversion between TileLink Ultra-Lite (TL-UL) and AXI interfaces.",
+  "description": "IP imported from https://github.com/google-coral/coralnpu",
   "license": "Apache-2.0",
-  "maturity": "production",
+  "maturity": "draft",
   "target": [
     "asic",
     "fpga"
@@ -13,170 +13,46 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-01T05:49:57Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:11:18Z",
+  "updated": "2026-04-19T06:11:18Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
-    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
-    "ip_path": "hdl/chisel",
+    "commit": "2dec130e5c81ad562bd10037b0245412dc0a7217",
     "private": false,
-    "containsEncryptedPayload": false,
     "indexing": true
   },
   "maintainers": [
     {
       "name": "Vyges",
       "email": "team@vyges.com",
-      "url": "https://vyges.com",
       "github": "vyges"
     }
   ],
-  "interfaces": [
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "TL-UL",
-      "port": "io_enq_bits",
-      "width": 334,
-      "description": "TileLink Ultra-Lite input interface for enqueuing transactions."
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "AXI",
-      "port": "io_deq_bits",
-      "width": 334,
-      "description": "AXI output interface for dequeuing transactions."
-    },
-    {
-      "type": "clock",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "clock",
-      "width": 1,
-      "description": "Clock signal for synchronous operation."
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "reset",
-      "width": 1,
-      "description": "Reset signal for initializing the module."
-    }
-  ],
-  "parameters": [
-    {
-      "name": "DATA_WIDTH",
-      "type": "int",
-      "default": 256,
-      "description": "Width of the data bus for AXI transactions."
-    },
-    {
-      "name": "ADDR_WIDTH",
-      "type": "int",
-      "default": 32,
-      "description": "Width of the address bus for AXI transactions."
-    },
-    {
-      "name": "TLUL_WIDTH",
-      "type": "int",
-      "default": 334,
-      "description": "Width of the TileLink Ultra-Lite bus."
-    }
-  ],
-  "performance": {},
+  "interfaces": [],
+  "parameters": [],
   "architecture": {
     "type": "peripheral",
-    "features": [
-      "TileLink Ultra-Lite to AXI protocol conversion",
-      "FIFO-based buffering for transaction management",
-      "Support for burst and single transactions"
-    ]
-  },
-  "asic": {
-    "flavor": "digital",
-    "technology": [
-      "sky130A"
-    ]
-  },
-  "fpga": {
-    "toolchain": [
-      "Vivado"
-    ],
-    "devices": [
-      "Artix-7"
-    ]
-  },
-  "dependencies": [
-    {
-      "name": "TileLink",
-      "type": "bus",
-      "description": "TileLink Ultra-Lite protocol for input transactions."
-    },
-    {
-      "name": "AXI",
-      "type": "bus",
-      "description": "AXI protocol for output transactions."
-    }
-  ],
-  "test": {
-    "testbenches": [],
-    "status": "upstream_passing",
-    "coverage": "functional"
-  },
-  "documentation": {
-    "upstream": "https://github.com/google-coral/coralnpu"
-  },
-  "artifacts": {
-    "total_rtl_lines": 1092
+    "features": []
   },
   "categories": [
     {
-      "main_category": "Interface Controllers",
-      "sub_category": "High-Speed Interfaces"
+      "main_category": "Miscellaneous",
+      "sub_category": "Custom Accelerators"
     }
   ],
-  "keywords": [
-    "TileLink",
-    "AXI",
-    "protocol bridge",
-    "Coral NPU"
-  ],
   "trust": {
-    "verification_level": "silicon_proven",
-    "tapeout_count": 0,
-    "fpga_validated": false,
-    "formal_verified": false,
-    "maintained": true,
-    "last_activity": "2026-04-01T05:49:57Z"
+    "verification_level": "unknown",
+    "maintained": true
   },
+  "_note": "AI enrichment failed. Manual population needed.",
   "meta": {
     "template": {
-      "generator": "github-models-ai",
-      "template_version": "1.0.0",
-      "generated_at": "2026-04-01T05:49:57Z"
+      "generator": "upstream-sync-fallback",
+      "generated_at": "2026-04-19T06:11:18Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/coralnpu-TLUL2Axi.sv",
-    "rtl/coralnpu-TLUL2Axi.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

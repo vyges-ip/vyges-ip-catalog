@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T21:43:25Z",
-  "updated": "2026-03-27T21:43:25Z",
+  "created": "2026-04-19T06:10:15Z",
+  "updated": "2026-04-19T06:10:15Z",
   "source": {
     "type": "git",
     "url": "https://github.com/chipsalliance/caliptra-rtl",
-    "commit": "a47402b3ac20c15c7d18f17456fb9cca56f25274",
+    "commit": "f4f60f90852635b9e92bb9d23a07b977f6e7ba2c",
     "ip_path": "src/ahb_lite_bus",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,24 +34,32 @@
   ],
   "interfaces": [
     {
-      "type": "clock",
+      "type": "bus",
       "direction": "input",
-      "protocol": "generic",
+      "protocol": "AHB-Lite",
       "port": "hclk",
       "width": 1,
       "description": "Global clock signal."
     },
     {
-      "type": "reset",
+      "type": "bus",
       "direction": "input",
-      "protocol": "generic",
+      "protocol": "AHB-Lite",
       "port": "hreset_n",
       "width": 1,
-      "description": "Active-low global reset signal."
+      "description": "Global reset signal, active low."
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
+      "protocol": "AHB-Lite",
+      "port": "force_bus_idle",
+      "width": 1,
+      "description": "Signal to force the bus into idle state."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "hsel_i_0",
       "width": 1,
@@ -59,7 +67,7 @@
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "haddr_i_0",
       "width": 32,
@@ -67,7 +75,7 @@
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "hwdata_i_0",
       "width": 32,
@@ -75,7 +83,7 @@
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "hwrite_i_0",
       "width": 1,
@@ -83,15 +91,15 @@
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "htrans_i_0",
       "width": 2,
-      "description": "Transaction type from Initiator 0."
+      "description": "Transfer type from Initiator 0."
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "hsize_i_0",
       "width": 3,
@@ -99,7 +107,7 @@
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "hready_i_0",
       "width": 1,
@@ -107,7 +115,7 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AHB-Lite",
       "port": "hresp_o_0",
       "width": 1,
@@ -115,7 +123,7 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AHB-Lite",
       "port": "hready_o_0",
       "width": 1,
@@ -123,7 +131,7 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AHB-Lite",
       "port": "hrdata_o_0",
       "width": 32,
@@ -131,7 +139,7 @@
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "hsel_i_1",
       "width": 1,
@@ -139,7 +147,7 @@
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "haddr_i_1",
       "width": 32,
@@ -147,7 +155,7 @@
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "hwdata_i_1",
       "width": 32,
@@ -155,7 +163,7 @@
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "hwrite_i_1",
       "width": 1,
@@ -163,15 +171,15 @@
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "htrans_i_1",
       "width": 2,
-      "description": "Transaction type from Initiator 1."
+      "description": "Transfer type from Initiator 1."
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "hsize_i_1",
       "width": 3,
@@ -179,7 +187,7 @@
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "hready_i_1",
       "width": 1,
@@ -187,7 +195,7 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AHB-Lite",
       "port": "hresp_o_1",
       "width": 1,
@@ -195,7 +203,7 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AHB-Lite",
       "port": "hready_o_1",
       "width": 1,
@@ -203,7 +211,7 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AHB-Lite",
       "port": "hrdata_o_1",
       "width": 32,
@@ -211,63 +219,7 @@
     },
     {
       "type": "bus",
-      "direction": "master",
-      "protocol": "AHB-Lite",
-      "port": "haddr_o",
-      "width": 32,
-      "description": "Address bus to Responder."
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "AHB-Lite",
-      "port": "hwdata_o",
-      "width": 32,
-      "description": "Write data bus to Responder."
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "AHB-Lite",
-      "port": "hsel_o",
-      "width": 1,
-      "description": "Select signal to Responder."
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "AHB-Lite",
-      "port": "hwrite_o",
-      "width": 1,
-      "description": "Write control signal to Responder."
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "AHB-Lite",
-      "port": "hready_o",
-      "width": 1,
-      "description": "Ready signal to Responder."
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "AHB-Lite",
-      "port": "htrans_o",
-      "width": 2,
-      "description": "Transaction type to Responder."
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "AHB-Lite",
-      "port": "hsize_o",
-      "width": 3,
-      "description": "Transfer size to Responder."
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "hresp_i",
       "width": 1,
@@ -275,7 +227,7 @@
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "hrdata_i",
       "width": 32,
@@ -283,11 +235,67 @@
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AHB-Lite",
       "port": "hreadyout_i",
       "width": 1,
       "description": "Ready signal from Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AHB-Lite",
+      "port": "haddr_o",
+      "width": 32,
+      "description": "Address bus to Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AHB-Lite",
+      "port": "hwdata_o",
+      "width": 32,
+      "description": "Write data bus to Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AHB-Lite",
+      "port": "hsel_o",
+      "width": 1,
+      "description": "Select signal to Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AHB-Lite",
+      "port": "hwrite_o",
+      "width": 1,
+      "description": "Write control signal to Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AHB-Lite",
+      "port": "hready_o",
+      "width": 1,
+      "description": "Ready signal to Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AHB-Lite",
+      "port": "htrans_o",
+      "width": 2,
+      "description": "Transfer type to Responder."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "AHB-Lite",
+      "port": "hsize_o",
+      "width": 3,
+      "description": "Transfer size to Responder."
     }
   ],
   "parameters": [
@@ -307,16 +315,16 @@
       "name": "AHB_NO_OPT",
       "type": "bit",
       "default": 0,
-      "description": "Flag to enable or disable address phase optimization."
+      "description": "Disable optimization for address phase overlapping."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "bus",
     "features": [
-      "Fixed-priority arbitration with Initiator 0 having higher priority.",
-      "Supports AHB-Lite protocol with 2 initiators and 1 responder.",
-      "Optional address phase optimization for overlapping data and address phases."
+      "2:1 fixed-priority arbitration",
+      "AHB-Lite protocol support",
+      "Optional address phase optimization"
     ]
   },
   "asic": {
@@ -335,7 +343,7 @@
   },
   "dependencies": [
     {
-      "name": "caliptra_sva",
+      "name": "caliptra_sva.svh",
       "type": "library",
       "description": "SystemVerilog Assertions for Caliptra AHB-Lite Bus."
     }
@@ -351,31 +359,32 @@
   "artifacts": {
     "total_rtl_lines": 683
   },
-  "categories": {
-    "primary": "bus",
-    "secondary": [
-      "interconnect"
-    ],
-    "tags": [
-      "AHB-Lite",
-      "2:1 mux",
-      "bus arbitration",
-      "fixed-priority"
-    ]
-  },
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "Parallel Interfaces"
+    }
+  ],
+  "keywords": [
+    "AHB-Lite",
+    "bus",
+    "multiplexer",
+    "2:1 mux",
+    "Caliptra"
+  ],
   "trust": {
     "verification_level": "silicon_proven",
     "tapeout_count": 0,
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T21:43:25Z"
+    "last_activity": "2026-04-19T06:10:15Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T21:43:25Z"
+      "generated_at": "2026-04-19T06:10:15Z"
     },
     "schema": {
       "version": "1.0.0"

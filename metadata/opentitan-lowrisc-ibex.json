@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-lowrisc-ibex",
   "version": "0.1.0",
-  "description": "The Ibex core is a small, efficient, and configurable RISC-V processor core designed for embedded systems, featuring optional support for RISC-V extensions, branch prediction, and instruction/data scrambling.",
+  "description": "Ibex is a small, efficient, and configurable RISC-V processor core designed for embedded systems, featuring optional support for extensions such as PMP, RV32M, RV32B, and RV32ZC.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:05:23Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:20Z",
+  "updated": "2026-04-19T06:12:20Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/vendor/lowrisc_ibex",
     "private": false,
     "containsEncryptedPayload": false,
@@ -36,18 +36,18 @@
     {
       "type": "clock",
       "direction": "input",
-      "protocol": "none",
+      "protocol": "generic",
       "port": "clk_i",
       "width": 1,
-      "description": "Clock input for the core."
+      "description": "Clock input signal."
     },
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "none",
+      "protocol": "generic",
       "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset input for the core."
+      "description": "Active-low reset input signal."
     },
     {
       "type": "bus",
@@ -84,7 +84,7 @@
     {
       "type": "interrupt",
       "direction": "input",
-      "protocol": "none",
+      "protocol": "generic",
       "port": "irq_software_i",
       "width": 1,
       "description": "Software interrupt input."
@@ -92,7 +92,7 @@
     {
       "type": "interrupt",
       "direction": "input",
-      "protocol": "none",
+      "protocol": "generic",
       "port": "irq_timer_i",
       "width": 1,
       "description": "Timer interrupt input."
@@ -100,7 +100,7 @@
     {
       "type": "interrupt",
       "direction": "input",
-      "protocol": "none",
+      "protocol": "generic",
       "port": "irq_external_i",
       "width": 1,
       "description": "External interrupt input."
@@ -135,13 +135,13 @@
       "name": "RV32M",
       "type": "enum",
       "default": "RV32MFast",
-      "description": "RISC-V M-extension configuration."
+      "description": "Enable RV32M (integer multiplication and division) extension."
     },
     {
-      "name": "BranchPredictor",
-      "type": "bit",
-      "default": 0,
-      "description": "Enable branch prediction."
+      "name": "RV32B",
+      "type": "enum",
+      "default": "RV32BNone",
+      "description": "Enable RV32B (bit manipulation) extension."
     },
     {
       "name": "ICache",
@@ -156,18 +156,14 @@
       "description": "Enable debug triggers."
     }
   ],
-  "performance": {
-    "frequency": "500 MHz",
-    "power": "Low-power optimized",
-    "area": "Compact footprint"
-  },
+  "performance": {},
   "architecture": {
     "type": "processor",
     "features": [
-      "RISC-V RV32IMC support",
-      "Optional branch prediction",
-      "Instruction and data scrambling",
-      "Physical Memory Protection (PMP)"
+      "RISC-V RV32IMC architecture",
+      "Optional PMP support",
+      "Instruction and data memory interfaces",
+      "Optional instruction cache"
     ]
   },
   "asic": {
@@ -188,27 +184,19 @@
     {
       "name": "ibex_pkg",
       "type": "library",
-      "description": "Ibex package containing type definitions and constants."
-    },
-    {
-      "name": "prim_ram_1p_pkg",
-      "type": "library",
-      "description": "Primitive RAM package for single-port memories."
+      "description": "Package containing Ibex-specific types and constants."
     }
   ],
   "test": {
-    "testbenches": [
-      "ibex_core_tb",
-      "ibex_top_tb"
-    ],
+    "testbenches": [],
     "status": "upstream_passing",
     "coverage": "functional"
   },
   "documentation": {
-    "upstream": "https://github.com/lowRISC/opentitan/tree/master/hw/vendor/lowrisc_ibex"
+    "upstream": "https://github.com/lowRISC/opentitan"
   },
   "artifacts": {
-    "total_rtl_lines": 19627
+    "total_rtl_lines": 19775
   },
   "categories": [
     {
@@ -220,70 +208,24 @@
     "RISC-V",
     "processor",
     "embedded",
-    "low-power",
-    "Ibex"
+    "low-power"
   ],
   "trust": {
     "verification_level": "silicon_proven",
     "tapeout_count": 0,
-    "fpga_validated": true,
+    "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:05:23Z"
+      "generated_at": "2026-04-19T06:12:20Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/ibex_alu.sv",
-    "rtl/ibex_branch_predict.sv",
-    "rtl/ibex_compressed_decoder.sv",
-    "rtl/ibex_controller.sv",
-    "rtl/ibex_core.sv",
-    "rtl/ibex_counter.sv",
-    "rtl/ibex_cs_registers.sv",
-    "rtl/ibex_csr.sv",
-    "rtl/ibex_decoder.sv",
-    "rtl/ibex_dummy_instr.sv",
-    "rtl/ibex_ex_block.sv",
-    "rtl/ibex_fetch_fifo.sv",
-    "rtl/ibex_icache.sv",
-    "rtl/ibex_id_stage.sv",
-    "rtl/ibex_if_stage.sv",
-    "rtl/ibex_load_store_unit.sv",
-    "rtl/ibex_lockstep.sv",
-    "rtl/ibex_multdiv_fast.sv",
-    "rtl/ibex_multdiv_slow.sv",
-    "rtl/ibex_pkg.sv",
-    "rtl/ibex_pmp.sv",
-    "rtl/ibex_prefetch_buffer.sv",
-    "rtl/ibex_register_file_ff.sv",
-    "rtl/ibex_register_file_fpga.sv",
-    "rtl/ibex_register_file_latch.sv",
-    "rtl/ibex_top.sv",
-    "rtl/ibex_top_tracing.sv",
-    "rtl/ibex_tracer.sv",
-    "rtl/ibex_tracer_pkg.sv",
-    "rtl/ibex_wb_stage.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

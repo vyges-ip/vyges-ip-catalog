@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "coralnpu-core",
   "version": "0.1.0",
-  "description": "CoralNPU RISC-V Core implementing RV32IMF_Zve32x with scalar, floating-point, and vector pipelines, L1 caches, tightly coupled memory (TCM), and TileLink/AXI interfaces. Designed for high-performance AI/ML workloads.",
+  "description": "CoralNPU RISC-V Core implementing RV32IMF_Zve32x ISA with scalar, floating-point, and vector pipelines, integrated L1 caches, TCM, and TileLink/AXI interfaces. Designed for high-performance neural network processing.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-01T05:49:46Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:10:53Z",
+  "updated": "2026-04-19T06:10:53Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
-    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
+    "commit": "2dec130e5c81ad562bd10037b0245412dc0a7217",
     "ip_path": "hdl/chisel",
     "private": false,
     "containsEncryptedPayload": false,
@@ -39,7 +39,7 @@
       "protocol": "TileLink",
       "port": "io_busPort_addr_0",
       "width": 32,
-      "description": "TileLink master interface for address channel."
+      "description": "TileLink master interface for address transactions."
     },
     {
       "type": "bus",
@@ -47,7 +47,7 @@
       "protocol": "TileLink",
       "port": "io_busPort_data_0",
       "width": 32,
-      "description": "TileLink master interface for data channel."
+      "description": "TileLink master interface for data transactions."
     },
     {
       "type": "clock",
@@ -71,7 +71,7 @@
       "protocol": "standard",
       "port": "io_linkPort_valid",
       "width": 1,
-      "description": "Interrupt signal for external communication."
+      "description": "Interrupt signal output."
     }
   ],
   "parameters": [
@@ -96,17 +96,18 @@
   ],
   "performance": {
     "frequency": "500MHz",
-    "dmips": 2.5,
-    "power": "50mW"
+    "power": "Low-power optimized",
+    "area": "Compact footprint for embedded systems",
+    "throughput": "High-performance neural network processing"
   },
   "architecture": {
     "type": "processor",
     "features": [
-      "RISC-V RV32IMF_Zve32x ISA",
+      "RV32IMF_Zve32x ISA support",
       "Scalar pipeline",
       "Floating-point pipeline",
-      "Vector processing pipeline",
-      "L1 instruction and data caches",
+      "Vector pipeline",
+      "Integrated L1 caches",
       "Tightly coupled memory (TCM)",
       "TileLink and AXI interfaces"
     ]
@@ -129,19 +130,17 @@
     {
       "name": "TileLink",
       "type": "bus",
-      "description": "TileLink bus protocol for memory and peripheral communication."
+      "description": "TileLink bus protocol for high-performance interconnect."
     },
     {
       "name": "AXI",
       "type": "bus",
-      "description": "AXI bus protocol for high-speed data transfer."
+      "description": "AXI bus protocol for memory and peripheral communication."
     }
   ],
   "test": {
     "testbenches": [
-      "core_tb",
-      "cache_tb",
-      "tcm_tb"
+      "rtl/coralnpu-Core.sv"
     ],
     "status": "upstream_passing",
     "coverage": "functional"
@@ -160,11 +159,15 @@
   ],
   "keywords": [
     "RISC-V",
-    "AI/ML",
-    "Vector Processing",
-    "Floating Point",
+    "RV32IMF",
+    "Zve32x",
+    "Neural Network Processing",
     "TileLink",
-    "AXI"
+    "AXI",
+    "L1 Cache",
+    "TCM",
+    "FPGA",
+    "ASIC"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -172,33 +175,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-01T05:49:46Z"
+    "last_activity": "2026-04-19T06:10:53Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-01T05:49:46Z"
+      "generated_at": "2026-04-19T06:10:53Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/coralnpu-Core.sv",
-    "rtl/coralnpu-Core.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

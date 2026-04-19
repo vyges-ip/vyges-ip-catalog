@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "coralnpu-l1-icache",
   "version": "0.1.0",
-  "description": "A Level-1 instruction cache for the Coral NPU, supporting AXI read transactions and optimized for high-performance instruction fetch operations.",
+  "description": "A Level 1 instruction cache for the Coral NPU, designed to interface with an AXI bus and provide high-performance instruction fetch capabilities.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-01T05:49:54Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:10:59Z",
+  "updated": "2026-04-19T06:10:59Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
-    "commit": "2f4aeb0760e86ca3ecd14b43cc4c52e648c87c94",
+    "commit": "2dec130e5c81ad562bd10037b0245412dc0a7217",
     "ip_path": "hdl/chisel",
     "private": false,
     "containsEncryptedPayload": false,
@@ -36,30 +36,118 @@
     {
       "type": "clock",
       "direction": "input",
-      "protocol": "standard",
+      "protocol": "clk",
       "port": "clock",
       "width": 1,
-      "description": "Clock signal for synchronous operation."
+      "description": "Clock signal for the L1 instruction cache."
     },
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "standard",
+      "protocol": "rst",
       "port": "reset",
       "width": 1,
-      "description": "Reset signal for initialization."
+      "description": "Reset signal for the L1 instruction cache."
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_ibus_valid",
+      "width": 1,
+      "description": "Instruction bus valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_ibus_ready",
+      "width": 1,
+      "description": "Instruction bus ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_ibus_addr",
+      "width": 32,
+      "description": "Instruction bus address."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_ibus_rdata",
+      "width": 256,
+      "description": "Instruction bus read data."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_ibus_fault_valid",
+      "width": 1,
+      "description": "Instruction bus fault valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_ibus_fault_bits_write",
+      "width": 1,
+      "description": "Instruction bus fault write signal."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_ibus_fault_bits_addr",
+      "width": 32,
+      "description": "Instruction bus fault address."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_ibus_fault_bits_epc",
+      "width": 32,
+      "description": "Instruction bus fault exception program counter."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_flush_valid",
+      "width": 1,
+      "description": "Flush valid signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_flush_pcNext",
+      "width": 32,
+      "description": "Flush next program counter."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_flush_ready",
+      "width": 1,
+      "description": "Flush ready signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
       "protocol": "AXI",
       "port": "io_axi_read_addr_ready",
       "width": 1,
-      "description": "AXI read address handshake signal."
+      "description": "AXI read address ready signal."
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_read_addr_valid",
       "width": 1,
@@ -67,7 +155,7 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_read_addr_bits_addr",
       "width": 32,
@@ -75,87 +163,87 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_read_addr_bits_prot",
       "width": 3,
-      "description": "AXI protection type."
+      "description": "AXI read address protection bits."
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_read_addr_bits_id",
       "width": 4,
-      "description": "AXI transaction ID."
+      "description": "AXI read address ID."
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_read_addr_bits_len",
       "width": 8,
-      "description": "AXI burst length."
+      "description": "AXI read address burst length."
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_read_addr_bits_size",
       "width": 3,
-      "description": "AXI burst size."
+      "description": "AXI read address burst size."
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_read_addr_bits_burst",
       "width": 2,
-      "description": "AXI burst type."
+      "description": "AXI read address burst type."
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_read_addr_bits_lock",
       "width": 1,
-      "description": "AXI lock signal."
+      "description": "AXI read address lock signal."
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_read_addr_bits_cache",
       "width": 4,
-      "description": "AXI cache control."
+      "description": "AXI read address cache control."
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_read_addr_bits_qos",
       "width": 4,
-      "description": "AXI quality of service."
+      "description": "AXI read address QoS."
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_read_addr_bits_region",
       "width": 4,
-      "description": "AXI region identifier."
+      "description": "AXI read address region."
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_read_data_ready",
       "width": 1,
-      "description": "AXI read data handshake signal."
+      "description": "AXI read data ready signal."
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AXI",
       "port": "io_axi_read_data_valid",
       "width": 1,
@@ -163,35 +251,43 @@
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AXI",
       "port": "io_axi_read_data_bits_data",
       "width": 256,
-      "description": "AXI read data payload."
+      "description": "AXI read data."
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AXI",
       "port": "io_axi_read_data_bits_id",
       "width": 4,
-      "description": "AXI transaction ID for read data."
+      "description": "AXI read data ID."
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AXI",
       "port": "io_axi_read_data_bits_resp",
       "width": 2,
-      "description": "AXI response code."
+      "description": "AXI read data response."
     },
     {
       "type": "bus",
-      "direction": "slave",
+      "direction": "input",
       "protocol": "AXI",
       "port": "io_axi_read_data_bits_last",
       "width": 1,
-      "description": "AXI last data signal."
+      "description": "AXI read data last signal."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "io_volt_sel",
+      "width": 1,
+      "description": "Voltage selection signal."
     }
   ],
   "parameters": [],
@@ -199,9 +295,10 @@
   "architecture": {
     "type": "memory",
     "features": [
-      "Level-1 instruction cache",
-      "AXI interface support",
-      "Fault handling"
+      "Level 1 instruction cache",
+      "AXI interface",
+      "Fault handling",
+      "Flush mechanism"
     ]
   },
   "asic": {
@@ -238,8 +335,8 @@
   ],
   "keywords": [
     "L1 cache",
-    "AXI",
     "instruction cache",
+    "AXI",
     "Coral NPU"
   ],
   "trust": {
@@ -248,32 +345,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-01T05:49:54Z"
+    "last_activity": "2026-04-19T06:10:59Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-01T05:49:54Z"
+      "generated_at": "2026-04-19T06:10:59Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/coralnpu-L1ICache.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

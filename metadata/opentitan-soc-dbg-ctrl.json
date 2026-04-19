@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-soc-dbg-ctrl",
   "version": "0.1.0",
-  "description": "The OpenTitan SoC Debug Controller manages debug policies, lifecycle states, and alert mechanisms for secure debugging in silicon devices.",
+  "description": "The OpenTitan SoC Debug Controller (soc_dbg_ctrl) is a hardware block that manages debug access and policies for the OpenTitan SoC, including lifecycle-based debug restrictions, alert handling, and JTAG and TL-UL interfaces.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:05:53Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:44Z",
+  "updated": "2026-04-19T06:12:44Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/soc_dbg_ctrl",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,84 +34,156 @@
   ],
   "interfaces": [
     {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input for the debug controller."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal for the debug controller."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_shadowed_ni",
+      "width": 1,
+      "description": "Shadowed active-low reset signal for the debug controller."
+    },
+    {
       "type": "bus",
       "direction": "input",
       "protocol": "TL-UL",
       "port": "core_tl_i",
-      "width": 32,
-      "description": "Core-side TL-UL host-to-device bus interface."
+      "width": 1,
+      "description": "TL-UL host-to-device interface for the core."
     },
     {
       "type": "bus",
       "direction": "output",
       "protocol": "TL-UL",
       "port": "core_tl_o",
-      "width": 32,
-      "description": "Core-side TL-UL device-to-host bus interface."
+      "width": 1,
+      "description": "TL-UL device-to-host interface for the core."
     },
     {
       "type": "bus",
       "direction": "input",
       "protocol": "TL-UL",
       "port": "jtag_tl_i",
-      "width": 32,
-      "description": "JTAG-side TL-UL host-to-device bus interface."
+      "width": 1,
+      "description": "TL-UL host-to-device interface for the JTAG."
     },
     {
       "type": "bus",
       "direction": "output",
       "protocol": "TL-UL",
       "port": "jtag_tl_o",
-      "width": 32,
-      "description": "JTAG-side TL-UL device-to-host bus interface."
+      "width": 1,
+      "description": "TL-UL device-to-host interface for the JTAG."
     },
     {
-      "type": "alert",
+      "type": "interrupt",
       "direction": "input",
-      "protocol": "custom",
+      "protocol": "alert",
       "port": "alert_rx_i",
       "width": "NumAlerts",
-      "description": "Alert receiver interface for incoming alerts."
+      "description": "Input alert signals for the debug controller."
     },
     {
-      "type": "alert",
+      "type": "interrupt",
       "direction": "output",
-      "protocol": "custom",
+      "protocol": "alert",
       "port": "alert_tx_o",
       "width": "NumAlerts",
-      "description": "Alert transmitter interface for outgoing alerts."
+      "description": "Output alert signals from the debug controller."
     },
     {
-      "type": "clock",
-      "direction": "input",
-      "protocol": "standard",
-      "port": "clk_i",
-      "width": 1,
-      "description": "Clock input signal."
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "standard",
-      "port": "rst_ni",
-      "width": 1,
-      "description": "Active-low reset signal."
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "standard",
-      "port": "rst_shadowed_ni",
-      "width": 1,
-      "description": "Active-low shadowed reset signal."
-    },
-    {
-      "type": "debug_policy",
+      "type": "bus",
       "direction": "output",
       "protocol": "custom",
       "port": "soc_dbg_policy_bus_o",
       "width": "variable",
-      "description": "Debug policy bus distributed across the SoC."
+      "description": "Debug policy bus distributed to the SoC."
+    },
+    {
+      "type": "signal",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "soc_dbg_state_i",
+      "width": "variable",
+      "description": "Lifecycle state input from the lifecycle controller."
+    },
+    {
+      "type": "signal",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "lc_dft_en_i",
+      "width": 1,
+      "description": "Lifecycle DFT enable signal."
+    },
+    {
+      "type": "signal",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "lc_hw_debug_en_i",
+      "width": 1,
+      "description": "Lifecycle hardware debug enable signal."
+    },
+    {
+      "type": "signal",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "lc_raw_test_rma_i",
+      "width": 1,
+      "description": "Lifecycle raw test RMA signal."
+    },
+    {
+      "type": "signal",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "lc_cpu_en_i",
+      "width": 1,
+      "description": "Lifecycle CPU enable signal."
+    },
+    {
+      "type": "signal",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "lc_rma_state_i",
+      "width": 1,
+      "description": "Lifecycle RMA state signal."
+    },
+    {
+      "type": "signal",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "boot_status_i",
+      "width": "variable",
+      "description": "Boot status signal from the power manager."
+    },
+    {
+      "type": "signal",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "halt_cpu_boot_i",
+      "width": 1,
+      "description": "Signal to halt CPU boot in early lifecycle stages."
+    },
+    {
+      "type": "signal",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "continue_cpu_boot_o",
+      "width": "variable",
+      "description": "Signal to continue CPU boot after lifecycle checks."
     }
   ],
   "parameters": [
@@ -119,23 +191,23 @@
       "name": "AlertAsyncOn",
       "type": "bit",
       "default": "{NumAlerts{1'b1}}",
-      "description": "Specifies whether alerts are asynchronous."
+      "description": "Specifies whether alerts are asynchronous for each alert signal."
     },
     {
       "name": "AlertSkewCycles",
       "type": "int",
       "default": 1,
-      "description": "Number of cycles tolerated for differential skew on alert signals."
+      "description": "Number of cycles a differential skew is tolerated on the alert signal."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "Debug policy management",
-      "Lifecycle state handling",
-      "Alert signal processing",
-      "Secure debug enablement"
+      "Lifecycle-based debug policy management",
+      "JTAG and TL-UL interfaces for debug access",
+      "Alert handling with configurable skew tolerance",
+      "Shadowed register storage for secure debug policy configuration"
     ]
   },
   "asic": {
@@ -156,27 +228,27 @@
     {
       "name": "prim_alert_pkg",
       "type": "library",
-      "description": "Package for alert signal handling."
+      "description": "Primary alert package for alert signal handling."
     },
     {
       "name": "lc_ctrl_pkg",
       "type": "library",
-      "description": "Lifecycle controller package."
+      "description": "Lifecycle controller package for lifecycle state management."
     },
     {
       "name": "tlul_pkg",
       "type": "library",
-      "description": "Package for TL-UL bus protocol."
+      "description": "TL-UL protocol package for bus communication."
     },
     {
-      "name": "soc_dbg_ctrl_pkg",
+      "name": "pwrmgr_pkg",
       "type": "library",
-      "description": "Package for debug control policy definitions."
+      "description": "Power manager package for boot status signals."
     },
     {
-      "name": "soc_dbg_ctrl_reg_pkg",
+      "name": "rom_ctrl_pkg",
       "type": "library",
-      "description": "Package for debug control register definitions."
+      "description": "ROM controller package for boot continuation signals."
     }
   ],
   "test": {
@@ -185,7 +257,7 @@
     "coverage": "functional"
   },
   "documentation": {
-    "upstream": "https://github.com/lowRISC/opentitan"
+    "upstream": "https://github.com/lowRISC/opentitan/tree/46cc36599f56f60b344afb031185a85fc8654e68/hw/ip/soc_dbg_ctrl"
   },
   "artifacts": {
     "total_rtl_lines": 2164
@@ -198,10 +270,12 @@
   ],
   "keywords": [
     "debug",
-    "security",
-    "OpenTitan",
     "lifecycle",
-    "alert"
+    "JTAG",
+    "TL-UL",
+    "alert",
+    "secure boot",
+    "OpenTitan"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -209,37 +283,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27"
+    "last_activity": "2026-04-19T06:12:44Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:05:53Z"
+      "generated_at": "2026-04-19T06:12:44Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/soc_dbg_ctrl.sv",
-    "rtl/soc_dbg_ctrl_core_reg_top.sv",
-    "rtl/soc_dbg_ctrl_decode.sv",
-    "rtl/soc_dbg_ctrl_jtag_reg_top.sv",
-    "rtl/soc_dbg_ctrl_pkg.sv",
-    "rtl/soc_dbg_ctrl_reg_pkg.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

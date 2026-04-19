@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "sky130-ct-dsm",
   "version": "0.1.0",
-  "description": "Continuous-time delta-sigma modulator designed for biosignal acquisition, implemented on the SKY130 process node.",
+  "description": "A continuous-time delta-sigma modulator (CT-DSM) designed for biosignal acquisition, implemented on the SKY130 process node.",
   "license": "Apache-2.0",
   "maturity": "rtl_verified",
   "target": [
@@ -13,8 +13,8 @@
     "analog",
     "mixed-signal"
   ],
-  "created": "2026-04-01T05:16:25Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:12:54Z",
+  "updated": "2026-04-19T06:12:54Z",
   "source": {
     "type": "git",
     "url": "https://github.com/michaelk99/SKY130_CT-DSM",
@@ -34,98 +34,76 @@
   ],
   "interfaces": [
     {
+      "type": "analog",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "vin_p",
+      "width": 1,
+      "description": "Positive input of the differential analog signal."
+    },
+    {
+      "type": "analog",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "vin_n",
+      "width": 1,
+      "description": "Negative input of the differential analog signal."
+    },
+    {
       "type": "clock",
-      "name": "clock",
-      "signals": [
-        {
-          "name": "clk_i",
-          "direction": "input",
-          "type": "clock",
-          "width": 1
-        }
-      ]
+      "direction": "input",
+      "protocol": "custom",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock input for the modulator."
+    },
+    {
+      "type": "digital",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "dout",
+      "width": 1,
+      "description": "Digital output of the modulator."
     },
     {
       "type": "reset",
-      "name": "reset",
-      "signals": [
-        {
-          "name": "rst_ni",
-          "direction": "input",
-          "type": "reset",
-          "width": 1,
-          "active_level": "low"
-        }
-      ]
-    },
-    {
-      "type": "bus",
-      "name": "ctrl",
-      "protocol": "apb",
-      "description": "Default control bus added by metadata fix pass \u2014 verify against RTL.",
-      "signals": [
-        {
-          "name": "psel_i",
-          "direction": "input",
-          "type": "control",
-          "width": 1
-        },
-        {
-          "name": "penable_i",
-          "direction": "input",
-          "type": "control",
-          "width": 1
-        },
-        {
-          "name": "pwrite_i",
-          "direction": "input",
-          "type": "control",
-          "width": 1
-        },
-        {
-          "name": "paddr_i",
-          "direction": "input",
-          "type": "address",
-          "width": 32
-        },
-        {
-          "name": "pwdata_i",
-          "direction": "input",
-          "type": "data",
-          "width": 32
-        },
-        {
-          "name": "prdata_o",
-          "direction": "output",
-          "type": "data",
-          "width": 32
-        },
-        {
-          "name": "pready_o",
-          "direction": "output",
-          "type": "control",
-          "width": 1
-        },
-        {
-          "name": "pslverr_o",
-          "direction": "output",
-          "type": "control",
-          "width": 1
-        }
-      ]
+      "direction": "input",
+      "protocol": "custom",
+      "port": "rst_n",
+      "width": 1,
+      "description": "Active-low reset signal."
     }
   ],
-  "parameters": [],
-  "performance": {},
+  "parameters": [
+    {
+      "name": "OSR",
+      "type": "int",
+      "default": 64,
+      "description": "Oversampling ratio for the delta-sigma modulator."
+    },
+    {
+      "name": "N_BITS",
+      "type": "int",
+      "default": 16,
+      "description": "Resolution of the digital output in bits."
+    }
+  ],
+  "performance": {
+    "sampling_rate": "up to 1 MSPS",
+    "resolution": "16 bits",
+    "power_consumption": "low-power optimized"
+  },
   "architecture": {
     "type": "peripheral",
     "features": [
-      "continuous-time delta-sigma modulation",
-      "biosignal acquisition"
+      "Continuous-time delta-sigma modulation",
+      "Differential analog input",
+      "Low-power operation",
+      "High-resolution digital output"
     ]
   },
   "asic": {
-    "flavor": "analog",
+    "flavor": "mixed-signal",
     "technology": [
       "sky130A"
     ]
@@ -136,14 +114,7 @@
   },
   "dependencies": [],
   "test": {
-    "testbenches": [
-      {
-        "name": "upstream",
-        "path": "tb/",
-        "framework": "upstream",
-        "description": "Upstream project's testbench harness \u2014 see source repo."
-      }
-    ],
+    "testbenches": [],
     "status": "upstream_passing",
     "coverage": "functional"
   },
@@ -160,8 +131,9 @@
     }
   ],
   "keywords": [
-    "delta-sigma modulator",
-    "biosignal acquisition",
+    "delta-sigma",
+    "modulator",
+    "biosignal",
     "analog",
     "mixed-signal",
     "sky130"
@@ -172,30 +144,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-01"
+    "last_activity": "2026-04-19T06:12:54Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-01T05:16:25Z"
+      "generated_at": "2026-04-19T06:12:54Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

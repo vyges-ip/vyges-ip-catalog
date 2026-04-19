@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "caliptra-sha3",
   "version": "0.1.0",
-  "description": "A hardware implementation of the SHA-3 cryptographic hash function, including support for KMAC, SHAKE, and cSHAKE modes, with an AHB-Lite interface for integration.",
+  "description": "A hardware implementation of the SHA-3 cryptographic hash function, including support for Keccak-based Message Authentication Code (KMAC) and AHB-Lite interface for integration.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-01T05:09:06Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:10:41Z",
+  "updated": "2026-04-19T06:10:41Z",
   "source": {
     "type": "git",
     "url": "https://github.com/chipsalliance/caliptra-rtl",
-    "commit": "82eed18aedc14b03bfb8d9dce873c866e1eda22e",
+    "commit": "f4f60f90852635b9e92bb9d23a07b977f6e7ba2c",
     "ip_path": "src/sha3",
     "private": false,
     "containsEncryptedPayload": false,
@@ -36,15 +36,15 @@
     {
       "type": "clock",
       "direction": "input",
-      "protocol": "generic",
+      "protocol": "N/A",
       "port": "clk",
       "width": 1,
-      "description": "System clock input"
+      "description": "Clock input signal"
     },
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "generic",
+      "protocol": "N/A",
       "port": "reset_n",
       "width": 1,
       "description": "Active-low reset signal"
@@ -87,7 +87,7 @@
       "protocol": "AHB-Lite",
       "port": "hready_i",
       "width": 1,
-      "description": "AHB-Lite ready signal"
+      "description": "AHB-Lite ready input signal"
     },
     {
       "type": "bus",
@@ -111,7 +111,7 @@
       "protocol": "AHB-Lite",
       "port": "hresp_o",
       "width": 1,
-      "description": "AHB-Lite response signal"
+      "description": "AHB-Lite response output"
     },
     {
       "type": "bus",
@@ -132,7 +132,7 @@
     {
       "type": "interrupt",
       "direction": "output",
-      "protocol": "generic",
+      "protocol": "N/A",
       "port": "error_intr",
       "width": 1,
       "description": "Error interrupt signal"
@@ -140,7 +140,7 @@
     {
       "type": "interrupt",
       "direction": "output",
-      "protocol": "generic",
+      "protocol": "N/A",
       "port": "notif_intr",
       "width": 1,
       "description": "Notification interrupt signal"
@@ -165,10 +165,9 @@
     "type": "peripheral",
     "features": [
       "SHA-3 cryptographic hash function",
-      "KMAC support",
-      "SHAKE and cSHAKE modes",
+      "Keccak-based Message Authentication Code (KMAC)",
       "AHB-Lite interface",
-      "Keccak-based hashing"
+      "Interrupt support for error and notification events"
     ]
   },
   "asic": {
@@ -189,27 +188,22 @@
     {
       "name": "caliptra_tlul_pkg",
       "type": "library",
-      "description": "Package for TileLink-UL interface definitions"
-    },
-    {
-      "name": "caliptra_prim_mubi_pkg",
-      "type": "library",
-      "description": "Package for multi-bit upsets and related utilities"
+      "description": "TL-UL adapter package for interfacing with KMAC"
     },
     {
       "name": "sha3_param_pkg",
       "type": "library",
-      "description": "Package for SHA-3 parameter definitions"
+      "description": "Parameter definitions for SHA-3"
     },
     {
       "name": "sha3_reg_pkg",
       "type": "library",
-      "description": "Package for SHA-3 register definitions"
+      "description": "Register definitions for SHA-3"
     },
     {
       "name": "kmac_pkg",
       "type": "library",
-      "description": "Package for KMAC-related parameters and types"
+      "description": "KMAC-specific parameter and type definitions"
     }
   ],
   "test": {
@@ -232,10 +226,9 @@
   "keywords": [
     "SHA-3",
     "KMAC",
-    "SHAKE",
-    "cSHAKE",
-    "AHB-Lite",
-    "Keccak"
+    "cryptography",
+    "hashing",
+    "AHB-Lite"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -243,71 +236,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-01T05:09:06Z"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-01T05:09:06Z"
+      "generated_at": "2026-04-19T06:10:41Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/kmac.sv",
-    "rtl/kmac_app.sv",
-    "rtl/kmac_core.sv",
-    "rtl/kmac_entropy.sv",
-    "rtl/kmac_errchk.sv",
-    "rtl/kmac_msgfifo.sv",
-    "rtl/kmac_pkg.sv",
-    "rtl/kmac_reg_pkg.sv",
-    "rtl/kmac_reg_top.sv",
-    "rtl/kmac_staterd.sv",
-    "rtl/ot_keccak_2share.sv",
-    "rtl/ot_keccak_round.sv",
-    "rtl/ot_sha3.sv",
-    "rtl/ot_sha3_pkg.sv",
-    "rtl/ot_sha3pad.sv",
-    "rtl/sha3_ctrl.sv",
-    "rtl/sha3_param_pkg.sv",
-    "rtl/sha3_reg.sv",
-    "rtl/sha3_reg_pkg.sv",
-    "rtl/sha3_reg_uvm.sv",
-    "rtl/kmac.sv",
-    "rtl/kmac_app.sv",
-    "rtl/kmac_core.sv",
-    "rtl/kmac_entropy.sv",
-    "rtl/kmac_errchk.sv",
-    "rtl/kmac_msgfifo.sv",
-    "rtl/kmac_pkg.sv",
-    "rtl/kmac_reg_pkg.sv",
-    "rtl/kmac_reg_top.sv",
-    "rtl/kmac_staterd.sv",
-    "rtl/ot_keccak_2share.sv",
-    "rtl/ot_keccak_round.sv",
-    "rtl/ot_sha3.sv",
-    "rtl/ot_sha3_pkg.sv",
-    "rtl/ot_sha3pad.sv",
-    "rtl/sha3_ctrl.sv",
-    "rtl/sha3_param_pkg.sv",
-    "rtl/sha3_reg.sv",
-    "rtl/sha3_reg_pkg.sv",
-    "rtl/sha3_reg_uvm.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

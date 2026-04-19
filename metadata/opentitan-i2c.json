@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-i2c",
   "version": "0.1.0",
-  "description": "The OpenTitan I2C IP block provides a configurable and secure implementation of the I2C protocol, supporting both master and target modes, with features such as FIFO buffering, integrity checks, and error handling.",
+  "description": "The OpenTitan I2C IP is a highly configurable and silicon-proven I2C controller supporting both master and target modes, with features such as RACL policy enforcement, integrity checks, and FIFO-based data buffering.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:05:09Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:12:11Z",
+  "updated": "2026-04-19T06:12:11Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/i2c",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,12 +34,28 @@
   ],
   "interfaces": [
     {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "active-low",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
       "type": "bus",
       "direction": "slave",
       "protocol": "TL-UL",
       "port": "tl_i",
       "width": 32,
-      "description": "Incoming TL-UL bus interface for register access."
+      "description": "TL-UL host-to-device bus interface"
     },
     {
       "type": "bus",
@@ -47,31 +63,47 @@
       "protocol": "TL-UL",
       "port": "tl_o",
       "width": 32,
-      "description": "Outgoing TL-UL bus interface for register responses."
+      "description": "TL-UL device-to-host bus interface"
     },
     {
-      "type": "clock",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "clk_i",
-      "width": 1,
-      "description": "Clock input signal."
+      "type": "data",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "reg2hw",
+      "width": 32,
+      "description": "Register-to-hardware data output"
     },
     {
-      "type": "reset",
+      "type": "data",
       "direction": "input",
-      "protocol": "generic",
-      "port": "rst_ni",
-      "width": 1,
-      "description": "Active-low reset signal."
+      "protocol": "custom",
+      "port": "hw2reg",
+      "width": 32,
+      "description": "Hardware-to-register data input"
+    },
+    {
+      "type": "data",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "racl_policies_i",
+      "width": 32,
+      "description": "RACL policy vector input"
+    },
+    {
+      "type": "data",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "racl_error_o",
+      "width": 32,
+      "description": "RACL error log output"
     },
     {
       "type": "interrupt",
       "direction": "output",
-      "protocol": "generic",
+      "protocol": "custom",
       "port": "intg_err_o",
       "width": 1,
-      "description": "Integrity error interrupt signal."
+      "description": "Integrity error output signal"
     }
   ],
   "parameters": [
@@ -79,19 +111,19 @@
       "name": "EnableRacl",
       "type": "bit",
       "default": 0,
-      "description": "Enable RACL functionality for register access control."
+      "description": "Enable RACL policy enforcement"
     },
     {
       "name": "RaclErrorRsp",
       "type": "bit",
       "default": 1,
-      "description": "Enable error response for RACL violations."
+      "description": "Enable RACL error response"
     },
     {
       "name": "RaclPolicySelVec",
       "type": "enum",
       "default": "{i2c_reg_pkg::NumRegs{0}}",
-      "description": "RACL policy selection vector for register access control."
+      "description": "RACL policy selection vector"
     }
   ],
   "performance": {},
@@ -99,10 +131,10 @@
     "type": "peripheral",
     "features": [
       "I2C master and target modes",
-      "FIFO buffering for RX, TX, and acquisition",
+      "RACL policy enforcement",
       "Integrity checks for data transactions",
-      "Error handling and alert generation",
-      "Configurable register access control (RACL)"
+      "FIFO-based data buffering",
+      "Support for TL-UL bus protocol"
     ]
   },
   "asic": {
@@ -121,24 +153,39 @@
   },
   "dependencies": [
     {
-      "name": "TL-UL",
-      "type": "bus",
-      "description": "TileLink Uncached Lightweight protocol for register access."
+      "name": "tlul_pkg",
+      "type": "library",
+      "description": "TileLink Uncached Lightweight (TL-UL) protocol package"
+    },
+    {
+      "name": "i2c_pkg",
+      "type": "library",
+      "description": "I2C package containing data structures and parameters"
+    },
+    {
+      "name": "i2c_reg_pkg",
+      "type": "library",
+      "description": "I2C register package auto-generated by reggen"
     },
     {
       "name": "prim_assert",
       "type": "library",
-      "description": "Assertion library for design verification."
+      "description": "Primitive assertions for design verification"
     },
     {
       "name": "prim_reg_we_check",
       "type": "library",
-      "description": "Primitive module for write enable checking."
+      "description": "Primitive module for write enable checks"
     },
     {
       "name": "tlul_adapter_reg",
       "type": "core",
-      "description": "TileLink register adapter for interfacing with TL-UL."
+      "description": "TL-UL to register interface adapter"
+    },
+    {
+      "name": "tlul_rsp_intg_gen",
+      "type": "core",
+      "description": "TL-UL response integrity generator"
     }
   ],
   "test": {
@@ -150,7 +197,7 @@
     "upstream": "https://github.com/lowRISC/opentitan"
   },
   "artifacts": {
-    "total_rtl_lines": 8954
+    "total_rtl_lines": 8949
   },
   "categories": [
     {
@@ -161,9 +208,10 @@
   "keywords": [
     "I2C",
     "OpenTitan",
+    "Serial Interface",
     "TL-UL",
-    "FIFO",
-    "Integrity Check"
+    "RACL",
+    "FIFO"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -171,51 +219,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27"
+    "last_activity": "2026-04-19T06:12:11Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:05:09Z"
+      "generated_at": "2026-04-19T06:12:11Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/i2c.sv",
-    "rtl/i2c_bus_monitor.sv",
-    "rtl/i2c_controller_fsm.sv",
-    "rtl/i2c_core.sv",
-    "rtl/i2c_fifo_sync_sram_adapter.sv",
-    "rtl/i2c_fifos.sv",
-    "rtl/i2c_pkg.sv",
-    "rtl/i2c_reg_pkg.sv",
-    "rtl/i2c_reg_top.sv",
-    "rtl/i2c_target_fsm.sv",
-    "rtl/i2c.sv",
-    "rtl/i2c_bus_monitor.sv",
-    "rtl/i2c_controller_fsm.sv",
-    "rtl/i2c_core.sv",
-    "rtl/i2c_fifo_sync_sram_adapter.sv",
-    "rtl/i2c_fifos.sv",
-    "rtl/i2c_pkg.sv",
-    "rtl/i2c_reg_pkg.sv",
-    "rtl/i2c_reg_top.sv",
-    "rtl/i2c_target_fsm.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

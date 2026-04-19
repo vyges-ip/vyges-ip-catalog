@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-entropy-src",
   "version": "0.1.0",
-  "description": "A silicon-proven entropy source IP block from the OpenTitan project, providing high-quality random number generation with integrated health tests and support for FIPS-compliant configurations.",
+  "description": "A silicon-proven entropy source module for generating true random numbers, including health tests and integrity checks.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:10:58Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:08Z",
+  "updated": "2026-04-19T06:12:08Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "e34333f9b38b01f5c07ef1177ca08408effe7653",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/entropy_src",
     "private": false,
     "containsEncryptedPayload": false,
@@ -36,58 +36,42 @@
     {
       "type": "clock",
       "direction": "input",
-      "protocol": "standard",
+      "protocol": "generic",
       "port": "clk_i",
       "width": 1,
-      "description": "Clock input signal"
+      "description": "Clock input signal."
     },
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "active-low",
+      "protocol": "generic",
       "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset signal"
+      "description": "Active-low reset signal."
     },
     {
       "type": "bus",
       "direction": "slave",
       "protocol": "TL-UL",
       "port": "tl_i",
-      "width": 1,
-      "description": "TileLink host-to-device interface"
+      "width": 384,
+      "description": "Incoming TileLink payload."
     },
     {
       "type": "bus",
       "direction": "master",
       "protocol": "TL-UL",
       "port": "tl_o",
-      "width": 1,
-      "description": "TileLink device-to-host interface"
-    },
-    {
-      "type": "output",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "reg2hw",
-      "width": 1,
-      "description": "Register-to-hardware interface for write operations"
-    },
-    {
-      "type": "input",
-      "direction": "input",
-      "protocol": "custom",
-      "port": "hw2reg",
-      "width": 1,
-      "description": "Hardware-to-register interface for read operations"
+      "width": 384,
+      "description": "Outgoing TileLink payload."
     },
     {
       "type": "interrupt",
       "direction": "output",
-      "protocol": "custom",
+      "protocol": "generic",
       "port": "intg_err_o",
       "width": 1,
-      "description": "Integrity error output signal"
+      "description": "Integrity error output signal."
     }
   ],
   "parameters": [
@@ -95,60 +79,41 @@
       "name": "AW",
       "type": "int",
       "default": 8,
-      "description": "Address width for the register interface"
+      "description": "Address width parameter."
     },
     {
       "name": "DW",
       "type": "int",
       "default": 32,
-      "description": "Data width for the register interface"
+      "description": "Data width parameter."
     },
     {
       "name": "DBW",
       "type": "int",
       "default": 4,
-      "description": "Byte width derived from data width"
+      "description": "Byte width parameter derived from data width."
     },
     {
       "name": "CSRNG_BUS_WIDTH",
       "type": "int",
       "default": 384,
-      "description": "Width of the CSRNG bus"
+      "description": "Bus width for CSRNG interface."
     },
     {
       "name": "FIPS_BUS_WIDTH",
       "type": "int",
       "default": 1,
-      "description": "Width of the FIPS bus"
-    },
-    {
-      "name": "FIPS_CSRNG_BUS_WIDTH",
-      "type": "int",
-      "default": 385,
-      "description": "Combined width of FIPS and CSRNG buses"
-    },
-    {
-      "name": "BucketHtDataMaxWidth",
-      "type": "int",
-      "default": 4,
-      "description": "Maximum data width for bucket health test"
-    },
-    {
-      "name": "HT_WATERMARK_NUM_WIDTH",
-      "type": "int",
-      "default": 4,
-      "description": "Width of the health test watermark number"
+      "description": "Bus width for FIPS interface."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "True Random Number Generator (TRNG)",
-      "FIPS-compliant entropy generation",
-      "Integrated health tests for entropy quality",
-      "TileLink interface for communication",
-      "Support for external health tests"
+      "True Random Number Generation (TRNG)",
+      "Health tests for entropy validation",
+      "Integrity checks for data payloads",
+      "TileLink interface for communication"
     ]
   },
   "asic": {
@@ -169,27 +134,22 @@
     {
       "name": "prim_assert",
       "type": "library",
-      "description": "Assertion library for OpenTitan designs"
+      "description": "Assertion library for design verification."
     },
     {
       "name": "tlul_pkg",
-      "type": "library",
-      "description": "TileLink Ultra-Lite protocol package"
+      "type": "bus",
+      "description": "TileLink Ultra-Lite package for bus communication."
     },
     {
       "name": "entropy_src_reg_pkg",
       "type": "library",
-      "description": "Register package for entropy source"
+      "description": "Package containing register definitions for entropy source."
     },
     {
-      "name": "entropy_src_pkg",
+      "name": "entropy_src_ack_sm_pkg",
       "type": "library",
-      "description": "Entropy source package defining interfaces and parameters"
-    },
-    {
-      "name": "prim_util_pkg",
-      "type": "library",
-      "description": "Utility package for common primitives"
+      "description": "Package defining state machine for acknowledgment handling."
     }
   ],
   "test": {
@@ -198,10 +158,10 @@
     "coverage": "functional"
   },
   "documentation": {
-    "upstream": "https://github.com/lowRISC/opentitan"
+    "upstream": "https://github.com/lowRISC/opentitan/tree/master/hw/ip/entropy_src"
   },
   "artifacts": {
-    "total_rtl_lines": 10112
+    "total_rtl_lines": 9712
   },
   "categories": [
     {
@@ -213,9 +173,8 @@
     "entropy",
     "TRNG",
     "OpenTitan",
-    "security",
-    "random number generator",
-    "FIPS"
+    "TileLink",
+    "security"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -223,49 +182,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:10:58Z"
+      "generated_at": "2026-04-19T06:12:08Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/entropy_src.sv",
-    "rtl/entropy_src_ack_sm.sv",
-    "rtl/entropy_src_ack_sm_pkg.sv",
-    "rtl/entropy_src_adaptp_ht.sv",
-    "rtl/entropy_src_bucket_ht.sv",
-    "rtl/entropy_src_cntr_reg.sv",
-    "rtl/entropy_src_core.sv",
-    "rtl/entropy_src_enable_delay.sv",
-    "rtl/entropy_src_field_en.sv",
-    "rtl/entropy_src_main_sm.sv",
-    "rtl/entropy_src_main_sm_pkg.sv",
-    "rtl/entropy_src_markov_ht.sv",
-    "rtl/entropy_src_pkg.sv",
-    "rtl/entropy_src_reg_pkg.sv",
-    "rtl/entropy_src_reg_top.sv",
-    "rtl/entropy_src_repcnt_ht.sv",
-    "rtl/entropy_src_repcnts_ht.sv",
-    "rtl/entropy_src_watermark_reg.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

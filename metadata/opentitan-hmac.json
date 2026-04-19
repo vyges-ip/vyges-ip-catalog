@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-hmac",
   "version": "0.1.0",
-  "description": "A hardware implementation of HMAC (Hash-based Message Authentication Code) supporting SHA algorithms, designed for secure cryptographic operations in silicon Root of Trust applications.",
+  "description": "The OpenTitan HMAC IP block implements a hardware-accelerated HMAC engine with support for SHA-256 and configurable key and digest sizes. It includes a TileLink interface for communication and features robust integrity checks for secure operation.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:05:10Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:11Z",
+  "updated": "2026-04-19T06:12:11Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/hmac",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,57 +34,76 @@
   ],
   "interfaces": [
     {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
       "type": "bus",
       "direction": "slave",
       "protocol": "TL-UL",
       "port": "tl_i",
-      "width": 32,
-      "description": "Incoming TL-UL bus interface for HMAC operations."
+      "width": 1,
+      "description": "TileLink host-to-device interface"
     },
     {
       "type": "bus",
       "direction": "master",
       "protocol": "TL-UL",
       "port": "tl_o",
-      "width": 32,
-      "description": "Outgoing TL-UL bus interface for HMAC responses."
+      "width": 1,
+      "description": "TileLink device-to-host interface"
     },
     {
       "type": "bus",
       "direction": "master",
       "protocol": "TL-UL",
       "port": "tl_win_o",
-      "width": 32,
-      "description": "Windowed TL-UL bus interface for additional operations."
+      "width": 1,
+      "description": "TileLink window host-to-device interface"
     },
     {
       "type": "bus",
       "direction": "slave",
       "protocol": "TL-UL",
       "port": "tl_win_i",
-      "width": 32,
-      "description": "Windowed TL-UL bus interface for incoming data."
+      "width": 1,
+      "description": "TileLink window device-to-host interface"
     },
     {
-      "type": "clock",
-      "direction": "input",
-      "port": "clk_i",
+      "type": "custom",
+      "direction": "output",
+      "protocol": "hmac_reg2hw_t",
+      "port": "reg2hw",
       "width": 1,
-      "description": "Clock input for synchronous operations."
+      "description": "Output port for hardware write operations"
     },
     {
-      "type": "reset",
+      "type": "custom",
       "direction": "input",
-      "port": "rst_ni",
+      "protocol": "hmac_hw2reg_t",
+      "port": "hw2reg",
       "width": 1,
-      "description": "Active-low reset input."
+      "description": "Input port for hardware read operations"
     },
     {
       "type": "interrupt",
       "direction": "output",
+      "protocol": "standard",
       "port": "intg_err_o",
       "width": 1,
-      "description": "Integrity error interrupt output."
+      "description": "Integrity check error output signal"
     }
   ],
   "parameters": [
@@ -92,59 +111,60 @@
       "name": "AW",
       "type": "int",
       "default": 13,
-      "description": "Address width for register addressing."
+      "description": "Address width for the HMAC module"
     },
     {
       "name": "DW",
       "type": "int",
       "default": 32,
-      "description": "Data width for register operations."
+      "description": "Data width for the HMAC module"
     },
     {
       "name": "DBW",
       "type": "int",
       "default": 4,
-      "description": "Byte width derived from data width."
+      "description": "Byte width derived from data width"
     },
     {
       "name": "NumDigestWords",
       "type": "int",
       "default": 16,
-      "description": "Number of words in the digest."
+      "description": "Number of words in the digest"
     },
     {
       "name": "NumKeyWords",
       "type": "int",
       "default": 32,
-      "description": "Number of words in the key."
+      "description": "Number of words in the key"
     },
     {
       "name": "NumAlerts",
       "type": "int",
       "default": 1,
-      "description": "Number of alert signals supported."
+      "description": "Number of alert signals"
     },
     {
       "name": "BlockAw",
       "type": "int",
       "default": 13,
-      "description": "Address width within the block."
+      "description": "Address width within the block"
     },
     {
       "name": "NumRegs",
       "type": "int",
       "default": 59,
-      "description": "Number of registers in the block."
+      "description": "Number of registers for every interface"
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "HMAC computation using SHA algorithms",
-      "Register-based configuration and control",
-      "Integrity error detection and reporting",
-      "Support for windowed operations"
+      "Hardware-accelerated HMAC engine",
+      "Support for SHA-256",
+      "Configurable key and digest sizes",
+      "TileLink interface for communication",
+      "Integrity check mechanisms"
     ]
   },
   "asic": {
@@ -165,34 +185,46 @@
     {
       "name": "tlul_pkg",
       "type": "library",
-      "description": "TL-UL protocol package for bus operations."
+      "description": "TileLink Ultra-Lite protocol package"
     },
     {
       "name": "hmac_reg_pkg",
       "type": "library",
-      "description": "Package containing register definitions and data structures."
+      "description": "HMAC register package containing data structures and parameters"
+    },
+    {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Primitive assertion library for verification"
     },
     {
       "name": "prim_reg_we_check",
       "type": "library",
-      "description": "Primitive for write enable error checking."
+      "description": "Primitive module for write enable checking"
+    },
+    {
+      "name": "tlul_cmd_intg_chk",
+      "type": "library",
+      "description": "TileLink command integrity check module"
+    },
+    {
+      "name": "tlul_rsp_intg_gen",
+      "type": "library",
+      "description": "TileLink response integrity generation module"
     },
     {
       "name": "tlul_socket_1n",
       "type": "library",
-      "description": "Socket for TL-UL bus multiplexing."
+      "description": "TileLink 1-to-N socket module"
     },
     {
       "name": "tlul_adapter_reg",
       "type": "library",
-      "description": "Adapter for TL-UL register interface."
+      "description": "TileLink adapter for register interface"
     }
   ],
   "test": {
-    "testbenches": [
-      "tb_hmac",
-      "tb_hmac_core"
-    ],
+    "testbenches": [],
     "status": "upstream_passing",
     "coverage": "functional"
   },
@@ -210,11 +242,11 @@
   ],
   "keywords": [
     "HMAC",
-    "SHA",
-    "cryptography",
-    "security",
+    "SHA-256",
+    "Crypto",
+    "Security",
     "OpenTitan",
-    "Root of Trust"
+    "TileLink"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -222,35 +254,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T23:05:10Z"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:05:10Z"
+      "generated_at": "2026-04-19T06:12:11Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/hmac.sv",
-    "rtl/hmac_core.sv",
-    "rtl/hmac_reg_pkg.sv",
-    "rtl/hmac_reg_top.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

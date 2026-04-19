@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-keymgr-dpe",
   "version": "0.1.0",
-  "description": "Key manager for secure key generation, lifecycle enforcement, and cryptographic operations, integrated with KMAC and PRNG interfaces.",
+  "description": "The Key Manager DPE (Derived Primary Entity) is a security IP block that manages cryptographic keys and their lifecycle, supporting operations such as key generation, erasure, and state transitions.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:05:15Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:16Z",
+  "updated": "2026-04-19T06:12:16Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/keymgr_dpe",
     "private": false,
     "containsEncryptedPayload": false,
@@ -39,95 +39,111 @@
       "protocol": "generic",
       "port": "clk_i",
       "width": 1,
-      "description": "Clock input for synchronous operation."
+      "description": "Clock input"
     },
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "generic",
+      "protocol": "active-low",
       "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset input."
+      "description": "Active-low reset input"
     },
     {
-      "type": "bus",
+      "type": "signal",
       "direction": "input",
       "protocol": "generic",
-      "port": "op_start_i",
+      "port": "adv_req_i",
       "width": 1,
-      "description": "Operation start signal."
+      "description": "Advance request input"
     },
     {
-      "type": "bus",
+      "type": "signal",
       "direction": "input",
       "protocol": "generic",
-      "port": "op_i",
-      "width": 3,
-      "description": "Operation type selector."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "slot_src_sel_i",
-      "width": 3,
-      "description": "Source slot selector."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "slot_dst_sel_i",
-      "width": 3,
-      "description": "Destination slot selector."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "generic",
-      "port": "op_done_o",
+      "port": "gen_req_i",
       "width": 1,
-      "description": "Operation completion signal."
+      "description": "Key generation request input"
     },
     {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "generic",
-      "port": "status_o",
-      "width": 3,
-      "description": "Operation status output."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "generic",
-      "port": "error_o",
-      "width": 8,
-      "description": "Error status output."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "generic",
-      "port": "fault_o",
-      "width": 8,
-      "description": "Fault status output."
-    },
-    {
-      "type": "bus",
+      "type": "signal",
       "direction": "input",
       "protocol": "generic",
-      "port": "kmac_data_i",
-      "width": 512,
-      "description": "KMAC data input."
+      "port": "erase_req_i",
+      "width": 1,
+      "description": "Key erase request input"
     },
     {
-      "type": "bus",
+      "type": "signal",
       "direction": "input",
       "protocol": "generic",
-      "port": "entropy_i",
-      "width": 256,
-      "description": "Entropy input for PRNG."
+      "port": "dis_req_i",
+      "width": 1,
+      "description": "Disable request input"
+    },
+    {
+      "type": "signal",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "load_req_i",
+      "width": 1,
+      "description": "Load root key request input"
+    },
+    {
+      "type": "signal",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "op_ack_o",
+      "width": 1,
+      "description": "Operation acknowledgment output"
+    },
+    {
+      "type": "signal",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "op_busy_o",
+      "width": 1,
+      "description": "Operation busy status output"
+    },
+    {
+      "type": "signal",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "op_update_o",
+      "width": 1,
+      "description": "Operation update signal output"
+    },
+    {
+      "type": "signal",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "kmac_done_i",
+      "width": 1,
+      "description": "KMAC operation done input"
+    },
+    {
+      "type": "signal",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "adv_en_o",
+      "width": 1,
+      "description": "Advance enable output"
+    },
+    {
+      "type": "signal",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "gen_en_o",
+      "width": 1,
+      "description": "Key generation enable output"
+    },
+    {
+      "type": "signal",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "op_fsm_err_o",
+      "width": 1,
+      "description": "Operation FSM error output"
     }
   ],
   "parameters": [
@@ -135,36 +151,35 @@
       "name": "DpeNumSlots",
       "type": "int",
       "default": 8,
-      "description": "Number of key slots available."
+      "description": "Number of key slots available in the DPE"
     },
     {
       "name": "DpeNumSlotsWidth",
       "type": "int",
-      "default": 3,
-      "description": "Bit-width for slot indexing."
+      "default": null,
+      "description": "Bit width for addressing key slots"
     },
     {
       "name": "DpeAdvDataWidth",
       "type": "int",
-      "default": 512,
-      "description": "Width of data for advance operations."
+      "default": null,
+      "description": "Width of the data used for advance operations"
     },
     {
-      "name": "StateWidth",
+      "name": "DpeBootStagesWidth",
       "type": "int",
-      "default": 10,
-      "description": "Width of state encoding."
+      "default": 2,
+      "description": "Bit width for boot stage enumeration"
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "Secure key generation",
-      "Lifecycle enforcement",
-      "KMAC integration",
-      "PRNG support",
-      "Fault detection and handling"
+      "Key lifecycle management",
+      "Support for key generation, erasure, and state transitions",
+      "Integration with KMAC for cryptographic operations",
+      "Sparse FSM encoding for state transitions"
     ]
   },
   "asic": {
@@ -183,19 +198,24 @@
   },
   "dependencies": [
     {
+      "name": "keymgr_pkg",
+      "type": "library",
+      "description": "Key manager package for shared parameters and types"
+    },
+    {
       "name": "prim_util_pkg",
       "type": "library",
-      "description": "Utility package for primitive operations."
+      "description": "Primitive utilities package for common functions"
     },
     {
       "name": "otp_ctrl_pkg",
       "type": "library",
-      "description": "OTP control package for device ID and diversification values."
+      "description": "OTP controller package for device ID width"
     },
     {
       "name": "lc_ctrl_pkg",
       "type": "library",
-      "description": "Lifecycle control package for lifecycle state management."
+      "description": "Lifecycle controller package for key diversification"
     }
   ],
   "test": {
@@ -216,12 +236,11 @@
     }
   ],
   "keywords": [
-    "key management",
+    "key manager",
     "security",
     "cryptography",
     "OpenTitan",
-    "KMAC",
-    "PRNG"
+    "key lifecycle"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -229,37 +248,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27"
+    "last_activity": "2026-04-19T06:12:16Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:05:15Z"
+      "generated_at": "2026-04-19T06:12:16Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/keymgr_dpe.sv",
-    "rtl/keymgr_dpe_ctrl.sv",
-    "rtl/keymgr_dpe_op_state_ctrl.sv",
-    "rtl/keymgr_dpe_pkg.sv",
-    "rtl/keymgr_dpe_reg_pkg.sv",
-    "rtl/keymgr_dpe_reg_top.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

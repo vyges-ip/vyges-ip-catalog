@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-ascon",
   "version": "0.1.0",
-  "description": "The ASCON IP block is a cryptographic accelerator implementing the ASCON authenticated encryption and hashing algorithm, designed for secure and efficient data processing in hardware.",
+  "description": "The OpenTitan ASCON IP block implements cryptographic operations based on the ASCON lightweight authenticated encryption and hashing algorithm, providing secure data processing and integrity checks.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:04:58Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:01Z",
+  "updated": "2026-04-19T06:12:01Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/ascon",
     "private": false,
     "containsEncryptedPayload": false,
@@ -36,26 +36,26 @@
     {
       "type": "clock",
       "direction": "input",
-      "protocol": "standard",
+      "protocol": "generic",
       "port": "clk_i",
       "width": 1,
-      "description": "Clock input signal"
+      "description": "Clock input signal."
     },
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "active_low",
+      "protocol": "generic",
       "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset signal"
+      "description": "Active-low reset signal."
     },
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "active_low",
+      "protocol": "generic",
       "port": "rst_shadowed_ni",
       "width": 1,
-      "description": "Active-low shadowed reset signal"
+      "description": "Active-low shadowed reset signal."
     },
     {
       "type": "bus",
@@ -63,7 +63,7 @@
       "protocol": "TL-UL",
       "port": "tl_i",
       "width": 32,
-      "description": "TileLink input interface"
+      "description": "TileLink input interface for host-to-device communication."
     },
     {
       "type": "bus",
@@ -71,47 +71,47 @@
       "protocol": "TL-UL",
       "port": "tl_o",
       "width": 32,
-      "description": "TileLink output interface"
+      "description": "TileLink output interface for device-to-host communication."
     },
     {
-      "type": "output",
+      "type": "data",
       "direction": "output",
       "protocol": "custom",
       "port": "reg2hw",
       "width": 32,
-      "description": "Register-to-hardware interface for write operations"
+      "description": "Data output to hardware."
     },
     {
-      "type": "input",
+      "type": "data",
       "direction": "input",
       "protocol": "custom",
       "port": "hw2reg",
       "width": 32,
-      "description": "Hardware-to-register interface for read operations"
+      "description": "Data input from hardware."
     },
     {
-      "type": "output",
+      "type": "status",
       "direction": "output",
-      "protocol": "signal",
+      "protocol": "generic",
       "port": "shadowed_storage_err_o",
       "width": 1,
-      "description": "Shadowed storage error signal"
+      "description": "Indicates shadowed storage error."
     },
     {
-      "type": "output",
+      "type": "status",
       "direction": "output",
-      "protocol": "signal",
+      "protocol": "generic",
       "port": "shadowed_update_err_o",
       "width": 1,
-      "description": "Shadowed update error signal"
+      "description": "Indicates shadowed update error."
     },
     {
-      "type": "output",
+      "type": "status",
       "direction": "output",
-      "protocol": "signal",
+      "protocol": "generic",
       "port": "intg_err_o",
       "width": 1,
-      "description": "Integrity check error signal"
+      "description": "Indicates integrity check error."
     }
   ],
   "parameters": [
@@ -119,29 +119,29 @@
       "name": "AW",
       "type": "int",
       "default": 8,
-      "description": "Address width for the register interface"
+      "description": "Address width parameter."
     },
     {
       "name": "DW",
       "type": "int",
       "default": 32,
-      "description": "Data width for the register interface"
+      "description": "Data width parameter."
     },
     {
       "name": "DBW",
       "type": "int",
       "default": 4,
-      "description": "Data byte width derived from data width"
+      "description": "Byte width parameter derived from data width."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "ASCON authenticated encryption and hashing",
-      "TileLink interface for communication",
-      "Shadowed registers for secure storage",
-      "Integrity error detection and reporting"
+      "ASCON lightweight cryptographic algorithm implementation",
+      "Support for authenticated encryption and hashing",
+      "Shadowed register storage for enhanced security",
+      "Integrity check mechanisms for data validation"
     ]
   },
   "asic": {
@@ -160,39 +160,24 @@
   },
   "dependencies": [
     {
-      "name": "tlul_pkg",
+      "name": "prim_assert",
       "type": "library",
-      "description": "TileLink Ultra-Lite protocol package"
+      "description": "Assertion library for design verification."
+    },
+    {
+      "name": "tlul_pkg",
+      "type": "bus",
+      "description": "TileLink Ultra-Lite package for bus communication."
+    },
+    {
+      "name": "ascon_pkg",
+      "type": "library",
+      "description": "ASCON package containing cryptographic utilities."
     },
     {
       "name": "ascon_reg_pkg",
       "type": "library",
-      "description": "ASCON register package for data structures and parameters"
-    },
-    {
-      "name": "prim_assert",
-      "type": "library",
-      "description": "Primitive assertions for OpenTitan"
-    },
-    {
-      "name": "prim_reg_we_check",
-      "type": "library",
-      "description": "Primitive module for write enable checks"
-    },
-    {
-      "name": "tlul_adapter_reg",
-      "type": "core",
-      "description": "TileLink-to-register adapter"
-    },
-    {
-      "name": "tlul_cmd_intg_chk",
-      "type": "core",
-      "description": "TileLink command integrity checker"
-    },
-    {
-      "name": "tlul_rsp_intg_gen",
-      "type": "core",
-      "description": "TileLink response integrity generator"
+      "description": "ASCON register package for data structure definitions."
     }
   ],
   "test": {
@@ -217,7 +202,7 @@
     "cryptography",
     "authenticated encryption",
     "hashing",
-    "TileLink",
+    "security",
     "OpenTitan"
   ],
   "trust": {
@@ -226,36 +211,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:04:58Z"
+      "generated_at": "2026-04-19T06:12:01Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/ascon.sv",
-    "rtl/ascon_core.sv",
-    "rtl/ascon_pkg.sv",
-    "rtl/ascon_reg_pkg.sv",
-    "rtl/ascon_reg_top.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

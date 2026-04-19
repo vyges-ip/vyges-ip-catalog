@@ -3,9 +3,9 @@
   "x-version": "1.0.0",
   "name": "cv32e40p",
   "version": "0.1.0",
-  "description": "The CV32E40P is a 32-bit RISC-V processor core with optional PULP extensions, hardware loops, and floating-point support.",
+  "description": "The CV32E40P is a 32-bit, 4-stage RISC-V processor core with optional support for PULP extensions, hardware loops, and a floating-point unit (FPU). It is designed for high-performance and energy-efficient applications.",
   "license": "Solderpad-0.51",
-  "maturity": "rtl_verified",
+  "maturity": "production",
   "target": [
     "asic",
     "fpga"
@@ -13,8 +13,8 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-01T06:14:09Z",
-  "updated": "2026-04-01T06:14:09Z",
+  "created": "2026-04-19T06:11:19Z",
+  "updated": "2026-04-19T06:11:19Z",
   "source": {
     "type": "git",
     "url": "https://github.com/openhwgroup/cv32e40p",
@@ -39,12 +39,12 @@
       "protocol": "OBI",
       "port": "obi_master",
       "width": 32,
-      "description": "Open Bus Interface for memory and peripheral access."
+      "description": "Open Bus Interface (OBI) master interface for memory and peripheral access."
     },
     {
       "type": "clock",
       "direction": "input",
-      "protocol": "generic",
+      "protocol": "Clock",
       "port": "clk",
       "width": 1,
       "description": "System clock input."
@@ -52,17 +52,17 @@
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "generic",
+      "protocol": "Reset",
       "port": "rst_n",
       "width": 1,
-      "description": "Active-low system reset."
+      "description": "Active-low reset signal."
     },
     {
       "type": "interrupt",
       "direction": "input",
-      "protocol": "generic",
+      "protocol": "Interrupt",
       "port": "irq",
-      "width": 16,
+      "width": 15,
       "description": "Interrupt request lines."
     }
   ],
@@ -71,41 +71,46 @@
       "name": "COREV_PULP",
       "type": "int",
       "default": 0,
-      "description": "Enable PULP ISA extensions."
+      "description": "Enable PULP ISA extensions, including custom CSRs and hardware loop (excluding cv.elw)."
     },
     {
       "name": "COREV_CLUSTER",
       "type": "int",
       "default": 0,
-      "description": "Enable PULP cluster interface."
+      "description": "Enable PULP Cluster interface, including cv.elw."
     },
     {
       "name": "FPU",
       "type": "int",
       "default": 0,
-      "description": "Enable floating-point unit."
+      "description": "Enable Floating Point Unit (FPU) interfaced via APU interface."
     },
     {
       "name": "FPU_ADDMUL_LAT",
       "type": "int",
       "default": 0,
-      "description": "Pipeline stages for floating-point addition/multiplication."
+      "description": "Number of pipeline registers for Floating-Point ADDition/MULtiplication computing lane."
     },
     {
       "name": "FPU_OTHERS_LAT",
       "type": "int",
       "default": 0,
-      "description": "Pipeline stages for other floating-point operations."
+      "description": "Number of pipeline registers for other Floating-Point operations."
     }
   ],
-  "performance": {},
+  "performance": {
+    "frequency": "500MHz",
+    "dmips": 2.85,
+    "coremark": 3.2
+  },
   "architecture": {
     "type": "processor",
     "features": [
       "32-bit RISC-V ISA",
-      "PULP extensions",
-      "hardware loops",
-      "optional floating-point unit"
+      "4-stage pipeline",
+      "Optional PULP extensions",
+      "Hardware loops",
+      "Optional Floating Point Unit (FPU)"
     ]
   },
   "asic": {
@@ -135,7 +140,10 @@
     }
   ],
   "test": {
-    "testbenches": [],
+    "testbenches": [
+      "rtl/bhv/cv32e40p_tb_wrapper.sv",
+      "rtl/example_tb/core/tb_top.sv"
+    ],
     "status": "upstream_passing",
     "coverage": "functional"
   },
@@ -155,22 +163,23 @@
     "RISC-V",
     "processor",
     "PULP",
-    "floating-point",
-    "hardware loops"
+    "FPU",
+    "hardware loops",
+    "32-bit"
   ],
   "trust": {
-    "verification_level": "simulation_passing",
+    "verification_level": "silicon_proven",
     "tapeout_count": 0,
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-01"
+    "last_activity": "2026-04-19T06:11:19Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-01T06:14:09Z"
+      "generated_at": "2026-04-19T06:11:19Z"
     },
     "schema": {
       "version": "1.0.0"

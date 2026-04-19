@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-spi-device",
   "version": "0.1.0",
-  "description": "A silicon-proven SPI device controller supporting TL-UL protocol for register access, with features like passthrough mode, integrity checks, and configurable SRAM buffers.",
+  "description": "A silicon-proven SPI device controller IP supporting TL-UL protocol for communication with host systems, featuring register-based configuration, passthrough mode, and integrity checking.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:05:57Z",
-  "updated": "2026-04-02T04:30:00Z",
+  "created": "2026-04-19T06:12:45Z",
+  "updated": "2026-04-19T06:12:45Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/spi_device",
     "private": false,
     "containsEncryptedPayload": false,
@@ -39,7 +39,7 @@
       "protocol": "TL-UL",
       "port": "tl_i",
       "width": 72,
-      "description": "TL-UL host-to-device interface for register access."
+      "description": "TL-UL host-to-device interface for incoming transactions."
     },
     {
       "type": "bus",
@@ -47,12 +47,12 @@
       "protocol": "TL-UL",
       "port": "tl_o",
       "width": 72,
-      "description": "TL-UL device-to-host interface for register responses."
+      "description": "TL-UL device-to-host interface for outgoing responses."
     },
     {
       "type": "clock",
       "direction": "input",
-      "protocol": "standard",
+      "protocol": "generic",
       "port": "clk_i",
       "width": 1,
       "description": "Clock input for the SPI device."
@@ -60,10 +60,10 @@
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "active-low",
+      "protocol": "generic",
       "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset signal."
+      "description": "Active-low reset input for the SPI device."
     },
     {
       "type": "bus",
@@ -71,7 +71,7 @@
       "protocol": "TL-UL",
       "port": "tl_win_o",
       "width": 72,
-      "description": "TL-UL master interface for windowed access."
+      "description": "TL-UL master interface for windowed operations."
     },
     {
       "type": "bus",
@@ -79,47 +79,47 @@
       "protocol": "TL-UL",
       "port": "tl_win_i",
       "width": 72,
-      "description": "TL-UL slave interface for windowed access."
+      "description": "TL-UL slave interface for windowed operations."
     },
     {
       "type": "custom",
       "direction": "output",
-      "protocol": "custom",
+      "protocol": "spi_device_reg_pkg::spi_device_reg2hw_t",
       "port": "reg2hw",
       "width": 512,
-      "description": "Register-to-hardware interface for write operations."
+      "description": "Output port for register-to-hardware communication."
     },
     {
       "type": "custom",
       "direction": "input",
-      "protocol": "custom",
+      "protocol": "spi_device_reg_pkg::spi_device_hw2reg_t",
       "port": "hw2reg",
       "width": 512,
-      "description": "Hardware-to-register interface for read operations."
+      "description": "Input port for hardware-to-register communication."
     },
     {
       "type": "custom",
       "direction": "input",
-      "protocol": "custom",
+      "protocol": "top_racl_pkg::racl_policy_vec_t",
       "port": "racl_policies_i",
-      "width": 73,
-      "description": "RACL policy vector input."
+      "width": 128,
+      "description": "Input for RACL policy vector."
     },
     {
       "type": "custom",
       "direction": "output",
-      "protocol": "custom",
+      "protocol": "top_racl_pkg::racl_error_log_t",
       "port": "racl_error_o",
-      "width": 1,
-      "description": "RACL error log output."
+      "width": 32,
+      "description": "Output for RACL error logging."
     },
     {
-      "type": "custom",
+      "type": "interrupt",
       "direction": "output",
-      "protocol": "custom",
+      "protocol": "generic",
       "port": "intg_err_o",
       "width": 1,
-      "description": "Integrity error output signal."
+      "description": "Output for integrity check error signal."
     }
   ],
   "parameters": [
@@ -138,37 +138,21 @@
     {
       "name": "RaclPolicySelVec",
       "type": "array",
-      "default": "{spi_device_reg_pkg::NumRegs{0}}",
+      "default": "'{spi_device_reg_pkg::NumRegs{0}}",
       "description": "RACL policy selection vector."
-    },
-    {
-      "name": "AW",
-      "type": "int",
-      "default": 13,
-      "description": "Address width for the register interface."
-    },
-    {
-      "name": "DW",
-      "type": "int",
-      "default": 32,
-      "description": "Data width for the register interface."
-    },
-    {
-      "name": "DBW",
-      "type": "int",
-      "default": 4,
-      "description": "Byte width for the register interface."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "SPI device controller with TL-UL interface",
+      "SPI device controller",
+      "TL-UL protocol support",
       "Passthrough mode for external SPI devices",
-      "Configurable SRAM buffers for data storage",
-      "Integrity check and error reporting",
-      "Support for RACL policies"
+      "Integrity checking for data transactions",
+      "Configurable register interface",
+      "Support for 3-byte and 4-byte addressing modes",
+      "Support for dummy cycles and payload handling"
     ]
   },
   "asic": {
@@ -199,12 +183,27 @@
     {
       "name": "top_racl_pkg",
       "type": "library",
-      "description": "RACL policy package."
+      "description": "RACL policy package for access control."
     },
     {
       "name": "prim_assert",
       "type": "library",
-      "description": "Primitive assertion library."
+      "description": "Primitive assertion library for OpenTitan."
+    },
+    {
+      "name": "prim_reg_we_check",
+      "type": "library",
+      "description": "Primitive module for write enable checking."
+    },
+    {
+      "name": "tlul_adapter_reg",
+      "type": "core",
+      "description": "TileLink Ultra-Lite adapter for register interface."
+    },
+    {
+      "name": "tlul_socket_1n",
+      "type": "core",
+      "description": "TileLink Ultra-Lite 1-to-N socket."
     }
   ],
   "test": {
@@ -213,7 +212,7 @@
     "coverage": "functional"
   },
   "documentation": {
-    "upstream": "https://github.com/lowRISC/opentitan"
+    "upstream": "https://github.com/lowRISC/opentitan/tree/46cc36599f56f60b344afb031185a85fc8654e68/hw/ip/spi_device"
   },
   "artifacts": {
     "total_rtl_lines": 32153
@@ -227,9 +226,10 @@
   "keywords": [
     "SPI",
     "TL-UL",
-    "RACL",
     "OpenTitan",
-    "Peripheral"
+    "Peripheral",
+    "Passthrough",
+    "Integrity Checking"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -237,69 +237,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27T23:05:57Z"
+    "last_activity": "2026-04-19T06:12:45Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:05:57Z"
+      "generated_at": "2026-04-19T06:12:45Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/spi_cmdparse.sv",
-    "rtl/spi_device.sv",
-    "rtl/spi_device_pkg.sv",
-    "rtl/spi_device_reg_pkg.sv",
-    "rtl/spi_device_reg_top.sv",
-    "rtl/spi_p2s.sv",
-    "rtl/spi_passthrough.sv",
-    "rtl/spi_readcmd.sv",
-    "rtl/spi_s2p.sv",
-    "rtl/spi_tpm.sv",
-    "rtl/spid_addr_4b.sv",
-    "rtl/spid_csb_sync.sv",
-    "rtl/spid_dpram.sv",
-    "rtl/spid_fifo2sram_adapter.sv",
-    "rtl/spid_jedec.sv",
-    "rtl/spid_readbuffer.sv",
-    "rtl/spid_readsram.sv",
-    "rtl/spid_status.sv",
-    "rtl/spid_upload.sv",
-    "rtl/spi_cmdparse.sv",
-    "rtl/spi_device.sv",
-    "rtl/spi_device_pkg.sv",
-    "rtl/spi_device_reg_pkg.sv",
-    "rtl/spi_device_reg_top.sv",
-    "rtl/spi_p2s.sv",
-    "rtl/spi_passthrough.sv",
-    "rtl/spi_readcmd.sv",
-    "rtl/spi_s2p.sv",
-    "rtl/spi_tpm.sv",
-    "rtl/spid_addr_4b.sv",
-    "rtl/spid_csb_sync.sv",
-    "rtl/spid_dpram.sv",
-    "rtl/spid_fifo2sram_adapter.sv",
-    "rtl/spid_jedec.sv",
-    "rtl/spid_readbuffer.sv",
-    "rtl/spid_readsram.sv",
-    "rtl/spid_status.sv",
-    "rtl/spid_upload.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }

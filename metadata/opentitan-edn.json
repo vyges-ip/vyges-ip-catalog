@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-edn",
   "version": "0.1.0",
-  "description": "The opentitan-edn is an Entropy Distribution Network (EDN) IP block that provides secure and reliable entropy distribution for cryptographic operations. It supports the TileLink protocol and includes features for integrity checking, error handling, and configurable entropy generation.",
+  "description": "The opentitan-edn is an Entropy Distribution Network (EDN) IP block that provides secure and reliable entropy distribution to hardware modules, supporting features like integrity checks, error handling, and configurable command interfaces.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-03-27T23:05:05Z",
-  "updated": "2026-04-02T03:11:53Z",
+  "created": "2026-04-19T06:12:06Z",
+  "updated": "2026-04-19T06:12:06Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "7fbd85829ec6354ef6497df69536cefe862c1f5a",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/edn",
     "private": false,
     "containsEncryptedPayload": false,
@@ -36,7 +36,7 @@
     {
       "type": "clock",
       "direction": "input",
-      "protocol": "standard",
+      "protocol": "generic",
       "port": "clk_i",
       "width": 1,
       "description": "Clock input signal"
@@ -66,28 +66,28 @@
       "description": "TileLink device-to-host interface"
     },
     {
-      "type": "custom",
+      "type": "output",
       "direction": "output",
-      "protocol": "edn_reg_pkg::edn_reg2hw_t",
+      "protocol": "custom",
       "port": "reg2hw",
       "width": 32,
-      "description": "Write interface to hardware"
+      "description": "Register-to-hardware interface for write operations"
     },
     {
-      "type": "custom",
+      "type": "input",
       "direction": "input",
-      "protocol": "edn_reg_pkg::edn_hw2reg_t",
+      "protocol": "custom",
       "port": "hw2reg",
       "width": 32,
-      "description": "Read interface from hardware"
+      "description": "Hardware-to-register interface for read operations"
     },
     {
       "type": "interrupt",
       "direction": "output",
-      "protocol": "standard",
+      "protocol": "custom",
       "port": "intg_err_o",
       "width": 1,
-      "description": "Integrity check error output"
+      "description": "Integrity check error signal"
     }
   ],
   "parameters": [
@@ -107,59 +107,42 @@
       "name": "DBW",
       "type": "int",
       "default": 4,
-      "description": "Byte width for the register interface"
+      "description": "Byte width derived from data width"
     },
     {
-      "name": "EdnBootInsCmdResval",
+      "name": "ENDPOINT_BUS_WIDTH",
       "type": "int",
-      "default": 2305,
-      "description": "Default value for the boot instantiate command"
+      "default": 32,
+      "description": "Width of the endpoint bus"
     },
     {
-      "name": "EdnBootGenCmdResval",
+      "name": "FIPS_ENDPOINT_BUS_WIDTH",
       "type": "int",
-      "default": 16773123,
-      "description": "Default value for the boot generate command"
-    },
-    {
-      "name": "CtrlResval",
-      "type": "int",
-      "default": 39321,
-      "description": "Default value for the control register"
-    },
-    {
-      "name": "MaxNumReqsBetweenReseedsResval",
-      "type": "int",
-      "default": 0,
-      "description": "Default value for the maximum number of requests between reseeds"
+      "default": 64,
+      "description": "Width of the FIPS endpoint bus"
     },
     {
       "name": "NumAlerts",
       "type": "int",
       "default": 2,
-      "description": "Number of alerts supported by the EDN"
-    },
-    {
-      "name": "BlockAw",
-      "type": "int",
-      "default": 7,
-      "description": "Address width within the block"
+      "description": "Number of alert signals"
     },
     {
       "name": "NumRegs",
       "type": "int",
       "default": 18,
-      "description": "Number of registers for every interface"
+      "description": "Number of registers in the interface"
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "TileLink interface for communication",
-      "Integrity checking for incoming and outgoing payloads",
-      "Support for entropy generation and distribution",
-      "Error detection and alert generation"
+      "Entropy distribution to hardware modules",
+      "Integrity check for incoming payloads",
+      "Error detection and reporting",
+      "Configurable command interface",
+      "Support for TileLink protocol"
     ]
   },
   "asic": {
@@ -180,22 +163,22 @@
     {
       "name": "tlul_pkg",
       "type": "library",
-      "description": "TileLink protocol package for host-to-device and device-to-host communication"
+      "description": "TileLink Ultra-Lite protocol package"
     },
     {
       "name": "prim_assert",
       "type": "library",
-      "description": "Assertion primitives for design verification"
+      "description": "Primitive assertions for OpenTitan"
     },
     {
       "name": "prim_reg_we_check",
       "type": "library",
-      "description": "Primitive for write enable checking"
+      "description": "Primitive module for write enable checks"
     },
     {
       "name": "tlul_adapter_reg",
       "type": "core",
-      "description": "TileLink adapter for register interface"
+      "description": "TileLink adapter for register interfaces"
     },
     {
       "name": "tlul_rsp_intg_gen",
@@ -209,7 +192,7 @@
     "coverage": "functional"
   },
   "documentation": {
-    "upstream": "https://github.com/lowRISC/opentitan/tree/7fbd85829ec6354ef6497df69536cefe862c1f5a/hw/ip/edn"
+    "upstream": "https://github.com/lowRISC/opentitan"
   },
   "artifacts": {
     "total_rtl_lines": 3684
@@ -222,7 +205,7 @@
   ],
   "keywords": [
     "entropy",
-    "random number generator",
+    "randomness",
     "security",
     "TileLink",
     "OpenTitan"
@@ -233,39 +216,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-03-27"
+    "last_activity": "2026-04-19"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-03-27T23:05:05Z"
+      "generated_at": "2026-04-19T06:12:06Z"
     },
     "schema": {
       "version": "1.0.0"
     }
-  },
-  "rtl_files": [
-    "rtl/edn.sv",
-    "rtl/edn_ack_sm.sv",
-    "rtl/edn_core.sv",
-    "rtl/edn_field_en.sv",
-    "rtl/edn_main_sm.sv",
-    "rtl/edn_pkg.sv",
-    "rtl/edn_reg_pkg.sv",
-    "rtl/edn_reg_top.sv"
-  ],
-  "rtl_quality": {
-    "module_prefixed": true,
-    "defines_prefixed": true,
-    "header_guards": false,
-    "one_module_per_file": true,
-    "self_contained_includes": false,
-    "no_translate_pragmas": true,
-    "lint_clean": false,
-    "no_casex": true,
-    "width_clean": false,
-    "no_sv_keyword_conflicts": true
-  },
-  "defines": []
+  }
 }
