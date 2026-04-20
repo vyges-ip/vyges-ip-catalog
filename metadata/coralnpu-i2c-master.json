@@ -3,9 +3,9 @@
   "x-version": "1.0.0",
   "name": "coralnpu-i2c-master",
   "version": "0.1.0",
-  "description": "IP imported from https://github.com/google-coral/coralnpu",
+  "description": "An I2C master controller with TileLink-UL interface, supporting configurable FIFO depth and clock division for flexible communication with I2C peripherals.",
   "license": "Apache-2.0",
-  "maturity": "draft",
+  "maturity": "production",
   "target": [
     "asic",
     "fpga"
@@ -13,43 +13,184 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-19T06:10:58Z",
-  "updated": "2026-04-19T06:10:58Z",
+  "created": "2026-04-20T03:24:52Z",
+  "updated": "2026-04-20T03:24:52Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
-    "commit": "2dec130e5c81ad562bd10037b0245412dc0a7217",
+    "commit": "2f85116f7266fc613d307de048ccc270c29b49ad",
+    "ip_path": "fpga/ip/i2c_master",
     "private": false,
+    "containsEncryptedPayload": false,
     "indexing": true
   },
   "maintainers": [
     {
       "name": "Vyges",
       "email": "team@vyges.com",
+      "url": "https://vyges.com",
       "github": "vyges"
     }
   ],
-  "interfaces": [],
-  "parameters": [],
+  "interfaces": [
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "TileLink-UL",
+      "port": "tl_i",
+      "width": 32,
+      "description": "TileLink host-to-device input interface."
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TileLink-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "TileLink device-to-host output interface."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input signal."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset input signal."
+    },
+    {
+      "type": "serial",
+      "direction": "input",
+      "protocol": "I2C",
+      "port": "scl_i",
+      "width": 1,
+      "description": "I2C clock input signal."
+    },
+    {
+      "type": "serial",
+      "direction": "output",
+      "protocol": "I2C",
+      "port": "scl_o",
+      "width": 1,
+      "description": "I2C clock output signal."
+    },
+    {
+      "type": "serial",
+      "direction": "output",
+      "protocol": "I2C",
+      "port": "scl_en_o",
+      "width": 1,
+      "description": "I2C clock enable output signal."
+    },
+    {
+      "type": "serial",
+      "direction": "input",
+      "protocol": "I2C",
+      "port": "sda_i",
+      "width": 1,
+      "description": "I2C data input signal."
+    },
+    {
+      "type": "serial",
+      "direction": "output",
+      "protocol": "I2C",
+      "port": "sda_o",
+      "width": 1,
+      "description": "I2C data output signal."
+    },
+    {
+      "type": "serial",
+      "direction": "output",
+      "protocol": "I2C",
+      "port": "sda_en_o",
+      "width": 1,
+      "description": "I2C data enable output signal."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "FifoDepth",
+      "type": "int",
+      "default": 16,
+      "description": "Depth of the FIFO buffer for I2C transactions."
+    }
+  ],
+  "performance": {},
   "architecture": {
     "type": "peripheral",
-    "features": []
+    "features": [
+      "TileLink-UL bus interface",
+      "Configurable FIFO depth",
+      "I2C master functionality",
+      "Clock division for I2C speed control"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "TileLink-UL",
+      "type": "bus",
+      "description": "TileLink-UL protocol for communication with host systems."
+    }
+  ],
+  "test": {
+    "testbenches": [
+      "rtl/i2c_master_tb.sv"
+    ],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/google-coral/coralnpu"
+  },
+  "artifacts": {
+    "total_rtl_lines": 832
   },
   "categories": [
     {
-      "main_category": "Miscellaneous",
-      "sub_category": "Custom Accelerators"
+      "main_category": "Interface Controllers",
+      "sub_category": "Serial Interfaces"
     }
   ],
+  "keywords": [
+    "I2C",
+    "TileLink-UL",
+    "FIFO",
+    "CoralNPU"
+  ],
   "trust": {
-    "verification_level": "unknown",
-    "maintained": true
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-20"
   },
-  "_note": "AI enrichment failed. Manual population needed.",
   "meta": {
     "template": {
-      "generator": "upstream-sync-fallback",
-      "generated_at": "2026-04-19T06:10:58Z"
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-20T03:24:52Z"
     },
     "schema": {
       "version": "1.0.0"

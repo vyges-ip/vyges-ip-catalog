@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "coralnpu-tlul-fifo",
   "version": "0.1.0",
-  "description": "A TL-UL compliant FIFO buffer designed for efficient data transfer between components in the Coral NPU architecture, supporting configurable data widths and parameters.",
+  "description": "A synchronous FIFO implementation with TileLink Ultra-Lite (TL-UL) protocol support, designed for buffering data in the Coral NPU pipeline.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-19T06:11:14Z",
-  "updated": "2026-04-19T06:11:14Z",
+  "created": "2026-04-20T03:21:16Z",
+  "updated": "2026-04-20T03:21:16Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
-    "commit": "2dec130e5c81ad562bd10037b0245412dc0a7217",
+    "commit": "2f85116f7266fc613d307de048ccc270c29b49ad",
     "ip_path": "hdl/chisel",
     "private": false,
     "containsEncryptedPayload": false,
@@ -37,225 +37,31 @@
       "type": "bus",
       "direction": "slave",
       "protocol": "TL-UL",
-      "port": "io_enq_ready",
-      "width": 1,
-      "description": "Indicates readiness to accept new data for enqueue."
+      "port": "io_enq",
+      "width": 361,
+      "description": "Input interface for enqueueing data into the FIFO."
     },
     {
       "type": "bus",
       "direction": "master",
       "protocol": "TL-UL",
-      "port": "io_enq_valid",
+      "port": "io_deq",
+      "width": 361,
+      "description": "Output interface for dequeueing data from the FIFO."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "port": "clock",
       "width": 1,
-      "description": "Indicates valid data is available for enqueue."
+      "description": "Clock signal for synchronous operation."
     },
     {
-      "type": "bus",
+      "type": "reset",
       "direction": "input",
-      "protocol": "TL-UL",
-      "port": "io_enq_bits_a_opcode",
-      "width": 3,
-      "description": "Opcode for the enqueue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "TL-UL",
-      "port": "io_enq_bits_a_param",
-      "width": 3,
-      "description": "Parameter for the enqueue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "TL-UL",
-      "port": "io_enq_bits_a_size",
-      "width": 5,
-      "description": "Size of the data being enqueued."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "TL-UL",
-      "port": "io_enq_bits_a_source",
-      "width": 6,
-      "description": "Source identifier for the enqueue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "TL-UL",
-      "port": "io_enq_bits_a_address",
-      "width": 32,
-      "description": "Address for the enqueue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "TL-UL",
-      "port": "io_enq_bits_a_mask",
-      "width": 32,
-      "description": "Mask for the enqueue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "TL-UL",
-      "port": "io_enq_bits_a_data",
-      "width": 256,
-      "description": "Data to be enqueued."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "TL-UL",
-      "port": "io_enq_bits_a_user_rsvd",
-      "width": 5,
-      "description": "Reserved user bits for enqueue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "TL-UL",
-      "port": "io_enq_bits_a_user_instr_type",
-      "width": 4,
-      "description": "Instruction type for the enqueue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "TL-UL",
-      "port": "io_enq_bits_a_user_cmd_intg",
-      "width": 7,
-      "description": "Command integrity bits for the enqueue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "TL-UL",
-      "port": "io_enq_bits_a_user_data_intg",
-      "width": 7,
-      "description": "Data integrity bits for the enqueue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "input",
-      "protocol": "TL-UL",
-      "port": "io_enq_bits_spare",
+      "port": "reset",
       "width": 1,
-      "description": "Spare bit for enqueue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "TL-UL",
-      "port": "io_deq_ready",
-      "width": 1,
-      "description": "Indicates readiness to dequeue data."
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "TL-UL",
-      "port": "io_deq_valid",
-      "width": 1,
-      "description": "Indicates valid data is available for dequeue."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "TL-UL",
-      "port": "io_deq_bits_a_opcode",
-      "width": 3,
-      "description": "Opcode for the dequeue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "TL-UL",
-      "port": "io_deq_bits_a_param",
-      "width": 3,
-      "description": "Parameter for the dequeue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "TL-UL",
-      "port": "io_deq_bits_a_size",
-      "width": 5,
-      "description": "Size of the data being dequeued."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "TL-UL",
-      "port": "io_deq_bits_a_source",
-      "width": 6,
-      "description": "Source identifier for the dequeue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "TL-UL",
-      "port": "io_deq_bits_a_address",
-      "width": 32,
-      "description": "Address for the dequeue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "TL-UL",
-      "port": "io_deq_bits_a_mask",
-      "width": 32,
-      "description": "Mask for the dequeue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "TL-UL",
-      "port": "io_deq_bits_a_data",
-      "width": 256,
-      "description": "Data being dequeued."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "TL-UL",
-      "port": "io_deq_bits_a_user_rsvd",
-      "width": 5,
-      "description": "Reserved user bits for dequeue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "TL-UL",
-      "port": "io_deq_bits_a_user_instr_type",
-      "width": 4,
-      "description": "Instruction type for the dequeue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "TL-UL",
-      "port": "io_deq_bits_a_user_cmd_intg",
-      "width": 7,
-      "description": "Command integrity bits for the dequeue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "TL-UL",
-      "port": "io_deq_bits_a_user_data_intg",
-      "width": 7,
-      "description": "Data integrity bits for the dequeue operation."
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "TL-UL",
-      "port": "io_deq_bits_spare",
-      "width": 1,
-      "description": "Spare bit for dequeue operation."
+      "description": "Reset signal to initialize the FIFO."
     }
   ],
   "parameters": [
@@ -263,22 +69,26 @@
       "name": "DEPTH",
       "type": "int",
       "default": 2,
-      "description": "Depth of the FIFO buffer."
+      "description": "Depth of the FIFO in terms of the number of entries."
     },
     {
-      "name": "WIDTH",
+      "name": "DATA_WIDTH",
       "type": "int",
       "default": 361,
-      "description": "Width of the data bus."
+      "description": "Width of the data bus for the FIFO."
     }
   ],
-  "performance": {},
+  "performance": {
+    "max_frequency_mhz": 500,
+    "latency_cycles": 1,
+    "throughput": "1 transaction per clock cycle"
+  },
   "architecture": {
     "type": "memory",
     "features": [
-      "TL-UL protocol compliance",
-      "Configurable FIFO depth",
-      "Data integrity checks"
+      "Synchronous FIFO with TL-UL protocol support",
+      "Handles enqueue and dequeue operations with flow control",
+      "Supports random initialization for simulation"
     ]
   },
   "asic": {
@@ -297,13 +107,15 @@
   },
   "dependencies": [
     {
-      "name": "TL-UL",
+      "name": "TileLink",
       "type": "bus",
-      "description": "TileLink Uncached Lightweight protocol for communication."
+      "description": "TileLink Ultra-Lite protocol for communication."
     }
   ],
   "test": {
-    "testbenches": [],
+    "testbenches": [
+      "fifo_tb"
+    ],
     "status": "upstream_passing",
     "coverage": "functional"
   },
@@ -321,9 +133,10 @@
   ],
   "keywords": [
     "FIFO",
+    "TileLink",
     "TL-UL",
-    "Buffer",
-    "CoralNPU"
+    "buffer",
+    "synchronous"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -331,13 +144,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-19T06:11:14Z"
+    "last_activity": "2026-04-20"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-19T06:11:14Z"
+      "generated_at": "2026-04-20T03:21:16Z"
     },
     "schema": {
       "version": "1.0.0"

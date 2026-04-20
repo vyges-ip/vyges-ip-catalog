@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-spi-host",
   "version": "0.1.0",
-  "description": "A SPI host controller IP block from the OpenTitan project, supporting standard, dual, and quad SPI modes with configurable clock, chip select timing, and data integrity checks.",
+  "description": "The OpenTitan SPI Host is a configurable SPI controller IP supporting standard, dual, and quad SPI modes with integrated command queue, data FIFOs, and error handling mechanisms.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-13T03:38:43Z",
-  "updated": "2026-04-13T03:38:43Z",
+  "created": "2026-04-20T03:38:46Z",
+  "updated": "2026-04-20T03:38:46Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "d2f24af56cfaadfec57b2d4974f57aac27aac0fb",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/spi_host",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,28 +34,12 @@
   ],
   "interfaces": [
     {
-      "type": "clock",
-      "direction": "input",
-      "protocol": "generic",
-      "port": "clk_i",
-      "width": 1,
-      "description": "Clock input signal"
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "active-low",
-      "port": "rst_ni",
-      "width": 1,
-      "description": "Active-low reset signal"
-    },
-    {
       "type": "bus",
       "direction": "slave",
       "protocol": "TL-UL",
       "port": "tl_i",
       "width": 32,
-      "description": "TileLink host-to-device interface"
+      "description": "Incoming TL-UL bus interface for host communication."
     },
     {
       "type": "bus",
@@ -63,7 +47,23 @@
       "protocol": "TL-UL",
       "port": "tl_o",
       "width": 32,
-      "description": "TileLink device-to-host interface"
+      "description": "Outgoing TL-UL bus interface for host communication."
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "Clock input for the SPI host module."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset input for the SPI host module."
     },
     {
       "type": "bus",
@@ -71,7 +71,7 @@
       "protocol": "TL-UL",
       "port": "tl_win_o",
       "width": 32,
-      "description": "TileLink window output interface"
+      "description": "Output TL-UL bus interface for windowed operations."
     },
     {
       "type": "bus",
@@ -79,47 +79,15 @@
       "protocol": "TL-UL",
       "port": "tl_win_i",
       "width": 32,
-      "description": "TileLink window input interface"
-    },
-    {
-      "type": "custom",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "reg2hw",
-      "width": 32,
-      "description": "Register-to-hardware interface for write operations"
-    },
-    {
-      "type": "custom",
-      "direction": "input",
-      "protocol": "custom",
-      "port": "hw2reg",
-      "width": 32,
-      "description": "Hardware-to-register interface for read operations"
-    },
-    {
-      "type": "custom",
-      "direction": "input",
-      "protocol": "custom",
-      "port": "racl_policies_i",
-      "width": 32,
-      "description": "RACL policy input interface"
-    },
-    {
-      "type": "custom",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "racl_error_o",
-      "width": 32,
-      "description": "RACL error log output interface"
+      "description": "Input TL-UL bus interface for windowed operations."
     },
     {
       "type": "interrupt",
       "direction": "output",
-      "protocol": "custom",
+      "protocol": "generic",
       "port": "intg_err_o",
       "width": 1,
-      "description": "Integrity check error output"
+      "description": "Integrity error output for alert generation."
     }
   ],
   "parameters": [
@@ -127,30 +95,29 @@
       "name": "EnableRacl",
       "type": "bit",
       "default": 0,
-      "description": "Enable RACL functionality"
+      "description": "Enable RACL functionality for access control."
     },
     {
       "name": "RaclErrorRsp",
       "type": "bit",
       "default": 1,
-      "description": "Enable RACL error response"
+      "description": "Enable RACL error response generation."
     },
     {
       "name": "RaclPolicySelVec",
       "type": "enum",
-      "default": "{spi_host_reg_pkg::NumRegs{0}}",
-      "description": "RACL policy selection vector"
+      "default": "spi_host_reg_pkg::NumRegs{0}",
+      "description": "RACL policy selection vector for register access control."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "SPI host controller",
-      "Standard, dual, and quad SPI modes",
-      "Configurable clock and chip select timing",
-      "Data integrity checks",
-      "TileLink interface"
+      "Configurable SPI modes (standard, dual, quad)",
+      "Integrated command queue and data FIFOs",
+      "Error handling and integrity checking",
+      "Support for RACL-based access control"
     ]
   },
   "asic": {
@@ -170,43 +137,18 @@
   "dependencies": [
     {
       "name": "tlul_pkg",
-      "type": "bus",
-      "description": "TileLink Ultra-Lite protocol package"
+      "type": "library",
+      "description": "TL-UL bus protocol package for host communication."
     },
     {
       "name": "spi_host_reg_pkg",
       "type": "library",
-      "description": "SPI host register package"
+      "description": "Register package for SPI host configuration and control."
     },
     {
       "name": "spi_host_cmd_pkg",
       "type": "library",
-      "description": "SPI host command and configuration package"
-    },
-    {
-      "name": "prim_assert",
-      "type": "library",
-      "description": "Primitive assertion library"
-    },
-    {
-      "name": "prim_reg_we_check",
-      "type": "library",
-      "description": "Primitive register write enable check module"
-    },
-    {
-      "name": "tlul_adapter_reg",
-      "type": "bus",
-      "description": "TileLink adapter for register interface"
-    },
-    {
-      "name": "tlul_rsp_intg_gen",
-      "type": "bus",
-      "description": "TileLink response integrity generator"
-    },
-    {
-      "name": "tlul_socket_1n",
-      "type": "bus",
-      "description": "TileLink 1-to-N socket"
+      "description": "Command package for SPI host operations."
     }
   ],
   "test": {
@@ -228,9 +170,9 @@
   ],
   "keywords": [
     "SPI",
-    "TileLink",
     "OpenTitan",
-    "Serial Interface",
+    "Serial Interfaces",
+    "TL-UL",
     "Peripheral"
   ],
   "trust": {
@@ -239,13 +181,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-13T03:38:43Z"
+    "last_activity": "2026-04-20"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-13T03:38:43Z"
+      "generated_at": "2026-04-20T03:38:46Z"
     },
     "schema": {
       "version": "1.0.0"

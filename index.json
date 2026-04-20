@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-04-20T02:24:55+00:00",
-  "generated_sha": "39dd938ef6612e7c2114c7e8c8e2998aab3c0bf8",
+  "generated_at": "2026-04-20T08:01:34+00:00",
+  "generated_sha": "0e7e8b53cf7993a6eb8b97e697ab747ddf560e88",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 138,
@@ -309,7 +309,7 @@
       "repo": "vyges-ip/coralnpu-core",
       "name": "coralnpu-core",
       "version": "0.1.0",
-      "content_hash": "b7dc73e8155f5bb7bae1b5d53823c143272ed6445dcb28e53e4134e9ab30e666",
+      "content_hash": "77e66f5cdb75a6f9547c0cf0b1bf82a0de0b6c5156906d1bfb075903ca925bd7",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-core.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-core/main/vyges-metadata.json"
@@ -327,7 +327,7 @@
       "repo": "vyges-ip/coralnpu-i2c-master",
       "name": "coralnpu-i2c-master",
       "version": "0.1.0",
-      "content_hash": "73bca656c10bb960bc471ac10f4fc1cd32d86603ff1225a4016cdd05d6970cea",
+      "content_hash": "cd354e86c4c121f7ccd8083cf6054eaa03becd8634318ce768d5741228741e41",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-i2c-master.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-i2c-master/main/vyges-metadata.json"
@@ -336,7 +336,7 @@
       "repo": "vyges-ip/coralnpu-l1-dcache",
       "name": "coralnpu-l1-dcache",
       "version": "0.1.0",
-      "content_hash": "28da420be4b1e406064487f97c69d321197617b6fccc3cd12c46a8e087235719",
+      "content_hash": "a054da081307702d7493a63f760536b0f8d9b47bc9105024dec2cb7f11e01690",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-l1-dcache.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-l1-dcache/main/vyges-metadata.json"
@@ -345,7 +345,7 @@
       "repo": "vyges-ip/coralnpu-l1-icache",
       "name": "coralnpu-l1-icache",
       "version": "0.1.0",
-      "content_hash": "05454676a7159b12e23703b0aa0e0f0e81e41cd0aa929e0e91c01319acb3684f",
+      "content_hash": "6f1f33e4afe1e00a8cab995b6b469f3523730017ef4fe14762fe2e122a123139",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-l1-icache.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-l1-icache/main/vyges-metadata.json"
@@ -363,7 +363,7 @@
       "repo": "vyges-ip/coralnpu-rvv-backend",
       "name": "coralnpu-rvv-backend",
       "version": "0.1.0",
-      "content_hash": "b19369249cac2bde9c6c6816dda924e47dbd9174f5e3efdf8e89b69a484643fe",
+      "content_hash": "5229265ab3b36d0d4c5eca502c13dbfee8bbda50cb95518d9f1e915501b01837",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-rvv-backend.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-rvv-backend/main/vyges-metadata.json"
@@ -372,7 +372,7 @@
       "repo": "vyges-ip/coralnpu-rvv-common-lib",
       "name": "coralnpu-rvv-common-lib",
       "version": "0.1.0",
-      "content_hash": "8b842af61997cba4b8e36327522c9415c1b819cc681d218f457c849391a6e75f",
+      "content_hash": "bd2281f8191654fa5fd36d576c137f17cd311abdab35da9de46f76ca1c378cbb",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-rvv-common-lib.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-rvv-common-lib/main/vyges-metadata.json"
@@ -390,7 +390,7 @@
       "repo": "vyges-ip/coralnpu-scalar-units",
       "name": "coralnpu-scalar-units",
       "version": "0.1.0",
-      "content_hash": "c4647c2edb34376539e11f8e1266aa970b60114094a8c039ffa45098525e0b5b",
+      "content_hash": "ebbc2f7791b6f227405a959e6c8a417c2f1bb6db91f2d9c7a6beabfcea02583c",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-scalar-units.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-scalar-units/main/vyges-metadata.json"
@@ -408,7 +408,7 @@
       "repo": "vyges-ip/coralnpu-subsystem",
       "name": "coralnpu-subsystem",
       "version": "0.1.0",
-      "content_hash": "2ead4435a283f9056d65f920961925173e39e9eb31745ce4cd7d6c75016d9dc7",
+      "content_hash": "c8ee31833084b1c2f03c237e644d6345d8c8c388329064c36f7959a67dc979b7",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-subsystem.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-subsystem/main/vyges-metadata.json"
@@ -417,7 +417,7 @@
       "repo": "vyges-ip/coralnpu-tlul-fifo",
       "name": "coralnpu-tlul-fifo",
       "version": "0.1.0",
-      "content_hash": "c269f64cba00d97cefd2c42c3efb5031cb07198b7a9e5c6a9a227e3e199fc457",
+      "content_hash": "7766ca99f799f74b130e8d758f7293d61b79fd9e627bf6800ef810822d767f2a",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-tlul-fifo.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-tlul-fifo/main/vyges-metadata.json"
@@ -426,7 +426,7 @@
       "repo": "vyges-ip/coralnpu-tlul-pkg",
       "name": "coralnpu-tlul-pkg",
       "version": "0.1.0",
-      "content_hash": "c571ffbdc6aa20e579d7213b9ece886bb57942b474a64bd96fdabc61cac08ee5",
+      "content_hash": "8e4338c93537caab0d47df78a721d5c374e89431fd24fd1e04990d7a079a8aa2",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-tlul-pkg.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-tlul-pkg/main/vyges-metadata.json"
@@ -777,7 +777,7 @@
       "repo": "vyges-ip/opentitan-racl-ctrl",
       "name": "opentitan-racl-ctrl",
       "version": "0.1.0",
-      "content_hash": "b2e08f4b866454f29cf358f9c4808f9e121be1338d63964942b72cf7547af4e6",
+      "content_hash": "741842f856d99984346950e1d5e30ea4a8b3c75d5a5fe19ac0469116f469abc9",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-racl-ctrl.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-racl-ctrl/main/vyges-metadata.json"
@@ -795,7 +795,7 @@
       "repo": "vyges-ip/opentitan-rv-core-ibex",
       "name": "opentitan-rv-core-ibex",
       "version": "0.1.0",
-      "content_hash": "2164f1561bb337fcfbfc926c15e8ebc64acaa9149fb2373e7564f166af171742",
+      "content_hash": "f4974806cee9c27feefb69a0b947af569dc80769ef37fd741ca03d91b14cfd74",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-rv-core-ibex.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-rv-core-ibex/main/vyges-metadata.json"
@@ -840,7 +840,7 @@
       "repo": "vyges-ip/opentitan-spi-host",
       "name": "opentitan-spi-host",
       "version": "0.1.0",
-      "content_hash": "bf00bac770bae9442f3c5515275e861b42585a1dc9eb056f7ff4434b640200ea",
+      "content_hash": "b15c7ff63c9275401c3f48a931c383090e0c3b6345ceb0749e5538dcd5bfa3a2",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-spi-host.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-spi-host/main/vyges-metadata.json"
@@ -867,7 +867,7 @@
       "repo": "vyges-ip/opentitan-tlul",
       "name": "opentitan-tlul",
       "version": "0.1.0",
-      "content_hash": "d6a2179139704d8976f1588752f61228877ed69375f964dd1d936bc383041592",
+      "content_hash": "7f249f499a95bcaa1768046137d719ff025eaeef7344e0ca0fd82dc88a73974a",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-tlul.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-tlul/main/vyges-metadata.json"

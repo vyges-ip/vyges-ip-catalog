@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-racl-ctrl",
   "version": "0.1.0",
-  "description": "The OpenTitan RACL Controller implements runtime access control for enforcing register-level policies, ensuring secure and controlled access to hardware registers.",
+  "description": "OpenTitan RACL Controller provides runtime access control for register-level policies, ensuring secure and configurable access management for hardware registers.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,8 +13,8 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-19T06:12:37Z",
-  "updated": "2026-04-19T06:12:37Z",
+  "created": "2026-04-20T02:26:16Z",
+  "updated": "2026-04-20T02:26:16Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
@@ -39,7 +39,7 @@
     "type": "peripheral",
     "features": [
       "Runtime access control for hardware registers",
-      "Enforces register-level security policies"
+      "Configurable access policies"
     ]
   },
   "asic": {
@@ -87,13 +87,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-19"
+    "last_activity": "2026-04-20T02:26:16Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-19T06:12:37Z"
+      "generated_at": "2026-04-20T02:26:16Z"
     },
     "schema": {
       "version": "1.0.0"

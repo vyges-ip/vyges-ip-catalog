@@ -3,9 +3,9 @@
   "x-version": "1.0.0",
   "name": "coralnpu-rvv-common-lib",
   "version": "0.1.0",
-  "description": "IP imported from https://github.com/google-coral/coralnpu",
+  "description": "A parameterized synchronous FIFO module supporting multi-push and multi-pop operations, with features like configurable depth, push/pop widths, and optional data output sorting.",
   "license": "Apache-2.0",
-  "maturity": "draft",
+  "maturity": "production",
   "target": [
     "asic",
     "fpga"
@@ -13,43 +13,271 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-19T06:11:04Z",
-  "updated": "2026-04-19T06:11:04Z",
+  "created": "2026-04-20T02:54:46Z",
+  "updated": "2026-04-20T02:54:46Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
-    "commit": "2dec130e5c81ad562bd10037b0245412dc0a7217",
+    "commit": "2f85116f7266fc613d307de048ccc270c29b49ad",
+    "ip_path": "hdl/verilog/rvv/common",
     "private": false,
+    "containsEncryptedPayload": false,
     "indexing": true
   },
   "maintainers": [
     {
       "name": "Vyges",
       "email": "team@vyges.com",
+      "url": "https://vyges.com",
       "github": "vyges"
     }
   ],
-  "interfaces": [],
-  "parameters": [],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1,
+      "description": "Clock signal input"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_n",
+      "width": 1,
+      "description": "Active-low reset signal"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "push",
+      "width": "M",
+      "description": "Push control signal with M bits for multi-push operations"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "datain",
+      "width": "M * T",
+      "description": "Data input bus with M entries of type T"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "full",
+      "width": 1,
+      "description": "Indicates if the FIFO is full"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "almost_full",
+      "width": "M",
+      "description": "Indicates if the FIFO is almost full"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "pop",
+      "width": "N",
+      "description": "Pop control signal with N bits for multi-pop operations"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "dataout",
+      "width": "N * T",
+      "description": "Data output bus with N entries of type T"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "empty",
+      "width": 1,
+      "description": "Indicates if the FIFO is empty"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "almost_empty",
+      "width": "N",
+      "description": "Indicates if the FIFO is almost empty"
+    },
+    {
+      "type": "bus",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clear",
+      "width": 1,
+      "description": "Clears the FIFO"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "fifo_data",
+      "width": "DEPTH * T",
+      "description": "Outputs all FIFO data sorted by the read pointer"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "wptr",
+      "width": "DEPTH_BITS",
+      "description": "Write pointer"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "rptr",
+      "width": "DEPTH_BITS",
+      "description": "Read pointer"
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "entry_count",
+      "width": "DEPTH_BITS + 1",
+      "description": "Number of occupied entries in the FIFO"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "T",
+      "type": "bit",
+      "default": "logic [7:0]",
+      "description": "Data type for FIFO entries"
+    },
+    {
+      "name": "M",
+      "type": "int",
+      "default": 4,
+      "description": "Width of the push signal"
+    },
+    {
+      "name": "N",
+      "type": "int",
+      "default": 4,
+      "description": "Width of the pop signal"
+    },
+    {
+      "name": "DEPTH",
+      "type": "int",
+      "default": 16,
+      "description": "Depth of the FIFO"
+    },
+    {
+      "name": "POP_CLEAR",
+      "type": "bit",
+      "default": 0,
+      "description": "Clear data once popped"
+    },
+    {
+      "name": "ASYNC_RSTN",
+      "type": "bit",
+      "default": 0,
+      "description": "Asynchronous reset enable"
+    },
+    {
+      "name": "CHAOS_PUSH",
+      "type": "bit",
+      "default": 0,
+      "description": "Support for disorderly push operations"
+    },
+    {
+      "name": "DATAOUT_REG",
+      "type": "bit",
+      "default": 0,
+      "description": "Enable registered data output"
+    },
+    {
+      "name": "FULL_PUSH",
+      "type": "bit",
+      "default": 0,
+      "description": "Support push and pop when FIFO is full"
+    }
+  ],
+  "performance": {},
   "architecture": {
-    "type": "peripheral",
-    "features": []
+    "type": "memory",
+    "features": [
+      "Synchronous FIFO with multi-push and multi-pop support",
+      "Configurable depth and data width",
+      "Supports output sorting based on read pointer",
+      "Provides write and read pointer outputs"
+    ]
+  },
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Vivado"
+    ],
+    "devices": [
+      "Artix-7"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "cdffr",
+      "type": "library",
+      "description": "Clocked D flip-flop with reset"
+    }
+  ],
+  "test": {
+    "testbenches": [],
+    "status": "upstream_passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/google-coral/coralnpu"
+  },
+  "artifacts": {
+    "total_rtl_lines": 1535
   },
   "categories": [
     {
-      "main_category": "Miscellaneous",
-      "sub_category": "Custom Accelerators"
+      "main_category": "Base Libraries",
+      "sub_category": "FIFOs & Buffers"
     }
   ],
+  "keywords": [
+    "FIFO",
+    "multi-push",
+    "multi-pop",
+    "synchronous",
+    "parameterized"
+  ],
   "trust": {
-    "verification_level": "unknown",
-    "maintained": true
+    "verification_level": "silicon_proven",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-04-20T02:54:46Z"
   },
-  "_note": "AI enrichment failed. Manual population needed.",
   "meta": {
     "template": {
-      "generator": "upstream-sync-fallback",
-      "generated_at": "2026-04-19T06:11:04Z"
+      "generator": "github-models-ai",
+      "template_version": "1.0.0",
+      "generated_at": "2026-04-20T02:54:46Z"
     },
     "schema": {
       "version": "1.0.0"

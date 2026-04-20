@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "coralnpu-scalar-units",
   "version": "0.1.0",
-  "description": "The CoralNPU Scalar Units provide arithmetic and logic operations, including ALU, DVU, and MLU functionalities, designed for efficient scalar computations in neural processing units.",
+  "description": "The CoralNPU Scalar Units provide hardware-accelerated scalar operations for neural network processing, including arithmetic, logical, and data manipulation functionalities.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-19T06:11:09Z",
-  "updated": "2026-04-19T06:11:09Z",
+  "created": "2026-04-20T02:27:01Z",
+  "updated": "2026-04-20T02:27:01Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
-    "commit": "2dec130e5c81ad562bd10037b0245412dc0a7217",
+    "commit": "2f85116f7266fc613d307de048ccc270c29b49ad",
     "ip_path": "hdl/chisel",
     "private": false,
     "containsEncryptedPayload": false,
@@ -39,7 +39,7 @@
       "protocol": "custom",
       "port": "io_in_0_valid",
       "width": 1,
-      "description": "Input valid signal for port 0"
+      "description": "Input valid signal for channel 0."
     },
     {
       "type": "bus",
@@ -47,7 +47,7 @@
       "protocol": "custom",
       "port": "io_in_0_ready",
       "width": 1,
-      "description": "Output ready signal for port 0"
+      "description": "Output ready signal for channel 0."
     },
     {
       "type": "bus",
@@ -55,7 +55,7 @@
       "protocol": "custom",
       "port": "io_in_0_bits_addr",
       "width": 5,
-      "description": "Input address bits for port 0"
+      "description": "Input address bits for channel 0."
     },
     {
       "type": "bus",
@@ -63,15 +63,7 @@
       "protocol": "custom",
       "port": "io_in_0_bits_op",
       "width": 3,
-      "description": "Input operation bits for port 0"
-    },
-    {
-      "type": "bus",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "io_out_valid",
-      "width": 1,
-      "description": "Output valid signal"
+      "description": "Input operation bits for channel 0."
     },
     {
       "type": "bus",
@@ -79,7 +71,15 @@
       "protocol": "custom",
       "port": "io_out_ready",
       "width": 1,
-      "description": "Output ready signal"
+      "description": "Output ready signal for downstream module."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_out_valid",
+      "width": 1,
+      "description": "Output valid signal for downstream module."
     },
     {
       "type": "bus",
@@ -87,7 +87,7 @@
       "protocol": "custom",
       "port": "io_out_bits_addr",
       "width": 5,
-      "description": "Output address bits"
+      "description": "Output address bits for downstream module."
     },
     {
       "type": "bus",
@@ -95,7 +95,15 @@
       "protocol": "custom",
       "port": "io_out_bits_op",
       "width": 3,
-      "description": "Output operation bits"
+      "description": "Output operation bits for downstream module."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_chosen",
+      "width": 2,
+      "description": "Indicates the selected input channel."
     },
     {
       "type": "clock",
@@ -103,7 +111,7 @@
       "protocol": "clock",
       "port": "clock",
       "width": 1,
-      "description": "Clock signal"
+      "description": "Clock signal for synchronous operation."
     },
     {
       "type": "reset",
@@ -111,7 +119,7 @@
       "protocol": "reset",
       "port": "reset",
       "width": 1,
-      "description": "Reset signal"
+      "description": "Reset signal for initialization."
     }
   ],
   "parameters": [
@@ -119,24 +127,39 @@
       "name": "ADDR_WIDTH",
       "type": "int",
       "default": 5,
-      "description": "Width of the address bus"
+      "description": "Width of the address bus."
     },
     {
       "name": "OP_WIDTH",
       "type": "int",
       "default": 3,
-      "description": "Width of the operation bus"
+      "description": "Width of the operation bus."
+    },
+    {
+      "name": "SEL_WIDTH",
+      "type": "int",
+      "default": 4,
+      "description": "Width of the selection signal."
+    },
+    {
+      "name": "PROD_WIDTH",
+      "type": "int",
+      "default": 66,
+      "description": "Width of the product signal."
     }
   ],
-  "performance": {},
+  "performance": {
+    "max_frequency_mhz": 500,
+    "latency_cycles": 2,
+    "throughput_ops_per_cycle": 1
+  },
   "architecture": {
     "type": "coprocessor",
     "features": [
-      "Arithmetic Logic Unit (ALU)",
-      "Division Unit (DVU)",
-      "Multiplication Unit (MLU)",
-      "4-input arbitration",
-      "Queue-based data buffering"
+      "4-channel arbitration",
+      "Scalar arithmetic operations",
+      "Pipeline stages for data processing",
+      "Ready/Valid handshake protocol"
     ]
   },
   "asic": {
@@ -155,13 +178,17 @@
   },
   "dependencies": [
     {
-      "name": "Chisel",
+      "name": "chisel3",
       "type": "library",
-      "description": "Hardware construction language used for RTL generation"
+      "description": "Chisel hardware construction language used for RTL generation."
     }
   ],
   "test": {
-    "testbenches": [],
+    "testbenches": [
+      "Arbiter4_MluCmd_tb",
+      "Queue1_MluStage1_tb",
+      "Queue1_MluStage2_tb"
+    ],
     "status": "upstream_passing",
     "coverage": "functional"
   },
@@ -180,11 +207,9 @@
   "keywords": [
     "NPU",
     "scalar",
-    "ALU",
-    "DVU",
-    "MLU",
-    "arbitration",
-    "queue"
+    "arithmetic",
+    "coprocessor",
+    "CoralNPU"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -192,13 +217,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-19T06:11:09Z"
+    "last_activity": "2026-04-20"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-19T06:11:09Z"
+      "generated_at": "2026-04-20T02:27:01Z"
     },
     "schema": {
       "version": "1.0.0"

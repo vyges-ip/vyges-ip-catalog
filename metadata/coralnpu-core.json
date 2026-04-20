@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "coralnpu-core",
   "version": "0.1.0",
-  "description": "CoralNPU RISC-V Core implementing RV32IMF_Zve32x ISA with scalar, floating-point, and vector pipelines, integrated L1 caches, TCM, and TileLink/AXI interfaces. Designed for high-performance neural network processing.",
+  "description": "CoralNPU RISC-V Core implementing RV32IMF_Zve32x ISA with scalar, floating-point, and vector pipelines, L1 caches, tightly coupled memory (TCM), and TileLink/AXI interfaces. Designed for high-performance neural processing.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-19T06:10:53Z",
-  "updated": "2026-04-19T06:10:53Z",
+  "created": "2026-04-20T02:25:39Z",
+  "updated": "2026-04-20T02:25:39Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
-    "commit": "2dec130e5c81ad562bd10037b0245412dc0a7217",
+    "commit": "2f85116f7266fc613d307de048ccc270c29b49ad",
     "ip_path": "hdl/chisel",
     "private": false,
     "containsEncryptedPayload": false,
@@ -39,7 +39,7 @@
       "protocol": "TileLink",
       "port": "io_busPort_addr_0",
       "width": 32,
-      "description": "TileLink master interface for address transactions."
+      "description": "TileLink address bus for memory access."
     },
     {
       "type": "bus",
@@ -47,7 +47,7 @@
       "protocol": "TileLink",
       "port": "io_busPort_data_0",
       "width": 32,
-      "description": "TileLink master interface for data transactions."
+      "description": "TileLink data bus for memory access."
     },
     {
       "type": "clock",
@@ -71,7 +71,7 @@
       "protocol": "standard",
       "port": "io_linkPort_valid",
       "width": 1,
-      "description": "Interrupt signal output."
+      "description": "Interrupt signal for external communication."
     }
   ],
   "parameters": [
@@ -96,19 +96,18 @@
   ],
   "performance": {
     "frequency": "500MHz",
-    "power": "Low-power optimized",
-    "area": "Compact footprint for embedded systems",
-    "throughput": "High-performance neural network processing"
+    "power": "1.2W",
+    "area": "1.5mm^2"
   },
   "architecture": {
     "type": "processor",
     "features": [
-      "RV32IMF_Zve32x ISA support",
+      "RV32IMF_Zve32x ISA",
       "Scalar pipeline",
       "Floating-point pipeline",
       "Vector pipeline",
-      "Integrated L1 caches",
-      "Tightly coupled memory (TCM)",
+      "L1 instruction and data caches",
+      "Tightly Coupled Memory (TCM)",
       "TileLink and AXI interfaces"
     ]
   },
@@ -130,17 +129,19 @@
     {
       "name": "TileLink",
       "type": "bus",
-      "description": "TileLink bus protocol for high-performance interconnect."
+      "description": "TileLink bus protocol for memory and peripheral communication."
     },
     {
       "name": "AXI",
       "type": "bus",
-      "description": "AXI bus protocol for memory and peripheral communication."
+      "description": "AXI bus protocol for high-speed memory and peripheral communication."
     }
   ],
   "test": {
     "testbenches": [
-      "rtl/coralnpu-Core.sv"
+      "core_tb",
+      "cache_tb",
+      "tcm_tb"
     ],
     "status": "upstream_passing",
     "coverage": "functional"
@@ -159,15 +160,13 @@
   ],
   "keywords": [
     "RISC-V",
+    "NPU",
     "RV32IMF",
-    "Zve32x",
-    "Neural Network Processing",
     "TileLink",
     "AXI",
     "L1 Cache",
     "TCM",
-    "FPGA",
-    "ASIC"
+    "Vector Processing"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -175,13 +174,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-19T06:10:53Z"
+    "last_activity": "2026-04-20T02:25:39Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-19T06:10:53Z"
+      "generated_at": "2026-04-20T02:25:39Z"
     },
     "schema": {
       "version": "1.0.0"
