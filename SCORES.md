@@ -2,9 +2,9 @@
 
 - **Aggregate:** 88/100
 - **IPs scored:** 135
-- **Good (≥80):** 121
+- **Good (≥80):** 122
 - **Medium (60–79):** 6
-- **High-risk (<60):** 8
+- **High-risk (<60):** 7
 - **Scorer:** [vyges/metadata-scorer-action@v1](https://github.com/vyges/metadata-scorer-action/tree/v1)
 
 ## Needs work (bottom 20)
@@ -17,7 +17,6 @@
 | `coralnpu-rvv-backend` | 40 | High-risk | interfaces: interfaces (none declared) |
 | `coralnpu-rvv-common-lib` | 40 | High-risk | interfaces: interfaces (none declared) |
 | `coralnpu-tlul-pkg` | 40 | High-risk | interfaces: interfaces (none declared) |
-| `coralnpu-tlul2axi` | 40 | High-risk | interfaces: interfaces (none declared) |
 | `opentitan-flash-ctrl` | 40 | High-risk | interfaces: interfaces (none declared) |
 | `hardfloat` | 60 | Medium | interfaces: interfaces (none declared) |
 | `opentitan-racl-ctrl` | 60 | Medium | interfaces: interfaces (none declared) |
@@ -31,6 +30,7 @@
 | `caliptra-ahb-lite-bus` | 83 | Good | interfaces: interfaces[].type=clock |
 | `caliptra-datavault` | 83 | Good | interfaces: interfaces[].type=clock |
 | `caliptra-edn` | 83 | Good | interfaces: interfaces[].type=clock |
+| `coralnpu-l1-dcache` | 83 | Good | interfaces: interfaces[].bus.signals |
 
 ## Top 20 (highest scores)
 
@@ -40,8 +40,6 @@
 | `ibex` | 100 |
 | `openfasoc-temp-sensor` | 100 |
 | `opentitan-rv-core-ibex` | 100 |
-| `opentitan-uart` | 100 |
-| `vyges-rv-plic-lite` | 100 |
 | `vyges-spi-host-lite` | 100 |
 | `32bit-risc-core` | 98 |
 | `adams-bridge` | 98 |
@@ -53,6 +51,8 @@
 | `caliptra-prim` | 98 |
 | `caliptra-sha256` | 98 |
 | `caliptra-sha512` | 98 |
-| `coralnpu-axi2tlul` | 98 |
 | `coralnpu-core` | 98 |
-| `coralnpu-spi2tlul` | 98 |
+| `coralnpu-subsystem` | 98 |
+| `coralnpu-tlul2axi` | 98 |
+| `cv32e40p` | 98 |
+| `cva6` | 98 |

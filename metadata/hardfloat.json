@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "hardfloat",
   "version": "0.1.0",
-  "description": "Berkeley HardFloat is a hardware implementation of binary floating-point arithmetic conforming to the IEEE Standard for Floating-Point Arithmetic, encoded in Verilog with modifications for performance, power, and area (PPA) improvements.",
+  "description": "Berkeley HardFloat is a hardware implementation of binary floating-point arithmetic conforming to the IEEE Standard for Floating-Point Arithmetic. It includes Verilog modules and testing infrastructure for simulation.",
   "license": "BSD-3-Clause",
   "maturity": "rtl_verified",
   "target": [
@@ -13,8 +13,8 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-13T02:13:18Z",
-  "updated": "2026-04-13T02:13:18Z",
+  "created": "2026-04-20T02:13:16Z",
+  "updated": "2026-04-20T02:13:16Z",
   "source": {
     "type": "git",
     "url": "https://github.com/bsg-external/HardFloat",
@@ -39,8 +39,8 @@
     "type": "coprocessor",
     "features": [
       "IEEE 754 compliant floating-point arithmetic",
-      "Support for single, double, and extended precision",
-      "Optimized for performance, power, and area (PPA)"
+      "Binary floating-point operations",
+      "Verilog implementation"
     ]
   },
   "asic": {
@@ -79,6 +79,7 @@
     "floating-point",
     "IEEE 754",
     "arithmetic",
+    "Verilog",
     "hardware"
   ],
   "trust": {
@@ -87,13 +88,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-13"
+    "last_activity": "2026-04-20T02:13:16Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-13T02:13:18Z"
+      "generated_at": "2026-04-20T02:13:16Z"
     },
     "schema": {
       "version": "1.0.0"

@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-dma",
   "version": "0.1.0",
-  "description": "A DMA controller IP block from the OpenTitan project, supporting TL-UL protocol, register-based configuration, and features such as integrity checking, RACL policy enforcement, and interrupt handling.",
+  "description": "A DMA controller from the OpenTitan project, supporting TL-UL protocol with features such as integrity checking, register access control, and configurable transfer parameters.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-13T01:19:39Z",
-  "updated": "2026-04-13T01:19:39Z",
+  "created": "2026-04-20T01:20:51Z",
+  "updated": "2026-04-20T01:20:51Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "d2f24af56cfaadfec57b2d4974f57aac27aac0fb",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/dma",
     "private": false,
     "containsEncryptedPayload": false,
@@ -87,7 +87,7 @@
       "protocol": "custom",
       "port": "racl_policies_i",
       "width": 63,
-      "description": "Input for RACL policy vector"
+      "description": "RACL policy vector input"
     },
     {
       "type": "data",
@@ -95,7 +95,7 @@
       "protocol": "custom",
       "port": "racl_error_o",
       "width": 1,
-      "description": "Output for RACL error log"
+      "description": "RACL error log output"
     },
     {
       "type": "interrupt",
@@ -111,7 +111,7 @@
       "name": "EnableRacl",
       "type": "bit",
       "default": 0,
-      "description": "Enable RACL functionality"
+      "description": "Enable Register Access Control Logic (RACL)"
     },
     {
       "name": "RaclErrorRsp",
@@ -130,12 +130,10 @@
   "architecture": {
     "type": "peripheral",
     "features": [
-      "TileLink UL protocol support",
-      "Register-based configuration",
-      "RACL policy enforcement",
-      "Integrity checking",
-      "Interrupt handling",
-      "Support for multiple transfer widths"
+      "TileLink UL interface",
+      "Register access control logic (RACL)",
+      "Integrity checking for data and responses",
+      "Configurable transfer width and address space"
     ]
   },
   "asic": {
@@ -155,38 +153,38 @@
   "dependencies": [
     {
       "name": "tlul_pkg",
-      "type": "library",
+      "type": "bus",
       "description": "TileLink UL protocol package"
     },
     {
       "name": "dma_reg_pkg",
       "type": "library",
-      "description": "DMA register package"
+      "description": "DMA register package containing register definitions and types"
     },
     {
       "name": "prim_assert",
       "type": "library",
-      "description": "Primitive assertions for OpenTitan"
+      "description": "Primitive assertion library for OpenTitan"
     },
     {
       "name": "prim_reg_we_check",
       "type": "library",
-      "description": "Primitive for register write enable checking"
+      "description": "Primitive module for write enable checking"
     },
     {
       "name": "tlul_adapter_reg",
-      "type": "core",
+      "type": "bus",
       "description": "TileLink UL adapter for register interface"
     },
     {
-      "name": "tlul_rsp_intg_gen",
-      "type": "core",
-      "description": "TileLink UL response integrity generator"
+      "name": "tlul_cmd_intg_chk",
+      "type": "library",
+      "description": "TileLink UL command integrity checker"
     },
     {
-      "name": "tlul_cmd_intg_chk",
-      "type": "core",
-      "description": "TileLink UL command integrity checker"
+      "name": "tlul_rsp_intg_gen",
+      "type": "library",
+      "description": "TileLink UL response integrity generator"
     }
   ],
   "test": {
@@ -195,7 +193,7 @@
     "coverage": "functional"
   },
   "documentation": {
-    "upstream": "https://github.com/lowRISC/opentitan/tree/d2f24af56cfaadfec57b2d4974f57aac27aac0fb/hw/ip/dma"
+    "upstream": "https://github.com/lowRISC/opentitan/tree/46cc36599f56f60b344afb031185a85fc8654e68/hw/ip/dma"
   },
   "artifacts": {
     "total_rtl_lines": 6076
@@ -211,8 +209,7 @@
     "TileLink",
     "RACL",
     "OpenTitan",
-    "Memory",
-    "Integrity"
+    "Memory"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -220,13 +217,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-13T01:19:39Z"
+    "last_activity": "2026-04-20T01:20:51Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-13T01:19:39Z"
+      "generated_at": "2026-04-20T01:20:51Z"
     },
     "schema": {
       "version": "1.0.0"

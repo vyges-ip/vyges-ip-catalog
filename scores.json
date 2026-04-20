@@ -3,9 +3,9 @@
   "ip_count": 135,
   "aggregate": 88,
   "tiers": {
-    "Good": 121,
+    "Good": 122,
     "Medium": 6,
-    "High-risk": 8
+    "High-risk": 7
   },
   "ips": [
     {
@@ -52,34 +52,6 @@
     },
     {
       "ip": "opentitan-rv-core-ibex",
-      "score": 100,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 25,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 15,
-        "provenance": 10
-      },
-      "gaps": []
-    },
-    {
-      "ip": "opentitan-uart",
-      "score": 100,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 25,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 15,
-        "provenance": 10
-      },
-      "gaps": []
-    },
-    {
-      "ip": "vyges-rv-plic-lite",
       "score": 100,
       "tier": "Good",
       "breakdown": {
@@ -267,22 +239,6 @@
       ]
     },
     {
-      "ip": "coralnpu-axi2tlul",
-      "score": 98,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 23,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 15,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].bus.signals"
-      ]
-    },
-    {
       "ip": "coralnpu-core",
       "score": 98,
       "tier": "Good",
@@ -299,7 +255,7 @@
       ]
     },
     {
-      "ip": "coralnpu-spi2tlul",
+      "ip": "coralnpu-subsystem",
       "score": 98,
       "tier": "Good",
       "breakdown": {
@@ -315,7 +271,7 @@
       ]
     },
     {
-      "ip": "coralnpu-subsystem",
+      "ip": "coralnpu-tlul2axi",
       "score": 98,
       "tier": "Good",
       "breakdown": {
@@ -364,22 +320,6 @@
     },
     {
       "ip": "fastvdma",
-      "score": 98,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 23,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 15,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].bus.signals"
-      ]
-    },
-    {
-      "ip": "opentitan-prim",
       "score": 98,
       "tier": "Good",
       "breakdown": {
@@ -838,7 +778,58 @@
       ]
     },
     {
+      "ip": "coralnpu-axi2tlul",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "coralnpu-dbus2axi",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
       "ip": "coralnpu-scalar-units",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "coralnpu-spi2tlul",
       "score": 93,
       "tier": "Good",
       "breakdown": {
@@ -1212,6 +1203,23 @@
       ]
     },
     {
+      "ip": "opentitan-prim",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
       "ip": "opentitan-prim-asap7",
       "score": 93,
       "tier": "Good",
@@ -1365,6 +1373,23 @@
       ]
     },
     {
+      "ip": "opentitan-uart",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
       "ip": "opentitan-usbdev",
       "score": 93,
       "tier": "Good",
@@ -1502,6 +1527,23 @@
     },
     {
       "ip": "vyges-rv-dbg-tlul",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "vyges-rv-plic-lite",
       "score": 93,
       "tier": "Good",
       "breakdown": {
@@ -1823,25 +1865,6 @@
     },
     {
       "ip": "caliptra-edn",
-      "score": 83,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 13,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 10,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].type=clock",
-        "interfaces: interfaces[].type=reset",
-        "interfaces: interfaces[].bus.signals",
-        "verification: test.testbenches"
-      ]
-    },
-    {
-      "ip": "coralnpu-dbus2axi",
       "score": 83,
       "tier": "Good",
       "breakdown": {
@@ -2231,25 +2254,6 @@
     },
     {
       "ip": "coralnpu-tlul-pkg",
-      "score": 40,
-      "tier": "High-risk",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 0,
-        "parameters": 0,
-        "implementation": 10,
-        "verification": 0,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces (none declared)",
-        "parameters: parameters (none declared)",
-        "implementation: asic{} or fpga{}",
-        "verification: test{}"
-      ]
-    },
-    {
-      "ip": "coralnpu-tlul2axi",
       "score": 40,
       "tier": "High-risk",
       "breakdown": {

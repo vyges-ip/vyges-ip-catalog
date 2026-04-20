@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-uart",
   "version": "0.1.0",
-  "description": "A UART (Universal Asynchronous Receiver-Transmitter) IP core from the OpenTitan project, supporting TL-UL protocol for communication and featuring configurable FIFO depths, interrupt handling, and error detection mechanisms.",
+  "description": "The OpenTitan UART IP is a serial communication interface that supports the TL-UL protocol for register access, with features such as FIFO buffering, interrupt generation, and data integrity checks.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-06T01:50:25Z",
-  "updated": "2026-04-17T18:33:40Z",
+  "created": "2026-04-20T01:59:07Z",
+  "updated": "2026-04-20T01:59:07Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "9dcbb0555f6da8b8a4d9b8057bccbe89cfccc69c",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/uart",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,178 +34,69 @@
   ],
   "interfaces": [
     {
-      "type": "clock",
-      "direction": "input",
-      "protocol": "standard",
-      "port": "clk_i",
-      "width": 1,
-      "description": "Clock input signal"
-    },
-    {
-      "type": "reset",
-      "direction": "input",
-      "protocol": "standard",
-      "port": "rst_ni",
-      "width": 1,
-      "description": "Active-low reset signal"
-    },
-    {
       "type": "bus",
       "direction": "slave",
       "protocol": "TL-UL",
       "port": "tl_i",
       "width": 32,
-      "description": "TileLink UL register-access interface",
-      "signals": [
-        {
-          "name": "tl_i",
-          "direction": "input",
-          "type": "bus",
-          "description": "TL-UL host-to-device (tl_h2d_t struct)"
-        },
-        {
-          "name": "tl_o",
-          "direction": "output",
-          "type": "bus",
-          "description": "TL-UL device-to-host (tl_d2h_t struct)"
-        }
-      ]
+      "description": "Incoming TL-UL bus interface for register access."
     },
     {
-      "type": "tieoff",
+      "type": "bus",
+      "direction": "master",
+      "protocol": "TL-UL",
+      "port": "tl_o",
+      "width": 32,
+      "description": "Outgoing TL-UL bus interface for register responses."
+    },
+    {
+      "type": "clock",
       "direction": "input",
-      "protocol": "custom",
-      "port": "alert_rx_i",
+      "port": "clk_i",
       "width": 1,
-      "description": "OpenTitan alert handler input (tied off when alert_handler absent)"
+      "description": "Clock input signal."
     },
     {
-      "type": "tieoff",
+      "type": "reset",
+      "direction": "input",
+      "port": "rst_ni",
+      "width": 1,
+      "description": "Active-low reset signal."
+    },
+    {
+      "type": "interrupt",
       "direction": "output",
-      "protocol": "custom",
-      "port": "alert_tx_o",
+      "port": "intg_err_o",
       "width": 1,
-      "description": "OpenTitan alert handler output (dangling when alert_handler absent)"
+      "description": "Integrity error output signal for alert generation."
     },
     {
-      "type": "tieoff",
+      "type": "custom",
+      "direction": "output",
+      "port": "reg2hw",
+      "width": 13,
+      "description": "Register-to-hardware interface for write operations."
+    },
+    {
+      "type": "custom",
       "direction": "input",
-      "protocol": "custom",
+      "port": "hw2reg",
+      "width": 13,
+      "description": "Hardware-to-register interface for read operations."
+    },
+    {
+      "type": "custom",
+      "direction": "input",
       "port": "racl_policies_i",
-      "width": 1,
-      "description": "OpenTitan RACL policy vector (tied off when EnableRacl=0)"
+      "width": 13,
+      "description": "Input for RACL policy vector."
     },
     {
-      "type": "tieoff",
+      "type": "custom",
       "direction": "output",
-      "protocol": "custom",
       "port": "racl_error_o",
       "width": 1,
-      "description": "OpenTitan RACL error log (dangling when EnableRacl=0)"
-    },
-    {
-      "type": "tieoff",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "lsio_trigger_o",
-      "width": 1,
-      "description": "OpenTitan low-speed IO trigger (dangling in standalone use)"
-    },
-    {
-      "type": "io",
-      "direction": "input",
-      "protocol": "cio",
-      "port": "cio_rx_i",
-      "width": 1,
-      "description": "UART serial receive (chip-level IO)"
-    },
-    {
-      "type": "io",
-      "direction": "output",
-      "protocol": "cio",
-      "port": "cio_tx_o",
-      "width": 1,
-      "description": "UART serial transmit (chip-level IO)"
-    },
-    {
-      "type": "io",
-      "direction": "output",
-      "protocol": "cio",
-      "port": "cio_tx_en_o",
-      "width": 1,
-      "description": "UART transmit output-enable (chip-level IO, unused on FPGA)"
-    },
-    {
-      "type": "interrupt",
-      "direction": "output",
-      "protocol": "level",
-      "port": "intr_tx_watermark_o",
-      "width": 1,
-      "description": "TX FIFO watermark interrupt"
-    },
-    {
-      "type": "interrupt",
-      "direction": "output",
-      "protocol": "level",
-      "port": "intr_tx_empty_o",
-      "width": 1,
-      "description": "TX FIFO empty interrupt"
-    },
-    {
-      "type": "interrupt",
-      "direction": "output",
-      "protocol": "level",
-      "port": "intr_rx_watermark_o",
-      "width": 1,
-      "description": "RX FIFO watermark interrupt"
-    },
-    {
-      "type": "interrupt",
-      "direction": "output",
-      "protocol": "level",
-      "port": "intr_tx_done_o",
-      "width": 1,
-      "description": "TX done interrupt"
-    },
-    {
-      "type": "interrupt",
-      "direction": "output",
-      "protocol": "level",
-      "port": "intr_rx_overflow_o",
-      "width": 1,
-      "description": "RX overflow interrupt"
-    },
-    {
-      "type": "interrupt",
-      "direction": "output",
-      "protocol": "level",
-      "port": "intr_rx_frame_err_o",
-      "width": 1,
-      "description": "RX frame error interrupt"
-    },
-    {
-      "type": "interrupt",
-      "direction": "output",
-      "protocol": "level",
-      "port": "intr_rx_break_err_o",
-      "width": 1,
-      "description": "RX break error interrupt"
-    },
-    {
-      "type": "interrupt",
-      "direction": "output",
-      "protocol": "level",
-      "port": "intr_rx_timeout_o",
-      "width": 1,
-      "description": "RX timeout interrupt"
-    },
-    {
-      "type": "interrupt",
-      "direction": "output",
-      "protocol": "level",
-      "port": "intr_rx_parity_err_o",
-      "width": 1,
-      "description": "RX parity error interrupt"
+      "description": "Output for RACL error log."
     }
   ],
   "parameters": [
@@ -213,60 +104,53 @@
       "name": "EnableRacl",
       "type": "bit",
       "default": 0,
-      "description": "Enable RACL (Register Access Control Logic)"
+      "description": "Enable RACL functionality."
     },
     {
       "name": "RaclErrorRsp",
       "type": "bit",
       "default": 1,
-      "description": "Enable RACL error response"
-    },
-    {
-      "name": "RaclPolicySelVec",
-      "type": "enum",
-      "default": "{uart_reg_pkg::NumRegs{0}}",
-      "description": "RACL policy selection vector"
+      "description": "Enable RACL error response."
     },
     {
       "name": "RxFifoDepth",
       "type": "int",
       "default": 64,
-      "description": "Depth of the receive FIFO"
+      "description": "Depth of the RX FIFO buffer."
     },
     {
       "name": "TxFifoDepth",
       "type": "int",
       "default": 32,
-      "description": "Depth of the transmit FIFO"
+      "description": "Depth of the TX FIFO buffer."
     },
     {
       "name": "NumAlerts",
       "type": "int",
       "default": 1,
-      "description": "Number of alert signals supported"
+      "description": "Number of alert signals supported."
     },
     {
       "name": "BlockAw",
       "type": "int",
       "default": 6,
-      "description": "Address width within the block"
+      "description": "Address width within the block."
     },
     {
       "name": "NumRegs",
       "type": "int",
       "default": 13,
-      "description": "Number of registers for every interface"
+      "description": "Number of registers for the interface."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "UART communication",
-      "Configurable FIFO depths",
-      "Interrupt handling",
-      "Error detection and reporting",
-      "TileLink UL protocol support"
+      "FIFO buffering for RX and TX",
+      "Interrupt generation for various UART events",
+      "Data integrity checks using TL-UL protocol",
+      "RACL policy enforcement"
     ]
   },
   "asic": {
@@ -286,52 +170,22 @@
   "dependencies": [
     {
       "name": "tlul_pkg",
-      "type": "bus",
-      "description": "TileLink UL protocol package for communication"
-    },
-    {
-      "name": "uart_reg_pkg",
       "type": "library",
-      "description": "UART register package containing data structures and parameters"
+      "description": "TL-UL protocol package for bus communication."
     },
     {
       "name": "prim_assert",
       "type": "library",
-      "description": "Assertion library for design verification"
+      "description": "Assertion library for design verification."
     },
     {
-      "name": "prim_reg_we_check",
+      "name": "uart_reg_pkg",
       "type": "library",
-      "description": "Primitive for write enable checking"
-    },
-    {
-      "name": "tlul_cmd_intg_chk",
-      "type": "library",
-      "description": "TileLink command integrity checker"
-    },
-    {
-      "name": "tlul_rsp_intg_gen",
-      "type": "library",
-      "description": "TileLink response integrity generator"
-    },
-    {
-      "name": "tlul_adapter_reg",
-      "type": "library",
-      "description": "TileLink adapter for register interface"
+      "description": "Package containing UART register definitions and data structures."
     }
   ],
   "test": {
-    "testbenches": [
-      {
-        "name": "soc_integration",
-        "path": "tb/cocotb/",
-        "framework": "cocotb",
-        "simulators": [
-          "verilator"
-        ],
-        "description": "SoC-level integration verified in edge-sensor-soc"
-      }
-    ],
+    "testbenches": [],
     "status": "upstream_passing",
     "coverage": "functional"
   },
@@ -349,10 +203,10 @@
   ],
   "keywords": [
     "UART",
-    "TileLink",
-    "OpenTitan",
-    "Serial Communication",
-    "Peripheral"
+    "TL-UL",
+    "FIFO",
+    "Interrupts",
+    "OpenTitan"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -360,86 +214,16 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-06"
+    "last_activity": "2026-04-20"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-06T01:50:25Z"
+      "generated_at": "2026-04-20T01:59:07Z"
     },
     "schema": {
       "version": "1.0.0"
-    }
-  },
-  "integration": {
-    "soc_generator_hints": {
-      "top_module": "uart",
-      "clock": {
-        "port": "clk_i"
-      },
-      "reset": {
-        "port": "rst_ni",
-        "polarity": "active_low"
-      },
-      "bus_slave": {
-        "protocol": "TL-UL",
-        "ports": {
-          "tl_i": "tl_i",
-          "tl_o": "tl_o"
-        }
-      },
-      "interrupts": [
-        {
-          "port": "intr_tx_watermark_o",
-          "type": "level"
-        },
-        {
-          "port": "intr_tx_empty_o",
-          "type": "level"
-        },
-        {
-          "port": "intr_rx_watermark_o",
-          "type": "level"
-        },
-        {
-          "port": "intr_tx_done_o",
-          "type": "level"
-        },
-        {
-          "port": "intr_rx_overflow_o",
-          "type": "level"
-        },
-        {
-          "port": "intr_rx_frame_err_o",
-          "type": "level"
-        },
-        {
-          "port": "intr_rx_break_err_o",
-          "type": "level"
-        },
-        {
-          "port": "intr_rx_timeout_o",
-          "type": "level"
-        },
-        {
-          "port": "intr_rx_parity_err_o",
-          "type": "level"
-        }
-      ],
-      "parameters": [],
-      "external_io": [
-        {
-          "port": "cio_rx_i",
-          "direction": "input",
-          "signal": "uart_rx"
-        },
-        {
-          "port": "cio_tx_o",
-          "direction": "output",
-          "signal": "uart_tx"
-        }
-      ]
     }
   }
 }

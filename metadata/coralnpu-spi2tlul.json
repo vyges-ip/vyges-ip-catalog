@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "coralnpu-spi2tlul",
   "version": "0.1.0",
-  "description": "A silicon-proven SPI to TileLink Ultra-Lite (TL-UL) interface adapter for connecting SPI peripherals to TL-UL-based systems.",
+  "description": "A SPI-to-TL-UL bridge for interfacing SPI peripherals with TileLink-based systems, providing synchronization and data transfer capabilities.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-19T06:11:09Z",
-  "updated": "2026-04-19T06:11:09Z",
+  "created": "2026-04-20T01:48:52Z",
+  "updated": "2026-04-20T01:48:52Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
-    "commit": "2dec130e5c81ad562bd10037b0245412dc0a7217",
+    "commit": "2f85116f7266fc613d307de048ccc270c29b49ad",
     "ip_path": "hdl/chisel",
     "private": false,
     "containsEncryptedPayload": false,
@@ -84,47 +84,45 @@
     {
       "type": "clock",
       "direction": "input",
-      "protocol": "generic",
-      "port": "clk",
+      "port": "clock",
       "width": 1,
-      "description": "System clock input."
+      "description": "Clock input signal."
     },
     {
       "type": "reset",
       "direction": "input",
-      "protocol": "generic",
-      "port": "rst_n",
+      "port": "reset",
       "width": 1,
-      "description": "Active-low reset input."
+      "description": "Reset signal input."
     }
   ],
   "parameters": [
     {
-      "name": "SPI_CLOCK_DIV",
-      "type": "int",
-      "default": 4,
-      "description": "Clock divider for SPI clock generation."
-    },
-    {
-      "name": "TL_ADDRESS_WIDTH",
+      "name": "TLUL_ADDR_WIDTH",
       "type": "int",
       "default": 32,
       "description": "Width of the TileLink address bus."
     },
     {
-      "name": "TL_DATA_WIDTH",
+      "name": "TLUL_DATA_WIDTH",
       "type": "int",
       "default": 32,
       "description": "Width of the TileLink data bus."
+    },
+    {
+      "name": "SPI_MODE",
+      "type": "enum",
+      "default": 0,
+      "description": "SPI mode configuration (0-3)."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "SPI to TL-UL protocol conversion",
-      "Support for multiple SPI modes",
-      "Configurable clock divider"
+      "SPI-to-TL-UL bridge functionality",
+      "Synchronization primitives for asynchronous reset",
+      "Support for SPI modes 0-3"
     ]
   },
   "asic": {
@@ -145,7 +143,7 @@
     {
       "name": "TileLink",
       "type": "bus",
-      "description": "TileLink Ultra-Lite protocol for interconnect."
+      "description": "TileLink Ultra-Lite protocol for system interconnect."
     },
     {
       "name": "SPI",
@@ -154,9 +152,7 @@
     }
   ],
   "test": {
-    "testbenches": [
-      "spi2tlul_tb"
-    ],
+    "testbenches": [],
     "status": "upstream_passing",
     "coverage": "functional"
   },
@@ -175,10 +171,8 @@
   "keywords": [
     "SPI",
     "TileLink",
-    "interface",
-    "protocol conversion",
-    "ASIC",
-    "FPGA"
+    "bridge",
+    "peripheral"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -186,13 +180,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-19T06:11:09Z"
+    "last_activity": "2026-04-20T01:48:52Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-19T06:11:09Z"
+      "generated_at": "2026-04-20T01:48:52Z"
     },
     "schema": {
       "version": "1.0.0"

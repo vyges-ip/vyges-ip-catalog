@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "coralnpu-clock-gate",
   "version": "0.1.0",
-  "description": "A clock gating module designed for power optimization in Coral NPU systems, enabling selective clock signal propagation based on enable conditions.",
+  "description": "A clock gating module for the Coral NPU, designed to reduce power consumption by selectively enabling or disabling clock signals to specific parts of the design.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,8 +13,8 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-19T06:10:51Z",
-  "updated": "2026-04-19T06:10:51Z",
+  "created": "2026-04-20T02:10:46Z",
+  "updated": "2026-04-20T02:10:46Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
@@ -47,7 +47,7 @@
       "protocol": "generic",
       "port": "reset_n",
       "width": 1,
-      "description": "Active-low reset signal."
+      "description": "Active-low reset signal for the clock gate."
     },
     {
       "type": "control",
@@ -55,7 +55,7 @@
       "protocol": "generic",
       "port": "enable",
       "width": 1,
-      "description": "Enable signal for clock gating."
+      "description": "Enable signal to control the clock gating."
     },
     {
       "type": "clock",
@@ -63,7 +63,7 @@
       "protocol": "generic",
       "port": "clk_out",
       "width": 1,
-      "description": "Output gated clock signal."
+      "description": "Gated clock output signal."
     }
   ],
   "parameters": [
@@ -71,16 +71,16 @@
       "name": "USE_RESET",
       "type": "bit",
       "default": 1,
-      "description": "Enable reset functionality in the clock gate."
+      "description": "Enable or disable the use of the reset signal in the clock gate."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "clock gating",
-      "power optimization",
-      "reset support"
+      "Clock gating for power optimization",
+      "Support for active-low reset",
+      "Enable signal for dynamic clock control"
     ]
   },
   "asic": {
@@ -118,7 +118,8 @@
   "keywords": [
     "clock gating",
     "power optimization",
-    "Coral NPU"
+    "Coral NPU",
+    "low power"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -126,13 +127,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-19"
+    "last_activity": "2026-04-20T02:10:46Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-19T06:10:51Z"
+      "generated_at": "2026-04-20T02:10:46Z"
     },
     "schema": {
       "version": "1.0.0"

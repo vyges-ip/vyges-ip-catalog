@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-prim",
   "version": "0.1.0",
-  "description": "A collection of foundational primitives for digital design, including error correction codes (SECDED), clock gating, FIFOs, and cryptographic primitives, developed as part of the OpenTitan project.",
+  "description": "A collection of foundational primitives for OpenTitan, including SECDED error correction, FIFOs, clock gating, cryptographic primitives, and synchronization logic.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-13T02:05:32Z",
-  "updated": "2026-04-16T21:20:00Z",
+  "created": "2026-04-20T02:05:31Z",
+  "updated": "2026-04-20T02:05:31Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "d2f24af56cfaadfec57b2d4974f57aac27aac0fb",
+    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
     "ip_path": "hw/ip/prim",
     "private": false,
     "containsEncryptedPayload": false,
@@ -35,11 +35,19 @@
   "interfaces": [
     {
       "type": "bus",
-      "direction": "both",
+      "direction": "input",
       "protocol": "custom",
-      "port": "prim_fifo_async",
+      "port": "data_in",
       "width": 32,
-      "description": "Asynchronous FIFO interface for data transfer."
+      "description": "Input data bus for primitives."
+    },
+    {
+      "type": "bus",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "data_out",
+      "width": 32,
+      "description": "Output data bus for primitives."
     },
     {
       "type": "clock",
@@ -47,7 +55,7 @@
       "protocol": "standard",
       "port": "clk",
       "width": 1,
-      "description": "Clock input for synchronous operations."
+      "description": "Clock signal for synchronization."
     },
     {
       "type": "reset",
@@ -60,38 +68,32 @@
   ],
   "parameters": [
     {
-      "name": "SecdedHsiao",
-      "type": "enum",
-      "default": 0,
-      "description": "SECDED type using Hsiao codes."
+      "name": "WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the data bus."
     },
     {
-      "name": "SecdedHamming",
-      "type": "enum",
-      "default": 1,
-      "description": "SECDED type using Hamming codes."
+      "name": "DEPTH",
+      "type": "int",
+      "default": 16,
+      "description": "Depth of FIFO buffers."
     },
     {
-      "name": "SecdedInvHsiao",
+      "name": "ECC_TYPE",
       "type": "enum",
-      "default": 2,
-      "description": "SECDED type using inverted Hsiao codes."
-    },
-    {
-      "name": "SecdedInvHamming",
-      "type": "enum",
-      "default": 3,
-      "description": "SECDED type using inverted Hamming codes."
+      "default": "SecdedHsiao",
+      "description": "Type of SECDED error correction."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "Single Error Correction and Double Error Detection (SECDED)",
-      "Clock gating and synchronization primitives",
-      "FIFO implementations (synchronous and asynchronous)",
-      "Cryptographic primitives (ASCON, SHA2, PRINCE)"
+      "SECDED error correction",
+      "FIFO synchronization",
+      "Clock gating",
+      "Cryptographic primitives"
     ]
   },
   "asic": {
@@ -108,18 +110,30 @@
       "Artix-7"
     ]
   },
-  "dependencies": [],
+  "dependencies": [
+    {
+      "name": "prim_secded_pkg",
+      "type": "library",
+      "description": "Package for SECDED error correction."
+    },
+    {
+      "name": "prim_subreg_pkg",
+      "type": "library",
+      "description": "Package for register access specifications."
+    },
+    {
+      "name": "prim_count_pkg",
+      "type": "library",
+      "description": "Package for counting and action masks."
+    }
+  ],
   "test": {
-    "testbenches": [
-      "tb_prim_fifo",
-      "tb_prim_secded",
-      "tb_prim_clock_gating"
-    ],
+    "testbenches": [],
     "status": "upstream_passing",
     "coverage": "functional"
   },
   "documentation": {
-    "upstream": "https://github.com/lowRISC/opentitan/tree/d2f24af56cfaadfec57b2d4974f57aac27aac0fb/hw/ip/prim"
+    "upstream": "https://github.com/lowRISC/opentitan/tree/master/hw/ip/prim"
   },
   "artifacts": {
     "total_rtl_lines": 25110
@@ -127,16 +141,16 @@
   "categories": [
     {
       "main_category": "Base Libraries",
-      "sub_category": "Error Correction Codes"
+      "sub_category": "Counters & Timers"
     }
   ],
   "keywords": [
+    "OpenTitan",
     "SECDED",
-    "error correction",
-    "clock gating",
     "FIFO",
-    "cryptography",
-    "OpenTitan"
+    "Clock Gating",
+    "Cryptography",
+    "Synchronization"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -144,13 +158,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-13"
+    "last_activity": "2026-04-20"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-13T02:05:32Z"
+      "generated_at": "2026-04-20T02:05:31Z"
     },
     "schema": {
       "version": "1.0.0"

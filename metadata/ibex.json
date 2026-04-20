@@ -339,6 +339,6 @@
   "defines": [],
   "upstream": {
     "repo": "https://github.com/lowRISC/ibex",
-    "commit": "fc34556837c4c2e4665f6932296fb3b54cc9e857"
+    "commit": "eede2fbbef007d53cafbd85d937b897751c40a54"
   }
 }

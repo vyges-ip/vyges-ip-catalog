@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "coralnpu-dbus2axi",
   "version": "0.1.0",
-  "description": "A digital IP block that bridges DBus transactions to AXI protocol, enabling seamless communication between DBus-based and AXI-based systems.",
+  "description": "The DBus2Axi module bridges a custom data bus (DBus) to an AXI interface, supporting data transfers with configurable parameters such as address, size, and burst type.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-19T06:10:54Z",
-  "updated": "2026-04-19T06:10:54Z",
+  "created": "2026-04-20T01:23:53Z",
+  "updated": "2026-04-20T01:23:53Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
-    "commit": "2dec130e5c81ad562bd10037b0245412dc0a7217",
+    "commit": "2f85116f7266fc613d307de048ccc270c29b49ad",
     "ip_path": "hdl/chisel",
     "private": false,
     "containsEncryptedPayload": false,
@@ -34,80 +34,104 @@
   ],
   "interfaces": [
     {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "clock",
+      "width": 1,
+      "description": "Clock signal for the module."
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "standard",
+      "port": "reset",
+      "width": 1,
+      "description": "Reset signal for the module."
+    },
+    {
       "type": "bus",
-      "direction": "slave",
-      "protocol": "DBus",
+      "direction": "input",
+      "protocol": "custom",
       "port": "io_dbus_valid",
       "width": 1,
-      "description": "DBus transaction valid signal."
+      "description": "DBus valid signal."
     },
     {
       "type": "bus",
-      "direction": "slave",
-      "protocol": "DBus",
+      "direction": "output",
+      "protocol": "custom",
       "port": "io_dbus_ready",
       "width": 1,
-      "description": "DBus transaction ready signal."
+      "description": "DBus ready signal."
     },
     {
       "type": "bus",
-      "direction": "slave",
-      "protocol": "DBus",
+      "direction": "input",
+      "protocol": "custom",
       "port": "io_dbus_write",
       "width": 1,
       "description": "DBus write enable signal."
     },
     {
       "type": "bus",
-      "direction": "slave",
-      "protocol": "DBus",
+      "direction": "input",
+      "protocol": "custom",
       "port": "io_dbus_pc",
       "width": 32,
       "description": "DBus program counter."
     },
     {
       "type": "bus",
-      "direction": "slave",
-      "protocol": "DBus",
+      "direction": "input",
+      "protocol": "custom",
       "port": "io_dbus_addr",
       "width": 32,
       "description": "DBus address signal."
     },
     {
       "type": "bus",
-      "direction": "slave",
-      "protocol": "DBus",
+      "direction": "input",
+      "protocol": "custom",
       "port": "io_dbus_adrx",
       "width": 32,
       "description": "DBus extended address signal."
     },
     {
       "type": "bus",
-      "direction": "slave",
-      "protocol": "DBus",
+      "direction": "input",
+      "protocol": "custom",
       "port": "io_dbus_size",
       "width": 6,
-      "description": "DBus transaction size."
+      "description": "DBus transfer size."
     },
     {
       "type": "bus",
-      "direction": "slave",
-      "protocol": "DBus",
+      "direction": "input",
+      "protocol": "custom",
       "port": "io_dbus_wdata",
       "width": 256,
       "description": "DBus write data."
     },
     {
       "type": "bus",
-      "direction": "slave",
-      "protocol": "DBus",
+      "direction": "input",
+      "protocol": "custom",
       "port": "io_dbus_wmask",
       "width": 32,
       "description": "DBus write mask."
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "io_dbus_rdata",
+      "width": 256,
+      "description": "DBus read data."
+    },
+    {
+      "type": "bus",
+      "direction": "input",
       "protocol": "AXI",
       "port": "io_axi_write_addr_ready",
       "width": 1,
@@ -115,7 +139,7 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_write_addr_valid",
       "width": 1,
@@ -123,7 +147,7 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_write_addr_bits_addr",
       "width": 32,
@@ -131,23 +155,23 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_write_addr_bits_prot",
       "width": 3,
-      "description": "AXI write protection type."
+      "description": "AXI write address protection type."
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_write_addr_bits_id",
       "width": 6,
-      "description": "AXI write transaction ID."
+      "description": "AXI write address ID."
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_write_addr_bits_len",
       "width": 8,
@@ -155,7 +179,7 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_write_addr_bits_size",
       "width": 3,
@@ -163,7 +187,7 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_write_addr_bits_burst",
       "width": 2,
@@ -171,7 +195,7 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_write_addr_bits_lock",
       "width": 1,
@@ -179,46 +203,40 @@
     },
     {
       "type": "bus",
-      "direction": "master",
+      "direction": "output",
       "protocol": "AXI",
       "port": "io_axi_write_addr_bits_cache",
       "width": 4,
-      "description": "AXI write cache control."
+      "description": "AXI write cache signal."
     }
   ],
   "parameters": [
     {
-      "name": "ENABLE_INITIAL_REG_",
-      "type": "bit",
-      "default": 0,
-      "description": "Enable initial register values for simulation."
+      "name": "ADDR_WIDTH",
+      "type": "int",
+      "default": 32,
+      "description": "Width of the address bus."
     },
     {
-      "name": "RANDOMIZE_REG_INIT",
-      "type": "bit",
-      "default": 0,
-      "description": "Enable random initialization of registers."
+      "name": "DATA_WIDTH",
+      "type": "int",
+      "default": 256,
+      "description": "Width of the data bus."
     },
     {
-      "name": "RANDOMIZE_MEM_INIT",
-      "type": "bit",
-      "default": 0,
-      "description": "Enable random initialization of memory."
-    },
-    {
-      "name": "RANDOMIZE_DELAY",
-      "type": "float",
-      "default": 0.002,
-      "description": "Delay for random initialization."
+      "name": "ID_WIDTH",
+      "type": "int",
+      "default": 6,
+      "description": "Width of the AXI ID field."
     }
   ],
   "performance": {},
   "architecture": {
-    "type": "bus",
+    "type": "peripheral",
     "features": [
-      "DBus-to-AXI protocol conversion",
-      "Support for burst transactions",
-      "Write and read data handling"
+      "DBus to AXI protocol conversion",
+      "Support for configurable burst sizes and transfer widths",
+      "Integration with AXI-based systems"
     ]
   },
   "asic": {
@@ -237,9 +255,9 @@
   },
   "dependencies": [
     {
-      "name": "chisel3",
-      "type": "library",
-      "description": "Scala-based hardware construction library used for RTL generation."
+      "name": "AXI4",
+      "type": "bus",
+      "description": "AXI4 protocol for high-performance memory-mapped communication."
     }
   ],
   "test": {
@@ -256,14 +274,14 @@
   "categories": [
     {
       "main_category": "Interface Controllers",
-      "sub_category": "Parallel Interfaces"
+      "sub_category": "High-Speed Interfaces"
     }
   ],
   "keywords": [
     "DBus",
     "AXI",
-    "protocol conversion",
-    "bus interface"
+    "protocol bridge",
+    "high-speed interface"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -271,13 +289,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-19"
+    "last_activity": "2026-04-20"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-19T06:10:54Z"
+      "generated_at": "2026-04-20T01:23:53Z"
     },
     "schema": {
       "version": "1.0.0"
