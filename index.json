@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-04-23T13:21:16+00:00",
-  "generated_sha": "4201418bb4b491544a68d795541e96214d1c2b42",
+  "generated_at": "2026-04-23T19:03:48+00:00",
+  "generated_sha": "0f63993c396b7c316b10dde0c2f97c6d071aa31f",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 138,
@@ -867,7 +867,7 @@
       "repo": "vyges-ip/opentitan-tlul",
       "name": "opentitan-tlul",
       "version": "0.1.0",
-      "content_hash": "7f249f499a95bcaa1768046137d719ff025eaeef7344e0ca0fd82dc88a73974a",
+      "content_hash": "58768661eb837baf177b309e844f5cc149b74b0f505982e4ef536c8d17328200",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-tlul.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-tlul/main/vyges-metadata.json"
