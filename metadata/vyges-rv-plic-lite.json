@@ -55,7 +55,8 @@
       "protocol": "TL-UL",
       "port": "tl_i",
       "width": 1,
-      "description": "TL-UL host-to-device interface"
+      "description": "TL-UL host-to-device interface",
+      "protocol_level": "baseline"
     },
     {
       "type": "bus",
@@ -63,7 +64,8 @@
       "protocol": "TL-UL",
       "port": "tl_o",
       "width": 1,
-      "description": "TL-UL device-to-host interface"
+      "description": "TL-UL device-to-host interface",
+      "protocol_level": "baseline"
     },
     {
       "type": "interrupt",

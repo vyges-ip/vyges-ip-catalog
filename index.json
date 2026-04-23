@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-04-23T19:03:48+00:00",
-  "generated_sha": "0f63993c396b7c316b10dde0c2f97c6d071aa31f",
+  "generated_at": "2026-04-23T21:19:38+00:00",
+  "generated_sha": "ddb96304728c146a75272846fe7bba0359abc888",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 138,
@@ -516,7 +516,7 @@
       "repo": "vyges-ip/ibex",
       "name": "ibex",
       "version": "0.1.0",
-      "content_hash": "3c1c2e4a126572fc8e322fee3e08ba9e78a1230e3153e3e154a9b091dc5a6bbb",
+      "content_hash": "5640a967dc6d4fde23ad7cd3d7a3319553cfc5f7fb695f5baa05bb5c27eb07ef",
       "default_branch": "main",
       "metadata_path": "metadata/ibex.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/ibex/main/vyges-metadata.json"
@@ -750,7 +750,7 @@
       "repo": "vyges-ip/opentitan-prim-generic",
       "name": "opentitan-prim-generic",
       "version": "0.1.0",
-      "content_hash": "462a4ef07ede51e1c9f77f139bf3c721e2b2f44d9c631c9d013124baaddba87a",
+      "content_hash": "5f52bb9a6cf4c9886e66685ffca4ea7e10c3a29c5763b13eda98e3fbdba65b48",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-prim-generic.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-prim-generic/main/vyges-metadata.json"
@@ -795,7 +795,7 @@
       "repo": "vyges-ip/opentitan-rv-core-ibex",
       "name": "opentitan-rv-core-ibex",
       "version": "0.1.0",
-      "content_hash": "f4974806cee9c27feefb69a0b947af569dc80769ef37fd741ca03d91b14cfd74",
+      "content_hash": "d0fb311410246d0865942c433a3e06a0384cf85cdb96f9377e06065a6e44256d",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-rv-core-ibex.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-rv-core-ibex/main/vyges-metadata.json"
@@ -840,7 +840,7 @@
       "repo": "vyges-ip/opentitan-spi-host",
       "name": "opentitan-spi-host",
       "version": "0.1.0",
-      "content_hash": "b15c7ff63c9275401c3f48a931c383090e0c3b6345ceb0749e5538dcd5bfa3a2",
+      "content_hash": "4abd57153b760506a92cbbdd0f485ad7ff97241ec699d8b514ef10bf7447df35",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-spi-host.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-spi-host/main/vyges-metadata.json"
@@ -876,7 +876,7 @@
       "repo": "vyges-ip/opentitan-uart",
       "name": "opentitan-uart",
       "version": "0.1.0",
-      "content_hash": "0659b50f758ce433e13ee0e985096383de3b5ff4a49a0ce75ccff8efb0cda9a9",
+      "content_hash": "74274f490604cd3ac8e975c6f760439f978ac2ce9215eb5ec763663b49a30aa3",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-uart.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-uart/main/vyges-metadata.json"
@@ -1047,7 +1047,7 @@
       "repo": "vyges-ip/tlul-apb-adapter",
       "name": "tlul-apb-adapter",
       "version": "1.0.0",
-      "content_hash": "8cec5ee1ae6a0ff1ff15d73e127fbe90e2fd6121c12076dba842d1e8a6b91fc8",
+      "content_hash": "53bb982850f436b2e9c4edfd04a59deba94482a74ff1fd8814c14359d549013b",
       "default_branch": "main",
       "metadata_path": "metadata/tlul-apb-adapter.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/tlul-apb-adapter/main/vyges-metadata.json"
@@ -1200,7 +1200,7 @@
       "repo": "vyges-ip/vyges-rv-dbg-tlul",
       "name": "vyges-rv-dbg-tlul",
       "version": "0.1.0",
-      "content_hash": "aca653e8cf20db53faa5cddfec2a952c19b6cc41d18ea98590e4605849b807a0",
+      "content_hash": "a5e5fec9e5ce2b10c30aa3904533b951c557b108b2b0d29809754edf558bfb55",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-rv-dbg-tlul.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-rv-dbg-tlul/main/vyges-metadata.json"
@@ -1209,7 +1209,7 @@
       "repo": "vyges-ip/vyges-rv-plic-lite",
       "name": "vyges-rv-plic-lite",
       "version": "0.1.0",
-      "content_hash": "9c9df0f47b0aaaed9177657e36a20475d188d1bec684428a8aab3f900a8203a2",
+      "content_hash": "57eb51b634ee8ece7992352d11f32ff201a334ef8370fbc4723d5cc730ecbf26",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-rv-plic-lite.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-rv-plic-lite/main/vyges-metadata.json"
@@ -1218,7 +1218,7 @@
       "repo": "vyges-ip/vyges-spi-host-lite",
       "name": "vyges-spi-host-lite",
       "version": "0.1.0",
-      "content_hash": "353b8d59d4a0648aaa74b715a08acacc4f79108f2d4f2817790bf8e7db7aada9",
+      "content_hash": "4670929755920f5b83ac869d7ff065da936c32ca061dd27893facba7862958bb",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-spi-host-lite.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-spi-host-lite/main/vyges-metadata.json"

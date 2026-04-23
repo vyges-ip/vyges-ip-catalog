@@ -3,8 +3,8 @@
   "ip_count": 135,
   "aggregate": 90,
   "tiers": {
-    "Good": 125,
-    "Medium": 7,
+    "Good": 126,
+    "Medium": 6,
     "High-risk": 3
   },
   "ips": [
@@ -1288,6 +1288,23 @@
       ]
     },
     {
+      "ip": "opentitan-prim-generic",
+      "score": 93,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
       "ip": "opentitan-rv-dm",
       "score": 93,
       "tier": "Good",
@@ -1725,6 +1742,24 @@
       ]
     },
     {
+      "ip": "opentitan-rv-core-ibex",
+      "score": 88,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 18,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].bus.signals",
+        "verification: test.testbenches"
+      ]
+    },
+    {
       "ip": "caliptra-hmac-drbg",
       "score": 85,
       "tier": "Good",
@@ -1828,23 +1863,6 @@
     },
     {
       "ip": "opentitan-keymgr-dpe",
-      "score": 85,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 15,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 10,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].type=bus",
-        "verification: test.testbenches"
-      ]
-    },
-    {
-      "ip": "opentitan-prim-generic",
       "score": 85,
       "tier": "Good",
       "breakdown": {
@@ -2101,25 +2119,6 @@
     },
     {
       "ip": "opentitan-prim-xilinx",
-      "score": 75,
-      "tier": "Medium",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 5,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 10,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].type=clock",
-        "interfaces: interfaces[].type=reset",
-        "interfaces: interfaces[].type=bus",
-        "verification: test.testbenches"
-      ]
-    },
-    {
-      "ip": "opentitan-rv-core-ibex",
       "score": 75,
       "tier": "Medium",
       "breakdown": {

@@ -340,5 +340,13 @@
   "upstream": {
     "repo": "https://github.com/lowRISC/ibex",
     "commit": "eede2fbbef007d53cafbd85d937b897751c40a54"
-  }
+  },
+  "vyges_overlays": [
+    {
+      "path": "vyges-overlays/dv_fcov_macros.svh",
+      "replaces": "rtl/dv_fcov_macros.svh",
+      "kind": "stub",
+      "reason": "Upstream ibex_core.sv includes dv_fcov_macros.svh which is part of the OpenTitan DV harness and not shipped with bare ibex. This stub expands the two DV macros to empty so synthesis + non-DV simulation compile cleanly."
+    }
+  ]
 }

@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "opentitan-uart",
   "version": "0.1.0",
-  "description": "The OpenTitan UART IP is a serial communication interface that supports the TL-UL protocol for register access, with features such as FIFO buffering, interrupt generation, and data integrity checks.",
+  "description": "A UART (Universal Asynchronous Receiver-Transmitter) IP core from the OpenTitan project, supporting TL-UL protocol for communication, with features such as configurable FIFO depths, interrupt handling, and error detection mechanisms.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-20T01:59:07Z",
-  "updated": "2026-04-20T01:59:07Z",
+  "created": "2026-04-23T20:15:43Z",
+  "updated": "2026-04-23T20:15:43Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
-    "commit": "46cc36599f56f60b344afb031185a85fc8654e68",
+    "commit": "5b8f6746131e231116e685585432b70359d2c727",
     "ip_path": "hw/ip/uart",
     "private": false,
     "containsEncryptedPayload": false,
@@ -39,7 +39,8 @@
       "protocol": "TL-UL",
       "port": "tl_i",
       "width": 32,
-      "description": "Incoming TL-UL bus interface for register access."
+      "description": "TL-UL host-to-device interface for incoming transactions.",
+      "protocol_level": "signed"
     },
     {
       "type": "bus",
@@ -47,11 +48,13 @@
       "protocol": "TL-UL",
       "port": "tl_o",
       "width": 32,
-      "description": "Outgoing TL-UL bus interface for register responses."
+      "description": "TL-UL device-to-host interface for outgoing transactions.",
+      "protocol_level": "signed"
     },
     {
       "type": "clock",
       "direction": "input",
+      "protocol": "clk",
       "port": "clk_i",
       "width": 1,
       "description": "Clock input signal."
@@ -59,44 +62,50 @@
     {
       "type": "reset",
       "direction": "input",
+      "protocol": "active-low",
       "port": "rst_ni",
       "width": 1,
       "description": "Active-low reset signal."
     },
     {
-      "type": "interrupt",
+      "type": "data",
       "direction": "output",
-      "port": "intg_err_o",
-      "width": 1,
-      "description": "Integrity error output signal for alert generation."
-    },
-    {
-      "type": "custom",
-      "direction": "output",
+      "protocol": "custom",
       "port": "reg2hw",
-      "width": 13,
-      "description": "Register-to-hardware interface for write operations."
+      "width": 32,
+      "description": "Data output to hardware from the UART register interface."
     },
     {
-      "type": "custom",
+      "type": "data",
       "direction": "input",
+      "protocol": "custom",
       "port": "hw2reg",
-      "width": 13,
-      "description": "Hardware-to-register interface for read operations."
+      "width": 32,
+      "description": "Data input from hardware to the UART register interface."
     },
     {
-      "type": "custom",
+      "type": "data",
       "direction": "input",
+      "protocol": "custom",
       "port": "racl_policies_i",
       "width": 13,
       "description": "Input for RACL policy vector."
     },
     {
-      "type": "custom",
+      "type": "data",
       "direction": "output",
+      "protocol": "custom",
       "port": "racl_error_o",
       "width": 1,
       "description": "Output for RACL error log."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "intg_err_o",
+      "width": 1,
+      "description": "Output signal for integrity check errors."
     }
   ],
   "parameters": [
@@ -125,32 +134,21 @@
       "description": "Depth of the TX FIFO buffer."
     },
     {
-      "name": "NumAlerts",
-      "type": "int",
-      "default": 1,
-      "description": "Number of alert signals supported."
-    },
-    {
-      "name": "BlockAw",
-      "type": "int",
-      "default": 6,
-      "description": "Address width within the block."
-    },
-    {
       "name": "NumRegs",
       "type": "int",
       "default": 13,
-      "description": "Number of registers for the interface."
+      "description": "Number of registers in the UART block."
     }
   ],
   "performance": {},
   "architecture": {
     "type": "peripheral",
     "features": [
-      "FIFO buffering for RX and TX",
-      "Interrupt generation for various UART events",
-      "Data integrity checks using TL-UL protocol",
-      "RACL policy enforcement"
+      "TL-UL protocol support",
+      "Configurable RX and TX FIFO depths",
+      "Interrupt handling for various UART events",
+      "Error detection and reporting mechanisms",
+      "RACL policy support for access control"
     ]
   },
   "asic": {
@@ -171,17 +169,27 @@
     {
       "name": "tlul_pkg",
       "type": "library",
-      "description": "TL-UL protocol package for bus communication."
-    },
-    {
-      "name": "prim_assert",
-      "type": "library",
-      "description": "Assertion library for design verification."
+      "description": "TileLink UL protocol package for communication."
     },
     {
       "name": "uart_reg_pkg",
       "type": "library",
       "description": "Package containing UART register definitions and data structures."
+    },
+    {
+      "name": "prim_assert",
+      "type": "library",
+      "description": "Primitive assertions for design verification."
+    },
+    {
+      "name": "prim_reg_we_check",
+      "type": "library",
+      "description": "Primitive module for write enable checking."
+    },
+    {
+      "name": "tlul_adapter_reg",
+      "type": "core",
+      "description": "TileLink UL adapter for register interface."
     }
   ],
   "test": {
@@ -204,9 +212,9 @@
   "keywords": [
     "UART",
     "TL-UL",
-    "FIFO",
-    "Interrupts",
-    "OpenTitan"
+    "OpenTitan",
+    "Serial Communication",
+    "Peripheral"
   ],
   "trust": {
     "verification_level": "silicon_proven",
@@ -214,13 +222,13 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-20"
+    "last_activity": "2026-04-23"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-20T01:59:07Z"
+      "generated_at": "2026-04-23T20:15:43Z"
     },
     "schema": {
       "version": "1.0.0"

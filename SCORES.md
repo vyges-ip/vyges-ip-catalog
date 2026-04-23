@@ -2,8 +2,8 @@
 
 - **Aggregate:** 90/100
 - **IPs scored:** 135
-- **Good (≥80):** 125
-- **Medium (60–79):** 7
+- **Good (≥80):** 126
+- **Medium (60–79):** 6
 - **High-risk (<60):** 3
 - **Scorer:** [vyges/metadata-scorer-action@v1](https://github.com/vyges/metadata-scorer-action/tree/v1)
 
@@ -20,7 +20,6 @@
 | `cf-sram` | 70 | Medium | interfaces: interfaces[].type=reset |
 | `vyges-pinmux-lite` | 71 | Medium | implementation: asic{} or fpga{} |
 | `opentitan-prim-xilinx` | 75 | Medium | interfaces: interfaces[].type=clock |
-| `opentitan-rv-core-ibex` | 75 | Medium | interfaces: interfaces[].type=clock |
 | `sky130-bandgap-reference` | 80 | Good | interfaces: interfaces[].type=clock |
 | `sky130-opamp` | 80 | Good | interfaces: interfaces[].type=clock |
 | `tlul-apb-adapter` | 80 | Good | interfaces: interfaces[].type=clock |
@@ -31,6 +30,7 @@
 | `coralnpu-tlul-pkg` | 83 | Good | interfaces: interfaces[].type=clock |
 | `opentitan-otp-ctrl` | 83 | Good | interfaces: interfaces[].type=clock |
 | `riscduino-pwm` | 83 | Good | parameters: parameters[].description |
+| `sky130-potentiometric-dac` | 83 | Good | interfaces: interfaces[].type=clock |
 
 ## Top 20 (highest scores)
 
