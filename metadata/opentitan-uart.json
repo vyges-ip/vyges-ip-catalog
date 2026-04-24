@@ -14,7 +14,7 @@
     "digital"
   ],
   "created": "2026-04-06T01:50:25Z",
-  "updated": "2026-04-24T04:30:00Z",
+  "updated": "2026-04-24T18:23:41Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
@@ -257,6 +257,86 @@
       "type": "int",
       "default": 13,
       "description": "Number of registers for every interface"
+    }
+  ],
+  "registers": [
+    {
+      "name": "INTR_STATE",
+      "offset": "0x00",
+      "access": "RW",
+      "description": "Interrupt state"
+    },
+    {
+      "name": "INTR_ENABLE",
+      "offset": "0x04",
+      "access": "RW",
+      "description": "Interrupt enable"
+    },
+    {
+      "name": "INTR_TEST",
+      "offset": "0x08",
+      "access": "WO",
+      "description": "Interrupt test"
+    },
+    {
+      "name": "ALERT_TEST",
+      "offset": "0x0C",
+      "access": "WO",
+      "description": "Alert test"
+    },
+    {
+      "name": "CTRL",
+      "offset": "0x10",
+      "access": "RW",
+      "description": "Control (NCO + TX/RX enable)"
+    },
+    {
+      "name": "STATUS",
+      "offset": "0x14",
+      "access": "RO",
+      "description": "Status (TXFULL, RXEMPTY, ...)"
+    },
+    {
+      "name": "RDATA",
+      "offset": "0x18",
+      "access": "RO",
+      "description": "Read data"
+    },
+    {
+      "name": "WDATA",
+      "offset": "0x1C",
+      "access": "WO",
+      "description": "Write data"
+    },
+    {
+      "name": "FIFO_CTRL",
+      "offset": "0x20",
+      "access": "RW",
+      "description": "FIFO control"
+    },
+    {
+      "name": "FIFO_STATUS",
+      "offset": "0x24",
+      "access": "RO",
+      "description": "FIFO status"
+    },
+    {
+      "name": "OVRD",
+      "offset": "0x28",
+      "access": "RW",
+      "description": "TX/RX override"
+    },
+    {
+      "name": "VAL",
+      "offset": "0x2C",
+      "access": "RO",
+      "description": "Sampled RX line value"
+    },
+    {
+      "name": "TIMEOUT_CTRL",
+      "offset": "0x30",
+      "access": "RW",
+      "description": "RX timeout control"
     }
   ],
   "performance": {},

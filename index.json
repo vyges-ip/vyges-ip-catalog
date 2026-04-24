@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-04-24T13:16:53+00:00",
-  "generated_sha": "539c32e807fc54ac4816549054b60e0cbad1776a",
+  "generated_at": "2026-04-24T18:44:10+00:00",
+  "generated_sha": "24adf318261ffb74575a96ac8066b3846bd72fd1",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 138,
@@ -471,7 +471,7 @@
       "repo": "vyges-ip/fast-fourier-transform-ip",
       "name": "fast-fourier-transform-ip",
       "version": "1.0.0",
-      "content_hash": "3f18e0f701f28ecb428769b742548847e4ccdc8f9addb6e2973b14ecc5f3e384",
+      "content_hash": "8b7f417c01dc4cacc94e034c2ac385e47e54c9776b88beee9866bcf86f0cf8bb",
       "default_branch": "main",
       "metadata_path": "metadata/fast-fourier-transform-ip.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/fast-fourier-transform-ip/main/vyges-metadata.json"
@@ -876,7 +876,7 @@
       "repo": "vyges-ip/opentitan-uart",
       "name": "opentitan-uart",
       "version": "0.1.0",
-      "content_hash": "edad0cae330ab9f752f3cb9e4aa45fd8335094c252c5fb00180fab840be2ab1c",
+      "content_hash": "8599ad30bc701ad3382966ed3629ff0195f786aa53648cb36534706ce8875392",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-uart.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-uart/main/vyges-metadata.json"
@@ -1209,7 +1209,7 @@
       "repo": "vyges-ip/vyges-rv-plic-lite",
       "name": "vyges-rv-plic-lite",
       "version": "0.1.0",
-      "content_hash": "7d8a0d383de9645174f9a4d693b522ba8e7705f5955fa6be85be083def13514e",
+      "content_hash": "5e22b9284334baa475fbe876f88cd72847aef0550d75d3b716faa4fee2d0c417",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-rv-plic-lite.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-rv-plic-lite/main/vyges-metadata.json"
@@ -1218,7 +1218,7 @@
       "repo": "vyges-ip/vyges-spi-host-lite",
       "name": "vyges-spi-host-lite",
       "version": "0.1.0",
-      "content_hash": "4670929755920f5b83ac869d7ff065da936c32ca061dd27893facba7862958bb",
+      "content_hash": "4ee5823c48efeb7eaa047ea30ca19cfe3808275c882c01698e9308adfb57e871",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-spi-host-lite.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-spi-host-lite/main/vyges-metadata.json"
