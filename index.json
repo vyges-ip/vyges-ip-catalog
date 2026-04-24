@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-04-24T02:23:08+00:00",
-  "generated_sha": "9da202faa4ef3a5aff1ec8bb83a9020877326a71",
+  "generated_at": "2026-04-24T04:45:47+00:00",
+  "generated_sha": "8e9aae54bf40c791bd73654166107cb3aee791f4",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 138,
@@ -876,7 +876,7 @@
       "repo": "vyges-ip/opentitan-uart",
       "name": "opentitan-uart",
       "version": "0.1.0",
-      "content_hash": "74274f490604cd3ac8e975c6f760439f978ac2ce9215eb5ec763663b49a30aa3",
+      "content_hash": "edad0cae330ab9f752f3cb9e4aa45fd8335094c252c5fb00180fab840be2ab1c",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-uart.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-uart/main/vyges-metadata.json"
