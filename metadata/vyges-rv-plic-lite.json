@@ -3,7 +3,7 @@
   "x-version": "1.0.0",
   "name": "vyges-rv-plic-lite",
   "version": "0.1.0",
-  "description": "Lightweight RISC-V Platform-Level Interrupt Controller with a native TL-UL slave interface, supporting up to 32 interrupt sources and a single hart target.",
+  "description": "Lightweight RISC-V Platform-Level Interrupt Controller (PLIC) with a native TL-UL slave interface, supporting up to 32 interrupt sources and a single hart target.",
   "license": "Apache-2.0",
   "maturity": "rtl_verified",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-04-20T01:25:23Z",
-  "updated": "2026-04-20T01:25:23Z",
+  "created": "2026-03-28T01:51:59Z",
+  "updated": "2026-03-28T01:51:59Z",
   "source": {
     "type": "git",
     "url": "https://github.com/vyges/vyges-rv-plic-lite",
-    "commit": "1617d994d1d29c56b27d7b7425a8210bc46f985f",
+    "commit": "92153b24474ae56b54b54afd88bfe7f215e2ec52",
     "ip_path": ".",
     "private": false,
     "containsEncryptedPayload": false,
@@ -47,7 +47,7 @@
       "protocol": "active-low",
       "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset input signal"
+      "description": "Active-low reset signal"
     },
     {
       "type": "bus",
@@ -56,15 +56,20 @@
       "port": "tl_i",
       "width": 1,
       "description": "TL-UL host-to-device interface",
-      "protocol_level": "baseline"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "TL-UL",
-      "port": "tl_o",
-      "width": 1,
-      "description": "TL-UL device-to-host interface",
+      "signals": [
+        {
+          "name": "tl_i",
+          "direction": "input",
+          "type": "bus",
+          "description": "TL-UL host-to-device (tl_h2d_t struct)"
+        },
+        {
+          "name": "tl_o",
+          "direction": "output",
+          "type": "bus",
+          "description": "TL-UL device-to-host (tl_d2h_t struct)"
+        }
+      ],
       "protocol_level": "baseline"
     },
     {
@@ -97,9 +102,12 @@
     "type": "peripheral",
     "features": [
       "RISC-V Platform-Level Interrupt Controller (PLIC)",
+      "Native TL-UL slave interface",
       "Supports up to 32 interrupt sources",
+      "Single hart target",
       "3-bit priority per source",
       "Priority threshold register",
+      "Interrupt pending and enable bitmaps",
       "Claim/complete mechanism",
       "Single-cycle TL-UL response"
     ]
@@ -126,7 +134,17 @@
     }
   ],
   "test": {
-    "testbenches": [],
+    "testbenches": [
+      {
+        "name": "soc_integration",
+        "path": "tb/cocotb/",
+        "framework": "cocotb",
+        "simulators": [
+          "verilator"
+        ],
+        "description": "SoC-level integration verified in edge-sensor-soc"
+      }
+    ],
     "status": "upstream_passing",
     "coverage": "functional"
   },
@@ -134,12 +152,12 @@
     "upstream": "https://github.com/vyges/vyges-rv-plic-lite"
   },
   "artifacts": {
-    "total_rtl_lines": 246
+    "total_rtl_lines": 200
   },
   "categories": [
     {
-      "main_category": "Control Logic",
-      "sub_category": "Interrupt Controllers"
+      "main_category": "Processing Cores",
+      "sub_category": "RISC-V"
     }
   ],
   "keywords": [
@@ -147,7 +165,7 @@
     "PLIC",
     "Interrupt Controller",
     "TL-UL",
-    "Vyges"
+    "Lightweight"
   ],
   "trust": {
     "verification_level": "simulation_passing",
@@ -155,16 +173,19 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-20"
+    "last_activity": "2026-03-28T01:51:59Z"
   },
   "meta": {
     "template": {
       "generator": "github-models-ai",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-20T01:25:23Z"
+      "generated_at": "2026-03-28T01:51:59Z"
     },
     "schema": {
       "version": "1.0.0"
     }
+  },
+  "branding": {
+    "display_name": "RV PLIC"
   }
 }

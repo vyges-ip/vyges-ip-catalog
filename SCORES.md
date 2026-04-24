@@ -39,6 +39,7 @@
 | `fast-fourier-transform-ip` | 100 |
 | `ibex` | 100 |
 | `openfasoc-temp-sensor` | 100 |
+| `vyges-rv-plic-lite` | 100 |
 | `vyges-spi-host-lite` | 100 |
 | `32bit-risc-core` | 98 |
 | `adams-bridge` | 98 |
@@ -55,4 +56,3 @@
 | `coralnpu-l1-icache` | 98 |
 | `coralnpu-scalar-units` | 98 |
 | `coralnpu-tlul-fifo` | 98 |
-| `coralnpu-tlul2axi` | 98 |

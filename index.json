@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-04-23T21:19:38+00:00",
-  "generated_sha": "ddb96304728c146a75272846fe7bba0359abc888",
+  "generated_at": "2026-04-24T01:44:41+00:00",
+  "generated_sha": "a7b96e8cb274c480b08b87bb2d9ccf7fcd3ab72c",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 138,
@@ -1200,7 +1200,7 @@
       "repo": "vyges-ip/vyges-rv-dbg-tlul",
       "name": "vyges-rv-dbg-tlul",
       "version": "0.1.0",
-      "content_hash": "a5e5fec9e5ce2b10c30aa3904533b951c557b108b2b0d29809754edf558bfb55",
+      "content_hash": "c051fceea3905bd005a0db6edab2a93acb1e61ebf4b76551fba2038baf3872b3",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-rv-dbg-tlul.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-rv-dbg-tlul/main/vyges-metadata.json"
@@ -1209,7 +1209,7 @@
       "repo": "vyges-ip/vyges-rv-plic-lite",
       "name": "vyges-rv-plic-lite",
       "version": "0.1.0",
-      "content_hash": "57eb51b634ee8ece7992352d11f32ff201a334ef8370fbc4723d5cc730ecbf26",
+      "content_hash": "7d8a0d383de9645174f9a4d693b522ba8e7705f5955fa6be85be083def13514e",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-rv-plic-lite.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-rv-plic-lite/main/vyges-metadata.json"

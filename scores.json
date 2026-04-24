@@ -51,6 +51,20 @@
       "gaps": []
     },
     {
+      "ip": "vyges-rv-plic-lite",
+      "score": 100,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": []
+    },
+    {
       "ip": "vyges-spi-host-lite",
       "score": 100,
       "tier": "Good",
@@ -1595,23 +1609,6 @@
     },
     {
       "ip": "vyges-rv-dbg-tlul",
-      "score": 93,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 23,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 10,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].bus.signals",
-        "verification: test.testbenches"
-      ]
-    },
-    {
-      "ip": "vyges-rv-plic-lite",
       "score": 93,
       "tier": "Good",
       "breakdown": {
