@@ -51,6 +51,20 @@
       "gaps": []
     },
     {
+      "ip": "opentitan-rv-core-ibex",
+      "score": 100,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": []
+    },
+    {
       "ip": "opentitan-uart",
       "score": 100,
       "tier": "Good",
@@ -1733,24 +1747,6 @@
         "interfaces: interfaces[].type=clock",
         "interfaces: interfaces[].type=reset",
         "interfaces: interfaces[].bus.signals"
-      ]
-    },
-    {
-      "ip": "opentitan-rv-core-ibex",
-      "score": 88,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 18,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 10,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].type=reset",
-        "interfaces: interfaces[].bus.signals",
-        "verification: test.testbenches"
       ]
     },
     {

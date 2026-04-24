@@ -39,6 +39,7 @@
 | `fast-fourier-transform-ip` | 100 |
 | `ibex` | 100 |
 | `openfasoc-temp-sensor` | 100 |
+| `opentitan-rv-core-ibex` | 100 |
 | `opentitan-uart` | 100 |
 | `vyges-rv-plic-lite` | 100 |
 | `vyges-spi-host-lite` | 100 |
@@ -55,4 +56,3 @@
 | `coralnpu-core` | 98 |
 | `coralnpu-i2c-master` | 98 |
 | `coralnpu-l1-icache` | 98 |
-| `coralnpu-scalar-units` | 98 |

@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-04-24T04:45:47+00:00",
-  "generated_sha": "8e9aae54bf40c791bd73654166107cb3aee791f4",
+  "generated_at": "2026-04-24T04:55:48+00:00",
+  "generated_sha": "08272eb80e43b512b0eb964835386bc7b7be7929",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 138,
@@ -795,7 +795,7 @@
       "repo": "vyges-ip/opentitan-rv-core-ibex",
       "name": "opentitan-rv-core-ibex",
       "version": "0.1.0",
-      "content_hash": "d0fb311410246d0865942c433a3e06a0384cf85cdb96f9377e06065a6e44256d",
+      "content_hash": "e6c6aea985acbb1468d09c8e5e85d96497cd6e29624373230e1cbf5f9b279b36",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-rv-core-ibex.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-rv-core-ibex/main/vyges-metadata.json"
