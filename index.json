@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-04-27T19:14:42+00:00",
-  "generated_sha": "0377427b934b7b1d401dd0fb15c72d7416a05543",
+  "generated_at": "2026-04-28T02:37:38+00:00",
+  "generated_sha": "9a6572a317ac50dc72bd2c41a32238fa7043e07a",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 138,
@@ -750,7 +750,7 @@
       "repo": "vyges-ip/opentitan-prim-generic",
       "name": "opentitan-prim-generic",
       "version": "0.1.0",
-      "content_hash": "5f52bb9a6cf4c9886e66685ffca4ea7e10c3a29c5763b13eda98e3fbdba65b48",
+      "content_hash": "e75e8ee974c33d0fc862582ecce388ade72499257a71f3e31e125da57f3e0ddf",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-prim-generic.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-prim-generic/main/vyges-metadata.json"
@@ -1218,7 +1218,7 @@
       "repo": "vyges-ip/vyges-spi-host-lite",
       "name": "vyges-spi-host-lite",
       "version": "0.1.0",
-      "content_hash": "4ee5823c48efeb7eaa047ea30ca19cfe3808275c882c01698e9308adfb57e871",
+      "content_hash": "165d9c6a9111ab4cf35122e63e86e82bc96bdc5be5c3d42d24b181d73cf13a24",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-spi-host-lite.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-spi-host-lite/main/vyges-metadata.json"
