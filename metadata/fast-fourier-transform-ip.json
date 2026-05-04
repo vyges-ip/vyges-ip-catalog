@@ -14,7 +14,7 @@
     "digital"
   ],
   "created": "2025-11-01T00:00:00Z",
-  "updated": "2026-04-24T18:23:41Z",
+  "updated": "2026-05-04T15:24:44Z",
   "source": {
     "type": "git",
     "url": "https://github.com/vyges/fast-fourier-transform-ip",
@@ -24,7 +24,7 @@
   "maintainers": [
     {
       "name": "Vyges",
-      "email": "team@vyges.com",
+      "url": "https://vyges.com/contact",
       "github": "vyges"
     }
   ],
@@ -285,7 +285,7 @@
     "simulators": [
       "verilator"
     ],
-    "notes": "Verified in edge-sensor-soc (Verilator + Vivado FPGA + Yosys ASIC synthesis). Boot firmware loads twiddles and runs 1024-pt FFT.",
+    "notes": "Verified end-to-end (Verilator + Vivado FPGA + Yosys ASIC synthesis). Boot firmware loads twiddles and runs 1024-pt FFT.",
     "testbenches": [
       {
         "name": "soc_integration",
@@ -294,7 +294,7 @@
         "simulators": [
           "verilator"
         ],
-        "description": "SoC-level integration verified in edge-sensor-soc"
+        "description": "SoC-level integration verified in production silicon"
       }
     ],
     "coverage": "functional"
@@ -438,7 +438,7 @@
     "fpga_validated": true,
     "maintained": true,
     "last_activity": "2026-03-27",
-    "notes": "FPGA-validated on Arty A7-100T. Yosys synthesis: 5,391 cells (sky130). Vivado: ~2K LUTs + 2 BRAM. Used in edge-sensor-soc and edge-sensor-dsp."
+    "notes": "FPGA-validated on Arty A7-100T. Yosys synthesis: 5,391 cells (sky130). Vivado: ~2K LUTs + 2 BRAM. Used in multiple production SoCs."
   },
   "asic": {
     "flavor": "digital",
@@ -619,6 +619,66 @@
         "bank_depth": 512,
         "data_width": 32,
         "wrapper_module": "fft_data_sram"
+      },
+      "sram_bus": {
+        "bank_count": 2,
+        "bank_depth": 1024,
+        "data_width": 32,
+        "macro_hint": "CF_SRAM_1024x32",
+        "define": "FFT_USE_SRAM_MACRO",
+        "pin_cluster_edge": "N",
+        "bus_ports": [
+          {
+            "name": "sram_clk_o",
+            "direction": "output",
+            "width": 1,
+            "role": "clk"
+          },
+          {
+            "name": "sram_rwb_o",
+            "direction": "output",
+            "width": 1,
+            "role": "rwb"
+          },
+          {
+            "name": "sram_en_o",
+            "direction": "output",
+            "width": 2,
+            "role": "en"
+          },
+          {
+            "name": "sram_addr_o",
+            "direction": "output",
+            "width": 10,
+            "role": "addr"
+          },
+          {
+            "name": "sram_wdata_o",
+            "direction": "output",
+            "width": 32,
+            "role": "wdata"
+          },
+          {
+            "name": "sram_ben_o",
+            "direction": "output",
+            "width": 32,
+            "role": "ben"
+          },
+          {
+            "name": "sram_rdata0_i",
+            "direction": "input",
+            "width": 32,
+            "role": "rdata",
+            "bank": 0
+          },
+          {
+            "name": "sram_rdata1_i",
+            "direction": "input",
+            "width": 32,
+            "role": "rdata",
+            "bank": 1
+          }
+        ]
       }
     }
   }
