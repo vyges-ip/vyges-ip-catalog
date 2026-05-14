@@ -17,7 +17,7 @@
 | `hardfloat` | 60 | Medium | interfaces: interfaces (none declared) |
 | `opentitan-racl-ctrl` | 60 | Medium | interfaces: interfaces (none declared) |
 | `tech_cells_generic` | 65 | Medium | interfaces: interfaces (none declared) |
-| `cf-sram` | 70 | Medium | interfaces: interfaces[].type=reset |
+| `cf-sram-1024x32` | 70 | Medium | interfaces: interfaces[].type=reset |
 | `vyges-pinmux-lite` | 71 | Medium | implementation: asic{} or fpga{} |
 | `opentitan-prim-xilinx` | 75 | Medium | interfaces: interfaces[].type=clock |
 | `sky130-bandgap-reference` | 80 | Good | interfaces: interfaces[].type=clock |

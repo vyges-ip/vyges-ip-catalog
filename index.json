@@ -1,12 +1,12 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-05-14T02:48:21+00:00",
-  "generated_sha": "9edde88901c6d2cad23a8fc27e9d0f8bbf6642d0",
+  "generated_at": "2026-05-14T08:33:49+00:00",
+  "generated_sha": "723196b4452125d11df7faae330d55e865e442eb",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
-  "repo_count": 138,
+  "repo_count": 141,
   "with_metadata": 135,
-  "without_metadata": 0,
+  "without_metadata": 3,
   "ips": [
     {
       "repo": "vyges-ip/32bit-risc-core",
@@ -270,13 +270,13 @@
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/canakari/main/vyges-metadata.json"
     },
     {
-      "repo": "vyges-ip/cf-sram",
+      "repo": "vyges-ip/cf-sram-1024x32",
       "name": "cf-sram",
       "version": "1.0.0",
       "content_hash": "396671fb4d8d0a6173ea472f824d4faf268fff34c8953e4d49e2e974577538b4",
       "default_branch": "main",
-      "metadata_path": "metadata/cf-sram.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-sram/main/vyges-metadata.json"
+      "metadata_path": "metadata/cf-sram-1024x32.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-sram-1024x32/main/vyges-metadata.json"
     },
     {
       "repo": "vyges-ip/common_cells",

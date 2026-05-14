@@ -2145,7 +2145,7 @@
       ]
     },
     {
-      "ip": "cf-sram",
+      "ip": "cf-sram-1024x32",
       "score": 70,
       "tier": "Medium",
       "breakdown": {
