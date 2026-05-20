@@ -1,11 +1,11 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-05-19T19:48:56+00:00",
-  "generated_sha": "d1a33e8f60c36a58ef0d378f287f7bc49a9e6cd1",
-  "repo": "vyges-ip/vyges-ip-catalog",
+  "generated_at": "2026-05-20T02:02:26+00:00",
+  "generated_sha": "",
+  "repo": "",
   "org": "vyges-ip",
-  "repo_count": 141,
-  "with_metadata": 135,
+  "repo_count": 143,
+  "with_metadata": 137,
   "without_metadata": 3,
   "ips": [
     {
@@ -1062,6 +1062,15 @@
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/uart-controller/main/vyges-metadata.json"
     },
     {
+      "repo": "vyges-ip/usb-cdc",
+      "name": "usb-cdc",
+      "version": "0.1.0",
+      "content_hash": "c5e7ffff284bc3d891c726f8284a9ee702ba9d92f9bddff03fd078638dd721d3",
+      "default_branch": "main",
+      "metadata_path": "metadata/usb-cdc.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/usb-cdc/main/vyges-metadata.json"
+    },
+    {
       "repo": "vyges-ip/veer-eh1",
       "name": "veer-eh1",
       "version": "0.1.0",
@@ -1222,6 +1231,15 @@
       "default_branch": "main",
       "metadata_path": "metadata/vyges-spi-host-lite.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-spi-host-lite/main/vyges-metadata.json"
+    },
+    {
+      "repo": "vyges-ip/wrapped-wb-hyperram",
+      "name": "wrapped-wb-hyperram",
+      "version": "0.1.0",
+      "content_hash": "dffcf41a4e8f3c169c96ad3027d1c71ad9fc41176b63ae1aafbb0ce93ece3883",
+      "default_branch": "main",
+      "metadata_path": "metadata/wrapped-wb-hyperram.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/wrapped-wb-hyperram/main/vyges-metadata.json"
     }
   ]
 }

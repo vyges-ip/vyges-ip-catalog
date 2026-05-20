@@ -1,0 +1,99 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "usb-cdc",
+  "version": "0.1.0",
+  "description": "USB 2.0 Full-Speed (12 Mbit/s) Communications Device Class (CDC) core. Multi-channel, byte-stream interface with valid/ready handshakes. Written in pure Verilog; FPGA-validated on Fomu and TinyFPGA-BX. The CDC class provides USB-serial-port-style host communication.",
+  "license": "MIT",
+  "maturity": "experimental",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital",
+    "interface"
+  ],
+  "created": "2026-05-20T01:59:00Z",
+  "updated": "2026-05-20T01:59:00Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/ulixxe/usb_cdc",
+    "commit": "6798bf42d43be81368d4e5e2c26b262b41e9fb6a",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1,
+      "description": "System clock (Full-Speed USB requires 48 MHz reference)"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rstn_i",
+      "width": 1,
+      "description": "Active-low reset"
+    },
+    {
+      "type": "interface",
+      "direction": "bidirectional",
+      "protocol": "usb-2.0-fs",
+      "port": "dp_io / dn_io",
+      "description": "USB differential pair (D+/D-) at Full-Speed 12 Mbit/s; needs external USB transceiver or analog buffer for I/O"
+    },
+    {
+      "type": "data",
+      "direction": "input",
+      "protocol": "valid-ready",
+      "port": "out_data / out_valid / out_ready",
+      "description": "Per-channel TX byte stream from device to host"
+    },
+    {
+      "type": "data",
+      "direction": "output",
+      "protocol": "valid-ready",
+      "port": "in_data / in_valid / in_ready",
+      "description": "Per-channel RX byte stream from host to device"
+    }
+  ],
+  "platforms": {
+    "fpga": {
+      "validated": [
+        "fomu",
+        "tinyfpga-bx"
+      ]
+    },
+    "asic": {
+      "pdk": "sky130A",
+      "hardened": false,
+      "notes": "RTL-only upstream. Integration into a Caravel SoC needs a Vyges-original TL-UL/Wishbone wrapper IP for register-mapped access \u2014 planned as a separate catalog entry."
+    }
+  },
+  "categories": [
+    "communication",
+    "usb"
+  ],
+  "tags": [
+    "usb",
+    "usb-2.0",
+    "usb-cdc",
+    "full-speed",
+    "serial"
+  ],
+  "notes": "Mirror of github.com/ulixxe/usb_cdc. Complements opentitan-usbdev (device-mode controller without CDC class). CDC is the canonical USB class for /dev/ttyUSB0-style serial communication."
+}

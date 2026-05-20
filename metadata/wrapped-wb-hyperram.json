@@ -1,0 +1,89 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "wrapped-wb-hyperram",
+  "version": "0.1.0",
+  "description": "Wishbone B4 HyperRAM controller for sky130A. Caravel user_project_wrapper-shaped, with hardened GDS/LEF/LVS-clean netlist. Wraps embelon/wb_hyperram driver for external HyperRAM expansion off-die.",
+  "license": "Apache-2.0",
+  "maturity": "experimental",
+  "target": [
+    "asic"
+  ],
+  "design_type": [
+    "digital",
+    "memory"
+  ],
+  "created": "2026-05-20T01:56:56Z",
+  "updated": "2026-05-20T01:56:56Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/embelon/wrapped_wb_hyperram",
+    "commit": "261ee431bad6eccd3b0611e22cf639df393a767d",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "wb_clk_i",
+      "width": 1,
+      "description": "Wishbone bus clock"
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "wb_rst_i",
+      "width": 1,
+      "description": "Wishbone synchronous reset (active high)"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "wishbone-b4",
+      "port": "wbs_*",
+      "description": "Wishbone B4 classic slave port (cyc/stb/we/sel/adr/dat_i/dat_o/ack)"
+    },
+    {
+      "type": "interface",
+      "direction": "master",
+      "protocol": "hyperram",
+      "port": "hyperram_*",
+      "description": "External HyperRAM memory interface (clk, cs_n, rwds, dq[7:0])"
+    }
+  ],
+  "platforms": {
+    "asic": {
+      "pdk": "sky130A",
+      "hardened": true,
+      "hardened_artifacts": {
+        "gds": "gds/wrapped_wb_hyperram.gds",
+        "lef": "gds/wrapped_wb_hyperram.lef",
+        "lvs_netlist": "gds/wrapped_wb_hyperram.lvs.powered.v"
+      }
+    }
+  },
+  "categories": [
+    "memory-controller",
+    "external-interface"
+  ],
+  "tags": [
+    "hyperram",
+    "wishbone",
+    "caravel",
+    "sky130",
+    "memory-expansion"
+  ],
+  "notes": "Mirror of github.com/embelon/wrapped_wb_hyperram (upstream abandoned 2021-11-12). Vyges owns bugfix forward. Original repo built on the Zero-To-ASIC group submission template (mattvenn/wrapped_project_template) and wraps embelon/wb_hyperram driver."
+}
