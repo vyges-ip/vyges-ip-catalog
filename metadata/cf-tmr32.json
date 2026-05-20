@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "cf-tmr32",
+  "version": "0.1.0",
+  "description": "32-bit timer and dual-channel PWM generator from ChipFoundry. 32-bit prescaler, up/down/up-down counting modes, one-shot or periodic operation, two independent PWM channels with two compare registers each. APB / AHB-Lite / Wishbone wrappers.",
+  "license": "Apache-2.0",
+  "maturity": "stable",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital",
+    "peripheral",
+    "timer",
+    "pwm"
+  ],
+  "created": "2026-05-20T21:40:39Z",
+  "updated": "2026-05-20T21:40:39Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipfoundry/CF_TMR32",
+    "commit": "23debb19cbdff77d1c8283ede3e0c458dd5eaf61",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_i",
+      "width": 1
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "wishbone-b4"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "apb"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "ahb-lite"
+    },
+    {
+      "type": "io",
+      "direction": "output",
+      "port": "pwm0",
+      "width": 1
+    },
+    {
+      "type": "io",
+      "direction": "output",
+      "port": "pwm1",
+      "width": 1
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "port": "irq",
+      "width": 1
+    }
+  ],
+  "tags": [
+    "timer",
+    "pwm",
+    "peripheral",
+    "chipfoundry",
+    "sky130"
+  ]
+}

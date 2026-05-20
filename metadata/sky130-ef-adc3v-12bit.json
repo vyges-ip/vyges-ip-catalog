@@ -1,0 +1,79 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "sky130-ef-adc3v-12bit",
+  "version": "0.1.0",
+  "description": "12-bit Successive Approximation Register (SAR) ADC for sky130A. Uses capacitive DAC (CDAC) + sample/hold + comparator. 3.3V analog reference. Composed from other Efabless/ChipFoundry analog component repos (sample-and-hold, capacitive DAC, comparator). First-class analog ADC for sky130 mixed-signal designs.",
+  "license": "Apache-2.0",
+  "maturity": "experimental",
+  "target": [
+    "asic"
+  ],
+  "design_type": [
+    "analog",
+    "mixed-signal",
+    "adc"
+  ],
+  "created": "2026-05-20T21:42:11Z",
+  "updated": "2026-05-20T21:42:11Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipfoundry/sky130_ef_ip__adc3v_12bit",
+    "commit": "6c1a2fd41cf2676155134fc76f3e8d9556b312ff",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "analog",
+      "direction": "input",
+      "port": "vin",
+      "description": "Analog input signal (0-3.3V)"
+    },
+    {
+      "type": "analog",
+      "direction": "input",
+      "port": "vref",
+      "description": "Reference voltage"
+    },
+    {
+      "type": "clock",
+      "direction": "input",
+      "port": "clk",
+      "width": 1,
+      "description": "SAR clock"
+    },
+    {
+      "type": "digital",
+      "direction": "output",
+      "port": "dout",
+      "width": 12,
+      "description": "12-bit conversion result"
+    },
+    {
+      "type": "digital",
+      "direction": "output",
+      "port": "eoc",
+      "width": 1,
+      "description": "End-of-conversion strobe"
+    }
+  ],
+  "tags": [
+    "adc",
+    "sar-adc",
+    "analog",
+    "mixed-signal",
+    "sky130",
+    "3v3",
+    "12bit",
+    "chipfoundry"
+  ]
+}

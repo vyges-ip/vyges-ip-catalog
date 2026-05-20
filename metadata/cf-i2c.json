@@ -1,0 +1,91 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "cf-i2c",
+  "version": "0.1.0",
+  "description": "I2C master controller from ChipFoundry. Configurable clock rate, 7/10-bit addressing, TX/RX FIFOs. APB / AHB-Lite / Wishbone wrappers.",
+  "license": "Apache-2.0",
+  "maturity": "stable",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital",
+    "peripheral",
+    "communication"
+  ],
+  "created": "2026-05-20T21:39:57Z",
+  "updated": "2026-05-20T21:39:57Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipfoundry/CF_I2C",
+    "commit": "0f0cc066650085e9b603d0b55cd9f8485318ce60",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_i",
+      "width": 1
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "wishbone-b4",
+      "port": "wbs_*"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "apb"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "ahb-lite"
+    },
+    {
+      "type": "io",
+      "direction": "inout",
+      "port": "sda",
+      "width": 1
+    },
+    {
+      "type": "io",
+      "direction": "inout",
+      "port": "scl",
+      "width": 1
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "port": "irq",
+      "width": 1
+    }
+  ],
+  "tags": [
+    "i2c",
+    "peripheral",
+    "chipfoundry",
+    "sky130"
+  ]
+}

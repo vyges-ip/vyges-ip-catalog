@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "secworks-aes",
+  "version": "0.1.0",
+  "description": "Verilog implementation of the AES (Advanced Encryption Standard) symmetric block cipher per NIST FIPS 197. Supports both AES-128 and AES-256 keys. ECB-mode core; modes of operation (CBC, CTR, GCM) layered externally. From the well-regarded secworks family of crypto IPs with CI verification.",
+  "license": "BSD-2-Clause",
+  "maturity": "stable",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital",
+    "crypto",
+    "block-cipher"
+  ],
+  "created": "2026-05-20T21:42:40Z",
+  "updated": "2026-05-20T21:42:40Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/secworks/aes",
+    "commit": "80dc4718e1dcbbdb4b0dd1bdb393d8f7b98981dc",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk",
+      "width": 1
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "reset_n",
+      "width": 1,
+      "description": "Active-low reset"
+    },
+    {
+      "type": "digital",
+      "direction": "input",
+      "port": "encdec",
+      "width": 1,
+      "description": "0=decrypt, 1=encrypt"
+    },
+    {
+      "type": "digital",
+      "direction": "input",
+      "port": "init",
+      "width": 1,
+      "description": "Strobe to load + expand key"
+    },
+    {
+      "type": "digital",
+      "direction": "input",
+      "port": "next",
+      "width": 1,
+      "description": "Strobe to process next block"
+    },
+    {
+      "type": "digital",
+      "direction": "input",
+      "port": "key",
+      "width": 256,
+      "description": "Key (128 or 256 bits used per keylen)"
+    },
+    {
+      "type": "digital",
+      "direction": "input",
+      "port": "keylen",
+      "width": 1,
+      "description": "0=AES-128, 1=AES-256"
+    },
+    {
+      "type": "digital",
+      "direction": "input",
+      "port": "block",
+      "width": 128,
+      "description": "Input plaintext/ciphertext block"
+    },
+    {
+      "type": "digital",
+      "direction": "output",
+      "port": "result",
+      "width": 128,
+      "description": "Output ciphertext/plaintext block"
+    },
+    {
+      "type": "digital",
+      "direction": "output",
+      "port": "ready",
+      "width": 1,
+      "description": "Core ready (post init or post next)"
+    },
+    {
+      "type": "digital",
+      "direction": "output",
+      "port": "result_valid",
+      "width": 1
+    }
+  ],
+  "tags": [
+    "aes",
+    "aes-128",
+    "aes-256",
+    "crypto",
+    "block-cipher",
+    "nist-fips-197",
+    "secworks"
+  ]
+}

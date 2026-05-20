@@ -1,0 +1,82 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "ef-wdt32-1",
+  "version": "0.1.0",
+  "description": "Simple 32-bit watchdog timer from Efabless/ChipFoundry. Loadable down-counter decremented every system clock cycle; raises TO (timeout) IRQ on zero and reloads. Bark-only (IRQ on timeout \u2014 no integrated bite-reset). APB / AHB-Lite / Wishbone wrappers. For full bark+bite production WDT, prefer opentitan-aon-timer.",
+  "license": "Apache-2.0",
+  "maturity": "stable",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital",
+    "peripheral",
+    "watchdog"
+  ],
+  "created": "2026-05-20T21:41:17Z",
+  "updated": "2026-05-20T21:41:17Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipfoundry/EF_WDT32-1",
+    "commit": "1a6ab2fa4df4cdb39b153941101c6f730f10fa6b",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "clk_i",
+      "width": 1
+    },
+    {
+      "type": "reset",
+      "direction": "input",
+      "protocol": "generic",
+      "port": "rst_i",
+      "width": 1
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "wishbone-b4"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "apb"
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "ahb-lite"
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "port": "IRQ",
+      "width": 1,
+      "description": "Bark IRQ on timeout (no integrated bite-reset)"
+    }
+  ],
+  "tags": [
+    "watchdog",
+    "wdt",
+    "timer",
+    "peripheral",
+    "chipfoundry",
+    "efabless",
+    "sky130"
+  ]
+}

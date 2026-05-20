@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "cf-gpio-config",
+  "version": "0.1.0",
+  "description": "Parameterized GPIO pad configuration wrapper for ChipFoundry OpenFrame projects. Set the pad mode once (digital input/output, analog passthrough, pull-up/down, drive strength) via a single parameter; hides OpenFrame's pad-cell config registers.",
+  "license": "Apache-2.0",
+  "maturity": "stable",
+  "target": [
+    "asic"
+  ],
+  "design_type": [
+    "digital",
+    "io",
+    "openframe",
+    "harness-support"
+  ],
+  "created": "2026-05-20T21:41:53Z",
+  "updated": "2026-05-20T21:41:53Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipfoundry/CF_gpio_config",
+    "commit": "a8a225255573c0c20dd782916001a0d1b5759b61",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "io",
+      "direction": "output",
+      "port": "gpio_mode",
+      "description": "Configured pad mode value driven to OpenFrame pad config bus"
+    }
+  ],
+  "tags": [
+    "gpio",
+    "openframe",
+    "pad",
+    "chipfoundry",
+    "sky130",
+    "harness-support"
+  ]
+}

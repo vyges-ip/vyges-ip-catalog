@@ -1,11 +1,11 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-05-20T20:10:05+00:00",
-  "generated_sha": "747eeb64c89d08f3df2742103f903b184a1b9a6c",
-  "repo": "vyges-ip/vyges-ip-catalog",
+  "generated_at": "2026-05-20T21:48:10+00:00",
+  "generated_sha": "",
+  "repo": "",
   "org": "vyges-ip",
-  "repo_count": 143,
-  "with_metadata": 137,
+  "repo_count": 152,
+  "with_metadata": 146,
   "without_metadata": 3,
   "ips": [
     {
@@ -270,6 +270,42 @@
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/canakari/main/vyges-metadata.json"
     },
     {
+      "repo": "vyges-ip/cf-gpio-config",
+      "name": "cf-gpio-config",
+      "version": "0.1.0",
+      "content_hash": "3afd3e933e3e86197e662cb67ede3820caaf66190d150f16e70cc84d112c08b8",
+      "default_branch": "main",
+      "metadata_path": "metadata/cf-gpio-config.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-gpio-config/main/vyges-metadata.json"
+    },
+    {
+      "repo": "vyges-ip/cf-i2c",
+      "name": "cf-i2c",
+      "version": "0.1.0",
+      "content_hash": "5d351df42d32ef60893cbc0f2bc8ec8ef772e65b28580b35b13465c719641a15",
+      "default_branch": "main",
+      "metadata_path": "metadata/cf-i2c.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-i2c/main/vyges-metadata.json"
+    },
+    {
+      "repo": "vyges-ip/cf-i2s",
+      "name": "cf-i2s",
+      "version": "0.1.0",
+      "content_hash": "c154b697fc6ebb96de7082fc40261e9929266c0b7cb6ca46708009456b1375c6",
+      "default_branch": "main",
+      "metadata_path": "metadata/cf-i2s.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-i2s/main/vyges-metadata.json"
+    },
+    {
+      "repo": "vyges-ip/cf-spi",
+      "name": "cf-spi",
+      "version": "0.1.0",
+      "content_hash": "b0420506d0d221148e1885fbac34d17992c870af3091886a457b263d6a73de84",
+      "default_branch": "main",
+      "metadata_path": "metadata/cf-spi.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-spi/main/vyges-metadata.json"
+    },
+    {
       "repo": "vyges-ip/cf-sram-1024x32",
       "name": "cf-sram",
       "version": "1.0.0",
@@ -277,6 +313,24 @@
       "default_branch": "main",
       "metadata_path": "metadata/cf-sram-1024x32.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-sram-1024x32/main/vyges-metadata.json"
+    },
+    {
+      "repo": "vyges-ip/cf-tmr32",
+      "name": "cf-tmr32",
+      "version": "0.1.0",
+      "content_hash": "63e48638db5a58fa6ad5c704a1ca142df21daa271b9c4c91320c65e723017b16",
+      "default_branch": "main",
+      "metadata_path": "metadata/cf-tmr32.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-tmr32/main/vyges-metadata.json"
+    },
+    {
+      "repo": "vyges-ip/cf-uart",
+      "name": "cf-uart",
+      "version": "0.1.0",
+      "content_hash": "29ee0b42cf5c60793f0055d9610d778c81739445fc13d1c82d299611c0248c9b",
+      "default_branch": "main",
+      "metadata_path": "metadata/cf-uart.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-uart/main/vyges-metadata.json"
     },
     {
       "repo": "vyges-ip/common_cells",
@@ -466,6 +520,15 @@
       "default_branch": "main",
       "metadata_path": "metadata/cve2.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cve2/main/vyges-metadata.json"
+    },
+    {
+      "repo": "vyges-ip/ef-wdt32-1",
+      "name": "ef-wdt32-1",
+      "version": "0.1.0",
+      "content_hash": "4d20bf5933a2538bd24aad930e4b475610682f83ad3acade297e6789ad3514bc",
+      "default_branch": "main",
+      "metadata_path": "metadata/ef-wdt32-1.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/ef-wdt32-1/main/vyges-metadata.json"
     },
     {
       "repo": "vyges-ip/fast-fourier-transform-ip",
@@ -954,6 +1017,15 @@
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sd-card-controller/main/vyges-metadata.json"
     },
     {
+      "repo": "vyges-ip/secworks-aes",
+      "name": "secworks-aes",
+      "version": "0.1.0",
+      "content_hash": "638db5550819bd42854a732be9c9cbf314216d7fccb695854337308180369c20",
+      "default_branch": "main",
+      "metadata_path": "metadata/secworks-aes.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/secworks-aes/main/vyges-metadata.json"
+    },
+    {
       "repo": "vyges-ip/serv",
       "name": "serv",
       "version": "0.1.0",
@@ -997,6 +1069,15 @@
       "default_branch": "main",
       "metadata_path": "metadata/sky130-delta-sigma-adc.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-delta-sigma-adc/main/vyges-metadata.json"
+    },
+    {
+      "repo": "vyges-ip/sky130-ef-adc3v-12bit",
+      "name": "sky130-ef-adc3v-12bit",
+      "version": "0.1.0",
+      "content_hash": "1d4cb8e0d5ed9e42319f633b3e0b90b317ad0b4df0162136f9d049b8ba1766c6",
+      "default_branch": "main",
+      "metadata_path": "metadata/sky130-ef-adc3v-12bit.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-ef-adc3v-12bit/main/vyges-metadata.json"
     },
     {
       "repo": "vyges-ip/sky130-opamp",
