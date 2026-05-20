@@ -1,10 +1,10 @@
 # Vyges IP Catalog — Metadata Quality Scores
 
 - **Aggregate:** 90/100
-- **IPs scored:** 135
+- **IPs scored:** 137
 - **Good (≥80):** 126
-- **Medium (60–79):** 6
-- **High-risk (<60):** 3
+- **Medium (60–79):** 7
+- **High-risk (<60):** 4
 - **Scorer:** [vyges/metadata-scorer-action@v1](https://github.com/vyges/metadata-scorer-action/tree/v1)
 
 ## Needs work (bottom 20)
@@ -14,8 +14,10 @@
 | `caliptra-libs` | 40 | High-risk | interfaces: interfaces (none declared) |
 | `caliptra-uart` | 40 | High-risk | interfaces: interfaces (none declared) |
 | `opentitan-flash-ctrl` | 40 | High-risk | interfaces: interfaces (none declared) |
+| `usb-cdc` | 55 | High-risk | interfaces: interfaces[].type=bus |
 | `hardfloat` | 60 | Medium | interfaces: interfaces (none declared) |
 | `opentitan-racl-ctrl` | 60 | Medium | interfaces: interfaces (none declared) |
+| `wrapped-wb-hyperram` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `tech_cells_generic` | 65 | Medium | interfaces: interfaces (none declared) |
 | `cf-sram-1024x32` | 70 | Medium | interfaces: interfaces[].type=reset |
 | `vyges-pinmux-lite` | 71 | Medium | implementation: asic{} or fpga{} |
@@ -29,8 +31,6 @@
 | `coralnpu-l1-dcache` | 83 | Good | interfaces: interfaces[].bus.signals |
 | `coralnpu-tlul-pkg` | 83 | Good | interfaces: interfaces[].type=clock |
 | `opentitan-otp-ctrl` | 83 | Good | interfaces: interfaces[].type=clock |
-| `riscduino-pwm` | 83 | Good | parameters: parameters[].description |
-| `sky130-potentiometric-dac` | 83 | Good | interfaces: interfaces[].type=clock |
 
 ## Top 20 (highest scores)
 

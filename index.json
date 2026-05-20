@@ -1,8 +1,8 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-05-20T02:02:26+00:00",
-  "generated_sha": "",
-  "repo": "",
+  "generated_at": "2026-05-20T02:53:13+00:00",
+  "generated_sha": "9be5b612f836219b1d979174be0dfa475fba9560",
+  "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 143,
   "with_metadata": 137,

@@ -1,11 +1,11 @@
 {
   "scorer_ref": "v1",
-  "ip_count": 135,
+  "ip_count": 137,
   "aggregate": 90,
   "tiers": {
     "Good": 126,
-    "Medium": 6,
-    "High-risk": 3
+    "Medium": 7,
+    "High-risk": 4
   },
   "ips": [
     {
@@ -2181,6 +2181,25 @@
       ]
     },
     {
+      "ip": "wrapped-wb-hyperram",
+      "score": 63,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
+      ]
+    },
+    {
       "ip": "hardfloat",
       "score": 60,
       "tier": "Medium",
@@ -2214,6 +2233,25 @@
         "interfaces: interfaces (none declared)",
         "parameters: parameters (none declared)",
         "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "usb-cdc",
+      "score": 55,
+      "tier": "High-risk",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
       ]
     },
     {
