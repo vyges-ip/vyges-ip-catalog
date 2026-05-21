@@ -1,10 +1,10 @@
 # Vyges IP Catalog — Metadata Quality Scores
 
-- **Aggregate:** 90/100
-- **IPs scored:** 137
+- **Aggregate:** 88/100
+- **IPs scored:** 146
 - **Good (≥80):** 126
-- **Medium (60–79):** 7
-- **High-risk (<60):** 4
+- **Medium (60–79):** 13
+- **High-risk (<60):** 7
 - **Scorer:** [vyges/metadata-scorer-action@v1](https://github.com/vyges/metadata-scorer-action/tree/v1)
 
 ## Needs work (bottom 20)
@@ -14,23 +14,23 @@
 | `caliptra-libs` | 40 | High-risk | interfaces: interfaces (none declared) |
 | `caliptra-uart` | 40 | High-risk | interfaces: interfaces (none declared) |
 | `opentitan-flash-ctrl` | 40 | High-risk | interfaces: interfaces (none declared) |
+| `cf-gpio-config` | 45 | High-risk | interfaces: interfaces[].type=clock |
+| `sky130-ef-adc3v-12bit` | 50 | High-risk | interfaces: interfaces[].type=reset |
+| `secworks-aes` | 55 | High-risk | interfaces: interfaces[].type=bus |
 | `usb-cdc` | 55 | High-risk | interfaces: interfaces[].type=bus |
 | `hardfloat` | 60 | Medium | interfaces: interfaces (none declared) |
 | `opentitan-racl-ctrl` | 60 | Medium | interfaces: interfaces (none declared) |
+| `cf-i2c` | 63 | Medium | interfaces: interfaces[].bus.signals |
+| `cf-i2s` | 63 | Medium | interfaces: interfaces[].bus.signals |
+| `cf-spi` | 63 | Medium | interfaces: interfaces[].bus.signals |
+| `cf-tmr32` | 63 | Medium | interfaces: interfaces[].bus.signals |
+| `cf-uart` | 63 | Medium | interfaces: interfaces[].bus.signals |
+| `ef-wdt32-1` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `wrapped-wb-hyperram` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `tech_cells_generic` | 65 | Medium | interfaces: interfaces (none declared) |
 | `cf-sram-1024x32` | 70 | Medium | interfaces: interfaces[].type=reset |
 | `vyges-pinmux-lite` | 71 | Medium | implementation: asic{} or fpga{} |
 | `opentitan-prim-xilinx` | 75 | Medium | interfaces: interfaces[].type=clock |
-| `sky130-bandgap-reference` | 80 | Good | interfaces: interfaces[].type=clock |
-| `sky130-opamp` | 80 | Good | interfaces: interfaces[].type=clock |
-| `tlul-apb-adapter` | 80 | Good | interfaces: interfaces[].type=clock |
-| `caliptra-ahb-lite-bus` | 83 | Good | interfaces: interfaces[].type=clock |
-| `caliptra-datavault` | 83 | Good | interfaces: interfaces[].type=clock |
-| `caliptra-edn` | 83 | Good | interfaces: interfaces[].type=clock |
-| `coralnpu-l1-dcache` | 83 | Good | interfaces: interfaces[].bus.signals |
-| `coralnpu-tlul-pkg` | 83 | Good | interfaces: interfaces[].type=clock |
-| `opentitan-otp-ctrl` | 83 | Good | interfaces: interfaces[].type=clock |
 
 ## Top 20 (highest scores)
 

@@ -1,11 +1,11 @@
 {
   "scorer_ref": "v1",
-  "ip_count": 137,
-  "aggregate": 90,
+  "ip_count": 146,
+  "aggregate": 88,
   "tiers": {
     "Good": 126,
-    "Medium": 7,
-    "High-risk": 4
+    "Medium": 13,
+    "High-risk": 7
   },
   "ips": [
     {
@@ -2181,6 +2181,120 @@
       ]
     },
     {
+      "ip": "cf-i2c",
+      "score": 63,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
+      ]
+    },
+    {
+      "ip": "cf-i2s",
+      "score": 63,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
+      ]
+    },
+    {
+      "ip": "cf-spi",
+      "score": 63,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
+      ]
+    },
+    {
+      "ip": "cf-tmr32",
+      "score": 63,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
+      ]
+    },
+    {
+      "ip": "cf-uart",
+      "score": 63,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
+      ]
+    },
+    {
+      "ip": "ef-wdt32-1",
+      "score": 63,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
+      ]
+    },
+    {
       "ip": "wrapped-wb-hyperram",
       "score": 63,
       "tier": "Medium",
@@ -2236,6 +2350,25 @@
       ]
     },
     {
+      "ip": "secworks-aes",
+      "score": 55,
+      "tier": "High-risk",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
+      ]
+    },
+    {
       "ip": "usb-cdc",
       "score": 55,
       "tier": "High-risk",
@@ -2248,6 +2381,47 @@
         "provenance": 10
       },
       "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
+      ]
+    },
+    {
+      "ip": "sky130-ef-adc3v-12bit",
+      "score": 50,
+      "tier": "High-risk",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 10,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].type=bus",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
+      ]
+    },
+    {
+      "ip": "cf-gpio-config",
+      "score": 45,
+      "tier": "High-risk",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 5,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=clock",
+        "interfaces: interfaces[].type=reset",
         "interfaces: interfaces[].type=bus",
         "parameters: parameters (none declared)",
         "implementation: asic{} or fpga{}",
