@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-05-21T19:50:13+00:00",
-  "generated_sha": "62eec53bea503e2417f31bd0487e50973c03b747",
+  "generated_at": "2026-05-22T02:56:13+00:00",
+  "generated_sha": "10e68fd64b25cd0eafd320baa8d56e8d75b1cbc7",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 152,
@@ -1128,7 +1128,7 @@
       "repo": "vyges-ip/tlul-apb-adapter",
       "name": "tlul-apb-adapter",
       "version": "1.0.0",
-      "content_hash": "53bb982850f436b2e9c4edfd04a59deba94482a74ff1fd8814c14359d549013b",
+      "content_hash": "a317ace23b1effa74c69f1347157d1054c49f3091580f3cdd7a609bf26831c53",
       "default_branch": "main",
       "metadata_path": "metadata/tlul-apb-adapter.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/tlul-apb-adapter/main/vyges-metadata.json"
