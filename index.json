@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-05-24T19:12:49+00:00",
-  "generated_sha": "7bb6818f7b013e4f4c9f315e28a200792a10ffe5",
+  "generated_at": "2026-05-25T03:29:06+00:00",
+  "generated_sha": "4dbc716edacf9b8a36b610b3aaaa5768a9473c9c",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 152,
@@ -957,7 +957,7 @@
       "repo": "vyges-ip/picorv32",
       "name": "picorv32",
       "version": "0.1.0",
-      "content_hash": "93fa4b10017cba52bcf23fd4db9b6e4e3bec1eba1161a05791fc7de7881029b2",
+      "content_hash": "80afc1afa96b7b39561e3b1ca3507c23c63dd13ebc36cae1eb68da416f70fb80",
       "default_branch": "main",
       "metadata_path": "metadata/picorv32.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/picorv32/main/vyges-metadata.json"

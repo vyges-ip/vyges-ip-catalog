@@ -41,6 +41,7 @@
 | `openfasoc-temp-sensor` | 100 |
 | `opentitan-rv-core-ibex` | 100 |
 | `opentitan-uart` | 100 |
+| `picorv32` | 100 |
 | `vyges-rv-plic-lite` | 100 |
 | `vyges-spi-host-lite` | 100 |
 | `32bit-risc-core` | 98 |
@@ -55,4 +56,3 @@
 | `caliptra-sha512` | 98 |
 | `coralnpu-core` | 98 |
 | `coralnpu-i2c-master` | 98 |
-| `coralnpu-l1-icache` | 98 |
