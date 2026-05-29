@@ -1,0 +1,91 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "cf-ip-util",
+  "version": "1.0.0",
+  "description": "ChipFoundry CF_IP_UTIL \u2014 a library of small reusable Verilog utility primitives for building digital IPs: synchronizers (cf_util_sync), clock gating cells (cf_util_gating_cell), glitch filters (cf_util_glitch_filter), a synchronous FIFO (cf_util_fifo), clock muxes (cf_util_clkmux_2x1/4x1), edge detectors (cf_util_ned/ped), and a ticker (cf_util_ticker). Shipped as a single file rtl/cf_util_lib.v. Vendored as a transitive dependency of ChipFoundry IPs (e.g. cf-uart's CF_UART instantiates cf_util_fifo/sync/gating_cell/glitch_filter). Apache-2.0.",
+  "license": "Apache-2.0",
+  "maturity": "production",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-05-29T16:46:39Z",
+  "updated": "2026-05-29T16:46:39Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/chipfoundry/CF_IP_UTIL",
+    "commit": "93e97e8528932645d5026cde926dbca146982a2f",
+    "version": "CF_IP_UTIL-v1.0.0",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Vyges",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "direction": "input",
+      "protocol": "standard",
+      "description": "Utility-library primitives are clocked combinational/sequential cells; clock/reset ports are per-module (see rtl/cf_util_lib.v)."
+    }
+  ],
+  "modules": [
+    {
+      "name": "cf_util_fifo",
+      "description": "Synchronous FIFO (parameterized depth/width)."
+    },
+    {
+      "name": "cf_util_sync",
+      "description": "Multi-flop synchronizer for crossing clock domains."
+    },
+    {
+      "name": "cf_util_gating_cell",
+      "description": "Integrated clock-gating cell wrapper."
+    },
+    {
+      "name": "cf_util_glitch_filter",
+      "description": "Input glitch filter / debouncer."
+    },
+    {
+      "name": "cf_util_clkmux_2x1",
+      "description": "2:1 clock multiplexer."
+    },
+    {
+      "name": "cf_util_clkmux_4x1",
+      "description": "4:1 clock multiplexer."
+    },
+    {
+      "name": "cf_util_ned",
+      "description": "Negative-edge detector."
+    },
+    {
+      "name": "cf_util_ped",
+      "description": "Positive-edge detector."
+    },
+    {
+      "name": "cf_util_ticker",
+      "description": "Periodic tick / clock-divider generator."
+    }
+  ],
+  "tags": [
+    "utility",
+    "library",
+    "cell-library",
+    "synchronizer",
+    "fifo",
+    "clock-gating",
+    "chipfoundry",
+    "cf",
+    "mirror"
+  ]
+}

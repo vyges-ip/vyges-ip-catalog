@@ -1,11 +1,11 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-05-29T14:57:53+00:00",
-  "generated_sha": "8640e80a2ab5ccdf6609064dcac32cc24dfe177f",
+  "generated_at": "2026-05-29T20:18:09+00:00",
+  "generated_sha": "63a5538cbe5fba97fba1745b3878dc16454560e1",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
-  "repo_count": 152,
-  "with_metadata": 146,
+  "repo_count": 153,
+  "with_metadata": 147,
   "without_metadata": 3,
   "ips": [
     {
@@ -297,6 +297,15 @@
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-i2s/main/vyges-metadata.json"
     },
     {
+      "repo": "vyges-ip/cf-ip-util",
+      "name": "cf-ip-util",
+      "version": "1.0.0",
+      "content_hash": "2d0d5c670a70d2156ba55c438dae4553aebf1b3b5f1154e11ab86fce46a47833",
+      "default_branch": "main",
+      "metadata_path": "metadata/cf-ip-util.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-ip-util/main/vyges-metadata.json"
+    },
+    {
       "repo": "vyges-ip/cf-spi",
       "name": "cf-spi",
       "version": "0.1.0",
@@ -327,7 +336,7 @@
       "repo": "vyges-ip/cf-uart",
       "name": "cf-uart",
       "version": "0.1.0",
-      "content_hash": "cd36f1836e0e094a8e60affb20f891f449dcb5971b89c5cfe0a20c45fe5ea67f",
+      "content_hash": "4b836f7ad29a1940c54da14648285647d1a3c8ab64c22f724a1990f7efe12c67",
       "default_branch": "main",
       "metadata_path": "metadata/cf-uart.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-uart/main/vyges-metadata.json"

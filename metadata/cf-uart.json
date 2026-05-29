@@ -16,7 +16,7 @@
     "communication"
   ],
   "created": "2026-05-20T21:38:52Z",
-  "updated": "2026-05-20T21:38:52Z",
+  "updated": "2026-05-29T16:55:18Z",
   "source": {
     "type": "git",
     "url": "https://github.com/chipfoundry/CF_UART",
@@ -113,5 +113,31 @@
     "peripheral",
     "chipfoundry",
     "sky130"
+  ],
+  "integration": {
+    "soc_generator_hints": {
+      "top_module": "CF_UART_APB",
+      "clock": {
+        "port": "PCLK"
+      },
+      "reset": {
+        "port": "PRESETn"
+      },
+      "bus_slave": {
+        "addr_width": 32,
+        "ports": {
+          "psel": "PSEL",
+          "penable": "PENABLE",
+          "pwrite": "PWRITE",
+          "paddr": "PADDR",
+          "pwdata": "PWDATA",
+          "prdata": "PRDATA",
+          "pready": "PREADY"
+        }
+      }
+    }
+  },
+  "dependencies": [
+    "cf-ip-util"
   ]
 }

@@ -1,10 +1,10 @@
 # Vyges IP Catalog — Metadata Quality Scores
 
 - **Aggregate:** 88/100
-- **IPs scored:** 146
+- **IPs scored:** 147
 - **Good (≥80):** 126
 - **Medium (60–79):** 13
-- **High-risk (<60):** 7
+- **High-risk (<60):** 8
 - **Scorer:** [vyges/metadata-scorer-action@v1](https://github.com/vyges/metadata-scorer-action/tree/v1)
 
 ## Needs work (bottom 20)
@@ -15,6 +15,7 @@
 | `caliptra-uart` | 40 | High-risk | interfaces: interfaces (none declared) |
 | `opentitan-flash-ctrl` | 40 | High-risk | interfaces: interfaces (none declared) |
 | `cf-gpio-config` | 45 | High-risk | interfaces: interfaces[].type=clock |
+| `cf-ip-util` | 50 | High-risk | interfaces: interfaces[].type=reset |
 | `sky130-ef-adc3v-12bit` | 50 | High-risk | interfaces: interfaces[].type=reset |
 | `secworks-aes` | 55 | High-risk | interfaces: interfaces[].type=bus |
 | `usb-cdc` | 55 | High-risk | interfaces: interfaces[].type=bus |
@@ -30,7 +31,6 @@
 | `cf-sram-1024x32` | 70 | Medium | interfaces: interfaces[].type=reset |
 | `vyges-pinmux-lite` | 71 | Medium | implementation: asic{} or fpga{} |
 | `cf-uart` | 73 | Medium | interfaces: interfaces[].bus.signals |
-| `opentitan-prim-xilinx` | 75 | Medium | interfaces: interfaces[].type=clock |
 
 ## Top 20 (highest scores)
 

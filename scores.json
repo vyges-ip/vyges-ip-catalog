@@ -1,11 +1,11 @@
 {
   "scorer_ref": "v1",
-  "ip_count": 146,
+  "ip_count": 147,
   "aggregate": 88,
   "tiers": {
     "Good": 126,
     "Medium": 13,
-    "High-risk": 7
+    "High-risk": 8
   },
   "ips": [
     {
@@ -2377,6 +2377,26 @@
         "provenance": 10
       },
       "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
+      ]
+    },
+    {
+      "ip": "cf-ip-util",
+      "score": 50,
+      "tier": "High-risk",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 10,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=reset",
         "interfaces: interfaces[].type=bus",
         "parameters: parameters (none declared)",
         "implementation: asic{} or fpga{}",
