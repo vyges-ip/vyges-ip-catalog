@@ -1,10 +1,10 @@
 # Metadata schema drift report
 
-- **Generated:** 2026-05-29T16:23:58+00:00
+- **Generated:** 2026-05-29T20:42:55+00:00
 - **Schema:** bundled Vyges metadata schema (vendored at `schema/vyges-metadata.schema.json`)
-- **Total IP metadata files:** 146
-- **Failing schema validation:** 35/146
-- **Passing:** 111/146
+- **Total IP metadata files:** 147
+- **Failing schema validation:** 37/147
+- **Passing:** 110/147
 
 > Report-only. This check never fails the build; it is a periodic drift signal.
 
@@ -13,9 +13,9 @@
 | Category | Count |
 | --- | ---: |
 | enum_violation | 36 |
-| pattern_violation | 16 |
+| pattern_violation | 17 |
 | missing_required | 11 |
-| type_violation | 7 |
+| type_violation | 8 |
 | additional_property | 7 |
 | unknown_top_level_property | 5 |
 
@@ -43,6 +43,8 @@
 | `adams-bridge.json` | 1 |
 | `caliptra-csrng.json` | 1 |
 | `caliptra-doe.json` | 1 |
+| `cf-ip-util.json` | 1 |
+| `cf-uart.json` | 1 |
 | `cva6.json` | 1 |
 | `i3c-core.json` | 1 |
 | `ibex.json` | 1 |
@@ -187,6 +189,14 @@
 ### `caliptra-doe.json` (1)
 
 - [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
+
+### `cf-ip-util.json` (1)
+
+- [<root>] 'modules' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
+
+### `cf-uart.json` (1)
+
+- [dependencies/0] 'cf-ip-util' is not of type 'object'
 
 ### `cva6.json` (1)
 
