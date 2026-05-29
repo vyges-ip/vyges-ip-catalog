@@ -82,35 +82,27 @@
       "description": "TileLink UL output interface for register access."
     },
     {
-      "type": "interrupt",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "intg_err_o",
-      "width": 1,
-      "description": "Integrity error output signal for alert generation."
-    },
-    {
-      "type": "custom",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "reg2hw",
-      "width": 249,
-      "description": "Register-to-hardware interface for write operations."
-    },
-    {
       "type": "custom",
       "direction": "input",
       "protocol": "custom",
-      "port": "hw2reg",
-      "width": 249,
-      "description": "Hardware-to-register interface for read operations."
+      "port": "alert_rx_i",
+      "width": 1,
+      "description": "Differential alert receive input from the alert handler."
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "alert_tx_o",
+      "width": 1,
+      "description": "Differential alert transmit output to the alert handler."
     },
     {
       "type": "custom",
       "direction": "input",
       "protocol": "custom",
       "port": "racl_policies_i",
-      "width": 14,
+      "width": 1,
       "description": "Input for RACL policy vector."
     },
     {
@@ -120,9 +112,77 @@
       "port": "racl_error_o",
       "width": 1,
       "description": "Output for RACL error log."
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "lc_escalate_en_i",
+      "width": 1,
+      "description": "Life-cycle escalation enable input used to trigger watchdog escalation."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "intr_wkup_timer_expired_o",
+      "width": 1,
+      "description": "Interrupt output asserted when the wakeup timer expires."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "intr_wdog_timer_bark_o",
+      "width": 1,
+      "description": "Interrupt output asserted when the watchdog timer barks."
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "nmi_wdog_timer_bark_o",
+      "width": 1,
+      "description": "Non-maskable interrupt output asserted when the watchdog timer barks."
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "wkup_req_o",
+      "width": 1,
+      "description": "Wakeup request output in the always-on clock domain."
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "aon_timer_rst_req_o",
+      "width": 1,
+      "description": "Reset request output in the always-on clock domain."
+    },
+    {
+      "type": "custom",
+      "direction": "input",
+      "protocol": "custom",
+      "port": "sleep_mode_i",
+      "width": 1,
+      "description": "Sleep mode indication input from the asynchronous domain."
     }
   ],
   "parameters": [
+    {
+      "name": "AlertAsyncOn",
+      "type": "logic",
+      "default": "{aon_timer_reg_pkg::NumAlerts{1'b1}}",
+      "description": "Per-alert asynchronous (clock-domain-crossing) enable bit vector."
+    },
+    {
+      "name": "AlertSkewCycles",
+      "type": "int",
+      "default": 1,
+      "description": "Number of cycles a differential skew is tolerated on the alert signal."
+    },
     {
       "name": "EnableRacl",
       "type": "bit",

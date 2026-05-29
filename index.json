@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-05-29T02:51:56+00:00",
-  "generated_sha": "4c5f4d637e4568c5ec625b53fd13ecf8447bc0be",
+  "generated_at": "2026-05-29T09:46:35+00:00",
+  "generated_sha": "872dda6143d337625a8c101256066a8a89574871",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 152,
@@ -327,7 +327,7 @@
       "repo": "vyges-ip/cf-uart",
       "name": "cf-uart",
       "version": "0.1.0",
-      "content_hash": "29ee0b42cf5c60793f0055d9610d778c81739445fc13d1c82d299611c0248c9b",
+      "content_hash": "cd36f1836e0e094a8e60affb20f891f449dcb5971b89c5cfe0a20c45fe5ea67f",
       "default_branch": "main",
       "metadata_path": "metadata/cf-uart.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-uart/main/vyges-metadata.json"
@@ -435,7 +435,7 @@
       "repo": "vyges-ip/coralnpu-rvv-core",
       "name": "coralnpu-rvv-core",
       "version": "0.1.0",
-      "content_hash": "08d77f44483a4f35fc5aed2c7bbc9492f43c543a956a189554f12ca55aa0ee4c",
+      "content_hash": "21245d9ced297c8ba5d8e9c7d03d37547c6988617b8b6a6a9891101ecb8c6711",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-rvv-core.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-rvv-core/main/vyges-metadata.json"
@@ -462,7 +462,7 @@
       "repo": "vyges-ip/coralnpu-subsystem",
       "name": "coralnpu-subsystem",
       "version": "0.1.0",
-      "content_hash": "c8ee31833084b1c2f03c237e644d6345d8c8c388329064c36f7959a67dc979b7",
+      "content_hash": "7a18aa40732c5e46a3a9f3b268c9a08a239318d4c5f04439b4e98186eaa81f58",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-subsystem.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-subsystem/main/vyges-metadata.json"
@@ -624,7 +624,7 @@
       "repo": "vyges-ip/opentitan-aon-timer",
       "name": "opentitan-aon-timer",
       "version": "0.1.0",
-      "content_hash": "61ff6643c53d1499eea71974ed67b9fad996d55827d16a5429df230c2191e205",
+      "content_hash": "dd053fe620632c62a5b87453be79c68413df00214b75c797ba96d3d9d2021d71",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-aon-timer.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-aon-timer/main/vyges-metadata.json"
@@ -858,7 +858,7 @@
       "repo": "vyges-ip/opentitan-rv-core-ibex",
       "name": "opentitan-rv-core-ibex",
       "version": "0.1.0",
-      "content_hash": "e6c6aea985acbb1468d09c8e5e85d96497cd6e29624373230e1cbf5f9b279b36",
+      "content_hash": "b3ae63f98343b5c5a952d2a5a0543beb294881c445c284b305e86b45c21639da",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-rv-core-ibex.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-rv-core-ibex/main/vyges-metadata.json"
@@ -876,7 +876,7 @@
       "repo": "vyges-ip/opentitan-rv-timer",
       "name": "opentitan-rv-timer",
       "version": "0.1.0",
-      "content_hash": "a4f29c4d27ee3f71ed754cf30ff32c2e57628a8154e4d395ab7b08a298500fda",
+      "content_hash": "1eaf8959e115bee0ada125aa5d99621db0f611380fb7ee483ee8bdd3431c61f8",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-rv-timer.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-rv-timer/main/vyges-metadata.json"
@@ -1002,7 +1002,7 @@
       "repo": "vyges-ip/rocket-chip",
       "name": "rocket-chip",
       "version": "0.1.0",
-      "content_hash": "16487577ad472c2b62038c13299c05f99c0373a6b39d5d1bc2be78595eb58f31",
+      "content_hash": "22f98f44d1d9f02175897adee6054f87151e89a9440cfe624022d9cf735152de",
       "default_branch": "main",
       "metadata_path": "metadata/rocket-chip.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/rocket-chip/main/vyges-metadata.json"
@@ -1263,7 +1263,7 @@
       "repo": "vyges-ip/vyges-gpio-lite",
       "name": "vyges-gpio-lite",
       "version": "0.1.0",
-      "content_hash": "9f20629806ec02f7e0d7876abbdab31e9289a9c51111e1dd0c3b7a2f9154780a",
+      "content_hash": "4db8fa81ef4f24cd5056a3e74b4401709e0f84f86c90edf673c021254ebea4fb",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-gpio-lite.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-gpio-lite/main/vyges-metadata.json"

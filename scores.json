@@ -665,6 +665,22 @@
       ]
     },
     {
+      "ip": "vyges-gpio-lite",
+      "score": 95,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "verification: test.testbenches"
+      ]
+    },
+    {
       "ip": "caliptra-doe",
       "score": 94,
       "tier": "Good",
@@ -1583,23 +1599,6 @@
       ]
     },
     {
-      "ip": "vyges-gpio-lite",
-      "score": 93,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 23,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 10,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].bus.signals",
-        "verification: test.testbenches"
-      ]
-    },
-    {
       "ip": "vyges-rstmgr-lite",
       "score": 93,
       "tier": "Good",
@@ -2125,6 +2124,24 @@
       ]
     },
     {
+      "ip": "cf-uart",
+      "score": 73,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 10,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
+      ]
+    },
+    {
       "ip": "vyges-pinmux-lite",
       "score": 71,
       "tier": "Medium",
@@ -2237,25 +2254,6 @@
     },
     {
       "ip": "cf-tmr32",
-      "score": 63,
-      "tier": "Medium",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 23,
-        "parameters": 0,
-        "implementation": 10,
-        "verification": 0,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].bus.signals",
-        "parameters: parameters (none declared)",
-        "implementation: asic{} or fpga{}",
-        "verification: test{}"
-      ]
-    },
-    {
-      "ip": "cf-uart",
       "score": 63,
       "tier": "Medium",
       "breakdown": {

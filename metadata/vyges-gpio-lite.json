@@ -53,17 +53,22 @@
       "type": "bus",
       "direction": "slave",
       "protocol": "TL-UL",
-      "port": "tl_i",
-      "width": 1,
-      "description": "TileLink Uncached Lightweight (TL-UL) input interface"
-    },
-    {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "TL-UL",
-      "port": "tl_o",
-      "width": 1,
-      "description": "TileLink Uncached Lightweight (TL-UL) output interface"
+      "port": "tl",
+      "description": "TileLink Uncached Lightweight (TL-UL) device (slave) interface",
+      "signals": [
+        {
+          "name": "tl_i",
+          "direction": "input",
+          "type": "bus",
+          "description": "TL-UL host-to-device channel (request)"
+        },
+        {
+          "name": "tl_o",
+          "direction": "output",
+          "type": "bus",
+          "description": "TL-UL device-to-host channel (response)"
+        }
+      ]
     },
     {
       "type": "gpio",

@@ -24,12 +24,12 @@
 | `cf-i2s` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `cf-spi` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `cf-tmr32` | 63 | Medium | interfaces: interfaces[].bus.signals |
-| `cf-uart` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `ef-wdt32-1` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `wrapped-wb-hyperram` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `tech_cells_generic` | 65 | Medium | interfaces: interfaces (none declared) |
 | `cf-sram-1024x32` | 70 | Medium | interfaces: interfaces[].type=reset |
 | `vyges-pinmux-lite` | 71 | Medium | implementation: asic{} or fpga{} |
+| `cf-uart` | 73 | Medium | interfaces: interfaces[].bus.signals |
 | `opentitan-prim-xilinx` | 75 | Medium | interfaces: interfaces[].type=clock |
 
 ## Top 20 (highest scores)

@@ -66,28 +66,20 @@
       "description": "Outgoing TL-UL bus interface"
     },
     {
-      "type": "interrupt",
-      "direction": "output",
-      "protocol": "generic",
-      "port": "intg_err_o",
-      "width": 1,
-      "description": "Integrity error output signal"
-    },
-    {
-      "type": "custom",
-      "direction": "output",
-      "protocol": "custom",
-      "port": "reg2hw",
-      "width": 156,
-      "description": "Register-to-hardware interface for write operations"
-    },
-    {
       "type": "custom",
       "direction": "input",
       "protocol": "custom",
-      "port": "hw2reg",
-      "width": 68,
-      "description": "Hardware-to-register interface for read operations"
+      "port": "alert_rx_i",
+      "width": "variable",
+      "description": "Incoming differential alert handshake signals"
+    },
+    {
+      "type": "custom",
+      "direction": "output",
+      "protocol": "custom",
+      "port": "alert_tx_o",
+      "width": "variable",
+      "description": "Outgoing differential alert handshake signals"
     },
     {
       "type": "custom",
@@ -104,9 +96,29 @@
       "port": "racl_error_o",
       "width": "variable",
       "description": "Output for RACL error log"
+    },
+    {
+      "type": "interrupt",
+      "direction": "output",
+      "protocol": "generic",
+      "port": "intr_timer_expired_hart0_timer0_o",
+      "width": 1,
+      "description": "Timer expired interrupt output for hart 0, timer 0"
     }
   ],
   "parameters": [
+    {
+      "name": "AlertAsyncOn",
+      "type": "logic",
+      "default": "{NumAlerts{1'b1}}",
+      "description": "Per-alert asynchronous synchronizer enable vector"
+    },
+    {
+      "name": "AlertSkewCycles",
+      "type": "int",
+      "default": 1,
+      "description": "Number of cycles a differential skew is tolerated on the alert signal"
+    },
     {
       "name": "EnableRacl",
       "type": "bit",
@@ -116,32 +128,14 @@
     {
       "name": "RaclErrorRsp",
       "type": "bit",
-      "default": 1,
-      "description": "Enable RACL error response"
+      "default": 0,
+      "description": "Enable RACL error response (defaults to EnableRacl)"
     },
     {
       "name": "RaclPolicySelVec",
       "type": "enum",
-      "default": "{rv_timer_reg_pkg::NumRegs{0}}",
+      "default": "{NumRegs{0}}",
       "description": "RACL policy selection vector"
-    },
-    {
-      "name": "AW",
-      "type": "int",
-      "default": 9,
-      "description": "Address width"
-    },
-    {
-      "name": "DW",
-      "type": "int",
-      "default": 32,
-      "description": "Data width"
-    },
-    {
-      "name": "DBW",
-      "type": "int",
-      "default": 4,
-      "description": "Byte width"
     }
   ],
   "performance": {},
