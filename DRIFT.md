@@ -1,10 +1,10 @@
 # Metadata schema drift report
 
-- **Generated:** 2026-05-29T04:43:58+00:00
+- **Generated:** 2026-05-29T10:30:37+00:00
 - **Schema:** bundled Vyges metadata schema (vendored at `schema/vyges-metadata.schema.json`)
 - **Total IP metadata files:** 146
-- **Failing schema validation:** 36/146
-- **Passing:** 110/146
+- **Failing schema validation:** 35/146
+- **Passing:** 111/146
 
 > Report-only. This check never fails the build; it is a periodic drift signal.
 
@@ -12,7 +12,7 @@
 
 | Category | Count |
 | --- | ---: |
-| enum_violation | 42 |
+| enum_violation | 36 |
 | pattern_violation | 16 |
 | missing_required | 11 |
 | type_violation | 7 |
@@ -26,7 +26,6 @@
 | `vyges-pinmux-lite.json` | 12 |
 | `opentitan-prim-xilinx.json` | 7 |
 | `vexriscv.json` | 7 |
-| `coralnpu-rvv-core.json` | 6 |
 | `opentitan-aes.json` | 5 |
 | `usb-cdc.json` | 4 |
 | `wrapped-wb-hyperram.json` | 4 |
@@ -96,15 +95,6 @@
 - [parameters/4/type] 'plugin' is not one of ['int', 'bool', 'string', 'real', 'bit', 'enum', 'float', 'int unsigned', 'logic']
 - [parameters/5/type] 'plugin' is not one of ['int', 'bool', 'string', 'real', 'bit', 'enum', 'float', 'int unsigned', 'logic']
 - [test] 'status' is a required property
-
-### `coralnpu-rvv-core.json` (6)
-
-- [interfaces/0/type] 'instruction' is not one of ['bus', 'clock', 'reset', 'interrupt', 'custom', 'control', 'signal', 'data', 'io', 'status', 'analog', 'gpio', 'digital', 'serial', 'audio', 'debug', 'packet', 'jtag', 'tieoff', 'entropy', 'keyvault', 'power', 'alert', 'sideload', 'register', 'trace', 'ground', 'chiplet', 'lifecycle', 'rng', 'pcr_vault']
-- [interfaces/3/type] 'lsu' is not one of ['bus', 'clock', 'reset', 'interrupt', 'custom', 'control', 'signal', 'data', 'io', 'status', 'analog', 'gpio', 'digital', 'serial', 'audio', 'debug', 'packet', 'jtag', 'tieoff', 'entropy', 'keyvault', 'power', 'alert', 'sideload', 'register', 'trace', 'ground', 'chiplet', 'lifecycle', 'rng', 'pcr_vault']
-- [interfaces/4/type] 'csr' is not one of ['bus', 'clock', 'reset', 'interrupt', 'custom', 'control', 'signal', 'data', 'io', 'status', 'analog', 'gpio', 'digital', 'serial', 'audio', 'debug', 'packet', 'jtag', 'tieoff', 'entropy', 'keyvault', 'power', 'alert', 'sideload', 'register', 'trace', 'ground', 'chiplet', 'lifecycle', 'rng', 'pcr_vault']
-- [interfaces/5/type] 'retire' is not one of ['bus', 'clock', 'reset', 'interrupt', 'custom', 'control', 'signal', 'data', 'io', 'status', 'analog', 'gpio', 'digital', 'serial', 'audio', 'debug', 'packet', 'jtag', 'tieoff', 'entropy', 'keyvault', 'power', 'alert', 'sideload', 'register', 'trace', 'ground', 'chiplet', 'lifecycle', 'rng', 'pcr_vault']
-- [parameters/3/type] 'define' is not one of ['int', 'bool', 'string', 'real', 'bit', 'enum', 'float', 'int unsigned', 'logic']
-- [parameters/4/type] 'define' is not one of ['int', 'bool', 'string', 'real', 'bit', 'enum', 'float', 'int unsigned', 'logic']
 
 ### `opentitan-aes.json` (5)
 
