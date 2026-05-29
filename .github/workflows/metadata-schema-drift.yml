@@ -1,0 +1,66 @@
+name: Metadata schema drift report
+
+on:
+  schedule:
+    # Every 6 hours, offset 30 min from the metadata sync so it runs against
+    # freshly-synced metadata/.
+    - cron: '30 */6 * * *'
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/check_schema_drift.py'
+      - 'schema/vyges-metadata.schema.json'
+      - '.github/workflows/metadata-schema-drift.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: metadata-schema-drift
+  cancel-in-progress: false
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout registry repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install validator
+        run: pip install jsonschema
+
+      - name: Validate corpus against bundled schema (report-only)
+        # Never gates the build — the script always exits 0. SCHEMA_URL is
+        # optional; when unset the vendored schema/ copy is used.
+        continue-on-error: true
+        env:
+          SCHEMA_URL: ${{ vars.METADATA_SCHEMA_URL }}
+        run: |
+          python scripts/check_schema_drift.py \
+            --metadata-dir metadata \
+            --schema schema/vyges-metadata.schema.json \
+            --report DRIFT.md
+
+      - name: Commit DRIFT.md (if changed)
+        run: |
+          git config user.name  'vyges-ip-catalog-bot'
+          git config user.email 'noreply@vyges.com'
+          if [[ -n "$(git status --porcelain DRIFT.md)" ]]; then
+            git add DRIFT.md
+            git commit -m "report: refresh metadata schema drift $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          else
+            echo 'No drift change — skipping commit.'
+          fi
+
+      - name: Upload DRIFT.md artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: metadata-schema-drift
+          path: DRIFT.md
