@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-05-29T20:18:09+00:00",
-  "generated_sha": "63a5538cbe5fba97fba1745b3878dc16454560e1",
+  "generated_at": "2026-05-30T02:45:20+00:00",
+  "generated_sha": "f2247ea462383f3c4374e0d98cbf81268a73ad60",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 153,
@@ -336,7 +336,7 @@
       "repo": "vyges-ip/cf-uart",
       "name": "cf-uart",
       "version": "0.1.0",
-      "content_hash": "4b836f7ad29a1940c54da14648285647d1a3c8ab64c22f724a1990f7efe12c67",
+      "content_hash": "e10d80835baf79f5b92dcf0a9f0b78119c5a7f9c85eec0353b1f9f6371a796f5",
       "default_branch": "main",
       "metadata_path": "metadata/cf-uart.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-uart/main/vyges-metadata.json"
@@ -471,7 +471,7 @@
       "repo": "vyges-ip/coralnpu-subsystem",
       "name": "coralnpu-subsystem",
       "version": "0.1.0",
-      "content_hash": "7a18aa40732c5e46a3a9f3b268c9a08a239318d4c5f04439b4e98186eaa81f58",
+      "content_hash": "f5646e1b52cbe063b4bfe196e8e501bf28ab3a8ece9a529d0588685be144256f",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-subsystem.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-subsystem/main/vyges-metadata.json"
@@ -1011,7 +1011,7 @@
       "repo": "vyges-ip/rocket-chip",
       "name": "rocket-chip",
       "version": "0.1.0",
-      "content_hash": "22f98f44d1d9f02175897adee6054f87151e89a9440cfe624022d9cf735152de",
+      "content_hash": "52cd5ab87fd875dfc6cdd92b808e0eb8459185950c0a2c596bfc073eb6227ddb",
       "default_branch": "main",
       "metadata_path": "metadata/rocket-chip.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/rocket-chip/main/vyges-metadata.json"
