@@ -1,11 +1,11 @@
 # vyges-ip-catalog — sync summary
 
-- **Generated:** 2026-05-30T02:45:20+00:00
+- **Generated:** 2026-05-30T08:24:30+00:00
 - **Org:** `vyges-ip`
 - **Total repos:** 153
 - **With metadata:** 147
 - **Without metadata:** 3
-- **Per-IP files written this run:** 3
+- **Per-IP files written this run:** 0
 - **Per-IP files pruned this run:** 0
 - **index.json changed:** yes
 - **legacy catalog.json removed:** no
