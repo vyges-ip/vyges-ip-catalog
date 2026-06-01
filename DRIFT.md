@@ -1,6 +1,6 @@
 # Metadata schema drift report
 
-- **Generated:** 2026-06-01T05:25:47+00:00
+- **Generated:** 2026-06-01T12:17:47+00:00
 - **Schema:** bundled Vyges metadata schema (vendored at `schema/vyges-metadata.schema.json`)
 - **Total IP metadata files:** 147
 - **Failing schema validation:** 37/147
@@ -14,7 +14,7 @@
 | --- | ---: |
 | enum_violation | 36 |
 | pattern_violation | 17 |
-| missing_required | 11 |
+| missing_required | 10 |
 | type_violation | 8 |
 | additional_property | 7 |
 | unknown_top_level_property | 5 |
@@ -23,7 +23,7 @@
 
 | IP metadata file | Error count |
 | --- | ---: |
-| `vyges-pinmux-lite.json` | 12 |
+| `vyges-pinmux-lite.json` | 11 |
 | `opentitan-prim-xilinx.json` | 7 |
 | `vexriscv.json` | 7 |
 | `opentitan-aes.json` | 5 |
@@ -63,9 +63,8 @@
 
 <details><summary>Per-IP error detail</summary>
 
-### `vyges-pinmux-lite.json` (12)
+### `vyges-pinmux-lite.json` (11)
 
-- [<root>] 'x-version' is a required property
 - [<root>] 'category', 'owner', 'rtl_files', 'top_module' do not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
 - [branding] 'provider' is a required property
 - [interfaces/2/signals/0/type] 'tl_h2d_t' is not one of ['data', 'control', 'clock', 'reset', 'interrupt', 'status', 'address', 'bus']
