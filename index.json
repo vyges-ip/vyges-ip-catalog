@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-06-01T03:39:40+00:00",
-  "generated_sha": "10a60d0061c7b33d34d9ae36aa82ef11d6548c32",
+  "generated_at": "2026-06-01T11:25:57+00:00",
+  "generated_sha": "e7e7b1d411e9a190ac7ef5ea7b0c086d78f8ec2e",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 153,
@@ -1281,7 +1281,7 @@
       "repo": "vyges-ip/vyges-pinmux-lite",
       "name": "vyges-pinmux-lite",
       "version": "0.1.0",
-      "content_hash": "c7cf37b5c11e366b2f048e8bafbd2b939339b4ac04ea91531bf6d76ba779ae7d",
+      "content_hash": "259f51df47799fed7e1c53e691c4253a461cda183837fdcc87dd7d9a115808c7",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-pinmux-lite.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-pinmux-lite/main/vyges-metadata.json"
