@@ -146,6 +146,7 @@ def search_block(md: Dict) -> Dict:
         "keywords": keywords,
         "design_type": _as_list(md.get("design_type")),
         "maturity": md.get("maturity"),
+        "license": md.get("license"),
         "summary": (md.get("description") or "").strip()[:160],
     }
 
