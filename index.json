@@ -15,7 +15,31 @@
       "content_hash": "0ec0c3e2e07f8fe95c978e6e47f78698e75a3ad79f84a7dcae4337fa73e8375f",
       "default_branch": "main",
       "metadata_path": "metadata/32bit-risc-core.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/32bit-risc-core/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/32bit-risc-core/main/vyges-metadata.json",
+      "search": {
+        "category": "cpu",
+        "subcategories": [
+          "embedded",
+          "pipeline",
+          "dsp"
+        ],
+        "keywords": [
+          "risc",
+          "32-bit",
+          "5-stage-pipeline",
+          "axi-lite",
+          "harvard-architecture",
+          "branch-predictor",
+          "complex-multiply",
+          "in-order",
+          "single-issue"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A 32-bit, 5-stage pipelined RISC processor core with Harvard AXI-Lite bus interfaces, configurable single-bit branch prediction, aligned memory enforcement, 16x"
+      }
     },
     {
       "repo": "vyges-ip/adams-bridge",
@@ -24,7 +48,27 @@
       "content_hash": "edff085c87e63a482c6e844a71796743c6ea8b56e7488de4b234461a9e2ca8a0",
       "default_branch": "main",
       "metadata_path": "metadata/adams-bridge.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/adams-bridge/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/adams-bridge/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "High-Speed Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "High-Speed Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "Adams-Bridge is a silicon IP block designed for interfacing with AHB-Lite bus systems, providing robust data transfer capabilities and support for cryptographic"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-aes",
@@ -33,7 +77,31 @@
       "content_hash": "23e7923f08864a3dcaf73dfa5edd5e20bc8232687ade4361b38398e1e98f3c4b",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-aes.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-aes/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-aes/main/vyges-metadata.json",
+      "search": {
+        "category": "security",
+        "subcategories": [
+          "crypto",
+          "accelerator"
+        ],
+        "keywords": [
+          "aes",
+          "caliptra",
+          "root-of-trust",
+          "encryption",
+          "gcm",
+          "masking",
+          "dom",
+          "side-channel",
+          "tl-ul",
+          "chips-alliance"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "AES-128/192/256 cryptographic accelerator supporting ECB, CBC, CFB-128, OFB, CTR, and GCM (authenticated encryption with GHASH) modes. Features first-order Doma"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-ahb-lite-bus",
@@ -42,7 +110,27 @@
       "content_hash": "bf6056675062b4f85a614fce6bcca569de2b9d42617217f94f661ec39a95cffe",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-ahb-lite-bus.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-ahb-lite-bus/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-ahb-lite-bus/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "An AHB-Lite 2:1 multiplexer that arbitrates between two initiators and a single responder, with fixed priority for Initiator 0 and optional optimization for add"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-axi",
@@ -51,7 +139,27 @@
       "content_hash": "afae43353c305f5e55f9138aeb2d512d220afbfc41df61c5a770b0ee22fb6de4",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-axi.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-axi/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-axi/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "High-Speed Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "High-Speed Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "AXI4 Manager DMA block for high-performance data transfer, supporting configurable address, data, and user widths."
+      }
     },
     {
       "repo": "vyges-ip/caliptra-csrng",
@@ -60,7 +168,30 @@
       "content_hash": "ff52b290b7f3707811a6006d8fd1260b66b99e6571b4c72bfb04d26e45a789a3",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-csrng.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-csrng/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-csrng/main/vyges-metadata.json",
+      "search": {
+        "category": "security",
+        "subcategories": [
+          "crypto",
+          "rng"
+        ],
+        "keywords": [
+          "csrng",
+          "ctr-drbg",
+          "aes256",
+          "caliptra",
+          "root-of-trust",
+          "nist-sp800-90a",
+          "random",
+          "ahb",
+          "chips-alliance"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "CTR_DRBG (AES-256) cryptographically secure random number generator per NIST SP 800-90A. Supports multiple independent DRBG instances with Instantiate, Reseed, "
+      }
     },
     {
       "repo": "vyges-ip/caliptra-datavault",
@@ -69,7 +200,27 @@
       "content_hash": "b038e5d2870161b244986456a2066027120f57410c0f3d99e5370695aedf229c",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-datavault.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-datavault/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-datavault/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "Caliptra DataVault is a register block for secure storage and access control of sensitive data, including sticky and non-sticky registers, lockable scratch regi"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-doe",
@@ -78,7 +229,30 @@
       "content_hash": "9c58c1d7efd0e862062768f50c2354cbf245e1ca90a137cb6d1c618d6980d9e2",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-doe.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-doe/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-doe/main/vyges-metadata.json",
+      "search": {
+        "category": "security",
+        "subcategories": [
+          "crypto",
+          "key-management"
+        ],
+        "keywords": [
+          "doe",
+          "aes-cbc",
+          "de-obfuscation",
+          "caliptra",
+          "root-of-trust",
+          "keyvault",
+          "boot-security",
+          "ahb",
+          "chips-alliance"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "AES-256-CBC de-obfuscation engine for secure device secrets at boot time. Decrypts obfuscated UDS (Unique Device Secret), Field Entropy, and HEK (Hardware Embed"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-ecc",
@@ -87,7 +261,32 @@
       "content_hash": "dfb98b913625cf76e4027d955385092aa66c2e3a880a11819c72c1d3ba99cb0c",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-ecc.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-ecc/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-ecc/main/vyges-metadata.json",
+      "search": {
+        "category": "security",
+        "subcategories": [
+          "crypto",
+          "accelerator"
+        ],
+        "keywords": [
+          "ecc",
+          "ecdsa",
+          "ecdh",
+          "p384",
+          "caliptra",
+          "root-of-trust",
+          "montgomery",
+          "side-channel",
+          "rfc6979",
+          "ahb",
+          "chips-alliance"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "ECDSA/ECDH P-384 (secp384r1) accelerator with key generation, RFC 6979 deterministic signing, signature verification, ECDH shared key computation, and public ke"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-edn",
@@ -96,7 +295,27 @@
       "content_hash": "b07439845f06cfdce6ad2b2592f9698030082f273ba2eacce2b27fc52c193d5d",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-edn.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-edn/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-edn/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "True Random Number Generators (TRNG)"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "True Random Number Generators (TRNG)"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The caliptra-edn IP is a peripheral module that provides an Entropy Distribution Network (EDN) interface for secure entropy distribution, supporting FIPS-compli"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-entropy-src",
@@ -105,7 +324,31 @@
       "content_hash": "66ec0a07209c81ef772b2ccf5f6b2c448eddf91087e8c81e0a5a108e88e3ab71",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-entropy-src.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-entropy-src/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-entropy-src/main/vyges-metadata.json",
+      "search": {
+        "category": "security",
+        "subcategories": [
+          "crypto",
+          "rng",
+          "entropy"
+        ],
+        "keywords": [
+          "entropy",
+          "health-test",
+          "sha3",
+          "caliptra",
+          "root-of-trust",
+          "nist-sp800-90b",
+          "fips",
+          "ahb",
+          "chips-alliance"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "NIST SP 800-90B compliant entropy source with 5 parallel health tests (Repetitive Count, Adaptive Proportion, Markov, Bucket), SHA-3 conditioning for FIPS entro"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-hmac",
@@ -114,7 +357,31 @@
       "content_hash": "587dd35e5d7394bd9882ba484d5012a22c0c40802c1fe536435a8df0f942182b",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-hmac.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-hmac/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-hmac/main/vyges-metadata.json",
+      "search": {
+        "category": "security",
+        "subcategories": [
+          "crypto",
+          "authentication"
+        ],
+        "keywords": [
+          "hmac",
+          "sha512",
+          "caliptra",
+          "root-of-trust",
+          "mac",
+          "authentication",
+          "masked",
+          "keyvault",
+          "ahb",
+          "chips-alliance"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "HMAC-384/512 authentication engine using masked SHA-512 core with 12 LFSR entropy generators for side-channel resistance. Supports software-written keys and Cal"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-hmac-drbg",
@@ -123,7 +390,27 @@
       "content_hash": "66813204ebf62380bd11c7394ff35121ea8b716291e7ecbd8e6070586ec2bea2",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-hmac-drbg.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-hmac-drbg/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-hmac-drbg/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "True Random Number Generators (TRNG)"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "True Random Number Generators (TRNG)"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A hardware implementation of an HMAC-based Deterministic Random Bit Generator (DRBG) compliant with NIST SP 800-90A and RFC 6979, generating 384-bit random numb"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-keyvault",
@@ -132,7 +419,27 @@
       "content_hash": "c7584f6306bb35491e7b32c4c2d53c5f81cbebcbef571d90627583fea59c4b09",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-keyvault.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-keyvault/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-keyvault/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The Caliptra KeyVault is a secure key storage and management module designed for cryptographic operations, supporting up to 24 keys with 16 double words per key"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-kmac",
@@ -141,7 +448,32 @@
       "content_hash": "c5e14227746f49a097a755909ee313c7751e6b83026596bcca985065f73db546",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-kmac.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-kmac/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-kmac/main/vyges-metadata.json",
+      "search": {
+        "category": "security",
+        "subcategories": [
+          "crypto",
+          "hash"
+        ],
+        "keywords": [
+          "sha3",
+          "keccak",
+          "shake",
+          "cshake",
+          "kmac",
+          "caliptra",
+          "root-of-trust",
+          "masking",
+          "dom",
+          "fips202",
+          "chips-alliance"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "SHA-3/SHAKE/cSHAKE Keccak-based cryptographic hash engine implementing the full Keccak-f[1600] sponge construction with 24-round permutation. Supports SHA3-224/"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-lc-ctrl",
@@ -150,7 +482,27 @@
       "content_hash": "b964c994d2df454271f9c4b650119d444ad0e5842cd79aa7d158f5068ffd0d9b",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-lc-ctrl.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-lc-ctrl/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-lc-ctrl/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Fuse Controllers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Fuse Controllers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The Caliptra Life Cycle Controller (LC_CTRL) manages the lifecycle states of the chip, including manufacturing state encoding, transition counters, and secure l"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-libs",
@@ -159,7 +511,27 @@
       "content_hash": "8797101e28e04a044a1c8b7c8a69557673f8a630b14a94ddbbf11852edc33603",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-libs.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-libs/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-libs/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Miscellaneous",
+            "sub_category": "Custom Accelerators"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Miscellaneous",
+            "sub_category": "Custom Accelerators"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "draft",
+        "summary": "IP imported from https://github.com/chipsalliance/caliptra-rtl"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-pcrvault",
@@ -168,7 +540,27 @@
       "content_hash": "ae0227a7ec31e784e33ce724bb9966130fb5626e2263d922b6f69e3ef17962af",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-pcrvault.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-pcrvault/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-pcrvault/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The Caliptra PCR Vault is a hardware IP block designed for secure storage and management of Platform Configuration Registers (PCRs), supporting secure boot and "
+      }
     },
     {
       "repo": "vyges-ip/caliptra-prim",
@@ -177,7 +569,27 @@
       "content_hash": "ab87b234e5ec3d420005812884d7b5d42d6f6e70927f2bb0b9890eefb9c0f06b",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-prim.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-prim/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-prim/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "Pipeline & Bypass Logic"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "Pipeline & Bypass Logic"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A collection of foundational primitives for secure hardware design, including error correction codes (SECDED), multibit signal types, synchronization mechanisms"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-riscv-core",
@@ -186,7 +598,27 @@
       "content_hash": "8f4ec9121648bf0ff92463e48983e3c0774c788b840edb4cb752da11f407825d",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-riscv-core.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-riscv-core/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-riscv-core/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A RISC-V based processor core with integrated DMA controller, debug support, and memory interfaces, designed for secure and efficient embedded applications."
+      }
     },
     {
       "repo": "vyges-ip/caliptra-sha256",
@@ -195,7 +627,30 @@
       "content_hash": "5e807e5d5c1bcf4450052487bb2bf55c8374888c839f80ab4e748f07826a7651",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-sha256.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-sha256/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-sha256/main/vyges-metadata.json",
+      "search": {
+        "category": "security",
+        "subcategories": [
+          "crypto",
+          "hash"
+        ],
+        "keywords": [
+          "sha256",
+          "sha224",
+          "caliptra",
+          "root-of-trust",
+          "hash",
+          "winternitz",
+          "post-quantum",
+          "ahb",
+          "chips-alliance"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "SHA-256/224 cryptographic hash engine with 512-bit block processing, 64-round computation, Winternitz post-quantum signature support (variable W parameter), and"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-sha3",
@@ -204,7 +659,27 @@
       "content_hash": "917815c5e9f5a367d4dad66266035af662c44a03845894e9117c2bc5460e494f",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-sha3.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-sha3/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-sha3/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Crypto Engines"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Crypto Engines"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A hardware implementation of the SHA-3 cryptographic hash function, including support for Keccak-based Message Authentication Code (KMAC) and AHB-Lite interface"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-sha512",
@@ -213,7 +688,30 @@
       "content_hash": "1781ca080281e3cee97b4dfa12f506767327e7176636ca6b16f373e24f1c11cb",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-sha512.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-sha512/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-sha512/main/vyges-metadata.json",
+      "search": {
+        "category": "security",
+        "subcategories": [
+          "crypto",
+          "hash"
+        ],
+        "keywords": [
+          "sha512",
+          "sha384",
+          "caliptra",
+          "root-of-trust",
+          "hash",
+          "keyvault",
+          "pcr",
+          "ahb",
+          "chips-alliance"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "SHA-512/384/256/224 cryptographic hash engine with 1024-bit block processing, 80-round computation, KeyVault integration for secure key/block input and digest o"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-sha512-masked",
@@ -222,7 +720,27 @@
       "content_hash": "8992560a47f683688cc4f669a1cee3997d6e4f2cd1ee3e421d2040b91daa2667",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-sha512-masked.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-sha512-masked/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-sha512-masked/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Crypto Engines"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Crypto Engines"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A Verilog 2001 implementation of the SHA-512 cryptographic hash function with integrated masking countermeasures for side-channel attack resistance."
+      }
     },
     {
       "repo": "vyges-ip/caliptra-soc-ifc",
@@ -231,7 +749,27 @@
       "content_hash": "42e9d91f667b4496039fee14f0e1c731b434fa4cad9a4346a110b6f63975bb1b",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-soc-ifc.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-soc-ifc/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-soc-ifc/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The Caliptra SoC Interface (SoC-IFC) module provides a bridge between the SoC and the Caliptra subsystem, supporting AXI, AHB-Lite, and mailbox communication pr"
+      }
     },
     {
       "repo": "vyges-ip/caliptra-spi-host",
@@ -240,7 +778,27 @@
       "content_hash": "b8232b4ba3afbca00b7ab7bfa3b3784243cf47c12a9b289c53b5ce15b35d1ffa",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-spi-host.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-spi-host/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-spi-host/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A silicon-proven SPI Host controller with an AMBA AHB-Lite interface, supporting configurable data widths, command queues, and error handling."
+      }
     },
     {
       "repo": "vyges-ip/caliptra-tlul",
@@ -249,7 +807,27 @@
       "content_hash": "1b6b250fa899365993624203adbe11cebc2e5978b7fb4a7863c03694e3a218d9",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-tlul.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-tlul/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-tlul/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A TileLink UL adapter for SRAM-like devices, supporting byte-level writes with optional integrity and readback checks."
+      }
     },
     {
       "repo": "vyges-ip/caliptra-uart",
@@ -258,7 +836,27 @@
       "content_hash": "fea110d9fed515d03aef5ed868c08b67711c0e0105e7f0257be00679615b0286",
       "default_branch": "main",
       "metadata_path": "metadata/caliptra-uart.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-uart/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/caliptra-uart/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Miscellaneous",
+            "sub_category": "Custom Accelerators"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Miscellaneous",
+            "sub_category": "Custom Accelerators"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "draft",
+        "summary": "IP imported from https://github.com/chipsalliance/caliptra-rtl"
+      }
     },
     {
       "repo": "vyges-ip/canakari",
@@ -267,7 +865,27 @@
       "content_hash": "b0d534b8793f0c0c5bd604e088a7136184f6d1a587bb3fd96da3d99820577d16",
       "default_branch": "main",
       "metadata_path": "metadata/canakari.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/canakari/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/canakari/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "CANakari is a CAN 2.0B Controller implemented in Verilog and VHDL, designed for automotive and industrial communication systems. It supports message encapsulati"
+      }
     },
     {
       "repo": "vyges-ip/cf-gpio-config",
@@ -276,7 +894,27 @@
       "content_hash": "3afd3e933e3e86197e662cb67ede3820caaf66190d150f16e70cc84d112c08b8",
       "default_branch": "main",
       "metadata_path": "metadata/cf-gpio-config.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-gpio-config/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-gpio-config/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [],
+        "keywords": [
+          "gpio",
+          "openframe",
+          "pad",
+          "chipfoundry",
+          "sky130",
+          "harness-support"
+        ],
+        "design_type": [
+          "digital",
+          "io",
+          "openframe",
+          "harness-support"
+        ],
+        "maturity": "stable",
+        "summary": "Parameterized GPIO pad configuration wrapper for ChipFoundry OpenFrame projects. Set the pad mode once (digital input/output, analog passthrough, pull-up/down, "
+      }
     },
     {
       "repo": "vyges-ip/cf-i2c",
@@ -285,7 +923,24 @@
       "content_hash": "5d351df42d32ef60893cbc0f2bc8ec8ef772e65b28580b35b13465c719641a15",
       "default_branch": "main",
       "metadata_path": "metadata/cf-i2c.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-i2c/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-i2c/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [],
+        "keywords": [
+          "i2c",
+          "peripheral",
+          "chipfoundry",
+          "sky130"
+        ],
+        "design_type": [
+          "digital",
+          "peripheral",
+          "communication"
+        ],
+        "maturity": "stable",
+        "summary": "I2C master controller from ChipFoundry. Configurable clock rate, 7/10-bit addressing, TX/RX FIFOs. APB / AHB-Lite / Wishbone wrappers."
+      }
     },
     {
       "repo": "vyges-ip/cf-i2s",
@@ -294,7 +949,25 @@
       "content_hash": "c154b697fc6ebb96de7082fc40261e9929266c0b7cb6ca46708009456b1375c6",
       "default_branch": "main",
       "metadata_path": "metadata/cf-i2s.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-i2s/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-i2s/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [],
+        "keywords": [
+          "i2s",
+          "audio",
+          "peripheral",
+          "chipfoundry",
+          "sky130"
+        ],
+        "design_type": [
+          "digital",
+          "peripheral",
+          "audio"
+        ],
+        "maturity": "stable",
+        "summary": "I2S audio interface controller from ChipFoundry. Configurable sample width and clock divider, TX/RX FIFOs. APB / AHB-Lite / Wishbone wrappers."
+      }
     },
     {
       "repo": "vyges-ip/cf-ip-util",
@@ -303,7 +976,27 @@
       "content_hash": "2d0d5c670a70d2156ba55c438dae4553aebf1b3b5f1154e11ab86fce46a47833",
       "default_branch": "main",
       "metadata_path": "metadata/cf-ip-util.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-ip-util/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-ip-util/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [],
+        "keywords": [
+          "utility",
+          "library",
+          "cell-library",
+          "synchronizer",
+          "fifo",
+          "clock-gating",
+          "chipfoundry",
+          "cf",
+          "mirror"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "ChipFoundry CF_IP_UTIL \u2014 a library of small reusable Verilog utility primitives for building digital IPs: synchronizers (cf_util_sync), clock gating cells (cf_u"
+      }
     },
     {
       "repo": "vyges-ip/cf-spi",
@@ -312,7 +1005,26 @@
       "content_hash": "b0420506d0d221148e1885fbac34d17992c870af3091886a457b263d6a73de84",
       "default_branch": "main",
       "metadata_path": "metadata/cf-spi.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-spi/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-spi/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [],
+        "keywords": [
+          "spi",
+          "spi-master",
+          "peripheral",
+          "chipfoundry",
+          "sky130",
+          "dft"
+        ],
+        "design_type": [
+          "digital",
+          "peripheral",
+          "communication"
+        ],
+        "maturity": "stable",
+        "summary": "SPI master controller from ChipFoundry with TX/RX FIFOs. Configurable clock polarity/phase, programmable baud rate. APB / AHB-Lite / Wishbone wrappers; DFT-awar"
+      }
     },
     {
       "repo": "vyges-ip/cf-sram-1024x32",
@@ -321,7 +1033,28 @@
       "content_hash": "396671fb4d8d0a6173ea472f824d4faf268fff34c8953e4d49e2e974577538b4",
       "default_branch": "main",
       "metadata_path": "metadata/cf-sram-1024x32.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-sram-1024x32/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-sram-1024x32/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Memory",
+            "sub_category": "SRAM"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Memory",
+            "sub_category": "SRAM"
+          }
+        ],
+        "design_type": [
+          "digital",
+          "memory"
+        ],
+        "maturity": "production",
+        "summary": "ChipFoundry CF_SRAM_1024x32 \u2014 single-port synchronous SRAM in SKY130 technology. 1024 words \u00d7 32 bits, bit-enable write, separate data-in/data-out pins. Commerc"
+      }
     },
     {
       "repo": "vyges-ip/cf-tmr32",
@@ -330,7 +1063,26 @@
       "content_hash": "63e48638db5a58fa6ad5c704a1ca142df21daa271b9c4c91320c65e723017b16",
       "default_branch": "main",
       "metadata_path": "metadata/cf-tmr32.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-tmr32/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-tmr32/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [],
+        "keywords": [
+          "timer",
+          "pwm",
+          "peripheral",
+          "chipfoundry",
+          "sky130"
+        ],
+        "design_type": [
+          "digital",
+          "peripheral",
+          "timer",
+          "pwm"
+        ],
+        "maturity": "stable",
+        "summary": "32-bit timer and dual-channel PWM generator from ChipFoundry. 32-bit prescaler, up/down/up-down counting modes, one-shot or periodic operation, two independent "
+      }
     },
     {
       "repo": "vyges-ip/cf-uart",
@@ -339,7 +1091,25 @@
       "content_hash": "e10d80835baf79f5b92dcf0a9f0b78119c5a7f9c85eec0353b1f9f6371a796f5",
       "default_branch": "main",
       "metadata_path": "metadata/cf-uart.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-uart/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-uart/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [],
+        "keywords": [
+          "uart",
+          "serial",
+          "peripheral",
+          "chipfoundry",
+          "sky130"
+        ],
+        "design_type": [
+          "digital",
+          "peripheral",
+          "communication"
+        ],
+        "maturity": "stable",
+        "summary": "Configurable UART controller from ChipFoundry. Features: 5-9 data bits, even/odd/stick/no parity, 1-2 stop bits, line-break detection, configurable RX timeout, "
+      }
     },
     {
       "repo": "vyges-ip/common_cells",
@@ -348,7 +1118,27 @@
       "content_hash": "d20b222c5afeea2ccbbeaa6708076ef39ecdb0d8e37c59b56be045c710e6545d",
       "default_branch": "main",
       "metadata_path": "metadata/common_cells.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/common_cells/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/common_cells/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "Pipeline & Bypass Logic"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "Pipeline & Bypass Logic"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A collection of reusable RTL modules for common digital design tasks, including clock domain crossing, FIFOs, counters, and synchronization primitives."
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-axi2tlul",
@@ -357,7 +1147,27 @@
       "content_hash": "fb836777baa5e0645eacd73e4ef10eb4541c310b3a09cdd2ec0b7b75c09a29cf",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-axi2tlul.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-axi2tlul/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-axi2tlul/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "High-Speed Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "High-Speed Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "CoralNPU AXI4-to-TileLink-UL protocol bridge, designed to translate AXI4 transactions to TileLink-UL protocol for efficient interconnect communication in SoC de"
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-clock-gate",
@@ -366,7 +1176,27 @@
       "content_hash": "05f36f4b4d296fe51ca543f192daecce08efe99e0c90e8d619f5e9b364eff038",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-clock-gate.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-clock-gate/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-clock-gate/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Timing & Clocking",
+            "sub_category": "Clock Gating"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Timing & Clocking",
+            "sub_category": "Clock Gating"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A clock gating module for the Coral NPU, designed to reduce power consumption by selectively enabling or disabling clock signals to specific parts of the design"
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-core",
@@ -375,7 +1205,27 @@
       "content_hash": "77e66f5cdb75a6f9547c0cf0b1bf82a0de0b6c5156906d1bfb075903ca925bd7",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-core.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-core/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-core/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "Custom ISAs"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "Custom ISAs"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "CoralNPU RISC-V Core implementing RV32IMF_Zve32x ISA with scalar, floating-point, and vector pipelines, L1 caches, tightly coupled memory (TCM), and TileLink/AX"
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-dbus2axi",
@@ -384,7 +1234,27 @@
       "content_hash": "dda2c1a4623a93e5d5d94fcec5b9db5e68186df386e35257fb938e33c283d7a9",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-dbus2axi.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-dbus2axi/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-dbus2axi/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "High-Speed Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "High-Speed Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The DBus2Axi module bridges a custom data bus (DBus) to an AXI interface, supporting data transfers with configurable parameters such as address, size, and burs"
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-i2c-master",
@@ -393,7 +1263,27 @@
       "content_hash": "cd354e86c4c121f7ccd8083cf6054eaa03becd8634318ce768d5741228741e41",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-i2c-master.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-i2c-master/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-i2c-master/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "An I2C master controller with TileLink-UL interface, supporting configurable FIFO depth and clock division for flexible communication with I2C peripherals."
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-l1-dcache",
@@ -402,7 +1292,27 @@
       "content_hash": "a054da081307702d7493a63f760536b0f8d9b47bc9105024dec2cb7f11e01690",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-l1-dcache.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-l1-dcache/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-l1-dcache/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Memory Subsystems",
+            "sub_category": "Cache Subsystems"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Memory Subsystems",
+            "sub_category": "Cache Subsystems"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A Level 1 data cache implementation for the Coral NPU, supporting AXI and custom data bus interfaces for high-performance memory operations."
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-l1-icache",
@@ -411,7 +1321,27 @@
       "content_hash": "6f1f33e4afe1e00a8cab995b6b469f3523730017ef4fe14762fe2e122a123139",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-l1-icache.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-l1-icache/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-l1-icache/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Memory Subsystems",
+            "sub_category": "Cache Subsystems"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Memory Subsystems",
+            "sub_category": "Cache Subsystems"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A Level-1 instruction cache for the Coral NPU, supporting AXI-based memory access and fault handling."
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-rst-sync",
@@ -420,7 +1350,27 @@
       "content_hash": "ede74e345f600a6aae74d6f024b2a0c9564376a84c378ab9943d0d0f5f68e1f7",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-rst-sync.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-rst-sync/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-rst-sync/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Timing & Clocking",
+            "sub_category": "Reset Synchronizers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Timing & Clocking",
+            "sub_category": "Reset Synchronizers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A reset synchronization module designed for Coral NPU systems, ensuring reliable reset signal propagation across clock domains."
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-rvv-backend",
@@ -429,7 +1379,27 @@
       "content_hash": "5229265ab3b36d0d4c5eca502c13dbfee8bbda50cb95518d9f1e915501b01837",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-rvv-backend.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-rvv-backend/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-rvv-backend/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "Vector Processors"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "Vector Processors"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The coralnpu-rvv-backend is a vector processing backend for RISC-V Vector Extension (RVV), designed to handle micro-operations dispatch, execution, and retireme"
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-rvv-common-lib",
@@ -438,7 +1408,27 @@
       "content_hash": "bd2281f8191654fa5fd36d576c137f17cd311abdab35da9de46f76ca1c378cbb",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-rvv-common-lib.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-rvv-common-lib/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-rvv-common-lib/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "FIFOs & Buffers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "FIFOs & Buffers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A parameterized synchronous FIFO module supporting multi-push and multi-pop operations, with features like configurable depth, push/pop widths, and optional dat"
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-rvv-core",
@@ -447,7 +1437,32 @@
       "content_hash": "21245d9ced297c8ba5d8e9c7d03d37547c6988617b8b6a6a9891101ecb8c6711",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-rvv-core.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-rvv-core/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-rvv-core/main/vyges-metadata.json",
+      "search": {
+        "category": "cpu",
+        "subcategories": [
+          "vector",
+          "coprocessor",
+          "dsp"
+        ],
+        "keywords": [
+          "rvv",
+          "risc-v",
+          "vector",
+          "zve32x",
+          "zve32f",
+          "simd",
+          "coralnpu",
+          "google",
+          "npu",
+          "machine-learning"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "RISC-V Vector (RVV 1.0) execution engine implementing Zve32x integer vector extension with optional Zve32f floating-point support. Configurable VLEN (128/256/51"
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-scalar-units",
@@ -456,7 +1471,27 @@
       "content_hash": "ebbc2f7791b6f227405a959e6c8a417c2f1bb6db91f2d9c7a6beabfcea02583c",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-scalar-units.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-scalar-units/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-scalar-units/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "Co-Processors"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "Co-Processors"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The CoralNPU Scalar Units provide hardware-accelerated scalar operations for neural network processing, including arithmetic, logical, and data manipulation fun"
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-spi2tlul",
@@ -465,7 +1500,27 @@
       "content_hash": "067d5131d506c4a49e2b08a4a780fcdebe4ea8ce49ed0f98c9437766ba5afd5b",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-spi2tlul.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-spi2tlul/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-spi2tlul/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A SPI-to-TL-UL bridge for interfacing SPI peripherals with TileLink-based systems, providing synchronization and data transfer capabilities."
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-subsystem",
@@ -474,7 +1529,27 @@
       "content_hash": "f5646e1b52cbe063b4bfe196e8e501bf28ab3a8ece9a529d0588685be144256f",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-subsystem.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-subsystem/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-subsystem/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "Custom ISAs"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "Custom ISAs"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "CoralNPU subsystem for SoC integration, featuring crossbar interconnect, peripherals (GPIO, SPI, CLINT, DMA), and DDR bridges. Generated using Chisel HDL."
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-tlul-fifo",
@@ -483,7 +1558,27 @@
       "content_hash": "7766ca99f799f74b130e8d758f7293d61b79fd9e627bf6800ef810822d767f2a",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-tlul-fifo.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-tlul-fifo/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-tlul-fifo/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Memory Subsystems",
+            "sub_category": "FIFOs & Buffers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Memory Subsystems",
+            "sub_category": "FIFOs & Buffers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A synchronous FIFO implementation with TileLink Ultra-Lite (TL-UL) protocol support, designed for buffering data in the Coral NPU pipeline."
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-tlul-pkg",
@@ -492,7 +1587,27 @@
       "content_hash": "8e4338c93537caab0d47df78a721d5c374e89431fd24fd1e04990d7a079a8aa2",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-tlul-pkg.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-tlul-pkg/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-tlul-pkg/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A TileLink Ultra-Lite (TL-UL) interface package for the CoralNPU, providing data and command integrity checks and support for 128-bit and 32-bit data widths."
+      }
     },
     {
       "repo": "vyges-ip/coralnpu-tlul2axi",
@@ -501,7 +1616,27 @@
       "content_hash": "557a08fd1663bfa0bb337ec94be23cdc176ebb2f583926abf825da956c10adfb",
       "default_branch": "main",
       "metadata_path": "metadata/coralnpu-tlul2axi.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-tlul2axi/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/coralnpu-tlul2axi/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A TileLink to AXI bridge for Coral NPU, enabling seamless communication between TileLink-based and AXI-based systems."
+      }
     },
     {
       "repo": "vyges-ip/cv32e40p",
@@ -510,7 +1645,27 @@
       "content_hash": "7a54eaceeb6ce8e5afd391a24e9478efc513a37ed41ae4d2343f46833609e318",
       "default_branch": "main",
       "metadata_path": "metadata/cv32e40p.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cv32e40p/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cv32e40p/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The CV32E40P is a 32-bit, 4-stage RISC-V processor core with optional support for PULP extensions, hardware loops, and a floating-point unit (FPU). It is design"
+      }
     },
     {
       "repo": "vyges-ip/cva6",
@@ -519,7 +1674,27 @@
       "content_hash": "88ba470855ee6f14e512d2e39ab90db3dbd5b690982425ddd204f46fc89a0568",
       "default_branch": "main",
       "metadata_path": "metadata/cva6.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cva6/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cva6/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "CVA6 is a high-performance, silicon-proven, 64-bit RISC-V processor core supporting the RV64GC instruction set architecture with advanced features such as out-o"
+      }
     },
     {
       "repo": "vyges-ip/cve2",
@@ -528,7 +1703,23 @@
       "content_hash": "2a5f67db0467cd83a4b2756b2dc9fb72d9d5995ba1734aecae1afb2298e9437c",
       "default_branch": "main",
       "metadata_path": "metadata/cve2.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cve2/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cve2/main/vyges-metadata.json",
+      "search": {
+        "category": "processor",
+        "subcategories": [],
+        "keywords": [
+          "RISC-V",
+          "RV32IMC",
+          "processor",
+          "debug",
+          "PMP"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "CVE2 is a RISC-V compliant processor core supporting RV32IMC instruction set with optional extensions for bit manipulation, physical memory protection, and debu"
+      }
     },
     {
       "repo": "vyges-ip/ef-wdt32-1",
@@ -537,7 +1728,27 @@
       "content_hash": "4d20bf5933a2538bd24aad930e4b475610682f83ad3acade297e6789ad3514bc",
       "default_branch": "main",
       "metadata_path": "metadata/ef-wdt32-1.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/ef-wdt32-1/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/ef-wdt32-1/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [],
+        "keywords": [
+          "watchdog",
+          "wdt",
+          "timer",
+          "peripheral",
+          "chipfoundry",
+          "efabless",
+          "sky130"
+        ],
+        "design_type": [
+          "digital",
+          "peripheral",
+          "watchdog"
+        ],
+        "maturity": "stable",
+        "summary": "Simple 32-bit watchdog timer from Efabless/ChipFoundry. Loadable down-counter decremented every system clock cycle; raises TO (timeout) IRQ on zero and reloads."
+      }
     },
     {
       "repo": "vyges-ip/fast-fourier-transform-ip",
@@ -546,7 +1757,30 @@
       "content_hash": "85b8be28eb0637ebe89b9f8e986967c8047a250a809f3c73aef0c1d40eb22a18",
       "default_branch": "main",
       "metadata_path": "metadata/fast-fourier-transform-ip.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/fast-fourier-transform-ip/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/fast-fourier-transform-ip/main/vyges-metadata.json",
+      "search": {
+        "category": "Signal Processing",
+        "subcategories": [
+          "dsp",
+          "signal-processing"
+        ],
+        "keywords": [
+          "fft",
+          "dsp",
+          "radix-2",
+          "dif",
+          "butterfly",
+          "apb",
+          "fixed-point",
+          "1024-point",
+          "accelerator"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "Configurable 1024-point radix-2 decimation-in-frequency FFT accelerator with APB slave control interface, AXI data port (Phase 2), 2048x32-bit working memory (d"
+      }
     },
     {
       "repo": "vyges-ip/fastvdma",
@@ -555,7 +1789,27 @@
       "content_hash": "1aa73a12dc859cb35696d3d957df9f5cf483effc74de3febeb2b4ff9db732baf",
       "default_branch": "main",
       "metadata_path": "metadata/fastvdma.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/fastvdma/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/fastvdma/main/vyges-metadata.json",
+      "search": {
+        "category": "DMA Controller",
+        "subcategories": [
+          "Memory Interface",
+          "Bus Interface"
+        ],
+        "keywords": [
+          "DMA",
+          "AXI4",
+          "AXI-Stream",
+          "Wishbone",
+          "2D Transfers",
+          "Configurable"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "FastVDMA is a highly configurable and portable DMA controller supporting 2D transfers with configurable stride, external frame synchronization, and multiple bus"
+      }
     },
     {
       "repo": "vyges-ip/hardfloat",
@@ -564,7 +1818,27 @@
       "content_hash": "226290132f67bde3421a33e2bbe50b905d10403705a8ce56e5f4638306702d5e",
       "default_branch": "main",
       "metadata_path": "metadata/hardfloat.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/hardfloat/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/hardfloat/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Arithmetic Units",
+            "sub_category": "Floating-Point Units"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Arithmetic Units",
+            "sub_category": "Floating-Point Units"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "Berkeley HardFloat is a hardware implementation of binary floating-point arithmetic conforming to the IEEE Standard for Floating-Point Arithmetic. It includes V"
+      }
     },
     {
       "repo": "vyges-ip/hilbert-transformer",
@@ -573,7 +1847,26 @@
       "content_hash": "7ecd1cdea72a93f38a09131cf98e19333b184447c964589fcc16afea16e2cf82",
       "default_branch": "main",
       "metadata_path": "metadata/hilbert-transformer.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/hilbert-transformer/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/hilbert-transformer/main/vyges-metadata.json",
+      "search": {
+        "category": "signal_processing",
+        "subcategories": [
+          "digital_signal_processing",
+          "communication"
+        ],
+        "keywords": [
+          "hilbert_transform",
+          "FIR_filter",
+          "DSP",
+          "AXI-Stream",
+          "pipelined"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A fully pipelined digital Hilbert transformer for DSP applications, implementing an FIR filter-based Hilbert transform with AXI-Stream interface, configurable d"
+      }
     },
     {
       "repo": "vyges-ip/i3c-core",
@@ -582,7 +1875,27 @@
       "content_hash": "0b94afd30a91f41cda4b002469547f6bf3a56d68e2a11bf82a592b1852a0af91",
       "default_branch": "main",
       "metadata_path": "metadata/i3c-core.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/i3c-core/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/i3c-core/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "An open-source implementation of the MIPI I3C protocol, supporting both controller and target modes with features like dynamic address assignment, in-band inter"
+      }
     },
     {
       "repo": "vyges-ip/ibex",
@@ -591,7 +1904,30 @@
       "content_hash": "0aaf22e97a4c09c02d2aef42684b339f50bcd4b13956c069a91f3f8f07bac94d",
       "default_branch": "main",
       "metadata_path": "metadata/ibex.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/ibex/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/ibex/main/vyges-metadata.json",
+      "search": {
+        "category": "Processing Cores",
+        "subcategories": [
+          "risc-v",
+          "processor"
+        ],
+        "keywords": [
+          "ibex",
+          "rv32imc",
+          "risc-v",
+          "cpu",
+          "pipeline",
+          "lowrisc",
+          "pmp",
+          "icache",
+          "secure"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "Ibex RV32IMC RISC-V CPU core. 2-stage pipeline (IF/ID+EX), configurable register file (FF/FPGA/latch), optional PMP, optional ICache, branch predictor, SecureIb"
+      }
     },
     {
       "repo": "vyges-ip/mlow-codec",
@@ -600,7 +1936,27 @@
       "content_hash": "d51427aee027191a14779a2782f9d0ccad304f7007bfc18f46eeb9adc6142f58",
       "default_branch": "main",
       "metadata_path": "metadata/mlow-codec.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/mlow-codec/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/mlow-codec/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Signal Processing",
+            "sub_category": "Codecs"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Signal Processing",
+            "sub_category": "Codecs"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "The MLow Audio Codec IP is a high-performance, low-complexity audio compression solution designed for real-time communication (RTC) applications. It supports ul"
+      }
     },
     {
       "repo": "vyges-ip/openfasoc-temp-sensor",
@@ -609,7 +1965,28 @@
       "content_hash": "a33801bb327497a21a8f0034f532a795939fa571b782ed6637ccebd9aef090b1",
       "default_branch": "main",
       "metadata_path": "metadata/openfasoc-temp-sensor.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/openfasoc-temp-sensor/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/openfasoc-temp-sensor/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Temperature Sensors"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Temperature Sensors"
+          }
+        ],
+        "design_type": [
+          "digital",
+          "analog"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "Analog temperature sensor generator designed for SKY130 and GF180 process nodes, providing automated synthesis and optimization for temperature sensing applicat"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-adc-ctrl",
@@ -618,7 +1995,27 @@
       "content_hash": "7b44eed5237645e8d45594c56fafb5baf030e43790359cea775287b8beccbb6d",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-adc-ctrl.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-adc-ctrl/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-adc-ctrl/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Converters"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Converters"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The OpenTitan ADC Controller (adc_ctrl) is a digital peripheral that manages analog-to-digital conversion, including power management, low-power sampling, and c"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-aes",
@@ -627,7 +2024,27 @@
       "content_hash": "b2f4c4043f80f44d8f654746460b9f5368d9900bf893f1533ecbc838ef8b2789",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-aes.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-aes/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-aes/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Crypto Engines"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Crypto Engines"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A silicon-proven AES cryptographic accelerator from the OpenTitan project, supporting multiple modes of operation, key masking, and secure key storage."
+      }
     },
     {
       "repo": "vyges-ip/opentitan-aon-timer",
@@ -636,7 +2053,27 @@
       "content_hash": "dd053fe620632c62a5b87453be79c68413df00214b75c797ba96d3d9d2021d71",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-aon-timer.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-aon-timer/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-aon-timer/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "Counters & Timers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "Counters & Timers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The Always-On Timer (aon_timer) is a low-power timer module from the OpenTitan project. It provides wakeup and watchdog timer functionality with support for reg"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-ascon",
@@ -645,7 +2082,27 @@
       "content_hash": "0bde2ce1c8dd66f91481937e6bc2e53868eef0448c975cb3e511400e0563298f",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-ascon.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-ascon/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-ascon/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Crypto Engines"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Crypto Engines"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The OpenTitan ASCON IP block implements cryptographic operations based on the ASCON lightweight authenticated encryption and hashing algorithm, providing secure"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-csrng",
@@ -654,7 +2111,27 @@
       "content_hash": "cc0d6e30ef2243869a0c18888c62ca40ec70a0c24164916543618ffb16078f19",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-csrng.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-csrng/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-csrng/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "True Random Number Generators (TRNG)"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "True Random Number Generators (TRNG)"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A silicon-proven cryptographic pseudorandom number generator (PRNG) and deterministic random bit generator (DRBG) compliant with NIST SP 800-90A, featuring a TL"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-dma",
@@ -663,7 +2140,27 @@
       "content_hash": "1480239a4d37dfe884aca774a22dfc6ec66077460b535afaae2915967f29d249",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-dma.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-dma/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-dma/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Memory Subsystems",
+            "sub_category": "FIFOs & Buffers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Memory Subsystems",
+            "sub_category": "FIFOs & Buffers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A DMA controller from the OpenTitan project, supporting TL-UL protocol with features such as integrity checking, register access control, and configurable trans"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-edn",
@@ -672,7 +2169,27 @@
       "content_hash": "50e4ba749d9e7455216f98df0ed35397dc34f8f44419295aa2253a94878f207d",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-edn.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-edn/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-edn/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "True Random Number Generators (TRNG)"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "True Random Number Generators (TRNG)"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The opentitan-edn is an Entropy Distribution Network (EDN) IP block that provides secure and reliable entropy distribution to hardware modules, supporting featu"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-entropy-src",
@@ -681,7 +2198,27 @@
       "content_hash": "bdf375e8fdd9ea96a3e8e2845e5f91fbf9594f932a9c80c687333e1920d91641",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-entropy-src.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-entropy-src/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-entropy-src/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "True Random Number Generators (TRNG)"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "True Random Number Generators (TRNG)"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A silicon-proven entropy source module for generating true random numbers, including health tests and integrity checks."
+      }
     },
     {
       "repo": "vyges-ip/opentitan-flash-ctrl",
@@ -690,7 +2227,27 @@
       "content_hash": "a19270ef41f69d419845bd65fa1c71ecc3aea602d582215aa8058635aef7b218",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-flash-ctrl.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-flash-ctrl/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-flash-ctrl/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Miscellaneous",
+            "sub_category": "Custom Accelerators"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Miscellaneous",
+            "sub_category": "Custom Accelerators"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "draft",
+        "summary": "IP imported from https://github.com/lowRISC/opentitan"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-hmac",
@@ -699,7 +2256,27 @@
       "content_hash": "f893a66b17fca6c75e73086665e866fbc6394551bf47a9513584b4e794d00483",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-hmac.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-hmac/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-hmac/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Crypto Engines"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Crypto Engines"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The OpenTitan HMAC IP block implements a hardware-accelerated HMAC engine with support for SHA-256 and configurable key and digest sizes. It includes a TileLink"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-i2c",
@@ -708,7 +2285,27 @@
       "content_hash": "b3be6415781a1246dddd3f524e188e876bab7db91ae45e98bfcc3e9334adb4c6",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-i2c.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-i2c/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-i2c/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The OpenTitan I2C IP is a highly configurable and silicon-proven I2C controller supporting both master and target modes, with features such as RACL policy enfor"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-keymgr",
@@ -717,7 +2314,27 @@
       "content_hash": "b3dada66d9b8d759f65d70cae51f816c82d146bafda343e0a0be2b4bd61c57de",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-keymgr.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-keymgr/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-keymgr/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The OpenTitan Key Manager is a security IP block responsible for managing cryptographic keys, supporting operations such as key generation, reseeding, and sidel"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-keymgr-dpe",
@@ -726,7 +2343,27 @@
       "content_hash": "a409b6852fd044cc3bf312464daa38195de5b943525a1445b4653d9a88408dc2",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-keymgr-dpe.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-keymgr-dpe/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-keymgr-dpe/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The Key Manager DPE (Derived Primary Entity) is a security IP block that manages cryptographic keys and their lifecycle, supporting operations such as key gener"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-kmac",
@@ -735,7 +2372,27 @@
       "content_hash": "9e50eddc1c38f08937d7a67a9c8b95357f0e782d145145d7b08919ed3cee4508",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-kmac.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-kmac/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-kmac/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Crypto Engines"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Crypto Engines"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The opentitan-kmac is a hardware implementation of the Keccak Message Authentication Code (KMAC) cryptographic function, supporting configurable key lengths, en"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-lc-ctrl",
@@ -744,7 +2401,27 @@
       "content_hash": "fe70f1432d8021b5015bf69a32d97e2b12f7149fea7122b1cda9821fcc751dfd",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-lc-ctrl.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-lc-ctrl/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-lc-ctrl/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Fuse Controllers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Fuse Controllers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The OpenTitan Life Cycle Controller (lc_ctrl) is a hardware block responsible for managing the lifecycle states of the device, including secure state transition"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-lowrisc-ibex",
@@ -753,7 +2430,27 @@
       "content_hash": "6636dcb1c697bec2732fda792d7cea996063627c66590935a26c936bab3e0fbb",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-lowrisc-ibex.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-lowrisc-ibex/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-lowrisc-ibex/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "Ibex is a small, efficient, and configurable RISC-V processor core designed for embedded systems, featuring optional support for extensions such as PMP, RV32M, "
+      }
     },
     {
       "repo": "vyges-ip/opentitan-mbx",
@@ -762,7 +2459,27 @@
       "content_hash": "209eac72a038581b39690424edb8dfc4aa45205e59ebe8b17595a91a87718a20",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-mbx.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-mbx/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-mbx/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The opentitan-mbx is a mailbox peripheral IP block designed for secure communication between hardware and software components. It supports TL-UL protocol, integ"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-otbn",
@@ -771,7 +2488,27 @@
       "content_hash": "0f0d6103cac058cb62f134c1b436be253bd9336ef6c5facb4adaa85fe34fa11f",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-otbn.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-otbn/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-otbn/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Crypto Engines"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Crypto Engines"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The OTBN (OpenTitan Big Number) is a 32-bit RISC-V-based cryptographic accelerator designed for efficient execution of cryptographic algorithms, including big n"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-otp-ctrl",
@@ -780,7 +2517,27 @@
       "content_hash": "bc046c79cee7412fa1f3b71073e72bd11d8505d74f6c6d968f85d031fc080ee2",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-otp-ctrl.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-otp-ctrl/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-otp-ctrl/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Fuse Controllers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Fuse Controllers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The OpenTitan OTP Controller (otp_ctrl) is a hardware block responsible for managing the One-Time Programmable (OTP) memory, including secure key storage, lifec"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-otp-macro",
@@ -789,7 +2546,27 @@
       "content_hash": "8a61e57afe269d37c3fc87cbfeeec6e27af8965776ccd991d5ecd05cf4735457",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-otp-macro.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-otp-macro/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-otp-macro/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Fuse Controllers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Fuse Controllers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The OpenTitan OTP Macro is a secure one-time programmable memory subsystem designed for storing critical security data, with support for integrity checks, error"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-pattgen",
@@ -798,7 +2575,27 @@
       "content_hash": "6eaf0f5a21b9b01644c01a30baeaf00ee5359cb95ca2e6add8b463414dbe2363",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-pattgen.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-pattgen/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-pattgen/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Control Logic",
+            "sub_category": "Pattern Generators"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Control Logic",
+            "sub_category": "Pattern Generators"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The opentitan-pattgen IP is a pattern generator module that provides configurable pattern generation capabilities for hardware testing and validation. It suppor"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-prim",
@@ -807,7 +2604,27 @@
       "content_hash": "8609497d550805f1ef26b4ff2462e3c6380592d16818fab4debbc4100e3e464b",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-prim.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-prim/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-prim/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "Counters & Timers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "Counters & Timers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A collection of foundational primitives for OpenTitan, including SECDED error correction, FIFOs, clock gating, cryptographic primitives, and synchronization log"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-prim-asap7",
@@ -816,7 +2633,27 @@
       "content_hash": "23a60c1c16ad26f341087cee78b090a020b0585488d0902ec10cdca6b087a9a0",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-prim-asap7.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-prim-asap7/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-prim-asap7/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "Pipeline & Bypass Logic"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "Pipeline & Bypass Logic"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A collection of primitive modules for the OpenTitan project implemented in ASAP7 technology, including clock buffers, enable flip-flops, and logic gates."
+      }
     },
     {
       "repo": "vyges-ip/opentitan-prim-generic",
@@ -825,7 +2662,27 @@
       "content_hash": "e75e8ee974c33d0fc862582ecce388ade72499257a71f3e31e125da57f3e0ddf",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-prim-generic.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-prim-generic/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-prim-generic/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Memory Subsystems",
+            "sub_category": "Flash Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Memory Subsystems",
+            "sub_category": "Flash Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A collection of generic primitives for OpenTitan, including flash bank emulation, RAM, ROM, and clock-related modules."
+      }
     },
     {
       "repo": "vyges-ip/opentitan-prim-xilinx",
@@ -834,7 +2691,27 @@
       "content_hash": "15bf8c4d225aebcfb6d96e3896289b552cdd23051d5d711092b97a123f72a2b9",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-prim-xilinx.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-prim-xilinx/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-prim-xilinx/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "Pipeline & Bypass Logic"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "Pipeline & Bypass Logic"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A collection of Xilinx-specific primitives for OpenTitan, including bidirectional IO buffers, clock gating, clock multiplexing, and single-port RAMs."
+      }
     },
     {
       "repo": "vyges-ip/opentitan-prim-xilinx-ultrascale",
@@ -843,7 +2720,27 @@
       "content_hash": "9a893ff5ec7bf8fac51aea099350e4b93499c006f6b07d3ec437525c629d94a5",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-prim-xilinx-ultrascale.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-prim-xilinx-ultrascale/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-prim-xilinx-ultrascale/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Timing & Clocking",
+            "sub_category": "Clock Dividers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Timing & Clocking",
+            "sub_category": "Clock Dividers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A clock division and control module designed for Xilinx Ultrascale FPGAs, supporting configurable division factors and step-down functionality with integrated c"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-racl-ctrl",
@@ -852,7 +2749,27 @@
       "content_hash": "741842f856d99984346950e1d5e30ea4a8b3c75d5a5fe19ac0469116f469abc9",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-racl-ctrl.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-racl-ctrl/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-racl-ctrl/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "OpenTitan RACL Controller provides runtime access control for register-level policies, ensuring secure and configurable access management for hardware registers"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-rom-ctrl",
@@ -861,7 +2778,27 @@
       "content_hash": "5ee435a82bc1af47bac707a8cb860119f61a74fd4c90a34b992c8a98c603a913",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-rom-ctrl.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-rom-ctrl/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-rom-ctrl/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The ROM Controller (ROM_CTRL) is responsible for secure boot operations, including ROM integrity checks, scrambling, and interfacing with cryptographic modules "
+      }
     },
     {
       "repo": "vyges-ip/opentitan-rv-core-ibex",
@@ -870,7 +2807,27 @@
       "content_hash": "b3ae63f98343b5c5a952d2a5a0543beb294881c445c284b305e86b45c21639da",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-rv-core-ibex.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-rv-core-ibex/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-rv-core-ibex/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The rv_core_ibex package provides configuration structures and default parameters for the Ibex RISC-V core, including region mapping, crash dump handling, and p"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-rv-dm",
@@ -879,7 +2836,27 @@
       "content_hash": "47fe48b8376aa49f7e4d19717abdb9e4ccf2115a713cb1879afeb4d098aa0be4",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-rv-dm.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-rv-dm/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-rv-dm/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The OpenTitan RISC-V Debug Module (rv_dm) provides debug functionality for RISC-V cores, including memory-mapped register access, debug command execution, and i"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-rv-timer",
@@ -888,7 +2865,27 @@
       "content_hash": "1eaf8959e115bee0ada125aa5d99621db0f611380fb7ee483ee8bdd3431c61f8",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-rv-timer.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-rv-timer/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-rv-timer/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "Counters & Timers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "Counters & Timers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The OpenTitan RV Timer is a configurable RISC-V timer module that provides multi-hart timer functionality with support for interrupts, register access control, "
+      }
     },
     {
       "repo": "vyges-ip/opentitan-soc-dbg-ctrl",
@@ -897,7 +2894,27 @@
       "content_hash": "7911e486e3bfd6ca3465658107d5977ea65526a3a55828dffb61f94c01c7abad",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-soc-dbg-ctrl.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-soc-dbg-ctrl/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-soc-dbg-ctrl/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Secure Boot Blocks"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The OpenTitan SoC Debug Controller (soc_dbg_ctrl) is a hardware block that manages debug access and policies for the OpenTitan SoC, including lifecycle-based de"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-spi-device",
@@ -906,7 +2923,27 @@
       "content_hash": "e1b32fe581be3b6f4eef948db7dab70750c4d9594900ae1f87ec6678bcc712f1",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-spi-device.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-spi-device/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-spi-device/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A silicon-proven SPI device controller IP supporting TL-UL protocol for communication with host systems, featuring register-based configuration, passthrough mod"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-spi-host",
@@ -915,7 +2952,27 @@
       "content_hash": "4abd57153b760506a92cbbdd0f485ad7ff97241ec699d8b514ef10bf7447df35",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-spi-host.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-spi-host/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-spi-host/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The OpenTitan SPI Host is a configurable SPI controller IP that supports standard, dual, and quad SPI protocols with features like command queuing, data FIFOs, "
+      }
     },
     {
       "repo": "vyges-ip/opentitan-sram-ctrl",
@@ -924,7 +2981,27 @@
       "content_hash": "f0792a03ed43258e501bd293adb870c91441ced3b365e7d6cfeaf2df8a1281c3",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-sram-ctrl.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-sram-ctrl/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-sram-ctrl/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Memory Subsystems",
+            "sub_category": "SRAM Controllers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Memory Subsystems",
+            "sub_category": "SRAM Controllers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A silicon-proven SRAM controller from the OpenTitan project, providing secure memory access with integrity checks, error detection, and support for TL-UL protoc"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-sysrst-ctrl",
@@ -933,7 +3010,27 @@
       "content_hash": "84f6c5206ae36a8bc817cbad1e23e7fa883d2771eeeaa62d191fc69b11886040",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-sysrst-ctrl.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-sysrst-ctrl/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-sysrst-ctrl/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Control Logic",
+            "sub_category": "Reset Controllers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Control Logic",
+            "sub_category": "Reset Controllers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The sysrst_ctrl is a system reset controller IP block from the OpenTitan project. It provides functionality for managing system reset, wakeup, and interrupt req"
+      }
     },
     {
       "repo": "vyges-ip/opentitan-tlul",
@@ -942,7 +3039,27 @@
       "content_hash": "58768661eb837baf177b309e844f5cc149b74b0f505982e4ef536c8d17328200",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-tlul.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-tlul/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-tlul/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A TileLink Ultra-Lite (TL-UL) adapter for SRAM-like devices, supporting byte-level writes with optional integrity and readback checks."
+      }
     },
     {
       "repo": "vyges-ip/opentitan-uart",
@@ -951,7 +3068,27 @@
       "content_hash": "f2305b2d124ac41ed0cd7176291127d5b25b8f59280d696dd2440624d1295d7b",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-uart.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-uart/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-uart/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A UART (Universal Asynchronous Receiver-Transmitter) IP core from the OpenTitan project, supporting TL-UL protocol for communication and featuring configurable "
+      }
     },
     {
       "repo": "vyges-ip/opentitan-usbdev",
@@ -960,7 +3097,27 @@
       "content_hash": "8bbd28387f7521c7697a5122d4224c8e4e2370f626c748199f680881bcae2b31",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-usbdev.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-usbdev/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-usbdev/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "The OpenTitan USB Device Controller (usbdev) is a USB 2.0 Full-Speed device controller IP core with support for multiple endpoints, data integrity checks, and r"
+      }
     },
     {
       "repo": "vyges-ip/picorv32",
@@ -969,7 +3126,26 @@
       "content_hash": "80afc1afa96b7b39561e3b1ca3507c23c63dd13ebc36cae1eb68da416f70fb80",
       "default_branch": "main",
       "metadata_path": "metadata/picorv32.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/picorv32/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/picorv32/main/vyges-metadata.json",
+      "search": {
+        "category": "processor",
+        "subcategories": [
+          "risc-v",
+          "cpu"
+        ],
+        "keywords": [
+          "risc-v",
+          "processor",
+          "cpu",
+          "asic",
+          "fpga"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "PicoRV32 is a size-optimized RISC-V CPU core implementing the RV32IMC instruction set, configurable for RV32E, RV32I, RV32IC, RV32IM, or RV32IMC cores, with opt"
+      }
     },
     {
       "repo": "vyges-ip/pulp-riscv-dbg",
@@ -978,7 +3154,27 @@
       "content_hash": "80a9df25ade63eab090aada55a217e8ad8c45d068a45a1ee52cec7bd1ec7b7fa",
       "default_branch": "main",
       "metadata_path": "metadata/pulp-riscv-dbg.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/pulp-riscv-dbg/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/pulp-riscv-dbg/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "PULP-platform RISC-V Debug Module implementing RISC-V Debug Spec 0.13. Lightweight alternative to opentitan-rv-dm \u2014 uses plain req/gnt bus (or OBI variant), no "
+      }
     },
     {
       "repo": "vyges-ip/pwm-controller",
@@ -987,7 +3183,29 @@
       "content_hash": "faa96a58168e6bcffc88c45b4984c844ab3760ab7511145f52d59dfba58e05f8",
       "default_branch": "main",
       "metadata_path": "metadata/pwm-controller.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/pwm-controller/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/pwm-controller/main/vyges-metadata.json",
+      "search": {
+        "category": "peripherals",
+        "subcategories": [
+          "motor-control",
+          "signal-generation",
+          "power-management"
+        ],
+        "keywords": [
+          "PWM",
+          "APB4",
+          "frequency-control",
+          "duty-cycle",
+          "phase-control",
+          "fault-protection",
+          "chiplet"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "Configurable multi-channel PWM controller with APB4 interface, supporting precise frequency, duty cycle, and phase control, along with advanced features like fa"
+      }
     },
     {
       "repo": "vyges-ip/riscduino-pwm",
@@ -996,7 +3214,31 @@
       "content_hash": "f6c1f1e3aec1e48c6827cd089c5c85b024a66ccbd7c718529d0aefb904c3f960",
       "default_branch": "main",
       "metadata_path": "metadata/riscduino-pwm.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/riscduino-pwm/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/riscduino-pwm/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_categories": [
+              "Motor Control"
+            ]
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_categories": [
+              "Motor Control"
+            ]
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "imported",
+        "summary": "Silicon-proven 6-channel PWM controller with configurable glitch filter, interrupt support, and GPIO input capture. Extracted from dineshannayya/riscduino \u2014 val"
+      }
     },
     {
       "repo": "vyges-ip/riscv-boom",
@@ -1005,7 +3247,27 @@
       "content_hash": "361653c2190c2e881eeaf83a5c3849211d57e91be0f2ab04c2bec757cf912f22",
       "default_branch": "main",
       "metadata_path": "metadata/riscv-boom.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/riscv-boom/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/riscv-boom/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "SonicBOOM is a Berkeley Out-of-Order RV64GC RISC-V core featuring superscalar and speculative execution, implemented in Chisel."
+      }
     },
     {
       "repo": "vyges-ip/rocket-chip",
@@ -1014,7 +3276,27 @@
       "content_hash": "52cd5ab87fd875dfc6cdd92b808e0eb8459185950c0a2c596bfc073eb6227ddb",
       "default_branch": "main",
       "metadata_path": "metadata/rocket-chip.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/rocket-chip/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/rocket-chip/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "Rocket Chip is a parameterized RISC-V SoC generator featuring RV64GC in-order cores, L1/L2 caches, and TileLink interconnect, implemented in Chisel."
+      }
     },
     {
       "repo": "vyges-ip/sd-card-controller",
@@ -1023,7 +3305,26 @@
       "content_hash": "0904daa7d5eaaf9988df26266cfe0e6c55e8ad27a2fe84cbd2440ea435f27f66",
       "default_branch": "main",
       "metadata_path": "metadata/sd-card-controller.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sd-card-controller/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sd-card-controller/main/vyges-metadata.json",
+      "search": {
+        "category": "storage",
+        "subcategories": [
+          "debug",
+          "peripheral"
+        ],
+        "keywords": [
+          "SD card",
+          "APB",
+          "DMA",
+          "debug",
+          "storage"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A high-performance SD Card controller with APB interface supporting SD/SDHC/SDXC cards, SPI and SD modes, DMA support, and comprehensive error handling."
+      }
     },
     {
       "repo": "vyges-ip/secworks-aes",
@@ -1032,7 +3333,27 @@
       "content_hash": "638db5550819bd42854a732be9c9cbf314216d7fccb695854337308180369c20",
       "default_branch": "main",
       "metadata_path": "metadata/secworks-aes.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/secworks-aes/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/secworks-aes/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [],
+        "keywords": [
+          "aes",
+          "aes-128",
+          "aes-256",
+          "crypto",
+          "block-cipher",
+          "nist-fips-197",
+          "secworks"
+        ],
+        "design_type": [
+          "digital",
+          "crypto",
+          "block-cipher"
+        ],
+        "maturity": "stable",
+        "summary": "Verilog implementation of the AES (Advanced Encryption Standard) symmetric block cipher per NIST FIPS 197. Supports both AES-128 and AES-256 keys. ECB-mode core"
+      }
     },
     {
       "repo": "vyges-ip/serv",
@@ -1041,7 +3362,27 @@
       "content_hash": "7f71dafcc40000239912afae36533cdd6d40aa93bca5864fe197a10c977284f4",
       "default_branch": "main",
       "metadata_path": "metadata/serv.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/serv/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/serv/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "SERV is the world's smallest RISC-V CPU, designed as a bit-serial processor for minimal silicon area and power consumption. It is ideal for resource-constrained"
+      }
     },
     {
       "repo": "vyges-ip/sky130-bandgap-reference",
@@ -1050,7 +3391,28 @@
       "content_hash": "f036a5f4e51f72c7bc5c76b23b695e374d776f2c1b61ba04b4a09a142a245896",
       "default_branch": "main",
       "metadata_path": "metadata/sky130-bandgap-reference.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-bandgap-reference/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-bandgap-reference/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Voltage References"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Voltage References"
+          }
+        ],
+        "design_type": [
+          "analog",
+          "mixed-signal"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A PVT-independent bandgap voltage reference designed for the SKY130 process, providing a stable reference voltage across variations in temperature, supply volta"
+      }
     },
     {
       "repo": "vyges-ip/sky130-comparator",
@@ -1059,7 +3421,28 @@
       "content_hash": "35dd4d7ee8233d28e81022255efdaabaf25d1c17c941808bd90132f452305b5f",
       "default_branch": "main",
       "metadata_path": "metadata/sky130-comparator.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-comparator/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-comparator/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Comparators"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Comparators"
+          }
+        ],
+        "design_type": [
+          "analog",
+          "mixed-signal"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A positive-feedback differential comparator designed for 3.3V operation in the SKY130 process node. It is suitable for analog signal comparison applications."
+      }
     },
     {
       "repo": "vyges-ip/sky130-ct-dsm",
@@ -1068,7 +3451,28 @@
       "content_hash": "614cf8bafe4f04cdd53c8f9e450c1d0d303ffb4f4def5b5cdb36f36d5271fbcc",
       "default_branch": "main",
       "metadata_path": "metadata/sky130-ct-dsm.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-ct-dsm/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-ct-dsm/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Delta-Sigma Modulators"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Delta-Sigma Modulators"
+          }
+        ],
+        "design_type": [
+          "analog",
+          "mixed-signal"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A continuous-time delta-sigma modulator (CT-DSM) designed for biosignal acquisition, implemented on the SKY130 process node."
+      }
     },
     {
       "repo": "vyges-ip/sky130-delta-sigma-adc",
@@ -1077,7 +3481,27 @@
       "content_hash": "e766866c7fa30b2f6ef86cdbde179ae9e57d8f65b440df3963b0443d4b25c905",
       "default_branch": "main",
       "metadata_path": "metadata/sky130-delta-sigma-adc.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-delta-sigma-adc/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-delta-sigma-adc/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Data Converters"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Data Converters"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A 12-bit, 10-KSPS incremental delta-sigma ADC implemented in the SKY130 process node, featuring a digital decimator, integrator, and SPI interface."
+      }
     },
     {
       "repo": "vyges-ip/sky130-ef-adc3v-12bit",
@@ -1086,7 +3510,28 @@
       "content_hash": "1d4cb8e0d5ed9e42319f633b3e0b90b317ad0b4df0162136f9d049b8ba1766c6",
       "default_branch": "main",
       "metadata_path": "metadata/sky130-ef-adc3v-12bit.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-ef-adc3v-12bit/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-ef-adc3v-12bit/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [],
+        "keywords": [
+          "adc",
+          "sar-adc",
+          "analog",
+          "mixed-signal",
+          "sky130",
+          "3v3",
+          "12bit",
+          "chipfoundry"
+        ],
+        "design_type": [
+          "analog",
+          "mixed-signal",
+          "adc"
+        ],
+        "maturity": "experimental",
+        "summary": "12-bit Successive Approximation Register (SAR) ADC for sky130A. Uses capacitive DAC (CDAC) + sample/hold + comparator. 3.3V analog reference. Composed from othe"
+      }
     },
     {
       "repo": "vyges-ip/sky130-opamp",
@@ -1095,7 +3540,27 @@
       "content_hash": "192eb6f2e64a27e43c091495c5c049af07ac8c2befb4bc6b4e3c7518a168101e",
       "default_branch": "main",
       "metadata_path": "metadata/sky130-opamp.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-opamp/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-opamp/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Operational Amplifiers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Operational Amplifiers"
+          }
+        ],
+        "design_type": [
+          "analog"
+        ],
+        "maturity": "production",
+        "summary": "Two-stage Miller-compensated operational amplifier designed for the SKY130 process node, featuring high gain and stability for analog signal processing applicat"
+      }
     },
     {
       "repo": "vyges-ip/sky130-potentiometric-dac",
@@ -1104,7 +3569,28 @@
       "content_hash": "e8aad3386263d96b61d41f639cdb352d71be989a688164977d81d7a6d0627178",
       "default_branch": "main",
       "metadata_path": "metadata/sky130-potentiometric-dac.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-potentiometric-dac/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-potentiometric-dac/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Converters"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Converters"
+          }
+        ],
+        "design_type": [
+          "analog",
+          "mixed-signal"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A 10-bit potentiometric digital-to-analog converter (DAC) designed for 3.3V operation in the SKY130 process node."
+      }
     },
     {
       "repo": "vyges-ip/sky130-sar-adc",
@@ -1113,7 +3599,27 @@
       "content_hash": "c319e8506719e227065f438f8695ba94ce15a940bac3bbf6e109982546ec4b2c",
       "default_branch": "main",
       "metadata_path": "metadata/sky130-sar-adc.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-sar-adc/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/sky130-sar-adc/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Converters"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Analog & Mixed-Signal",
+            "sub_category": "Converters"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A silicon-proven 12-bit fully-differential Successive Approximation Register (SAR) Analog-to-Digital Converter (ADC) implemented in the SKY130 process node."
+      }
     },
     {
       "repo": "vyges-ip/spi-controller",
@@ -1122,7 +3628,27 @@
       "content_hash": "f20157f26702a808a8bb9f4ec83f72468a1209cf4a01c3868a042b605d75ad2c",
       "default_branch": "main",
       "metadata_path": "metadata/spi-controller.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/spi-controller/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/spi-controller/main/vyges-metadata.json",
+      "search": {
+        "category": "communication",
+        "subcategories": [
+          "peripheral",
+          "serial"
+        ],
+        "keywords": [
+          "SPI",
+          "APB",
+          "FIFO",
+          "DMA",
+          "interrupt",
+          "power management"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "A configurable SPI master controller with APB interface, supporting all four SPI modes, FIFO buffering, interrupt generation, DMA support, and power management "
+      }
     },
     {
       "repo": "vyges-ip/tech_cells_generic",
@@ -1131,7 +3657,27 @@
       "content_hash": "78fffcfcd73c35720ddbc01c953ee35f76e2e524caac82c4155649ca9cff374e",
       "default_branch": "main",
       "metadata_path": "metadata/tech_cells_generic.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/tech_cells_generic/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/tech_cells_generic/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Building Blocks",
+            "sub_category": "Tech-Abstract Cells"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Building Blocks",
+            "sub_category": "Tech-Abstract Cells"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "Technology-abstract cells (clock gating/mux/inverter/buffer, power cells, SRAM) used by PULP-platform IPs. Generic implementations suitable for simulation and A"
+      }
     },
     {
       "repo": "vyges-ip/tlul-apb-adapter",
@@ -1140,7 +3686,28 @@
       "content_hash": "a317ace23b1effa74c69f1347157d1054c49f3091580f3cdd7a609bf26831c53",
       "default_branch": "main",
       "metadata_path": "metadata/tlul-apb-adapter.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/tlul-apb-adapter/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/tlul-apb-adapter/main/vyges-metadata.json",
+      "search": {
+        "category": "Base Libraries",
+        "subcategories": [
+          "bridge",
+          "infrastructure"
+        ],
+        "keywords": [
+          "tl-ul",
+          "apb",
+          "bridge",
+          "adapter",
+          "protocol",
+          "tilelink",
+          "amba"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "TileLink-UL to APB protocol bridge. Converts TL-UL slave transactions to APB master transactions, enabling any APB peripheral to connect to a TL-UL crossbar. Su"
+      }
     },
     {
       "repo": "vyges-ip/uart-controller",
@@ -1149,7 +3716,27 @@
       "content_hash": "2b7a0d3394e9fa5b946a0605c1aa001a71f4469acb0bb714a3a3e023ffbf0748",
       "default_branch": "main",
       "metadata_path": "metadata/uart-controller.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/uart-controller/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/uart-controller/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A configurable UART controller with APB interface, FIFO support, and interrupt capabilities for embedded systems. It supports configurable baud rates, error det"
+      }
     },
     {
       "repo": "vyges-ip/usb-cdc",
@@ -1158,7 +3745,24 @@
       "content_hash": "c5e7ffff284bc3d891c726f8284a9ee702ba9d92f9bddff03fd078638dd721d3",
       "default_branch": "main",
       "metadata_path": "metadata/usb-cdc.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/usb-cdc/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/usb-cdc/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          "communication",
+          "usb"
+        ],
+        "keywords": [
+          "communication",
+          "usb"
+        ],
+        "design_type": [
+          "digital",
+          "interface"
+        ],
+        "maturity": "experimental",
+        "summary": "USB 2.0 Full-Speed (12 Mbit/s) Communications Device Class (CDC) core. Multi-channel, byte-stream interface with valid/ready handshakes. Written in pure Verilog"
+      }
     },
     {
       "repo": "vyges-ip/veer-eh1",
@@ -1167,7 +3771,26 @@
       "content_hash": "41b36d891da10d3d393ea85ec35082c57245f833311e7c2086f75e9e1855c2e5",
       "default_branch": "main",
       "metadata_path": "metadata/veer-eh1.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/veer-eh1/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/veer-eh1/main/vyges-metadata.json",
+      "search": {
+        "category": "processor",
+        "subcategories": [
+          "embedded",
+          "risc-v"
+        ],
+        "keywords": [
+          "dma",
+          "debug",
+          "axi",
+          "ahb",
+          "risc-v"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "The VeeR EH1 is a high-performance RISC-V processor core supporting AXI and AHB interfaces, designed for embedded applications with debug and DMA capabilities."
+      }
     },
     {
       "repo": "vyges-ip/veer-eh2",
@@ -1176,7 +3799,27 @@
       "content_hash": "bedaa1fed669d28212f639d6234692a73b6a8ee0ab812c9a6d2adf141693b48c",
       "default_branch": "main",
       "metadata_path": "metadata/veer-eh2.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/veer-eh2/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/veer-eh2/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A dual-threaded RISC-V processor core with programmable interrupt controller, debug support, and memory subsystem integration."
+      }
     },
     {
       "repo": "vyges-ip/veer-el2",
@@ -1185,7 +3828,27 @@
       "content_hash": "f4b3f49940b5fb50106b5eeed33bbeb3672cd0b3dce86f0fab40cebaa4a3a164",
       "default_branch": "main",
       "metadata_path": "metadata/veer-el2.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/veer-el2/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/veer-el2/main/vyges-metadata.json",
+      "search": {
+        "category": "processor",
+        "subcategories": [
+          "risc-v",
+          "embedded"
+        ],
+        "keywords": [
+          "RISC-V",
+          "processor",
+          "AXI4",
+          "debug",
+          "DMA",
+          "memory protection"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "The VeeR EL2 is a RISC-V-based processor core designed for embedded systems, featuring a 32-bit architecture with support for debug, memory protection, and AXI4"
+      }
     },
     {
       "repo": "vyges-ip/verilog-axi",
@@ -1194,7 +3857,29 @@
       "content_hash": "aa13db5cc2348e50f02ed21b0f5bcac593fe8d6e12c6c66b006f4f756500d07e",
       "default_branch": "main",
       "metadata_path": "metadata/verilog-axi.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/verilog-axi/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/verilog-axi/main/vyges-metadata.json",
+      "search": {
+        "category": "bus",
+        "subcategories": [
+          "interconnect",
+          "adapter",
+          "DMA"
+        ],
+        "keywords": [
+          "AXI4",
+          "AXI4-Lite",
+          "DMA",
+          "crossbar",
+          "interconnect",
+          "adapter",
+          "FIFO"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A collection of AXI4 and AXI4-Lite bus components, including adapters, crossbars, DMA engines, and FIFOs, with fully parameterizable data and address interface "
+      }
     },
     {
       "repo": "vyges-ip/verilog-axis",
@@ -1203,7 +3888,26 @@
       "content_hash": "dc7c50779f5255ac612674fc70f33f09745e218cf7b1eddc9881c78dcc344242",
       "default_branch": "main",
       "metadata_path": "metadata/verilog-axis.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/verilog-axis/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/verilog-axis/main/vyges-metadata.json",
+      "search": {
+        "category": "bus",
+        "subcategories": [
+          "peripheral",
+          "streaming"
+        ],
+        "keywords": [
+          "AXI Stream",
+          "FIFO",
+          "multiplexer",
+          "adapter",
+          "COBS"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A collection of AXI Stream bus components, including adapters, FIFOs, multiplexers, and other utilities, designed for high-performance data streaming applicatio"
+      }
     },
     {
       "repo": "vyges-ip/verilog-ethernet",
@@ -1212,7 +3916,28 @@
       "content_hash": "2cd8214de34323597fd9beb6ff438cf7d72dbe7516e89d21a2f76efa963847b5",
       "default_branch": "main",
       "metadata_path": "metadata/verilog-ethernet.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/verilog-ethernet/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/verilog-ethernet/main/vyges-metadata.json",
+      "search": {
+        "category": "networking",
+        "subcategories": [
+          "communication",
+          "ethernet"
+        ],
+        "keywords": [
+          "ethernet",
+          "mac",
+          "phy",
+          "udp",
+          "ip",
+          "ptp",
+          "networking"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A comprehensive collection of Ethernet-related components for gigabit, 10G, and 25G packet processing, including MAC, PHY, IP, UDP, ARP, and PTP modules with su"
+      }
     },
     {
       "repo": "vyges-ip/verilog-i2c",
@@ -1221,7 +3946,28 @@
       "content_hash": "633655afb260caef0695736360397c35ed61ef972a6ba2d820c71568e58c8181",
       "default_branch": "main",
       "metadata_path": "metadata/verilog-i2c.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/verilog-i2c/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/verilog-i2c/main/vyges-metadata.json",
+      "search": {
+        "category": "peripheral",
+        "subcategories": [
+          "bus",
+          "interface"
+        ],
+        "keywords": [
+          "I2C",
+          "AXI",
+          "Wishbone",
+          "master",
+          "slave",
+          "AXI Lite",
+          "AXI Stream"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A Verilog-based I2C interface IP that includes master and slave modules with support for AXI Stream, AXI Lite, and Wishbone protocols, as well as initialization"
+      }
     },
     {
       "repo": "vyges-ip/verilog-pcie",
@@ -1230,7 +3976,25 @@
       "content_hash": "99ad5dfb7194cf5a5fe55347372ef52f48d1bf1de0af63b487de86d0459dcd45",
       "default_branch": "main",
       "metadata_path": "metadata/verilog-pcie.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/verilog-pcie/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/verilog-pcie/main/vyges-metadata.json",
+      "search": {
+        "category": "interface",
+        "subcategories": [
+          "dma",
+          "bridge"
+        ],
+        "keywords": [
+          "PCIe",
+          "AXI",
+          "DMA",
+          "FPGA"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A collection of PCI Express components including PCIe to AXI bridges, AXI Lite bridges, and a high-performance DMA subsystem. Supports multiple FPGA families wi"
+      }
     },
     {
       "repo": "vyges-ip/verilog-uart",
@@ -1239,7 +4003,24 @@
       "content_hash": "cbc1f49940a296a4ed438f9b1e32220ec438544d34e9dd41a6e9fd165aaf5532",
       "default_branch": "main",
       "metadata_path": "metadata/verilog-uart.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/verilog-uart/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/verilog-uart/main/vyges-metadata.json",
+      "search": {
+        "category": "communication",
+        "subcategories": [
+          "peripheral",
+          "serial"
+        ],
+        "keywords": [
+          "UART",
+          "AXI4-Stream",
+          "serial communication"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A Verilog-based UART IP core with AXI4-Stream interface, supporting configurable data width and runtime-adjustable baud rate via prescaler."
+      }
     },
     {
       "repo": "vyges-ip/verilog-wishbone",
@@ -1248,7 +4029,28 @@
       "content_hash": "b3d29d98b4cd3958fb431946bce057933d3f32ec6f7bf231e08ddea3afe6db98",
       "default_branch": "main",
       "metadata_path": "metadata/verilog-wishbone.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/verilog-wishbone/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/verilog-wishbone/main/vyges-metadata.json",
+      "search": {
+        "category": "bus",
+        "subcategories": [
+          "memory",
+          "peripheral"
+        ],
+        "keywords": [
+          "wishbone",
+          "verilog",
+          "bus",
+          "arbiters",
+          "multiplexers",
+          "RAM",
+          "registers"
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "A collection of Verilog modules implementing Wishbone bus components, including arbiters, adapters, multiplexers, RAMs, and registers, with fully parametrizable"
+      }
     },
     {
       "repo": "vyges-ip/vexriscv",
@@ -1257,7 +4059,27 @@
       "content_hash": "298e37b8b5f853381cb5363aeeeea4c3830930b9aad6638d50698102d57987e9",
       "default_branch": "main",
       "metadata_path": "metadata/vexriscv.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vexriscv/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vexriscv/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "production",
+        "summary": "VexRiscv: highly configurable RISC-V RV32IM CPU with plugin architecture. Supports MMU, FPU, caches, debug via composable plugins. Targets FPGA (Artix-7: 240 MH"
+      }
     },
     {
       "repo": "vyges-ip/vyges-clkmgr-lite",
@@ -1266,7 +4088,27 @@
       "content_hash": "cfc1e8e8ad27a0b83fa8b6954959b928b69855ba4284a0ae15e5f4e3cfafcab7",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-clkmgr-lite.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-clkmgr-lite/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-clkmgr-lite/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Timing & Clocking",
+            "sub_category": "Clock Managers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Timing & Clocking",
+            "sub_category": "Clock Managers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "Lightweight clock manager with a TL-UL register interface, supporting up to 4 configurable clock domains with per-clock integer dividers and glitch-free gating."
+      }
     },
     {
       "repo": "vyges-ip/vyges-gpio-lite",
@@ -1275,7 +4117,27 @@
       "content_hash": "4db8fa81ef4f24cd5056a3e74b4401709e0f84f86c90edf673c021254ebea4fb",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-gpio-lite.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-gpio-lite/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-gpio-lite/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Parallel Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "Lightweight GPIO peripheral with a configurable number of pins, per-pin direction control, edge-triggered interrupts, and a TL-UL slave interface. Designed for "
+      }
     },
     {
       "repo": "vyges-ip/vyges-pinmux-lite",
@@ -1284,7 +4146,17 @@
       "content_hash": "259f51df47799fed7e1c53e691c4253a461cda183837fdcc87dd7d9a115808c7",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-pinmux-lite.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-pinmux-lite/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-pinmux-lite/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [],
+        "keywords": [],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "development",
+        "summary": "Lightweight pin multiplexer with native TL-UL slave interface. Per-pin function select (4 functions), output enable, pull-up/pull-down control, 2-FF input synch"
+      }
     },
     {
       "repo": "vyges-ip/vyges-rstmgr-lite",
@@ -1293,7 +4165,27 @@
       "content_hash": "e884f4fa15c22880d74d177a9ddebd09ec4df33331d7d750da008252f13f928a",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-rstmgr-lite.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-rstmgr-lite/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-rstmgr-lite/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Control Logic",
+            "sub_category": "Reset Managers"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Control Logic",
+            "sub_category": "Reset Managers"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "Lightweight reset manager with a TL-UL slave interface, supporting configurable reset domains, software reset, watchdog timeout reset, and reset cause tracking."
+      }
     },
     {
       "repo": "vyges-ip/vyges-rv-dbg-tlul",
@@ -1302,7 +4194,27 @@
       "content_hash": "702aa70bb5d719d66afb2161fc7ed2b1dd111d02e49893f2cdc79440ff6a5f20",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-rv-dbg-tlul.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-rv-dbg-tlul/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-rv-dbg-tlul/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "development",
+        "summary": "Vyges TL-UL wrapper around pulp-platform RISC-V Debug Module (RISC-V Debug Spec 0.13). Provides TL-UL slave (regs + mem) + TL-UL master (SBA) + JTAG TAP as a dr"
+      }
     },
     {
       "repo": "vyges-ip/vyges-rv-plic-lite",
@@ -1311,7 +4223,27 @@
       "content_hash": "5e22b9284334baa475fbe876f88cd72847aef0550d75d3b716faa4fee2d0c417",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-rv-plic-lite.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-rv-plic-lite/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-rv-plic-lite/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "Lightweight RISC-V Platform-Level Interrupt Controller (PLIC) with a native TL-UL slave interface, supporting up to 32 interrupt sources and a single hart targe"
+      }
     },
     {
       "repo": "vyges-ip/vyges-spi-host-lite",
@@ -1320,7 +4252,27 @@
       "content_hash": "165d9c6a9111ab4cf35122e63e86e82bc96bdc5be5c3d42d24b181d73cf13a24",
       "default_branch": "main",
       "metadata_path": "metadata/vyges-spi-host-lite.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-spi-host-lite/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-spi-host-lite/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "Serial Interfaces"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "rtl_verified",
+        "summary": "Lightweight SPI master controller with TL-UL slave interface, supporting SPI modes 0\u20133, configurable clock divider, and interrupt-driven TX/RX FIFO operations."
+      }
     },
     {
       "repo": "vyges-ip/wrapped-wb-hyperram",
@@ -1329,7 +4281,24 @@
       "content_hash": "dffcf41a4e8f3c169c96ad3027d1c71ad9fc41176b63ae1aafbb0ce93ece3883",
       "default_branch": "main",
       "metadata_path": "metadata/wrapped-wb-hyperram.json",
-      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/wrapped-wb-hyperram/main/vyges-metadata.json"
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/wrapped-wb-hyperram/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          "memory-controller",
+          "external-interface"
+        ],
+        "keywords": [
+          "memory-controller",
+          "external-interface"
+        ],
+        "design_type": [
+          "digital",
+          "memory"
+        ],
+        "maturity": "experimental",
+        "summary": "Wishbone B4 HyperRAM controller for sky130A. Caravel user_project_wrapper-shaped, with hardened GDS/LEF/LVS-clean netlist. Wraps embelon/wb_hyperram driver for "
+      }
     }
   ]
 }

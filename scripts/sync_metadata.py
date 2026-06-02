@@ -119,6 +119,37 @@ def manifest_hash(md: Dict) -> str:
     return hashlib.sha256(canonical.encode()).hexdigest()
 
 
+def _as_list(v):
+    if v is None:
+        return []
+    return v if isinstance(v, list) else [v]
+
+
+def search_block(md: Dict) -> Dict:
+    """Compact, search-relevant subset for `vyges catalog search` — denormalized
+    from the full manifest so a client can search by name / category / keyword
+    WITHOUT fetching 146 manifests. Tolerates `categories` as an object
+    {primary, secondary, tags} or as a plain list."""
+    cats = md.get("categories")
+    if isinstance(cats, dict):
+        category = cats.get("primary")
+        subcats = _as_list(cats.get("secondary"))
+        keywords = _as_list(cats.get("tags"))
+    elif isinstance(cats, list):
+        category, subcats, keywords = None, cats, cats
+    else:
+        category, subcats, keywords = None, [], []
+    keywords = keywords or _as_list(md.get("keywords")) or _as_list(md.get("tags"))
+    return {
+        "category": category,
+        "subcategories": subcats,
+        "keywords": keywords,
+        "design_type": _as_list(md.get("design_type")),
+        "maturity": md.get("maturity"),
+        "summary": (md.get("description") or "").strip()[:160],
+    }
+
+
 def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--org", required=True, help="GitHub org to crawl (e.g. vyges-ip)")
@@ -185,6 +216,7 @@ def main() -> int:
             "default_branch": default_branch,
             "metadata_path":  f"metadata/{repo['name']}.json",
             "manifest_url":   f"{RAW_BASE}/{full_name}/{default_branch}/vyges-metadata.json",
+            "search":         search_block(md),
         })
         have_metadata.append(full_name)
 
