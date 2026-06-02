@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-06-02T03:36:40+00:00",
-  "generated_sha": "4864143722befdc6150bde8a1b7c9ead5885f075",
+  "generated_at": "2026-06-02T04:39:53+00:00",
+  "generated_sha": "8687820f79227866b06585f06cceb0b85b819b4e",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 153,
@@ -38,8 +38,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "A 32-bit, 5-stage pipelined RISC processor core with Harvard AXI-Lite bus interfaces, configurable single-bit branch prediction, aligned memory enforcement, 16x",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A 32-bit, 5-stage pipelined RISC processor core with Harvard AXI-Lite bus interfaces, configurable single-bit branch prediction, aligned memory enforcement, 16x"
       }
     },
     {
@@ -68,8 +68,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "Adams-Bridge is a silicon IP block designed for interfacing with AHB-Lite bus systems, providing robust data transfer capabilities and support for cryptographic",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Adams-Bridge is a silicon IP block designed for interfacing with AHB-Lite bus systems, providing robust data transfer capabilities and support for cryptographic"
       }
     },
     {
@@ -102,8 +102,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "AES-128/192/256 cryptographic accelerator supporting ECB, CBC, CFB-128, OFB, CTR, and GCM (authenticated encryption with GHASH) modes. Features first-order Doma",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "AES-128/192/256 cryptographic accelerator supporting ECB, CBC, CFB-128, OFB, CTR, and GCM (authenticated encryption with GHASH) modes. Features first-order Doma"
       }
     },
     {
@@ -132,8 +132,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "An AHB-Lite 2:1 multiplexer that arbitrates between two initiators and a single responder, with fixed priority for Initiator 0 and optional optimization for add",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "An AHB-Lite 2:1 multiplexer that arbitrates between two initiators and a single responder, with fixed priority for Initiator 0 and optional optimization for add"
       }
     },
     {
@@ -162,8 +162,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "AXI4 Manager DMA block for high-performance data transfer, supporting configurable address, data, and user widths.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "AXI4 Manager DMA block for high-performance data transfer, supporting configurable address, data, and user widths."
       }
     },
     {
@@ -195,8 +195,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "CTR_DRBG (AES-256) cryptographically secure random number generator per NIST SP 800-90A. Supports multiple independent DRBG instances with Instantiate, Reseed, ",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "CTR_DRBG (AES-256) cryptographically secure random number generator per NIST SP 800-90A. Supports multiple independent DRBG instances with Instantiate, Reseed, "
       }
     },
     {
@@ -225,8 +225,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "Caliptra DataVault is a register block for secure storage and access control of sensitive data, including sticky and non-sticky registers, lockable scratch regi",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Caliptra DataVault is a register block for secure storage and access control of sensitive data, including sticky and non-sticky registers, lockable scratch regi"
       }
     },
     {
@@ -258,8 +258,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "AES-256-CBC de-obfuscation engine for secure device secrets at boot time. Decrypts obfuscated UDS (Unique Device Secret), Field Entropy, and HEK (Hardware Embed",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "AES-256-CBC de-obfuscation engine for secure device secrets at boot time. Decrypts obfuscated UDS (Unique Device Secret), Field Entropy, and HEK (Hardware Embed"
       }
     },
     {
@@ -293,8 +293,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "ECDSA/ECDH P-384 (secp384r1) accelerator with key generation, RFC 6979 deterministic signing, signature verification, ECDH shared key computation, and public ke",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "ECDSA/ECDH P-384 (secp384r1) accelerator with key generation, RFC 6979 deterministic signing, signature verification, ECDH shared key computation, and public ke"
       }
     },
     {
@@ -323,8 +323,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The caliptra-edn IP is a peripheral module that provides an Entropy Distribution Network (EDN) interface for secure entropy distribution, supporting FIPS-compli",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The caliptra-edn IP is a peripheral module that provides an Entropy Distribution Network (EDN) interface for secure entropy distribution, supporting FIPS-compli"
       }
     },
     {
@@ -357,8 +357,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "NIST SP 800-90B compliant entropy source with 5 parallel health tests (Repetitive Count, Adaptive Proportion, Markov, Bucket), SHA-3 conditioning for FIPS entro",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "NIST SP 800-90B compliant entropy source with 5 parallel health tests (Repetitive Count, Adaptive Proportion, Markov, Bucket), SHA-3 conditioning for FIPS entro"
       }
     },
     {
@@ -391,8 +391,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "HMAC-384/512 authentication engine using masked SHA-512 core with 12 LFSR entropy generators for side-channel resistance. Supports software-written keys and Cal",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "HMAC-384/512 authentication engine using masked SHA-512 core with 12 LFSR entropy generators for side-channel resistance. Supports software-written keys and Cal"
       }
     },
     {
@@ -421,8 +421,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A hardware implementation of an HMAC-based Deterministic Random Bit Generator (DRBG) compliant with NIST SP 800-90A and RFC 6979, generating 384-bit random numb",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A hardware implementation of an HMAC-based Deterministic Random Bit Generator (DRBG) compliant with NIST SP 800-90A and RFC 6979, generating 384-bit random numb"
       }
     },
     {
@@ -451,8 +451,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The Caliptra KeyVault is a secure key storage and management module designed for cryptographic operations, supporting up to 24 keys with 16 double words per key",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The Caliptra KeyVault is a secure key storage and management module designed for cryptographic operations, supporting up to 24 keys with 16 double words per key"
       }
     },
     {
@@ -486,8 +486,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "SHA-3/SHAKE/cSHAKE Keccak-based cryptographic hash engine implementing the full Keccak-f[1600] sponge construction with 24-round permutation. Supports SHA3-224/",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "SHA-3/SHAKE/cSHAKE Keccak-based cryptographic hash engine implementing the full Keccak-f[1600] sponge construction with 24-round permutation. Supports SHA3-224/"
       }
     },
     {
@@ -516,8 +516,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The Caliptra Life Cycle Controller (LC_CTRL) manages the lifecycle states of the chip, including manufacturing state encoding, transition counters, and secure l",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The Caliptra Life Cycle Controller (LC_CTRL) manages the lifecycle states of the chip, including manufacturing state encoding, transition counters, and secure l"
       }
     },
     {
@@ -546,8 +546,8 @@
           "digital"
         ],
         "maturity": "draft",
-        "summary": "IP imported from https://github.com/chipsalliance/caliptra-rtl",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "IP imported from https://github.com/chipsalliance/caliptra-rtl"
       }
     },
     {
@@ -576,8 +576,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The Caliptra PCR Vault is a hardware IP block designed for secure storage and management of Platform Configuration Registers (PCRs), supporting secure boot and ",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The Caliptra PCR Vault is a hardware IP block designed for secure storage and management of Platform Configuration Registers (PCRs), supporting secure boot and "
       }
     },
     {
@@ -606,8 +606,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A collection of foundational primitives for secure hardware design, including error correction codes (SECDED), multibit signal types, synchronization mechanisms",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A collection of foundational primitives for secure hardware design, including error correction codes (SECDED), multibit signal types, synchronization mechanisms"
       }
     },
     {
@@ -636,8 +636,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A RISC-V based processor core with integrated DMA controller, debug support, and memory interfaces, designed for secure and efficient embedded applications.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A RISC-V based processor core with integrated DMA controller, debug support, and memory interfaces, designed for secure and efficient embedded applications."
       }
     },
     {
@@ -669,8 +669,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "SHA-256/224 cryptographic hash engine with 512-bit block processing, 64-round computation, Winternitz post-quantum signature support (variable W parameter), and",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "SHA-256/224 cryptographic hash engine with 512-bit block processing, 64-round computation, Winternitz post-quantum signature support (variable W parameter), and"
       }
     },
     {
@@ -699,8 +699,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A hardware implementation of the SHA-3 cryptographic hash function, including support for Keccak-based Message Authentication Code (KMAC) and AHB-Lite interface",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A hardware implementation of the SHA-3 cryptographic hash function, including support for Keccak-based Message Authentication Code (KMAC) and AHB-Lite interface"
       }
     },
     {
@@ -732,8 +732,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "SHA-512/384/256/224 cryptographic hash engine with 1024-bit block processing, 80-round computation, KeyVault integration for secure key/block input and digest o",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "SHA-512/384/256/224 cryptographic hash engine with 1024-bit block processing, 80-round computation, KeyVault integration for secure key/block input and digest o"
       }
     },
     {
@@ -762,8 +762,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A Verilog 2001 implementation of the SHA-512 cryptographic hash function with integrated masking countermeasures for side-channel attack resistance.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A Verilog 2001 implementation of the SHA-512 cryptographic hash function with integrated masking countermeasures for side-channel attack resistance."
       }
     },
     {
@@ -792,8 +792,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The Caliptra SoC Interface (SoC-IFC) module provides a bridge between the SoC and the Caliptra subsystem, supporting AXI, AHB-Lite, and mailbox communication pr",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The Caliptra SoC Interface (SoC-IFC) module provides a bridge between the SoC and the Caliptra subsystem, supporting AXI, AHB-Lite, and mailbox communication pr"
       }
     },
     {
@@ -822,8 +822,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A silicon-proven SPI Host controller with an AMBA AHB-Lite interface, supporting configurable data widths, command queues, and error handling.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A silicon-proven SPI Host controller with an AMBA AHB-Lite interface, supporting configurable data widths, command queues, and error handling."
       }
     },
     {
@@ -852,8 +852,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A TileLink UL adapter for SRAM-like devices, supporting byte-level writes with optional integrity and readback checks.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A TileLink UL adapter for SRAM-like devices, supporting byte-level writes with optional integrity and readback checks."
       }
     },
     {
@@ -882,8 +882,8 @@
           "digital"
         ],
         "maturity": "draft",
-        "summary": "IP imported from https://github.com/chipsalliance/caliptra-rtl",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "IP imported from https://github.com/chipsalliance/caliptra-rtl"
       }
     },
     {
@@ -912,8 +912,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "CANakari is a CAN 2.0B Controller implemented in Verilog and VHDL, designed for automotive and industrial communication systems. It supports message encapsulati",
-        "license": "MIT"
+        "license": "MIT",
+        "summary": "CANakari is a CAN 2.0B Controller implemented in Verilog and VHDL, designed for automotive and industrial communication systems. It supports message encapsulati"
       }
     },
     {
@@ -942,8 +942,8 @@
           "harness-support"
         ],
         "maturity": "stable",
-        "summary": "Parameterized GPIO pad configuration wrapper for ChipFoundry OpenFrame projects. Set the pad mode once (digital input/output, analog passthrough, pull-up/down, ",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Parameterized GPIO pad configuration wrapper for ChipFoundry OpenFrame projects. Set the pad mode once (digital input/output, analog passthrough, pull-up/down, "
       }
     },
     {
@@ -969,8 +969,8 @@
           "communication"
         ],
         "maturity": "stable",
-        "summary": "I2C master controller from ChipFoundry. Configurable clock rate, 7/10-bit addressing, TX/RX FIFOs. APB / AHB-Lite / Wishbone wrappers.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "I2C master controller from ChipFoundry. Configurable clock rate, 7/10-bit addressing, TX/RX FIFOs. APB / AHB-Lite / Wishbone wrappers."
       }
     },
     {
@@ -997,8 +997,8 @@
           "audio"
         ],
         "maturity": "stable",
-        "summary": "I2S audio interface controller from ChipFoundry. Configurable sample width and clock divider, TX/RX FIFOs. APB / AHB-Lite / Wishbone wrappers.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "I2S audio interface controller from ChipFoundry. Configurable sample width and clock divider, TX/RX FIFOs. APB / AHB-Lite / Wishbone wrappers."
       }
     },
     {
@@ -1027,8 +1027,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "ChipFoundry CF_IP_UTIL \u2014 a library of small reusable Verilog utility primitives for building digital IPs: synchronizers (cf_util_sync), clock gating cells (cf_u",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "ChipFoundry CF_IP_UTIL \u2014 a library of small reusable Verilog utility primitives for building digital IPs: synchronizers (cf_util_sync), clock gating cells (cf_u"
       }
     },
     {
@@ -1056,8 +1056,8 @@
           "communication"
         ],
         "maturity": "stable",
-        "summary": "SPI master controller from ChipFoundry with TX/RX FIFOs. Configurable clock polarity/phase, programmable baud rate. APB / AHB-Lite / Wishbone wrappers; DFT-awar",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "SPI master controller from ChipFoundry with TX/RX FIFOs. Configurable clock polarity/phase, programmable baud rate. APB / AHB-Lite / Wishbone wrappers; DFT-awar"
       }
     },
     {
@@ -1087,8 +1087,8 @@
           "memory"
         ],
         "maturity": "production",
-        "summary": "ChipFoundry CF_SRAM_1024x32 \u2014 single-port synchronous SRAM in SKY130 technology. 1024 words \u00d7 32 bits, bit-enable write, separate data-in/data-out pins. Commerc",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "ChipFoundry CF_SRAM_1024x32 \u2014 single-port synchronous SRAM in SKY130 technology. 1024 words \u00d7 32 bits, bit-enable write, separate data-in/data-out pins. Commerc"
       }
     },
     {
@@ -1116,8 +1116,8 @@
           "pwm"
         ],
         "maturity": "stable",
-        "summary": "32-bit timer and dual-channel PWM generator from ChipFoundry. 32-bit prescaler, up/down/up-down counting modes, one-shot or periodic operation, two independent ",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "32-bit timer and dual-channel PWM generator from ChipFoundry. 32-bit prescaler, up/down/up-down counting modes, one-shot or periodic operation, two independent "
       }
     },
     {
@@ -1144,8 +1144,8 @@
           "communication"
         ],
         "maturity": "stable",
-        "summary": "Configurable UART controller from ChipFoundry. Features: 5-9 data bits, even/odd/stick/no parity, 1-2 stop bits, line-break detection, configurable RX timeout, ",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Configurable UART controller from ChipFoundry. Features: 5-9 data bits, even/odd/stick/no parity, 1-2 stop bits, line-break detection, configurable RX timeout, "
       }
     },
     {
@@ -1174,8 +1174,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "A collection of reusable RTL modules for common digital design tasks, including clock domain crossing, FIFOs, counters, and synchronization primitives.",
-        "license": "SHL-0.51"
+        "license": "SHL-0.51",
+        "summary": "A collection of reusable RTL modules for common digital design tasks, including clock domain crossing, FIFOs, counters, and synchronization primitives."
       }
     },
     {
@@ -1204,8 +1204,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "CoralNPU AXI4-to-TileLink-UL protocol bridge, designed to translate AXI4 transactions to TileLink-UL protocol for efficient interconnect communication in SoC de",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "CoralNPU AXI4-to-TileLink-UL protocol bridge, designed to translate AXI4 transactions to TileLink-UL protocol for efficient interconnect communication in SoC de"
       }
     },
     {
@@ -1234,8 +1234,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A clock gating module for the Coral NPU, designed to reduce power consumption by selectively enabling or disabling clock signals to specific parts of the design",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A clock gating module for the Coral NPU, designed to reduce power consumption by selectively enabling or disabling clock signals to specific parts of the design"
       }
     },
     {
@@ -1264,8 +1264,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "CoralNPU RISC-V Core implementing RV32IMF_Zve32x ISA with scalar, floating-point, and vector pipelines, L1 caches, tightly coupled memory (TCM), and TileLink/AX",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "CoralNPU RISC-V Core implementing RV32IMF_Zve32x ISA with scalar, floating-point, and vector pipelines, L1 caches, tightly coupled memory (TCM), and TileLink/AX"
       }
     },
     {
@@ -1294,8 +1294,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The DBus2Axi module bridges a custom data bus (DBus) to an AXI interface, supporting data transfers with configurable parameters such as address, size, and burs",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The DBus2Axi module bridges a custom data bus (DBus) to an AXI interface, supporting data transfers with configurable parameters such as address, size, and burs"
       }
     },
     {
@@ -1324,8 +1324,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "An I2C master controller with TileLink-UL interface, supporting configurable FIFO depth and clock division for flexible communication with I2C peripherals.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "An I2C master controller with TileLink-UL interface, supporting configurable FIFO depth and clock division for flexible communication with I2C peripherals."
       }
     },
     {
@@ -1354,8 +1354,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A Level 1 data cache implementation for the Coral NPU, supporting AXI and custom data bus interfaces for high-performance memory operations.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A Level 1 data cache implementation for the Coral NPU, supporting AXI and custom data bus interfaces for high-performance memory operations."
       }
     },
     {
@@ -1384,8 +1384,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A Level-1 instruction cache for the Coral NPU, supporting AXI-based memory access and fault handling.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A Level-1 instruction cache for the Coral NPU, supporting AXI-based memory access and fault handling."
       }
     },
     {
@@ -1414,8 +1414,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A reset synchronization module designed for Coral NPU systems, ensuring reliable reset signal propagation across clock domains.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A reset synchronization module designed for Coral NPU systems, ensuring reliable reset signal propagation across clock domains."
       }
     },
     {
@@ -1444,8 +1444,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The coralnpu-rvv-backend is a vector processing backend for RISC-V Vector Extension (RVV), designed to handle micro-operations dispatch, execution, and retireme",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The coralnpu-rvv-backend is a vector processing backend for RISC-V Vector Extension (RVV), designed to handle micro-operations dispatch, execution, and retireme"
       }
     },
     {
@@ -1474,8 +1474,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A parameterized synchronous FIFO module supporting multi-push and multi-pop operations, with features like configurable depth, push/pop widths, and optional dat",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A parameterized synchronous FIFO module supporting multi-push and multi-pop operations, with features like configurable depth, push/pop widths, and optional dat"
       }
     },
     {
@@ -1509,8 +1509,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "RISC-V Vector (RVV 1.0) execution engine implementing Zve32x integer vector extension with optional Zve32f floating-point support. Configurable VLEN (128/256/51",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "RISC-V Vector (RVV 1.0) execution engine implementing Zve32x integer vector extension with optional Zve32f floating-point support. Configurable VLEN (128/256/51"
       }
     },
     {
@@ -1539,8 +1539,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The CoralNPU Scalar Units provide hardware-accelerated scalar operations for neural network processing, including arithmetic, logical, and data manipulation fun",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The CoralNPU Scalar Units provide hardware-accelerated scalar operations for neural network processing, including arithmetic, logical, and data manipulation fun"
       }
     },
     {
@@ -1569,8 +1569,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A SPI-to-TL-UL bridge for interfacing SPI peripherals with TileLink-based systems, providing synchronization and data transfer capabilities.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A SPI-to-TL-UL bridge for interfacing SPI peripherals with TileLink-based systems, providing synchronization and data transfer capabilities."
       }
     },
     {
@@ -1599,8 +1599,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "CoralNPU subsystem for SoC integration, featuring crossbar interconnect, peripherals (GPIO, SPI, CLINT, DMA), and DDR bridges. Generated using Chisel HDL.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "CoralNPU subsystem for SoC integration, featuring crossbar interconnect, peripherals (GPIO, SPI, CLINT, DMA), and DDR bridges. Generated using Chisel HDL."
       }
     },
     {
@@ -1629,8 +1629,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A synchronous FIFO implementation with TileLink Ultra-Lite (TL-UL) protocol support, designed for buffering data in the Coral NPU pipeline.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A synchronous FIFO implementation with TileLink Ultra-Lite (TL-UL) protocol support, designed for buffering data in the Coral NPU pipeline."
       }
     },
     {
@@ -1659,8 +1659,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A TileLink Ultra-Lite (TL-UL) interface package for the CoralNPU, providing data and command integrity checks and support for 128-bit and 32-bit data widths.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A TileLink Ultra-Lite (TL-UL) interface package for the CoralNPU, providing data and command integrity checks and support for 128-bit and 32-bit data widths."
       }
     },
     {
@@ -1689,8 +1689,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A TileLink to AXI bridge for Coral NPU, enabling seamless communication between TileLink-based and AXI-based systems.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A TileLink to AXI bridge for Coral NPU, enabling seamless communication between TileLink-based and AXI-based systems."
       }
     },
     {
@@ -1719,8 +1719,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The CV32E40P is a 32-bit, 4-stage RISC-V processor core with optional support for PULP extensions, hardware loops, and a floating-point unit (FPU). It is design",
-        "license": "Solderpad-0.51"
+        "license": "Solderpad-0.51",
+        "summary": "The CV32E40P is a 32-bit, 4-stage RISC-V processor core with optional support for PULP extensions, hardware loops, and a floating-point unit (FPU). It is design"
       }
     },
     {
@@ -1749,8 +1749,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "CVA6 is a high-performance, silicon-proven, 64-bit RISC-V processor core supporting the RV64GC instruction set architecture with advanced features such as out-o",
-        "license": "Solderpad-0.51"
+        "license": "Solderpad-0.51",
+        "summary": "CVA6 is a high-performance, silicon-proven, 64-bit RISC-V processor core supporting the RV64GC instruction set architecture with advanced features such as out-o"
       }
     },
     {
@@ -1775,8 +1775,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "CVE2 is a RISC-V compliant processor core supporting RV32IMC instruction set with optional extensions for bit manipulation, physical memory protection, and debu",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "CVE2 is a RISC-V compliant processor core supporting RV32IMC instruction set with optional extensions for bit manipulation, physical memory protection, and debu"
       }
     },
     {
@@ -1805,8 +1805,8 @@
           "watchdog"
         ],
         "maturity": "stable",
-        "summary": "Simple 32-bit watchdog timer from Efabless/ChipFoundry. Loadable down-counter decremented every system clock cycle; raises TO (timeout) IRQ on zero and reloads.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Simple 32-bit watchdog timer from Efabless/ChipFoundry. Loadable down-counter decremented every system clock cycle; raises TO (timeout) IRQ on zero and reloads."
       }
     },
     {
@@ -1838,8 +1838,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "Configurable 1024-point radix-2 decimation-in-frequency FFT accelerator with APB slave control interface, AXI data port (Phase 2), 2048x32-bit working memory (d",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Configurable 1024-point radix-2 decimation-in-frequency FFT accelerator with APB slave control interface, AXI data port (Phase 2), 2048x32-bit working memory (d"
       }
     },
     {
@@ -1868,8 +1868,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "FastVDMA is a highly configurable and portable DMA controller supporting 2D transfers with configurable stride, external frame synchronization, and multiple bus",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "FastVDMA is a highly configurable and portable DMA controller supporting 2D transfers with configurable stride, external frame synchronization, and multiple bus"
       }
     },
     {
@@ -1898,8 +1898,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "Berkeley HardFloat is a hardware implementation of binary floating-point arithmetic conforming to the IEEE Standard for Floating-Point Arithmetic. It includes V",
-        "license": "BSD-3-Clause"
+        "license": "BSD-3-Clause",
+        "summary": "Berkeley HardFloat is a hardware implementation of binary floating-point arithmetic conforming to the IEEE Standard for Floating-Point Arithmetic. It includes V"
       }
     },
     {
@@ -1927,8 +1927,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "A fully pipelined digital Hilbert transformer for DSP applications, implementing an FIR filter-based Hilbert transform with AXI-Stream interface, configurable d",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A fully pipelined digital Hilbert transformer for DSP applications, implementing an FIR filter-based Hilbert transform with AXI-Stream interface, configurable d"
       }
     },
     {
@@ -1957,8 +1957,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "An open-source implementation of the MIPI I3C protocol, supporting both controller and target modes with features like dynamic address assignment, in-band inter",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "An open-source implementation of the MIPI I3C protocol, supporting both controller and target modes with features like dynamic address assignment, in-band inter"
       }
     },
     {
@@ -1990,8 +1990,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "Ibex RV32IMC RISC-V CPU core. 2-stage pipeline (IF/ID+EX), configurable register file (FF/FPGA/latch), optional PMP, optional ICache, branch predictor, SecureIb",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Ibex RV32IMC RISC-V CPU core. 2-stage pipeline (IF/ID+EX), configurable register file (FF/FPGA/latch), optional PMP, optional ICache, branch predictor, SecureIb"
       }
     },
     {
@@ -2020,8 +2020,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "The MLow Audio Codec IP is a high-performance, low-complexity audio compression solution designed for real-time communication (RTC) applications. It supports ul",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The MLow Audio Codec IP is a high-performance, low-complexity audio compression solution designed for real-time communication (RTC) applications. It supports ul"
       }
     },
     {
@@ -2051,8 +2051,8 @@
           "analog"
         ],
         "maturity": "rtl_verified",
-        "summary": "Analog temperature sensor generator designed for SKY130 and GF180 process nodes, providing automated synthesis and optimization for temperature sensing applicat",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Analog temperature sensor generator designed for SKY130 and GF180 process nodes, providing automated synthesis and optimization for temperature sensing applicat"
       }
     },
     {
@@ -2081,8 +2081,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The OpenTitan ADC Controller (adc_ctrl) is a digital peripheral that manages analog-to-digital conversion, including power management, low-power sampling, and c",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The OpenTitan ADC Controller (adc_ctrl) is a digital peripheral that manages analog-to-digital conversion, including power management, low-power sampling, and c"
       }
     },
     {
@@ -2111,8 +2111,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A silicon-proven AES cryptographic accelerator from the OpenTitan project, supporting multiple modes of operation, key masking, and secure key storage.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A silicon-proven AES cryptographic accelerator from the OpenTitan project, supporting multiple modes of operation, key masking, and secure key storage."
       }
     },
     {
@@ -2141,8 +2141,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The Always-On Timer (aon_timer) is a low-power timer module from the OpenTitan project. It provides wakeup and watchdog timer functionality with support for reg",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The Always-On Timer (aon_timer) is a low-power timer module from the OpenTitan project. It provides wakeup and watchdog timer functionality with support for reg"
       }
     },
     {
@@ -2171,8 +2171,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The OpenTitan ASCON IP block implements cryptographic operations based on the ASCON lightweight authenticated encryption and hashing algorithm, providing secure",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The OpenTitan ASCON IP block implements cryptographic operations based on the ASCON lightweight authenticated encryption and hashing algorithm, providing secure"
       }
     },
     {
@@ -2201,8 +2201,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A silicon-proven cryptographic pseudorandom number generator (PRNG) and deterministic random bit generator (DRBG) compliant with NIST SP 800-90A, featuring a TL",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A silicon-proven cryptographic pseudorandom number generator (PRNG) and deterministic random bit generator (DRBG) compliant with NIST SP 800-90A, featuring a TL"
       }
     },
     {
@@ -2231,8 +2231,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A DMA controller from the OpenTitan project, supporting TL-UL protocol with features such as integrity checking, register access control, and configurable trans",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A DMA controller from the OpenTitan project, supporting TL-UL protocol with features such as integrity checking, register access control, and configurable trans"
       }
     },
     {
@@ -2261,8 +2261,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The opentitan-edn is an Entropy Distribution Network (EDN) IP block that provides secure and reliable entropy distribution to hardware modules, supporting featu",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The opentitan-edn is an Entropy Distribution Network (EDN) IP block that provides secure and reliable entropy distribution to hardware modules, supporting featu"
       }
     },
     {
@@ -2291,8 +2291,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A silicon-proven entropy source module for generating true random numbers, including health tests and integrity checks.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A silicon-proven entropy source module for generating true random numbers, including health tests and integrity checks."
       }
     },
     {
@@ -2321,8 +2321,8 @@
           "digital"
         ],
         "maturity": "draft",
-        "summary": "IP imported from https://github.com/lowRISC/opentitan",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "IP imported from https://github.com/lowRISC/opentitan"
       }
     },
     {
@@ -2351,8 +2351,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The OpenTitan HMAC IP block implements a hardware-accelerated HMAC engine with support for SHA-256 and configurable key and digest sizes. It includes a TileLink",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The OpenTitan HMAC IP block implements a hardware-accelerated HMAC engine with support for SHA-256 and configurable key and digest sizes. It includes a TileLink"
       }
     },
     {
@@ -2381,8 +2381,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The OpenTitan I2C IP is a highly configurable and silicon-proven I2C controller supporting both master and target modes, with features such as RACL policy enfor",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The OpenTitan I2C IP is a highly configurable and silicon-proven I2C controller supporting both master and target modes, with features such as RACL policy enfor"
       }
     },
     {
@@ -2411,8 +2411,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The OpenTitan Key Manager is a security IP block responsible for managing cryptographic keys, supporting operations such as key generation, reseeding, and sidel",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The OpenTitan Key Manager is a security IP block responsible for managing cryptographic keys, supporting operations such as key generation, reseeding, and sidel"
       }
     },
     {
@@ -2441,8 +2441,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The Key Manager DPE (Derived Primary Entity) is a security IP block that manages cryptographic keys and their lifecycle, supporting operations such as key gener",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The Key Manager DPE (Derived Primary Entity) is a security IP block that manages cryptographic keys and their lifecycle, supporting operations such as key gener"
       }
     },
     {
@@ -2471,8 +2471,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The opentitan-kmac is a hardware implementation of the Keccak Message Authentication Code (KMAC) cryptographic function, supporting configurable key lengths, en",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The opentitan-kmac is a hardware implementation of the Keccak Message Authentication Code (KMAC) cryptographic function, supporting configurable key lengths, en"
       }
     },
     {
@@ -2501,8 +2501,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The OpenTitan Life Cycle Controller (lc_ctrl) is a hardware block responsible for managing the lifecycle states of the device, including secure state transition",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The OpenTitan Life Cycle Controller (lc_ctrl) is a hardware block responsible for managing the lifecycle states of the device, including secure state transition"
       }
     },
     {
@@ -2531,8 +2531,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "Ibex is a small, efficient, and configurable RISC-V processor core designed for embedded systems, featuring optional support for extensions such as PMP, RV32M, ",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Ibex is a small, efficient, and configurable RISC-V processor core designed for embedded systems, featuring optional support for extensions such as PMP, RV32M, "
       }
     },
     {
@@ -2561,8 +2561,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The opentitan-mbx is a mailbox peripheral IP block designed for secure communication between hardware and software components. It supports TL-UL protocol, integ",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The opentitan-mbx is a mailbox peripheral IP block designed for secure communication between hardware and software components. It supports TL-UL protocol, integ"
       }
     },
     {
@@ -2591,8 +2591,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The OTBN (OpenTitan Big Number) is a 32-bit RISC-V-based cryptographic accelerator designed for efficient execution of cryptographic algorithms, including big n",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The OTBN (OpenTitan Big Number) is a 32-bit RISC-V-based cryptographic accelerator designed for efficient execution of cryptographic algorithms, including big n"
       }
     },
     {
@@ -2621,8 +2621,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The OpenTitan OTP Controller (otp_ctrl) is a hardware block responsible for managing the One-Time Programmable (OTP) memory, including secure key storage, lifec",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The OpenTitan OTP Controller (otp_ctrl) is a hardware block responsible for managing the One-Time Programmable (OTP) memory, including secure key storage, lifec"
       }
     },
     {
@@ -2651,8 +2651,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The OpenTitan OTP Macro is a secure one-time programmable memory subsystem designed for storing critical security data, with support for integrity checks, error",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The OpenTitan OTP Macro is a secure one-time programmable memory subsystem designed for storing critical security data, with support for integrity checks, error"
       }
     },
     {
@@ -2681,8 +2681,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The opentitan-pattgen IP is a pattern generator module that provides configurable pattern generation capabilities for hardware testing and validation. It suppor",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The opentitan-pattgen IP is a pattern generator module that provides configurable pattern generation capabilities for hardware testing and validation. It suppor"
       }
     },
     {
@@ -2711,8 +2711,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A collection of foundational primitives for OpenTitan, including SECDED error correction, FIFOs, clock gating, cryptographic primitives, and synchronization log",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A collection of foundational primitives for OpenTitan, including SECDED error correction, FIFOs, clock gating, cryptographic primitives, and synchronization log"
       }
     },
     {
@@ -2741,8 +2741,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A collection of primitive modules for the OpenTitan project implemented in ASAP7 technology, including clock buffers, enable flip-flops, and logic gates.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A collection of primitive modules for the OpenTitan project implemented in ASAP7 technology, including clock buffers, enable flip-flops, and logic gates."
       }
     },
     {
@@ -2771,8 +2771,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A collection of generic primitives for OpenTitan, including flash bank emulation, RAM, ROM, and clock-related modules.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A collection of generic primitives for OpenTitan, including flash bank emulation, RAM, ROM, and clock-related modules."
       }
     },
     {
@@ -2801,8 +2801,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A collection of Xilinx-specific primitives for OpenTitan, including bidirectional IO buffers, clock gating, clock multiplexing, and single-port RAMs.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A collection of Xilinx-specific primitives for OpenTitan, including bidirectional IO buffers, clock gating, clock multiplexing, and single-port RAMs."
       }
     },
     {
@@ -2831,8 +2831,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A clock division and control module designed for Xilinx Ultrascale FPGAs, supporting configurable division factors and step-down functionality with integrated c",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A clock division and control module designed for Xilinx Ultrascale FPGAs, supporting configurable division factors and step-down functionality with integrated c"
       }
     },
     {
@@ -2861,8 +2861,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "OpenTitan RACL Controller provides runtime access control for register-level policies, ensuring secure and configurable access management for hardware registers",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "OpenTitan RACL Controller provides runtime access control for register-level policies, ensuring secure and configurable access management for hardware registers"
       }
     },
     {
@@ -2891,8 +2891,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The ROM Controller (ROM_CTRL) is responsible for secure boot operations, including ROM integrity checks, scrambling, and interfacing with cryptographic modules ",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The ROM Controller (ROM_CTRL) is responsible for secure boot operations, including ROM integrity checks, scrambling, and interfacing with cryptographic modules "
       }
     },
     {
@@ -2921,8 +2921,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The rv_core_ibex package provides configuration structures and default parameters for the Ibex RISC-V core, including region mapping, crash dump handling, and p",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The rv_core_ibex package provides configuration structures and default parameters for the Ibex RISC-V core, including region mapping, crash dump handling, and p"
       }
     },
     {
@@ -2951,8 +2951,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The OpenTitan RISC-V Debug Module (rv_dm) provides debug functionality for RISC-V cores, including memory-mapped register access, debug command execution, and i",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The OpenTitan RISC-V Debug Module (rv_dm) provides debug functionality for RISC-V cores, including memory-mapped register access, debug command execution, and i"
       }
     },
     {
@@ -2981,8 +2981,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The OpenTitan RV Timer is a configurable RISC-V timer module that provides multi-hart timer functionality with support for interrupts, register access control, ",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The OpenTitan RV Timer is a configurable RISC-V timer module that provides multi-hart timer functionality with support for interrupts, register access control, "
       }
     },
     {
@@ -3011,8 +3011,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The OpenTitan SoC Debug Controller (soc_dbg_ctrl) is a hardware block that manages debug access and policies for the OpenTitan SoC, including lifecycle-based de",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The OpenTitan SoC Debug Controller (soc_dbg_ctrl) is a hardware block that manages debug access and policies for the OpenTitan SoC, including lifecycle-based de"
       }
     },
     {
@@ -3041,8 +3041,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A silicon-proven SPI device controller IP supporting TL-UL protocol for communication with host systems, featuring register-based configuration, passthrough mod",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A silicon-proven SPI device controller IP supporting TL-UL protocol for communication with host systems, featuring register-based configuration, passthrough mod"
       }
     },
     {
@@ -3071,8 +3071,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The OpenTitan SPI Host is a configurable SPI controller IP that supports standard, dual, and quad SPI protocols with features like command queuing, data FIFOs, ",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The OpenTitan SPI Host is a configurable SPI controller IP that supports standard, dual, and quad SPI protocols with features like command queuing, data FIFOs, "
       }
     },
     {
@@ -3101,8 +3101,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A silicon-proven SRAM controller from the OpenTitan project, providing secure memory access with integrity checks, error detection, and support for TL-UL protoc",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A silicon-proven SRAM controller from the OpenTitan project, providing secure memory access with integrity checks, error detection, and support for TL-UL protoc"
       }
     },
     {
@@ -3131,8 +3131,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The sysrst_ctrl is a system reset controller IP block from the OpenTitan project. It provides functionality for managing system reset, wakeup, and interrupt req",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The sysrst_ctrl is a system reset controller IP block from the OpenTitan project. It provides functionality for managing system reset, wakeup, and interrupt req"
       }
     },
     {
@@ -3161,8 +3161,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A TileLink Ultra-Lite (TL-UL) adapter for SRAM-like devices, supporting byte-level writes with optional integrity and readback checks.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A TileLink Ultra-Lite (TL-UL) adapter for SRAM-like devices, supporting byte-level writes with optional integrity and readback checks."
       }
     },
     {
@@ -3191,8 +3191,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A UART (Universal Asynchronous Receiver-Transmitter) IP core from the OpenTitan project, supporting TL-UL protocol for communication and featuring configurable ",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A UART (Universal Asynchronous Receiver-Transmitter) IP core from the OpenTitan project, supporting TL-UL protocol for communication and featuring configurable "
       }
     },
     {
@@ -3221,8 +3221,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "The OpenTitan USB Device Controller (usbdev) is a USB 2.0 Full-Speed device controller IP core with support for multiple endpoints, data integrity checks, and r",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The OpenTitan USB Device Controller (usbdev) is a USB 2.0 Full-Speed device controller IP core with support for multiple endpoints, data integrity checks, and r"
       }
     },
     {
@@ -3250,8 +3250,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "PicoRV32 is a size-optimized RISC-V CPU core implementing the RV32IMC instruction set, configurable for RV32E, RV32I, RV32IC, RV32IM, or RV32IMC cores, with opt",
-        "license": "ISC"
+        "license": "ISC",
+        "summary": "PicoRV32 is a size-optimized RISC-V CPU core implementing the RV32IMC instruction set, configurable for RV32E, RV32I, RV32IC, RV32IM, or RV32IMC cores, with opt"
       }
     },
     {
@@ -3280,8 +3280,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "PULP-platform RISC-V Debug Module implementing RISC-V Debug Spec 0.13. Lightweight alternative to opentitan-rv-dm \u2014 uses plain req/gnt bus (or OBI variant), no ",
-        "license": "SHL-0.51"
+        "license": "SHL-0.51",
+        "summary": "PULP-platform RISC-V Debug Module implementing RISC-V Debug Spec 0.13. Lightweight alternative to opentitan-rv-dm \u2014 uses plain req/gnt bus (or OBI variant), no "
       }
     },
     {
@@ -3312,8 +3312,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "Configurable multi-channel PWM controller with APB4 interface, supporting precise frequency, duty cycle, and phase control, along with advanced features like fa",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Configurable multi-channel PWM controller with APB4 interface, supporting precise frequency, duty cycle, and phase control, along with advanced features like fa"
       }
     },
     {
@@ -3346,8 +3346,8 @@
           "digital"
         ],
         "maturity": "imported",
-        "summary": "Silicon-proven 6-channel PWM controller with configurable glitch filter, interrupt support, and GPIO input capture. Extracted from dineshannayya/riscduino \u2014 val",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Silicon-proven 6-channel PWM controller with configurable glitch filter, interrupt support, and GPIO input capture. Extracted from dineshannayya/riscduino \u2014 val"
       }
     },
     {
@@ -3376,8 +3376,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "SonicBOOM is a Berkeley Out-of-Order RV64GC RISC-V core featuring superscalar and speculative execution, implemented in Chisel.",
-        "license": "BSD-3-Clause"
+        "license": "BSD-3-Clause",
+        "summary": "SonicBOOM is a Berkeley Out-of-Order RV64GC RISC-V core featuring superscalar and speculative execution, implemented in Chisel."
       }
     },
     {
@@ -3406,8 +3406,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "Rocket Chip is a parameterized RISC-V SoC generator featuring RV64GC in-order cores, L1/L2 caches, and TileLink interconnect, implemented in Chisel.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Rocket Chip is a parameterized RISC-V SoC generator featuring RV64GC in-order cores, L1/L2 caches, and TileLink interconnect, implemented in Chisel."
       }
     },
     {
@@ -3435,8 +3435,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "A high-performance SD Card controller with APB interface supporting SD/SDHC/SDXC cards, SPI and SD modes, DMA support, and comprehensive error handling.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A high-performance SD Card controller with APB interface supporting SD/SDHC/SDXC cards, SPI and SD modes, DMA support, and comprehensive error handling."
       }
     },
     {
@@ -3465,8 +3465,8 @@
           "block-cipher"
         ],
         "maturity": "stable",
-        "summary": "Verilog implementation of the AES (Advanced Encryption Standard) symmetric block cipher per NIST FIPS 197. Supports both AES-128 and AES-256 keys. ECB-mode core",
-        "license": "BSD-2-Clause"
+        "license": "BSD-2-Clause",
+        "summary": "Verilog implementation of the AES (Advanced Encryption Standard) symmetric block cipher per NIST FIPS 197. Supports both AES-128 and AES-256 keys. ECB-mode core"
       }
     },
     {
@@ -3495,8 +3495,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "SERV is the world's smallest RISC-V CPU, designed as a bit-serial processor for minimal silicon area and power consumption. It is ideal for resource-constrained",
-        "license": "ISC"
+        "license": "ISC",
+        "summary": "SERV is the world's smallest RISC-V CPU, designed as a bit-serial processor for minimal silicon area and power consumption. It is ideal for resource-constrained"
       }
     },
     {
@@ -3526,8 +3526,8 @@
           "mixed-signal"
         ],
         "maturity": "rtl_verified",
-        "summary": "A PVT-independent bandgap voltage reference designed for the SKY130 process, providing a stable reference voltage across variations in temperature, supply volta",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A PVT-independent bandgap voltage reference designed for the SKY130 process, providing a stable reference voltage across variations in temperature, supply volta"
       }
     },
     {
@@ -3557,8 +3557,8 @@
           "mixed-signal"
         ],
         "maturity": "rtl_verified",
-        "summary": "A positive-feedback differential comparator designed for 3.3V operation in the SKY130 process node. It is suitable for analog signal comparison applications.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A positive-feedback differential comparator designed for 3.3V operation in the SKY130 process node. It is suitable for analog signal comparison applications."
       }
     },
     {
@@ -3588,8 +3588,8 @@
           "mixed-signal"
         ],
         "maturity": "rtl_verified",
-        "summary": "A continuous-time delta-sigma modulator (CT-DSM) designed for biosignal acquisition, implemented on the SKY130 process node.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A continuous-time delta-sigma modulator (CT-DSM) designed for biosignal acquisition, implemented on the SKY130 process node."
       }
     },
     {
@@ -3618,8 +3618,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "A 12-bit, 10-KSPS incremental delta-sigma ADC implemented in the SKY130 process node, featuring a digital decimator, integrator, and SPI interface.",
-        "license": "MIT"
+        "license": "MIT",
+        "summary": "A 12-bit, 10-KSPS incremental delta-sigma ADC implemented in the SKY130 process node, featuring a digital decimator, integrator, and SPI interface."
       }
     },
     {
@@ -3649,8 +3649,8 @@
           "adc"
         ],
         "maturity": "experimental",
-        "summary": "12-bit Successive Approximation Register (SAR) ADC for sky130A. Uses capacitive DAC (CDAC) + sample/hold + comparator. 3.3V analog reference. Composed from othe",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "12-bit Successive Approximation Register (SAR) ADC for sky130A. Uses capacitive DAC (CDAC) + sample/hold + comparator. 3.3V analog reference. Composed from othe"
       }
     },
     {
@@ -3679,8 +3679,8 @@
           "analog"
         ],
         "maturity": "production",
-        "summary": "Two-stage Miller-compensated operational amplifier designed for the SKY130 process node, featuring high gain and stability for analog signal processing applicat",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Two-stage Miller-compensated operational amplifier designed for the SKY130 process node, featuring high gain and stability for analog signal processing applicat"
       }
     },
     {
@@ -3710,8 +3710,8 @@
           "mixed-signal"
         ],
         "maturity": "rtl_verified",
-        "summary": "A 10-bit potentiometric digital-to-analog converter (DAC) designed for 3.3V operation in the SKY130 process node.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A 10-bit potentiometric digital-to-analog converter (DAC) designed for 3.3V operation in the SKY130 process node."
       }
     },
     {
@@ -3740,8 +3740,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A silicon-proven 12-bit fully-differential Successive Approximation Register (SAR) Analog-to-Digital Converter (ADC) implemented in the SKY130 process node.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A silicon-proven 12-bit fully-differential Successive Approximation Register (SAR) Analog-to-Digital Converter (ADC) implemented in the SKY130 process node."
       }
     },
     {
@@ -3770,8 +3770,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "A configurable SPI master controller with APB interface, supporting all four SPI modes, FIFO buffering, interrupt generation, DMA support, and power management ",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A configurable SPI master controller with APB interface, supporting all four SPI modes, FIFO buffering, interrupt generation, DMA support, and power management "
       }
     },
     {
@@ -3800,8 +3800,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "Technology-abstract cells (clock gating/mux/inverter/buffer, power cells, SRAM) used by PULP-platform IPs. Generic implementations suitable for simulation and A",
-        "license": "SHL-0.51"
+        "license": "SHL-0.51",
+        "summary": "Technology-abstract cells (clock gating/mux/inverter/buffer, power cells, SRAM) used by PULP-platform IPs. Generic implementations suitable for simulation and A"
       }
     },
     {
@@ -3831,8 +3831,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "TileLink-UL to APB protocol bridge. Converts TL-UL slave transactions to APB master transactions, enabling any APB peripheral to connect to a TL-UL crossbar. Su",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "TileLink-UL to APB protocol bridge. Converts TL-UL slave transactions to APB master transactions, enabling any APB peripheral to connect to a TL-UL crossbar. Su"
       }
     },
     {
@@ -3861,8 +3861,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "A configurable UART controller with APB interface, FIFO support, and interrupt capabilities for embedded systems. It supports configurable baud rates, error det",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A configurable UART controller with APB interface, FIFO support, and interrupt capabilities for embedded systems. It supports configurable baud rates, error det"
       }
     },
     {
@@ -3888,8 +3888,8 @@
           "interface"
         ],
         "maturity": "experimental",
-        "summary": "USB 2.0 Full-Speed (12 Mbit/s) Communications Device Class (CDC) core. Multi-channel, byte-stream interface with valid/ready handshakes. Written in pure Verilog",
-        "license": "MIT"
+        "license": "MIT",
+        "summary": "USB 2.0 Full-Speed (12 Mbit/s) Communications Device Class (CDC) core. Multi-channel, byte-stream interface with valid/ready handshakes. Written in pure Verilog"
       }
     },
     {
@@ -3917,8 +3917,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "The VeeR EH1 is a high-performance RISC-V processor core supporting AXI and AHB interfaces, designed for embedded applications with debug and DMA capabilities.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The VeeR EH1 is a high-performance RISC-V processor core supporting AXI and AHB interfaces, designed for embedded applications with debug and DMA capabilities."
       }
     },
     {
@@ -3947,8 +3947,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "A dual-threaded RISC-V processor core with programmable interrupt controller, debug support, and memory subsystem integration.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "A dual-threaded RISC-V processor core with programmable interrupt controller, debug support, and memory subsystem integration."
       }
     },
     {
@@ -3977,8 +3977,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "The VeeR EL2 is a RISC-V-based processor core designed for embedded systems, featuring a 32-bit architecture with support for debug, memory protection, and AXI4",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "The VeeR EL2 is a RISC-V-based processor core designed for embedded systems, featuring a 32-bit architecture with support for debug, memory protection, and AXI4"
       }
     },
     {
@@ -4009,8 +4009,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "A collection of AXI4 and AXI4-Lite bus components, including adapters, crossbars, DMA engines, and FIFOs, with fully parameterizable data and address interface ",
-        "license": "MIT"
+        "license": "MIT",
+        "summary": "A collection of AXI4 and AXI4-Lite bus components, including adapters, crossbars, DMA engines, and FIFOs, with fully parameterizable data and address interface "
       }
     },
     {
@@ -4038,8 +4038,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "A collection of AXI Stream bus components, including adapters, FIFOs, multiplexers, and other utilities, designed for high-performance data streaming applicatio",
-        "license": "MIT"
+        "license": "MIT",
+        "summary": "A collection of AXI Stream bus components, including adapters, FIFOs, multiplexers, and other utilities, designed for high-performance data streaming applicatio"
       }
     },
     {
@@ -4069,8 +4069,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "A comprehensive collection of Ethernet-related components for gigabit, 10G, and 25G packet processing, including MAC, PHY, IP, UDP, ARP, and PTP modules with su",
-        "license": "MIT"
+        "license": "MIT",
+        "summary": "A comprehensive collection of Ethernet-related components for gigabit, 10G, and 25G packet processing, including MAC, PHY, IP, UDP, ARP, and PTP modules with su"
       }
     },
     {
@@ -4100,8 +4100,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "A Verilog-based I2C interface IP that includes master and slave modules with support for AXI Stream, AXI Lite, and Wishbone protocols, as well as initialization",
-        "license": "MIT"
+        "license": "MIT",
+        "summary": "A Verilog-based I2C interface IP that includes master and slave modules with support for AXI Stream, AXI Lite, and Wishbone protocols, as well as initialization"
       }
     },
     {
@@ -4128,8 +4128,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "A collection of PCI Express components including PCIe to AXI bridges, AXI Lite bridges, and a high-performance DMA subsystem. Supports multiple FPGA families wi",
-        "license": "MIT"
+        "license": "MIT",
+        "summary": "A collection of PCI Express components including PCIe to AXI bridges, AXI Lite bridges, and a high-performance DMA subsystem. Supports multiple FPGA families wi"
       }
     },
     {
@@ -4155,8 +4155,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "A Verilog-based UART IP core with AXI4-Stream interface, supporting configurable data width and runtime-adjustable baud rate via prescaler.",
-        "license": "MIT"
+        "license": "MIT",
+        "summary": "A Verilog-based UART IP core with AXI4-Stream interface, supporting configurable data width and runtime-adjustable baud rate via prescaler."
       }
     },
     {
@@ -4186,8 +4186,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "A collection of Verilog modules implementing Wishbone bus components, including arbiters, adapters, multiplexers, RAMs, and registers, with fully parametrizable",
-        "license": "MIT"
+        "license": "MIT",
+        "summary": "A collection of Verilog modules implementing Wishbone bus components, including arbiters, adapters, multiplexers, RAMs, and registers, with fully parametrizable"
       }
     },
     {
@@ -4216,8 +4216,8 @@
           "digital"
         ],
         "maturity": "production",
-        "summary": "VexRiscv: highly configurable RISC-V RV32IM CPU with plugin architecture. Supports MMU, FPU, caches, debug via composable plugins. Targets FPGA (Artix-7: 240 MH",
-        "license": "MIT"
+        "license": "MIT",
+        "summary": "VexRiscv: highly configurable RISC-V RV32IM CPU with plugin architecture. Supports MMU, FPU, caches, debug via composable plugins. Targets FPGA (Artix-7: 240 MH"
       }
     },
     {
@@ -4246,8 +4246,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "Lightweight clock manager with a TL-UL register interface, supporting up to 4 configurable clock domains with per-clock integer dividers and glitch-free gating.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Lightweight clock manager with a TL-UL register interface, supporting up to 4 configurable clock domains with per-clock integer dividers and glitch-free gating."
       }
     },
     {
@@ -4276,8 +4276,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "Lightweight GPIO peripheral with a configurable number of pins, per-pin direction control, edge-triggered interrupts, and a TL-UL slave interface. Designed for ",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Lightweight GPIO peripheral with a configurable number of pins, per-pin direction control, edge-triggered interrupts, and a TL-UL slave interface. Designed for "
       }
     },
     {
@@ -4296,8 +4296,8 @@
           "digital"
         ],
         "maturity": "development",
-        "summary": "Lightweight pin multiplexer with native TL-UL slave interface. Per-pin function select (4 functions), output enable, pull-up/pull-down control, 2-FF input synch",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Lightweight pin multiplexer with native TL-UL slave interface. Per-pin function select (4 functions), output enable, pull-up/pull-down control, 2-FF input synch"
       }
     },
     {
@@ -4326,8 +4326,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "Lightweight reset manager with a TL-UL slave interface, supporting configurable reset domains, software reset, watchdog timeout reset, and reset cause tracking.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Lightweight reset manager with a TL-UL slave interface, supporting configurable reset domains, software reset, watchdog timeout reset, and reset cause tracking."
       }
     },
     {
@@ -4356,8 +4356,8 @@
           "digital"
         ],
         "maturity": "development",
-        "summary": "Vyges TL-UL wrapper around pulp-platform RISC-V Debug Module (RISC-V Debug Spec 0.13). Provides TL-UL slave (regs + mem) + TL-UL master (SBA) + JTAG TAP as a dr",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Vyges TL-UL wrapper around pulp-platform RISC-V Debug Module (RISC-V Debug Spec 0.13). Provides TL-UL slave (regs + mem) + TL-UL master (SBA) + JTAG TAP as a dr"
       }
     },
     {
@@ -4386,8 +4386,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "Lightweight RISC-V Platform-Level Interrupt Controller (PLIC) with a native TL-UL slave interface, supporting up to 32 interrupt sources and a single hart targe",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Lightweight RISC-V Platform-Level Interrupt Controller (PLIC) with a native TL-UL slave interface, supporting up to 32 interrupt sources and a single hart targe"
       }
     },
     {
@@ -4416,8 +4416,8 @@
           "digital"
         ],
         "maturity": "rtl_verified",
-        "summary": "Lightweight SPI master controller with TL-UL slave interface, supporting SPI modes 0\u20133, configurable clock divider, and interrupt-driven TX/RX FIFO operations.",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Lightweight SPI master controller with TL-UL slave interface, supporting SPI modes 0\u20133, configurable clock divider, and interrupt-driven TX/RX FIFO operations."
       }
     },
     {
@@ -4443,8 +4443,8 @@
           "memory"
         ],
         "maturity": "experimental",
-        "summary": "Wishbone B4 HyperRAM controller for sky130A. Caravel user_project_wrapper-shaped, with hardened GDS/LEF/LVS-clean netlist. Wraps embelon/wb_hyperram driver for ",
-        "license": "Apache-2.0"
+        "license": "Apache-2.0",
+        "summary": "Wishbone B4 HyperRAM controller for sky130A. Caravel user_project_wrapper-shaped, with hardened GDS/LEF/LVS-clean netlist. Wraps embelon/wb_hyperram driver for "
       }
     }
   ]
