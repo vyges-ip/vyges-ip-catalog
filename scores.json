@@ -1,9 +1,9 @@
 {
   "scorer_ref": "v1",
-  "ip_count": 147,
+  "ip_count": 148,
   "aggregate": 88,
   "tiers": {
-    "Good": 126,
+    "Good": 127,
     "Medium": 13,
     "High-risk": 8
   },
@@ -1744,6 +1744,23 @@
         "interfaces: interfaces[].type=clock",
         "interfaces: interfaces[].type=reset",
         "interfaces: interfaces[].bus.signals"
+      ]
+    },
+    {
+      "ip": "michaelbell-tinyqv",
+      "score": 88,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 23,
+        "parameters": 0,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].bus.signals",
+        "parameters: parameters (none declared)"
       ]
     },
     {

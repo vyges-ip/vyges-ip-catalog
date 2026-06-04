@@ -1,0 +1,199 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "michaelbell-tinyqv",
+  "version": "0.1.0",
+  "description": "TinyQV \u2014 a very small RISC-V SoC (RV32EC + Zcb + Zicond) optimized for minimum silicon area. It executes instructions nibble-serially from external QSPI Flash and uses QSPI PSRAM for data (no on-chip program memory), bundling UART, debug-UART, SPI, PWM, GPIO and a timer. Silicon-proven on the Tiny Tapeout 10 sky130 shuttle, with an SDK and example programs. Mirrored into the Vyges catalog as the minimum-area / commodity-memory RISC-V tier (below PicoRV32 / Ibex) for cost-sensitive mature-node SoCs. Upstream author: Michael Bell.",
+  "license": "Apache-2.0",
+  "maturity": "beta",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-06-04T00:53:17Z",
+  "updated": "2026-06-04T00:53:17Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/MichaelBell/tinyQV",
+    "commit": "858986b72975157ebf27042779b6caaed164c57b",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "Michael Bell",
+      "url": "https://github.com/MichaelBell",
+      "github": "MichaelBell"
+    },
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "name": "clock",
+      "signals": [
+        {
+          "name": "clk",
+          "direction": "input",
+          "type": "clock",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "type": "reset",
+      "name": "reset",
+      "signals": [
+        {
+          "name": "rst_n",
+          "direction": "input",
+          "type": "reset",
+          "width": 1,
+          "active_level": "low"
+        }
+      ]
+    },
+    {
+      "type": "bus",
+      "direction": "master",
+      "protocol": "QSPI",
+      "port": "qspi",
+      "width": 4,
+      "description": "Shared QSPI to external Flash (instruction execute) + PSRAM (data); clock/data lines shared, one accessed at a time."
+    },
+    {
+      "type": "io",
+      "direction": "both",
+      "protocol": "UART",
+      "port": "uart",
+      "width": 2,
+      "description": "UART (tx/rx) plus a transmit-only debug UART."
+    },
+    {
+      "type": "io",
+      "direction": "both",
+      "protocol": "SPI",
+      "port": "spi",
+      "width": 4,
+      "description": "SPI controller."
+    },
+    {
+      "type": "io",
+      "direction": "both",
+      "protocol": "generic",
+      "port": "gpio",
+      "width": 8,
+      "description": "8 GPIO; PWM available on selected pins."
+    }
+  ],
+  "architecture": {
+    "type": "processor",
+    "submodules": [
+      "cpu (RV32EC core)",
+      "qspi memory controller",
+      "uart",
+      "spi",
+      "pwm",
+      "gpio",
+      "timer"
+    ],
+    "features": [
+      "RV32EC + Zcb + Zicond \u2014 area-optimized (16 registers, compressed)",
+      "Nibble-serial execution from external QSPI Flash; QSPI PSRAM for data \u2014 no on-chip program memory",
+      "28-bit addresses / 24-bit program space; hardcoded gp/tp",
+      "On-chip peripherals: UART, debug-UART (TX), SPI, PWM, GPIO, timer",
+      "Silicon-proven on Tiny Tapeout 10 (sky130); FPGA on iceFUN / pico-ice (iCE40)",
+      "SDK + example programs upstream"
+    ]
+  },
+  "performance": {
+    "isa": "RV32EC + Zcb + Zicond",
+    "memory_model": "execute-from-QSPI-Flash; QSPI PSRAM data; 32 B internal RAM",
+    "note": "Area-optimized, not throughput-optimized \u2014 nibble-serial QSPI execution is multi-cycle per instruction. Frequency/area not re-characterized in the Vyges mirror; see upstream + the TT10 hardening."
+  },
+  "dependencies": [],
+  "categories": [
+    {
+      "main_category": "Processing Cores",
+      "sub_category": "RISC-V"
+    }
+  ],
+  "keywords": [
+    "RISC-V",
+    "RV32EC",
+    "tinyQV",
+    "SoC",
+    "microcontroller",
+    "area-optimized",
+    "QSPI",
+    "Zcb",
+    "Zicond",
+    "sky130",
+    "minimum-area"
+  ],
+  "asic": {
+    "flavor": "digital",
+    "technology": [
+      "sky130A"
+    ]
+  },
+  "fpga": {
+    "toolchain": [
+      "Yosys/nextpnr"
+    ],
+    "devices": [
+      "iCE40"
+    ]
+  },
+  "test": {
+    "testbenches": [
+      {
+        "name": "upstream",
+        "path": "test/",
+        "framework": "cocotb",
+        "simulators": [
+          "verilator",
+          "icarus"
+        ],
+        "description": "Upstream cocotb + verification suite (test/, verify/)."
+      }
+    ],
+    "status": "passing",
+    "coverage": "functional"
+  },
+  "documentation": {
+    "upstream": "https://github.com/MichaelBell/tinyQV"
+  },
+  "branding": {
+    "provider": "Michael Bell",
+    "display_name": "TinyQV"
+  },
+  "trust": {
+    "verification_level": "simulation_passing",
+    "tapeout_count": 1,
+    "fpga_validated": true,
+    "formal_verified": false,
+    "maintained": true,
+    "last_activity": "2026-06-04T00:53:17Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "hand-authored",
+      "template_version": "1.0.0",
+      "generated_at": "2026-06-04T00:53:17Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

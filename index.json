@@ -1,11 +1,11 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-06-03T20:52:20+00:00",
-  "generated_sha": "7fd9801388f9f364c2e6f3d0fcd856d13e5c95f4",
+  "generated_at": "2026-06-04T03:39:03+00:00",
+  "generated_sha": "8d6a4cc530791d1ccb7a94f21d93e7f421e8664d",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
-  "repo_count": 153,
-  "with_metadata": 147,
+  "repo_count": 154,
+  "with_metadata": 148,
   "without_metadata": 3,
   "ips": [
     {
@@ -1992,6 +1992,36 @@
         "maturity": "production",
         "license": "Apache-2.0",
         "summary": "Ibex RV32IMC RISC-V CPU core. 2-stage pipeline (IF/ID+EX), configurable register file (FF/FPGA/latch), optional PMP, optional ICache, branch predictor, SecureIb"
+      }
+    },
+    {
+      "repo": "vyges-ip/michaelbell-tinyqv",
+      "name": "michaelbell-tinyqv",
+      "version": "0.1.0",
+      "content_hash": "74a11e39c162d6f8c79e2951125ce529db2fda80292312d579fbec657fbdcdcd",
+      "default_branch": "main",
+      "metadata_path": "metadata/michaelbell-tinyqv.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/michaelbell-tinyqv/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "RISC-V"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "beta",
+        "license": "Apache-2.0",
+        "summary": "TinyQV \u2014 a very small RISC-V SoC (RV32EC + Zcb + Zicond) optimized for minimum silicon area. It executes instructions nibble-serially from external QSPI Flash a"
       }
     },
     {
