@@ -1,0 +1,60 @@
+# Catalog-wide metadata <-> RTL reconcile report (companion to
+# metadata-schema-drift.yml). Schema-drift validates metadata against the
+# schema (metadata-only); this validates metadata against the RTL, so it must
+# clone each IP (rtl/ + vyges-metadata.json) and run the `vyges metadata`
+# binary. Report-only — a periodic catalog health signal.
+#
+# Activation: needs the public `vyges` CLI (vyges/cli release), shipping at the
+# June-25 launch. Until then this workflow is staged (manual dispatch only).
+name: Metadata reconcile drift report
+
+on:
+  workflow_dispatch: {}
+  # schedule:                # enable post-launch
+  #   - cron: '0 7 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: metadata-reconcile-drift
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install vyges CLI
+        run: |
+          brew install vyges/homebrew-tap/vyges \
+            || curl -fsSL https://vyges.com/install.sh | sh
+          echo "$HOME/.vyges/bin" >> "$GITHUB_PATH"
+
+      - name: Clone every catalog IP (metadata + rtl)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p ips
+          # The IPs are the rows of index.json. Sparse-clone metadata + rtl only.
+          for ip in $(python3 -c "import json;print('\n'.join(r['name'] for r in json.load(open('index.json'))['ips']))"); do
+            git clone --depth 1 --filter=blob:none --sparse \
+              "https://github.com/vyges-ip/$ip.git" "ips/$ip" 2>/dev/null || continue
+            git -C "ips/$ip" sparse-checkout set rtl vyges-metadata.json 2>/dev/null || true
+          done
+
+      - name: Generate reconcile-index.json + RECONCILE.md
+        run: |
+          python3 scripts/gen_reconcile_index.py \
+            --ips-dir ips --bin "vyges metadata" \
+            --index reconcile-index.json --report RECONCILE.md \
+            --generated-at "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+      - name: Commit the report
+        run: |
+          git config user.name  "vyges-bot"
+          git config user.email "bot@vyges.com"
+          git add reconcile-index.json RECONCILE.md
+          git commit -m "reconcile-index: refresh ($(date -u +%Y-%m-%d))" || echo "no changes"
+          git push || true
