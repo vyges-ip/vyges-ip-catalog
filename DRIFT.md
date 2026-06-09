@@ -1,10 +1,10 @@
 # Metadata schema drift report
 
-- **Generated:** 2026-06-09T20:28:29+00:00
+- **Generated:** 2026-06-09T21:46:57+00:00
 - **Schema:** bundled Vyges metadata schema (vendored at `schema/vyges-metadata.schema.json`)
 - **Total IP metadata files:** 148
-- **Failing schema validation:** 37/148
-- **Passing:** 111/148
+- **Failing schema validation:** 21/148
+- **Passing:** 127/148
 
 > Report-only. This check never fails the build; it is a periodic drift signal.
 
@@ -13,17 +13,17 @@
 | Category | Count |
 | --- | ---: |
 | enum_violation | 36 |
-| pattern_violation | 17 |
-| missing_required | 10 |
 | type_violation | 8 |
 | additional_property | 7 |
-| unknown_top_level_property | 5 |
+| unknown_top_level_property | 4 |
+| missing_required | 4 |
+| pattern_violation | 1 |
 
 ## Failing IPs
 
 | IP metadata file | Error count |
 | --- | ---: |
-| `vyges-pinmux-lite.json` | 11 |
+| `vyges-pinmux-lite.json` | 9 |
 | `opentitan-prim-xilinx.json` | 7 |
 | `vexriscv.json` | 7 |
 | `opentitan-aes.json` | 5 |
@@ -31,42 +31,24 @@
 | `wrapped-wb-hyperram.json` | 4 |
 | `cf-sram-1024x32.json` | 3 |
 | `riscduino-pwm.json` | 3 |
-| `vyges-rv-dbg-tlul.json` | 3 |
 | `coralnpu-core.json` | 2 |
-| `fast-fourier-transform-ip.json` | 2 |
 | `opentitan-edn.json` | 2 |
 | `opentitan-pattgen.json` | 2 |
-| `pulp-riscv-dbg.json` | 2 |
 | `pwm-controller.json` | 2 |
-| `tech_cells_generic.json` | 2 |
-| `tlul-apb-adapter.json` | 2 |
-| `adams-bridge.json` | 1 |
+| `vyges-rv-dbg-tlul.json` | 2 |
 | `caliptra-csrng.json` | 1 |
-| `caliptra-doe.json` | 1 |
 | `cf-ip-util.json` | 1 |
 | `cf-uart.json` | 1 |
 | `cva6.json` | 1 |
-| `i3c-core.json` | 1 |
-| `ibex.json` | 1 |
-| `mlow-codec.json` | 1 |
-| `openfasoc-temp-sensor.json` | 1 |
 | `opentitan-otp-macro.json` | 1 |
 | `opentitan-spi-device.json` | 1 |
-| `sky130-bandgap-reference.json` | 1 |
-| `sky130-delta-sigma-adc.json` | 1 |
-| `sky130-opamp.json` | 1 |
-| `sky130-potentiometric-dac.json` | 1 |
-| `sky130-sar-adc.json` | 1 |
-| `uart-controller.json` | 1 |
-| `vyges-rv-plic-lite.json` | 1 |
-| `vyges-spi-host-lite.json` | 1 |
+| `pulp-riscv-dbg.json` | 1 |
+| `tech_cells_generic.json` | 1 |
 
 <details><summary>Per-IP error detail</summary>
 
-### `vyges-pinmux-lite.json` (11)
+### `vyges-pinmux-lite.json` (9)
 
-- [<root>] 'category', 'owner', 'rtl_files', 'top_module' do not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-- [branding] 'provider' is a required property
 - [interfaces/2/signals/0/type] 'tl_h2d_t' is not one of ['data', 'control', 'clock', 'reset', 'interrupt', 'status', 'address', 'bus']
 - [interfaces/2/signals/1/type] 'tl_d2h_t' is not one of ['data', 'control', 'clock', 'reset', 'interrupt', 'status', 'address', 'bus']
 - [registers/0] Additional properties are not allowed ('width' was unexpected)
@@ -121,7 +103,7 @@
 
 ### `cf-sram-1024x32.json` (3)
 
-- [<root>] 'hardened_files', 'rtl_files', 'soc_integration' do not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
+- [<root>] 'hardened_files', 'soc_integration' do not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
 - [categories/0/main_category] 'Memory' is not one of ['Analog & Mixed-Signal', 'Arithmetic Units', 'Base Libraries', 'Chiplet Integration', 'Control Logic', 'Converters', 'Interface Controllers', 'Memory Subsystems', 'Miscellaneous', 'Processing Cores', 'Security IP', 'Signal Processing', 'Timing & Clocking', 'Verification & Testing']
 - [source/type] 'bundle' is not one of ['git', 'archive']
 
@@ -131,21 +113,10 @@
 - [parameters/0] 'type' is a required property
 - [test] 'status' is a required property
 
-### `vyges-rv-dbg-tlul.json` (3)
-
-- [<root>] 'debug_spec', 'firmware_integration', 'memory_regions', 'rtl_files', 'schema_integration', 'soc_integration' do not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-- [branding] 'provider' is a required property
-- [parameters/3/type] 'logic [31:0]' is not one of ['int', 'bool', 'string', 'real', 'bit', 'enum', 'float', 'int unsigned', 'logic']
-
 ### `coralnpu-core.json` (2)
 
 - [performance/area] '1.5mm^2' is not of type 'object'
 - [performance/power] '1.2W' is not of type 'object'
-
-### `fast-fourier-transform-ip.json` (2)
-
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-- [branding] 'provider' is a required property
 
 ### `opentitan-edn.json` (2)
 
@@ -157,37 +128,19 @@
 - [interfaces/4/type] 'output' is not one of ['bus', 'clock', 'reset', 'interrupt', 'custom', 'control', 'signal', 'data', 'io', 'status', 'analog', 'gpio', 'digital', 'serial', 'audio', 'debug', 'packet', 'jtag', 'tieoff', 'entropy', 'keyvault', 'power', 'alert', 'sideload', 'register', 'trace', 'ground', 'chiplet', 'lifecycle', 'rng', 'pcr_vault']
 - [interfaces/5/type] 'input' is not one of ['bus', 'clock', 'reset', 'interrupt', 'custom', 'control', 'signal', 'data', 'io', 'status', 'analog', 'gpio', 'digital', 'serial', 'audio', 'debug', 'packet', 'jtag', 'tieoff', 'entropy', 'keyvault', 'power', 'alert', 'sideload', 'register', 'trace', 'ground', 'chiplet', 'lifecycle', 'rng', 'pcr_vault']
 
-### `pulp-riscv-dbg.json` (2)
-
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-- [parameters/3/type] 'logic [NrHarts-1:0]' is not one of ['int', 'bool', 'string', 'real', 'bit', 'enum', 'float', 'int unsigned', 'logic']
-
 ### `pwm-controller.json` (2)
 
 - [interfaces/10/type] 'output' is not one of ['bus', 'clock', 'reset', 'interrupt', 'custom', 'control', 'signal', 'data', 'io', 'status', 'analog', 'gpio', 'digital', 'serial', 'audio', 'debug', 'packet', 'jtag', 'tieoff', 'entropy', 'keyvault', 'power', 'alert', 'sideload', 'register', 'trace', 'ground', 'chiplet', 'lifecycle', 'rng', 'pcr_vault']
 - [interfaces/11/type] 'output' is not one of ['bus', 'clock', 'reset', 'interrupt', 'custom', 'control', 'signal', 'data', 'io', 'status', 'analog', 'gpio', 'digital', 'serial', 'audio', 'debug', 'packet', 'jtag', 'tieoff', 'entropy', 'keyvault', 'power', 'alert', 'sideload', 'register', 'trace', 'ground', 'chiplet', 'lifecycle', 'rng', 'pcr_vault']
 
-### `tech_cells_generic.json` (2)
+### `vyges-rv-dbg-tlul.json` (2)
 
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-- [categories/0/main_category] 'Building Blocks' is not one of ['Analog & Mixed-Signal', 'Arithmetic Units', 'Base Libraries', 'Chiplet Integration', 'Control Logic', 'Converters', 'Interface Controllers', 'Memory Subsystems', 'Miscellaneous', 'Processing Cores', 'Security IP', 'Signal Processing', 'Timing & Clocking', 'Verification & Testing']
-
-### `tlul-apb-adapter.json` (2)
-
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-- [branding] 'provider' is a required property
-
-### `adams-bridge.json` (1)
-
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
+- [<root>] 'debug_spec', 'firmware_integration', 'memory_regions', 'schema_integration', 'soc_integration' do not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
+- [parameters/3/type] 'logic [31:0]' is not one of ['int', 'bool', 'string', 'real', 'bit', 'enum', 'float', 'int unsigned', 'logic']
 
 ### `caliptra-csrng.json` (1)
 
 - [interfaces/2/type] 'application' is not one of ['bus', 'clock', 'reset', 'interrupt', 'custom', 'control', 'signal', 'data', 'io', 'status', 'analog', 'gpio', 'digital', 'serial', 'audio', 'debug', 'packet', 'jtag', 'tieoff', 'entropy', 'keyvault', 'power', 'alert', 'sideload', 'register', 'trace', 'ground', 'chiplet', 'lifecycle', 'rng', 'pcr_vault']
-
-### `caliptra-doe.json` (1)
-
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
 
 ### `cf-ip-util.json` (1)
 
@@ -201,22 +154,6 @@
 
 - [performance/area] '0.5mm^2' is not of type 'object'
 
-### `i3c-core.json` (1)
-
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-
-### `ibex.json` (1)
-
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-
-### `mlow-codec.json` (1)
-
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-
-### `openfasoc-temp-sensor.json` (1)
-
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-
 ### `opentitan-otp-macro.json` (1)
 
 - [parameters/2/type] 'top_racl_pkg::racl_policy_sel_t' is not one of ['int', 'bool', 'string', 'real', 'bit', 'enum', 'float', 'int unsigned', 'logic']
@@ -225,37 +162,13 @@
 
 - [parameters/2/type] 'array' is not one of ['int', 'bool', 'string', 'real', 'bit', 'enum', 'float', 'int unsigned', 'logic']
 
-### `sky130-bandgap-reference.json` (1)
+### `pulp-riscv-dbg.json` (1)
 
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
+- [parameters/3/type] 'logic [NrHarts-1:0]' is not one of ['int', 'bool', 'string', 'real', 'bit', 'enum', 'float', 'int unsigned', 'logic']
 
-### `sky130-delta-sigma-adc.json` (1)
+### `tech_cells_generic.json` (1)
 
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-
-### `sky130-opamp.json` (1)
-
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-
-### `sky130-potentiometric-dac.json` (1)
-
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-
-### `sky130-sar-adc.json` (1)
-
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-
-### `uart-controller.json` (1)
-
-- [<root>] 'rtl_files' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-
-### `vyges-rv-plic-lite.json` (1)
-
-- [branding] 'provider' is a required property
-
-### `vyges-spi-host-lite.json` (1)
-
-- [branding] 'provider' is a required property
+- [categories/0/main_category] 'Building Blocks' is not one of ['Analog & Mixed-Signal', 'Arithmetic Units', 'Base Libraries', 'Chiplet Integration', 'Control Logic', 'Converters', 'Interface Controllers', 'Memory Subsystems', 'Miscellaneous', 'Processing Cores', 'Security IP', 'Signal Processing', 'Timing & Clocking', 'Verification & Testing']
 
 </details>
 
