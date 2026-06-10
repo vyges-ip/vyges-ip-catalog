@@ -14,7 +14,7 @@
     "digital"
   ],
   "created": "2026-04-20T02:05:31Z",
-  "updated": "2026-04-20T02:05:31Z",
+  "updated": "2026-06-09T21:40:43Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
@@ -68,22 +68,16 @@
   ],
   "parameters": [
     {
-      "name": "WIDTH",
+      "name": "Width",
       "type": "int",
       "default": 32,
-      "description": "Width of the data bus."
+      "description": "Width of the data bus (RTL parameter `Width`)."
     },
     {
-      "name": "DEPTH",
+      "name": "Depth",
       "type": "int",
       "default": 16,
-      "description": "Depth of FIFO buffers."
-    },
-    {
-      "name": "ECC_TYPE",
-      "type": "enum",
-      "default": "SecdedHsiao",
-      "description": "Type of SECDED error correction."
+      "description": "Depth of FIFO buffers (RTL parameter `Depth`)."
     }
   ],
   "performance": {},

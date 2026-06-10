@@ -14,7 +14,7 @@
     "digital"
   ],
   "created": "2026-04-06T01:50:25Z",
-  "updated": "2026-04-24T23:39:52Z",
+  "updated": "2026-06-09T21:37:15Z",
   "source": {
     "type": "git",
     "url": "https://github.com/lowRISC/opentitan",
@@ -39,7 +39,13 @@
       "protocol": "standard",
       "port": "clk_i",
       "width": 1,
-      "description": "Clock input signal"
+      "description": "Clock input signal",
+      "signals": [
+        {
+          "name": "clk_i",
+          "direction": "input"
+        }
+      ]
     },
     {
       "type": "reset",
@@ -47,7 +53,13 @@
       "protocol": "standard",
       "port": "rst_ni",
       "width": 1,
-      "description": "Active-low reset signal"
+      "description": "Active-low reset signal",
+      "signals": [
+        {
+          "name": "rst_ni",
+          "direction": "input"
+        }
+      ]
     },
     {
       "type": "bus",
@@ -529,5 +541,6 @@
         }
       ]
     }
-  }
+  },
+  "top_module": "uart"
 }
