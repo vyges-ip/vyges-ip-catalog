@@ -15,7 +15,7 @@
     "digital"
   ],
   "created": "2025-11-01T00:00:00Z",
-  "updated": "2026-05-14T07:26:05Z",
+  "updated": "2026-06-09T21:40:43Z",
   "source": {
     "type": "git",
     "url": "https://github.com/vyges/fast-fourier-transform-ip",
@@ -33,6 +33,7 @@
     {
       "type": "clock",
       "name": "clock",
+      "description": "Core compute clock (the per-bus clocks pclk_i / axi_aclk_i are on their bus interfaces).",
       "signals": [
         {
           "name": "clk_i",
@@ -45,9 +46,10 @@
     {
       "type": "reset",
       "name": "reset",
+      "description": "Core reset (the per-bus resets preset_n_i / axi_areset_n_i are on their bus interfaces).",
       "signals": [
         {
-          "name": "rst_ni",
+          "name": "reset_n_i",
           "direction": "input",
           "type": "reset",
           "width": 1,
@@ -114,6 +116,100 @@
         {
           "name": "pready_o",
           "direction": "output",
+          "type": "control",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "type": "bus",
+      "direction": "slave",
+      "protocol": "AXI4-Lite",
+      "port": "axi",
+      "description": "AXI4-Lite slave interface for high-throughput data access (parallel to the APB control window). Carries its own clock/reset (axi_aclk_i / axi_areset_n_i).",
+      "signals": [
+        {
+          "name": "axi_aclk_i",
+          "direction": "input",
+          "type": "clock",
+          "width": 1
+        },
+        {
+          "name": "axi_areset_n_i",
+          "direction": "input",
+          "type": "reset",
+          "width": 1,
+          "active_level": "low"
+        },
+        {
+          "name": "axi_awaddr_i",
+          "direction": "input",
+          "type": "address",
+          "width": 32
+        },
+        {
+          "name": "axi_awvalid_i",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "axi_awready_o",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "axi_wdata_i",
+          "direction": "input",
+          "type": "data",
+          "width": 64
+        },
+        {
+          "name": "axi_wvalid_i",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "axi_wready_o",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "axi_araddr_i",
+          "direction": "input",
+          "type": "address",
+          "width": 32
+        },
+        {
+          "name": "axi_arvalid_i",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "axi_arready_o",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "axi_rdata_o",
+          "direction": "output",
+          "type": "data",
+          "width": 64
+        },
+        {
+          "name": "axi_rvalid_o",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "axi_rready_i",
+          "direction": "input",
           "type": "control",
           "width": 1
         }
@@ -792,5 +888,6 @@
         ]
       }
     }
-  }
+  },
+  "top_module": "fft_top"
 }
