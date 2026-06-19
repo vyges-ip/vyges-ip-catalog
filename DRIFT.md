@@ -1,10 +1,10 @@
 # Metadata schema drift report
 
-- **Generated:** 2026-06-19T05:33:55+00:00
+- **Generated:** 2026-06-19T11:05:06+00:00
 - **Schema:** bundled Vyges metadata schema (vendored at `schema/vyges-metadata.schema.json`)
-- **Total IP metadata files:** 149
-- **Failing schema validation:** 21/149
-- **Passing:** 128/149
+- **Total IP metadata files:** 150
+- **Failing schema validation:** 21/150
+- **Passing:** 129/150
 
 > Report-only. This check never fails the build; it is a periodic drift signal.
 
