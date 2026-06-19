@@ -1,9 +1,9 @@
 # Vyges IP Catalog — Metadata Quality Scores
 
-- **Aggregate:** 88/100
-- **IPs scored:** 149
+- **Aggregate:** 87/100
+- **IPs scored:** 150
 - **Good (≥80):** 127
-- **Medium (60–79):** 14
+- **Medium (60–79):** 15
 - **High-risk (<60):** 8
 - **Scorer:** [vyges/metadata-scorer-action@v1](https://github.com/vyges/metadata-scorer-action/tree/v1)
 
@@ -29,8 +29,8 @@
 | `wrapped-wb-hyperram` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `mipi-csi2-rx` | 65 | Medium | interfaces: interfaces[].type=bus |
 | `tech_cells_generic` | 65 | Medium | interfaces: interfaces (none declared) |
+| `xkdla` | 65 | Medium | interfaces: interfaces[].type=bus |
 | `cf-sram-1024x32` | 70 | Medium | interfaces: interfaces[].type=reset |
-| `vyges-pinmux-lite` | 71 | Medium | implementation: asic{} or fpga{} |
 
 ## Top 20 (highest scores)
 

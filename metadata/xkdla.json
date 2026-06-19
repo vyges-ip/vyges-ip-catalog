@@ -1,9 +1,9 @@
 {
   "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
   "x-version": "1.0.0",
-  "name": "mipi-csi2-rx",
+  "name": "xkdla",
   "version": "0.1.0",
-  "description": "Open-source MIPI CSI-2 receiver cores \u2014 digital protocol/controller layer only (the MIPI D-PHY analog physical layer is NOT included). Production-proven VHDL receiver (4-lane, 10 bpp) validated on Xilinx Kintex-7 with real camera modules at up to 4K@30\u201360 fps; work-in-progress Verilog cores target broader FPGA support including iCE40. Mirror of gatecat/CSI2Rx. NOTE (2026-06-19): upstream is UNMAINTAINED since 2018 \u2014 treat as a reference/starting-point, not a fresh block; validate and modernize before production use. The maintained Vyges catalog block is the clean-room vyges/mipi-csi2-rx-ip.",
+  "description": "Open-source deep-learning accelerator (DLA): a PE-array convolution/inference engine with on-chip feature, parameter, and output-line buffers and a control engine. Verilog RTL from OpenASIC (Fudan VIP lab). Mirror of openasic-org/xkDLA.",
   "license": "MIT",
   "maturity": "prototype",
   "target": [
@@ -13,12 +13,12 @@
   "design_type": [
     "digital"
   ],
-  "created": "2026-06-19T03:46:57Z",
-  "updated": "2026-06-19T03:46:57Z",
+  "created": "2026-06-19T04:42:15Z",
+  "updated": "2026-06-19T04:42:15Z",
   "source": {
     "type": "git",
-    "url": "https://github.com/gatecat/CSI2Rx",
-    "commit": "582f870d31404f58fffa557459b4c0dbd9b85937",
+    "url": "https://github.com/openasic-org/xkDLA",
+    "commit": "bed44c45b0e9e4f0049bfef0bcc29a04522ca584",
     "ip_path": ".",
     "private": false,
     "containsEncryptedPayload": false,
@@ -26,9 +26,9 @@
   },
   "maintainers": [
     {
-      "name": "gatecat",
-      "url": "https://github.com/gatecat",
-      "github": "gatecat"
+      "name": "openasic-org",
+      "url": "https://github.com/openasic-org",
+      "github": "openasic-org"
     },
     {
       "name": "Vyges",
@@ -66,24 +66,23 @@
   ],
   "categories": [
     {
-      "main_category": "Interface Controllers",
-      "sub_category": "MIPI CSI-2 Receiver"
+      "main_category": "Processing Cores",
+      "sub_category": "Deep Learning Accelerator"
     }
   ],
   "keywords": [
-    "mipi",
-    "csi-2",
-    "csi2",
-    "camera",
-    "image-sensor",
-    "receiver",
-    "video",
-    "d-phy",
-    "fpga"
+    "dla",
+    "deep-learning",
+    "accelerator",
+    "npu",
+    "cnn",
+    "inference",
+    "pe-array",
+    "ai"
   ],
   "branding": {
-    "provider": "gatecat",
-    "display_name": "mipi-csi2-rx"
+    "provider": "OpenASIC",
+    "display_name": "xkdla"
   },
   "test": {
     "status": "pending",
@@ -93,14 +92,14 @@
     "verification_level": "unverified",
     "tapeout_count": 0,
     "fpga_validated": false,
-    "maintained": false,
-    "last_activity": "2018-11-14T16:39:38Z"
+    "maintained": true,
+    "last_activity": "2026-06-19T04:42:15Z"
   },
   "meta": {
     "template": {
       "generator": "onboard_ip.py",
       "template_version": "1.0.0",
-      "generated_at": "2026-06-19T03:46:57Z"
+      "generated_at": "2026-06-19T04:42:15Z"
     },
     "schema": {
       "version": "1.0.0"

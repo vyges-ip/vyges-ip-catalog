@@ -1,11 +1,11 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-06-19T03:56:22+00:00",
-  "generated_sha": "cee629d328f3c8fdb5a9284edb68ae6ffd167563",
+  "generated_at": "2026-06-19T10:20:55+00:00",
+  "generated_sha": "de9779efc45241204524e51766e7a6a33ae81b7d",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
-  "repo_count": 155,
-  "with_metadata": 149,
+  "repo_count": 156,
+  "with_metadata": 150,
   "without_metadata": 3,
   "ips": [
     {
@@ -2028,7 +2028,7 @@
       "repo": "vyges-ip/mipi-csi2-rx",
       "name": "mipi-csi2-rx",
       "version": "0.1.0",
-      "content_hash": "0f84dc3e03219562260cccde996c3df57851be6affd5b3764ed177dc30a97978",
+      "content_hash": "222284b0e2c34c1ebfe7eac0f500bb1dd708d43f68df0ad478370b8231b763c1",
       "default_branch": "main",
       "metadata_path": "metadata/mipi-csi2-rx.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/mipi-csi2-rx/main/vyges-metadata.json",
@@ -4505,6 +4505,36 @@
         "maturity": "experimental",
         "license": "Apache-2.0",
         "summary": "Wishbone B4 HyperRAM controller for sky130A. Caravel user_project_wrapper-shaped, with hardened GDS/LEF/LVS-clean netlist. Wraps embelon/wb_hyperram driver for "
+      }
+    },
+    {
+      "repo": "vyges-ip/xkdla",
+      "name": "xkdla",
+      "version": "0.1.0",
+      "content_hash": "d7b717acea05101bef0839c7253670ce993f7d18e05d508d8633e050a2668931",
+      "default_branch": "main",
+      "metadata_path": "metadata/xkdla.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/xkdla/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "Deep Learning Accelerator"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "Deep Learning Accelerator"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "prototype",
+        "license": "MIT",
+        "summary": "Open-source deep-learning accelerator (DLA): a PE-array convolution/inference engine with on-chip feature, parameter, and output-line buffers and a control engi"
       }
     }
   ]

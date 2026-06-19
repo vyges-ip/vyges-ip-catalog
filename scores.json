@@ -1,10 +1,10 @@
 {
   "scorer_ref": "v1",
-  "ip_count": 149,
-  "aggregate": 88,
+  "ip_count": 150,
+  "aggregate": 87,
   "tiers": {
     "Good": 127,
-    "Medium": 14,
+    "Medium": 15,
     "High-risk": 8
   },
   "ips": [
@@ -2229,6 +2229,25 @@
       "gaps": [
         "interfaces: interfaces (none declared)",
         "parameters: parameters (none declared)"
+      ]
+    },
+    {
+      "ip": "xkdla",
+      "score": 65,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test.testbenches"
       ]
     },
     {
