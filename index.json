@@ -1,11 +1,11 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-06-18T20:21:36+00:00",
-  "generated_sha": "54aeab3f700f2953299f7c091a04db8e8e002556",
+  "generated_at": "2026-06-19T03:56:22+00:00",
+  "generated_sha": "cee629d328f3c8fdb5a9284edb68ae6ffd167563",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
-  "repo_count": 154,
-  "with_metadata": 148,
+  "repo_count": 155,
+  "with_metadata": 149,
   "without_metadata": 3,
   "ips": [
     {
@@ -2022,6 +2022,36 @@
         "maturity": "beta",
         "license": "Apache-2.0",
         "summary": "TinyQV \u2014 a very small RISC-V SoC (RV32EC + Zcb + Zicond) optimized for minimum silicon area. It executes instructions nibble-serially from external QSPI Flash a"
+      }
+    },
+    {
+      "repo": "vyges-ip/mipi-csi2-rx",
+      "name": "mipi-csi2-rx",
+      "version": "0.1.0",
+      "content_hash": "0f84dc3e03219562260cccde996c3df57851be6affd5b3764ed177dc30a97978",
+      "default_branch": "main",
+      "metadata_path": "metadata/mipi-csi2-rx.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/mipi-csi2-rx/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "MIPI CSI-2 Receiver"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "MIPI CSI-2 Receiver"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "prototype",
+        "license": "MIT",
+        "summary": "Open-source MIPI CSI-2 receiver cores \u2014 digital protocol/controller layer only (the MIPI D-PHY analog physical layer is NOT included). Production-proven VHDL re"
       }
     },
     {

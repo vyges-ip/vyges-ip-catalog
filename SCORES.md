@@ -1,9 +1,9 @@
 # Vyges IP Catalog — Metadata Quality Scores
 
 - **Aggregate:** 88/100
-- **IPs scored:** 148
+- **IPs scored:** 149
 - **Good (≥80):** 127
-- **Medium (60–79):** 13
+- **Medium (60–79):** 14
 - **High-risk (<60):** 8
 - **Scorer:** [vyges/metadata-scorer-action@v1](https://github.com/vyges/metadata-scorer-action/tree/v1)
 
@@ -27,10 +27,10 @@
 | `cf-tmr32` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `ef-wdt32-1` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `wrapped-wb-hyperram` | 63 | Medium | interfaces: interfaces[].bus.signals |
+| `mipi-csi2-rx` | 65 | Medium | interfaces: interfaces[].type=bus |
 | `tech_cells_generic` | 65 | Medium | interfaces: interfaces (none declared) |
 | `cf-sram-1024x32` | 70 | Medium | interfaces: interfaces[].type=reset |
 | `vyges-pinmux-lite` | 71 | Medium | implementation: asic{} or fpga{} |
-| `cf-uart` | 73 | Medium | interfaces: interfaces[].bus.signals |
 
 ## Top 20 (highest scores)
 

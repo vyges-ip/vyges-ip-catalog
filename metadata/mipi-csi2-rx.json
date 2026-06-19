@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "mipi-csi2-rx",
+  "version": "0.1.0",
+  "description": "Open-source MIPI CSI-2 receiver cores \u2014 digital protocol/controller layer only (the MIPI D-PHY analog physical layer is NOT included). Production-proven VHDL receiver (4-lane, 10 bpp) validated on Xilinx Kintex-7 with real camera modules at up to 4K@30\u201360 fps; work-in-progress Verilog cores target broader FPGA support including iCE40. Mirror of gatecat/CSI2Rx.",
+  "license": "MIT",
+  "maturity": "prototype",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-06-19T03:46:57Z",
+  "updated": "2026-06-19T03:46:57Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/gatecat/CSI2Rx",
+    "commit": "582f870d31404f58fffa557459b4c0dbd9b85937",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "gatecat",
+      "url": "https://github.com/gatecat",
+      "github": "gatecat"
+    },
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "name": "clock",
+      "signals": [
+        {
+          "name": "clk",
+          "direction": "input",
+          "type": "clock",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "type": "reset",
+      "name": "reset",
+      "signals": [
+        {
+          "name": "rst_n",
+          "direction": "input",
+          "type": "reset",
+          "width": 1,
+          "active_level": "low"
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "MIPI CSI-2 Receiver"
+    }
+  ],
+  "keywords": [
+    "mipi",
+    "csi-2",
+    "csi2",
+    "camera",
+    "image-sensor",
+    "receiver",
+    "video",
+    "d-phy",
+    "fpga"
+  ],
+  "branding": {
+    "provider": "gatecat",
+    "display_name": "mipi-csi2-rx"
+  },
+  "test": {
+    "status": "pending",
+    "coverage": "none"
+  },
+  "trust": {
+    "verification_level": "unverified",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "maintained": true,
+    "last_activity": "2026-06-19T03:46:57Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "onboard_ip.py",
+      "template_version": "1.0.0",
+      "generated_at": "2026-06-19T03:46:57Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

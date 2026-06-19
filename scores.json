@@ -1,10 +1,10 @@
 {
   "scorer_ref": "v1",
-  "ip_count": 148,
+  "ip_count": 149,
   "aggregate": 88,
   "tiers": {
     "Good": 127,
-    "Medium": 13,
+    "Medium": 14,
     "High-risk": 8
   },
   "ips": [
@@ -2192,6 +2192,25 @@
         "interfaces: interfaces[].type=reset",
         "interfaces: interfaces[].type=bus",
         "parameters: parameters (none declared)",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "mipi-csi2-rx",
+      "score": 65,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
         "verification: test.testbenches"
       ]
     },
