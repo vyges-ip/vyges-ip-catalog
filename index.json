@@ -1,11 +1,11 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-06-24T14:23:06+00:00",
-  "generated_sha": "0d0cbbb29a327bb28598bea1aa2536c8cd90a930",
+  "generated_at": "2026-06-24T19:41:54+00:00",
+  "generated_sha": "a26f3777b4923593531e863cd11cd37adde410ce",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
-  "repo_count": 160,
-  "with_metadata": 154,
+  "repo_count": 161,
+  "with_metadata": 155,
   "without_metadata": 3,
   "ips": [
     {
@@ -2028,7 +2028,7 @@
       "repo": "vyges-ip/litedram",
       "name": "litedram",
       "version": "0.1.0",
-      "content_hash": "0e02f14fc84cbe0c43bfaa8f8d212dca8d21f47a07afbc640de5c7777a40e7d2",
+      "content_hash": "6706971a97a37c7ddd23bc524c0437c18fea498dc3e8fbd80b8fccbe3588af29",
       "default_branch": "main",
       "metadata_path": "metadata/litedram.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/litedram/main/vyges-metadata.json",
@@ -4398,6 +4398,36 @@
         "maturity": "production",
         "license": "MIT",
         "summary": "VexRiscv: highly configurable RISC-V RV32IM CPU with plugin architecture. Supports MMU, FPU, caches, debug via composable plugins. Targets FPGA (Artix-7: 240 MH"
+      }
+    },
+    {
+      "repo": "vyges-ip/vyges-axi-dram-xbar",
+      "name": "vyges-axi-dram-xbar",
+      "version": "0.2.0",
+      "content_hash": "110d42d4bc6ac0ec80fc7151190ad2dcba408577be4c6d5b50d565479b66d432",
+      "default_branch": "main",
+      "metadata_path": "metadata/vyges-axi-dram-xbar.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/vyges-axi-dram-xbar/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "AXI4 crossbar / DRAM consolidation"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "AXI4 crossbar / DRAM consolidation"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "prototype",
+        "license": "SHL-0.51",
+        "summary": "Vyges data-plane AXI consolidation: heterogeneous-width AXI4 masters -> ONE AXI4 link to the DRAM controller (litedram). Two width CLASSES: NumWide masters @ Wi"
       }
     },
     {

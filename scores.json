@@ -1,9 +1,9 @@
 {
   "scorer_ref": "v1",
-  "ip_count": 154,
+  "ip_count": 155,
   "aggregate": 87,
   "tiers": {
-    "Good": 127,
+    "Good": 128,
     "Medium": 19,
     "High-risk": 8
   },
@@ -2122,20 +2122,20 @@
       ]
     },
     {
-      "ip": "litedram",
-      "score": 75,
-      "tier": "Medium",
+      "ip": "vyges-axi-dram-xbar",
+      "score": 80,
+      "tier": "Good",
       "breakdown": {
         "identity": 20,
         "interfaces": 25,
-        "parameters": 0,
+        "parameters": 10,
         "implementation": 10,
-        "verification": 10,
+        "verification": 5,
         "provenance": 10
       },
       "gaps": [
-        "parameters: parameters (none declared)",
         "implementation: asic{} or fpga{}",
+        "verification: test.coverage",
         "verification: test.testbenches"
       ]
     },
@@ -2210,6 +2210,25 @@
         "interfaces: interfaces[].type=reset",
         "interfaces: interfaces[].type=bus",
         "parameters: parameters (none declared)",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "litedram",
+      "score": 70,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 20,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=reset",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
         "verification: test.testbenches"
       ]
     },

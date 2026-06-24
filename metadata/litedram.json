@@ -14,7 +14,7 @@
     "digital"
   ],
   "created": "2026-06-24T06:00:13Z",
-  "updated": "2026-06-24T06:02:09Z",
+  "updated": "2026-06-24T18:17:56Z",
   "source": {
     "type": "git",
     "url": "https://github.com/enjoy-digital/litedram",
@@ -39,8 +39,9 @@
   ],
   "interfaces": [
     {
+      "name": "clk",
       "type": "clock",
-      "name": "clock",
+      "direction": "input",
       "signals": [
         {
           "name": "clk",
@@ -51,197 +52,286 @@
       ]
     },
     {
-      "type": "reset",
-      "name": "reset",
+      "name": "user_clk",
+      "type": "clock",
+      "direction": "output",
+      "description": "litedram-generated user-domain clock/reset; the AXI user port is synchronous to these.",
       "signals": [
         {
-          "name": "rst_n",
-          "direction": "input",
+          "name": "user_clk",
+          "direction": "output",
+          "type": "clock",
+          "width": 1
+        },
+        {
+          "name": "user_rst",
+          "direction": "output",
           "type": "reset",
-          "width": 1,
-          "active_level": "low"
+          "width": 1
         }
       ]
     },
     {
-      "type": "bus",
       "name": "axi_user_port",
+      "type": "bus",
       "protocol": "AXI4",
       "direction": "slave",
-      "description": "AXI-MM user port on the generated litedram_core \u2014 the DRAM-side AXI4 slave that the vyges-axi-dram-xbar m_axi_dram master drives. CONTRACT interface: the concrete signal prefix and the data/addr/id widths are fixed by the litedram_gen config (user_ports.axi: {data_width, address_width, id_width}); set them to match the xbar XbarDataWidth/AddrWidth and the post-arbitration ID width (IdWidth + clog2(NumWide+NumNarrow)). Standard AXI4 channels below.",
+      "description": "AXI-MM user port (user_ports.axi_0). Names/widths are litedram_gen-determined: prefix user_port_axi_0_, addr width = clog2(DRAM bytes) (28b for a 256MB module), data/id per config. The vyges-axi-dram-xbar m_axi_dram master drives this (32b addr \u2192 slice to the litedram addr width; needs a vyges_litedram_axi_adapter for prefix/addr/user_clk/wb_ctrl).",
       "signals": [
         {
-          "name": "s_axi_awid",
+          "name": "user_port_axi_0_awid",
           "direction": "input",
           "type": "data",
           "width": 8
         },
         {
-          "name": "s_axi_awaddr",
+          "name": "user_port_axi_0_awaddr",
           "direction": "input",
           "type": "address",
-          "width": 32
+          "width": 28
         },
         {
-          "name": "s_axi_awlen",
+          "name": "user_port_axi_0_awlen",
           "direction": "input",
           "type": "control",
           "width": 8
         },
         {
-          "name": "s_axi_awsize",
+          "name": "user_port_axi_0_awsize",
           "direction": "input",
           "type": "control",
           "width": 3
         },
         {
-          "name": "s_axi_awburst",
+          "name": "user_port_axi_0_awburst",
           "direction": "input",
           "type": "control",
           "width": 2
         },
         {
-          "name": "s_axi_awvalid",
+          "name": "user_port_axi_0_awvalid",
           "direction": "input",
           "type": "control",
           "width": 1
         },
         {
-          "name": "s_axi_awready",
+          "name": "user_port_axi_0_awready",
           "direction": "output",
           "type": "control",
           "width": 1
         },
         {
-          "name": "s_axi_wdata",
+          "name": "user_port_axi_0_wdata",
           "direction": "input",
           "type": "data",
           "width": 128
         },
         {
-          "name": "s_axi_wstrb",
+          "name": "user_port_axi_0_wstrb",
           "direction": "input",
           "type": "control",
           "width": 16
         },
         {
-          "name": "s_axi_wlast",
+          "name": "user_port_axi_0_wlast",
           "direction": "input",
           "type": "control",
           "width": 1
         },
         {
-          "name": "s_axi_wvalid",
+          "name": "user_port_axi_0_wvalid",
           "direction": "input",
           "type": "control",
           "width": 1
         },
         {
-          "name": "s_axi_wready",
+          "name": "user_port_axi_0_wready",
           "direction": "output",
           "type": "control",
           "width": 1
         },
         {
-          "name": "s_axi_bid",
+          "name": "user_port_axi_0_bid",
           "direction": "output",
           "type": "data",
           "width": 8
         },
         {
-          "name": "s_axi_bresp",
+          "name": "user_port_axi_0_bresp",
           "direction": "output",
           "type": "control",
           "width": 2
         },
         {
-          "name": "s_axi_bvalid",
+          "name": "user_port_axi_0_bvalid",
           "direction": "output",
           "type": "control",
           "width": 1
         },
         {
-          "name": "s_axi_bready",
+          "name": "user_port_axi_0_bready",
           "direction": "input",
           "type": "control",
           "width": 1
         },
         {
-          "name": "s_axi_arid",
+          "name": "user_port_axi_0_arid",
           "direction": "input",
           "type": "data",
           "width": 8
         },
         {
-          "name": "s_axi_araddr",
+          "name": "user_port_axi_0_araddr",
           "direction": "input",
           "type": "address",
-          "width": 32
+          "width": 28
         },
         {
-          "name": "s_axi_arlen",
+          "name": "user_port_axi_0_arlen",
           "direction": "input",
           "type": "control",
           "width": 8
         },
         {
-          "name": "s_axi_arsize",
+          "name": "user_port_axi_0_arsize",
           "direction": "input",
           "type": "control",
           "width": 3
         },
         {
-          "name": "s_axi_arburst",
+          "name": "user_port_axi_0_arburst",
           "direction": "input",
           "type": "control",
           "width": 2
         },
         {
-          "name": "s_axi_arvalid",
+          "name": "user_port_axi_0_arvalid",
           "direction": "input",
           "type": "control",
           "width": 1
         },
         {
-          "name": "s_axi_arready",
+          "name": "user_port_axi_0_arready",
           "direction": "output",
           "type": "control",
           "width": 1
         },
         {
-          "name": "s_axi_rid",
+          "name": "user_port_axi_0_rid",
           "direction": "output",
           "type": "data",
           "width": 8
         },
         {
-          "name": "s_axi_rdata",
+          "name": "user_port_axi_0_rdata",
           "direction": "output",
           "type": "data",
           "width": 128
         },
         {
-          "name": "s_axi_rresp",
+          "name": "user_port_axi_0_rresp",
           "direction": "output",
           "type": "control",
           "width": 2
         },
         {
-          "name": "s_axi_rlast",
+          "name": "user_port_axi_0_rlast",
           "direction": "output",
           "type": "control",
           "width": 1
         },
         {
-          "name": "s_axi_rvalid",
+          "name": "user_port_axi_0_rvalid",
           "direction": "output",
           "type": "control",
           "width": 1
         },
         {
-          "name": "s_axi_rready",
+          "name": "user_port_axi_0_rready",
           "direction": "input",
           "type": "control",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "wb_ctrl",
+      "type": "bus",
+      "protocol": "Wishbone",
+      "direction": "slave",
+      "description": "Wishbone control/CSR bus \u2014 drives the DRAM init/calibration sequence (LiteX BIOS sdram_init). Must be sequenced before AXI traffic.",
+      "signals": [
+        {
+          "name": "wb_ctrl_adr",
+          "direction": "input",
+          "type": "address",
+          "width": 30
+        },
+        {
+          "name": "wb_ctrl_dat_w",
+          "direction": "input",
+          "type": "data",
+          "width": 32
+        },
+        {
+          "name": "wb_ctrl_dat_r",
+          "direction": "output",
+          "type": "data",
+          "width": 32
+        },
+        {
+          "name": "wb_ctrl_sel",
+          "direction": "input",
+          "type": "control",
+          "width": 4
+        },
+        {
+          "name": "wb_ctrl_cyc",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "wb_ctrl_stb",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "wb_ctrl_we",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "wb_ctrl_ack",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "wb_ctrl_err",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "status",
+      "type": "status",
+      "direction": "output",
+      "signals": [
+        {
+          "name": "init_done",
+          "direction": "output",
+          "type": "status",
+          "width": 1
+        },
+        {
+          "name": "init_error",
+          "direction": "output",
+          "type": "status",
           "width": 1
         }
       ]
@@ -270,7 +360,7 @@
     "soc_generator_hints": {
       "top_module": "litedram_core",
       "generated": true,
-      "note": "Not a static RTL tree \u2014 run the generator to emit litedram_core.v, then wire its AXI-MM user port to vyges-axi-dram-xbar m_axi_dram."
+      "note": "Generated core; AXI user port = user_port_axi_0_* (not s_axi_*); needs vyges_litedram_axi_adapter for the xbar m_axi_dram (prefix/addr/user_clk/wb_ctrl). See soc-generator socs/home_robot/litedram/."
     }
   },
   "branding": {

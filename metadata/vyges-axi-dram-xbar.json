@@ -1,0 +1,515 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "vyges-axi-dram-xbar",
+  "version": "0.2.0",
+  "description": "Vyges data-plane AXI consolidation: heterogeneous-width AXI4 masters -> ONE AXI4 link to the DRAM controller (litedram). Two width CLASSES: NumWide masters @ WideDataWidth (e.g. 256b CoralNPU island ddr) + NumNarrow masters @ NarrowDataWidth (e.g. 64b CPU mem); each is width-adapted INSIDE the wrapper by a pulp axi_dw_converter to XbarDataWidth, then a pulp axi_xbar (N->1) arbitrates them onto one DRAM AXI4 master. Width adaptation lives in this one verified IP so the SoC generator connects masters at their NATIVE width. Flat AXI boundary so the generator wires it from interfaces[].signals[]. Built on the onboarded pulp-platform/axi + common_cells (Solderpad).",
+  "license": "SHL-0.51",
+  "template": "vyges-ip-template@1.0.0",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "maturity": "prototype",
+  "created": "2026-06-24T05:30:00Z",
+  "updated": "2026-06-24T16:55:34Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/vyges-ip/vyges-axi-dram-xbar",
+    "commit": "main",
+    "private": false,
+    "rtl_files": [
+      "rtl/vyges_axi_dram_xbar.sv"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "pulp-platform-axi",
+      "scope": [
+        "rtl"
+      ],
+      "note": "axi_xbar + axi_dw_converter + include/axi macros"
+    },
+    {
+      "name": "pulp-platform-common_cells",
+      "scope": [
+        "rtl"
+      ],
+      "note": "rr_arb_tree, spill_register, cf_math_pkg, \u2026"
+    }
+  ],
+  "maintainers": [
+    {
+      "name": "Vyges IP Development Team",
+      "email": "team@vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "integration": {
+    "soc_generator_hints": {
+      "top_module": "vyges_axi_dram_xbar"
+    }
+  },
+  "parameters": [
+    {
+      "name": "NumWide",
+      "type": "int",
+      "default": 10,
+      "description": "wide masters (e.g. CoralNPU island ddr)"
+    },
+    {
+      "name": "WideDataWidth",
+      "type": "int",
+      "default": 256
+    },
+    {
+      "name": "NumNarrow",
+      "type": "int",
+      "default": 1,
+      "description": "narrow masters (e.g. CPU mem)"
+    },
+    {
+      "name": "NarrowDataWidth",
+      "type": "int",
+      "default": 64
+    },
+    {
+      "name": "XbarDataWidth",
+      "type": "int",
+      "default": 128,
+      "description": "internal + DRAM-side data width"
+    },
+    {
+      "name": "AddrWidth",
+      "type": "int",
+      "default": 32
+    },
+    {
+      "name": "IdWidth",
+      "type": "int",
+      "default": 4,
+      "description": "unified master-side ID width (xbar appends slave index on the master port)"
+    },
+    {
+      "name": "MaxTxns",
+      "type": "int",
+      "default": 8
+    },
+    {
+      "name": "MaxReads",
+      "type": "int",
+      "default": 4,
+      "description": "outstanding reads per dw converter"
+    }
+  ],
+  "interfaces": [
+    {
+      "name": "clk",
+      "type": "clock",
+      "direction": "input",
+      "signals": [
+        {
+          "name": "clk_i",
+          "direction": "input",
+          "type": "clock",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "rst",
+      "type": "reset",
+      "direction": "input",
+      "signals": [
+        {
+          "name": "rst_ni",
+          "direction": "input",
+          "type": "reset",
+          "width": 1,
+          "active_level": "low"
+        }
+      ]
+    },
+    {
+      "name": "dram",
+      "type": "bus",
+      "protocol": "AXI4",
+      "direction": "master",
+      "description": "Single consolidated AXI4 master to the DRAM controller (litedram), XbarDataWidth data. The generator wires these flat signals to the DRAM controller's AXI4 slave; ID width = IdWidth + clog2(NumWide+NumNarrow).",
+      "signals": [
+        {
+          "name": "m_axi_awid",
+          "direction": "output",
+          "type": "data",
+          "width": 8
+        },
+        {
+          "name": "m_axi_awaddr",
+          "direction": "output",
+          "type": "address",
+          "width": 32
+        },
+        {
+          "name": "m_axi_awlen",
+          "direction": "output",
+          "type": "control",
+          "width": 8
+        },
+        {
+          "name": "m_axi_awsize",
+          "direction": "output",
+          "type": "control",
+          "width": 3
+        },
+        {
+          "name": "m_axi_awburst",
+          "direction": "output",
+          "type": "control",
+          "width": 2
+        },
+        {
+          "name": "m_axi_awvalid",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "m_axi_awready",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "m_axi_wdata",
+          "direction": "output",
+          "type": "data",
+          "width": 128
+        },
+        {
+          "name": "m_axi_wstrb",
+          "direction": "output",
+          "type": "control",
+          "width": 16
+        },
+        {
+          "name": "m_axi_wlast",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "m_axi_wvalid",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "m_axi_wready",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "m_axi_bid",
+          "direction": "input",
+          "type": "data",
+          "width": 8
+        },
+        {
+          "name": "m_axi_bresp",
+          "direction": "input",
+          "type": "control",
+          "width": 2
+        },
+        {
+          "name": "m_axi_bvalid",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "m_axi_bready",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "m_axi_arid",
+          "direction": "output",
+          "type": "data",
+          "width": 8
+        },
+        {
+          "name": "m_axi_araddr",
+          "direction": "output",
+          "type": "address",
+          "width": 32
+        },
+        {
+          "name": "m_axi_arlen",
+          "direction": "output",
+          "type": "control",
+          "width": 8
+        },
+        {
+          "name": "m_axi_arvalid",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "m_axi_arready",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "m_axi_rid",
+          "direction": "input",
+          "type": "data",
+          "width": 8
+        },
+        {
+          "name": "m_axi_rdata",
+          "direction": "input",
+          "type": "data",
+          "width": 128
+        },
+        {
+          "name": "m_axi_rresp",
+          "direction": "input",
+          "type": "control",
+          "width": 2
+        },
+        {
+          "name": "m_axi_rlast",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "m_axi_rvalid",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "m_axi_rready",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "wide_masters",
+      "type": "bus",
+      "protocol": "AXI4",
+      "direction": "slave",
+      "description": "NumWide AXI4 slave ports @ WideDataWidth (e.g. 256b CoralNPU island ddr), packed wide_*[NumWide]. The generator connects each wide master to index i. Widths below are PER element.",
+      "signals": [
+        {
+          "name": "wide_awaddr",
+          "direction": "input",
+          "type": "address",
+          "width": 32
+        },
+        {
+          "name": "wide_awvalid",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "wide_awready",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "wide_wdata",
+          "direction": "input",
+          "type": "data",
+          "width": 256
+        },
+        {
+          "name": "wide_wvalid",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "wide_wready",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "wide_bvalid",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "wide_bready",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "wide_araddr",
+          "direction": "input",
+          "type": "address",
+          "width": 32
+        },
+        {
+          "name": "wide_arvalid",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "wide_arready",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "wide_rdata",
+          "direction": "output",
+          "type": "data",
+          "width": 256
+        },
+        {
+          "name": "wide_rvalid",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "wide_rready",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "narrow_masters",
+      "type": "bus",
+      "protocol": "AXI4",
+      "direction": "slave",
+      "description": "NumNarrow AXI4 slave ports @ NarrowDataWidth (e.g. 64b CPU mem), packed narrow_*[NumNarrow]. The generator connects each narrow master to index j.",
+      "signals": [
+        {
+          "name": "narrow_awaddr",
+          "direction": "input",
+          "type": "address",
+          "width": 32
+        },
+        {
+          "name": "narrow_awvalid",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "narrow_awready",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "narrow_wdata",
+          "direction": "input",
+          "type": "data",
+          "width": 64
+        },
+        {
+          "name": "narrow_wvalid",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "narrow_wready",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "narrow_bvalid",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "narrow_bready",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "narrow_araddr",
+          "direction": "input",
+          "type": "address",
+          "width": 32
+        },
+        {
+          "name": "narrow_arvalid",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "narrow_arready",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "narrow_rdata",
+          "direction": "output",
+          "type": "data",
+          "width": 64
+        },
+        {
+          "name": "narrow_rvalid",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "narrow_rready",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "AXI4 crossbar / DRAM consolidation"
+    }
+  ],
+  "keywords": [
+    "axi4",
+    "crossbar",
+    "interconnect",
+    "dram",
+    "dw-converter",
+    "data-plane",
+    "pulp",
+    "coralnpu",
+    "litedram"
+  ],
+  "test": {
+    "status": "passing",
+    "note": "FUNCTIONAL: cocotb AXI-traffic test (tests/, cocotbext-axi) PASSES 4/4 on cocotb 1.9.2 + cocotbext-axi 0.1.28 + Verilator 5.040 \u2014 wide(256b) & narrow(64b) write/read integrity, cross-path coherence (wide write -> narrow read same addr through the xbar), and DRAM backing-store contents. Also lint-clean (Verilator --lint-only) at default params (NumWide 10 @256b, NumNarrow 1 @64b, Xbar 128b). Build deps under DATAPLANE_IP_ROOT (vyges-ip/pulp-platform-{axi,common_cells} clones); see tests/README.md + tests/Makefile."
+  }
+}
