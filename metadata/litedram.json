@@ -1,0 +1,314 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "litedram",
+  "version": "0.1.0",
+  "description": "LiteDRAM \u2014 a small, configurable DRAM controller core from the LiteX ecosystem. It is a GENERATED core: the LiteX/Migen generator (`litedram/gen.py`, a.k.a. litedram_gen) emits a self-contained `litedram_core.v` for a chosen DRAM module + PHY config (SDR/DDR/DDR2/DDR3/DDR4/LPDDR4), exposing a Native, AXI-MM, or Wishbone user interface. In the Vyges data plane it is the DRAM CONTROLLER behind the consolidated AXI link: the single AXI4 master from vyges-axi-dram-xbar (m_axi_dram) connects to litedram's AXI-MM user port. Primarily the soft-DDR controller for FPGA targets without a hardened DDR controller (e.g. Artix-7 standalone, Lattice); on ASIC the litedram controller pairs with a FOUNDRY hard DRAM PHY (litedram supplies the controller, not the ASIC LPDDR4 PHY). BSD-2-Clause (explicitly permits closed-source use). Mirror of enjoy-digital/litedram, pinned to release 2026.04.",
+  "license": "BSD-2-Clause",
+  "maturity": "stable",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-06-24T06:00:13Z",
+  "updated": "2026-06-24T06:02:09Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/enjoy-digital/litedram",
+    "commit": "f9b75e0347fc43267d083f7ff5965170fe8f9a58",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "enjoy-digital",
+      "url": "https://github.com/enjoy-digital",
+      "github": "enjoy-digital"
+    },
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "name": "clock",
+      "signals": [
+        {
+          "name": "clk",
+          "direction": "input",
+          "type": "clock",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "type": "reset",
+      "name": "reset",
+      "signals": [
+        {
+          "name": "rst_n",
+          "direction": "input",
+          "type": "reset",
+          "width": 1,
+          "active_level": "low"
+        }
+      ]
+    },
+    {
+      "type": "bus",
+      "name": "axi_user_port",
+      "protocol": "AXI4",
+      "direction": "slave",
+      "description": "AXI-MM user port on the generated litedram_core \u2014 the DRAM-side AXI4 slave that the vyges-axi-dram-xbar m_axi_dram master drives. CONTRACT interface: the concrete signal prefix and the data/addr/id widths are fixed by the litedram_gen config (user_ports.axi: {data_width, address_width, id_width}); set them to match the xbar XbarDataWidth/AddrWidth and the post-arbitration ID width (IdWidth + clog2(NumWide+NumNarrow)). Standard AXI4 channels below.",
+      "signals": [
+        {
+          "name": "s_axi_awid",
+          "direction": "input",
+          "type": "data",
+          "width": 8
+        },
+        {
+          "name": "s_axi_awaddr",
+          "direction": "input",
+          "type": "address",
+          "width": 32
+        },
+        {
+          "name": "s_axi_awlen",
+          "direction": "input",
+          "type": "control",
+          "width": 8
+        },
+        {
+          "name": "s_axi_awsize",
+          "direction": "input",
+          "type": "control",
+          "width": 3
+        },
+        {
+          "name": "s_axi_awburst",
+          "direction": "input",
+          "type": "control",
+          "width": 2
+        },
+        {
+          "name": "s_axi_awvalid",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "s_axi_awready",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "s_axi_wdata",
+          "direction": "input",
+          "type": "data",
+          "width": 128
+        },
+        {
+          "name": "s_axi_wstrb",
+          "direction": "input",
+          "type": "control",
+          "width": 16
+        },
+        {
+          "name": "s_axi_wlast",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "s_axi_wvalid",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "s_axi_wready",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "s_axi_bid",
+          "direction": "output",
+          "type": "data",
+          "width": 8
+        },
+        {
+          "name": "s_axi_bresp",
+          "direction": "output",
+          "type": "control",
+          "width": 2
+        },
+        {
+          "name": "s_axi_bvalid",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "s_axi_bready",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "s_axi_arid",
+          "direction": "input",
+          "type": "data",
+          "width": 8
+        },
+        {
+          "name": "s_axi_araddr",
+          "direction": "input",
+          "type": "address",
+          "width": 32
+        },
+        {
+          "name": "s_axi_arlen",
+          "direction": "input",
+          "type": "control",
+          "width": 8
+        },
+        {
+          "name": "s_axi_arsize",
+          "direction": "input",
+          "type": "control",
+          "width": 3
+        },
+        {
+          "name": "s_axi_arburst",
+          "direction": "input",
+          "type": "control",
+          "width": 2
+        },
+        {
+          "name": "s_axi_arvalid",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "s_axi_arready",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "s_axi_rid",
+          "direction": "output",
+          "type": "data",
+          "width": 8
+        },
+        {
+          "name": "s_axi_rdata",
+          "direction": "output",
+          "type": "data",
+          "width": 128
+        },
+        {
+          "name": "s_axi_rresp",
+          "direction": "output",
+          "type": "control",
+          "width": 2
+        },
+        {
+          "name": "s_axi_rlast",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "s_axi_rvalid",
+          "direction": "output",
+          "type": "control",
+          "width": 1
+        },
+        {
+          "name": "s_axi_rready",
+          "direction": "input",
+          "type": "control",
+          "width": 1
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "main_category": "Memory Subsystems",
+      "sub_category": "DRAM controller (DDR3/DDR4/LPDDR4, soft-DDR)"
+    }
+  ],
+  "keywords": [
+    "dram",
+    "litedram",
+    "litex",
+    "memory-controller",
+    "ddr3",
+    "ddr4",
+    "lpddr4",
+    "soft-ddr",
+    "axi4",
+    "generated-core",
+    "data-plane"
+  ],
+  "integration": {
+    "soc_generator_hints": {
+      "top_module": "litedram_core",
+      "generated": true,
+      "note": "Not a static RTL tree \u2014 run the generator to emit litedram_core.v, then wire its AXI-MM user port to vyges-axi-dram-xbar m_axi_dram."
+    }
+  },
+  "branding": {
+    "provider": "enjoy-digital",
+    "display_name": "LiteDRAM"
+  },
+  "test": {
+    "status": "upstream_passing",
+    "coverage": "none",
+    "note": "Upstream LiteX/LiteDRAM CI passes; NOT yet integrated/verified in the Vyges flow. Next: generate a reference litedram_core.v (AXI-MM user port @ XbarDataWidth/AddrWidth) and elaborate it against the vyges-axi-dram-xbar m_axi_dram link."
+  },
+  "trust": {
+    "verification_level": "unverified",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "maintained": true,
+    "last_activity": "2026-06-24T06:00:13Z"
+  },
+  "_generated_core": {
+    "is_generated": true,
+    "generator": "python3 -m litedram.gen <config.yml>   (LiteX/Migen; a.k.a. litedram_gen)",
+    "output": "build/gateware/litedram_core.v",
+    "user_port_options": [
+      "native",
+      "axi",
+      "wishbone"
+    ],
+    "data_plane_role": "DRAM controller behind the consolidated AXI link; m_axi_dram (vyges-axi-dram-xbar) -> litedram AXI-MM user port.",
+    "note": "RTL is produced per a DRAM-module + PHY config; widths/prefix are gen-determined. FPGA targets: PHY is FPGA-specific (soft-DDR). ASIC: litedram is the controller only; pair with a foundry hard LPDDR4 PHY."
+  },
+  "meta": {
+    "template": {
+      "generator": "onboard_ip.py",
+      "template_version": "1.0.0",
+      "generated_at": "2026-06-24T06:00:13Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

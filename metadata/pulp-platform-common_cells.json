@@ -1,0 +1,108 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "pulp-platform-common_cells",
+  "version": "0.1.0",
+  "description": "SystemVerilog RTL primitives library from PULP: FIFOs (fifo_v3), arbiters (rr_arb_tree), CDC, spill_register, stream_* building blocks, cf_math_pkg, and the registers/assertions macros in include/common_cells/. The dependency base for pulp-platform-axi.",
+  "license": "SHL-0.51",
+  "maturity": "stable",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-06-24T05:08:54Z",
+  "updated": "2026-06-24T05:08:54Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/pulp-platform/common_cells",
+    "commit": "63e1b679a70eca3a1d60d686bc1fa170ec08e1ab",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "pulp-platform",
+      "url": "https://github.com/pulp-platform",
+      "github": "pulp-platform"
+    },
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "name": "clock",
+      "signals": [
+        {
+          "name": "clk",
+          "direction": "input",
+          "type": "clock",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "type": "reset",
+      "name": "reset",
+      "signals": [
+        {
+          "name": "rst_n",
+          "direction": "input",
+          "type": "reset",
+          "width": 1,
+          "active_level": "low"
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "main_category": "Base Libraries",
+      "sub_category": "RTL primitives"
+    }
+  ],
+  "keywords": [
+    "rtl-primitives",
+    "fifo",
+    "arbiter",
+    "cdc",
+    "spill-register",
+    "stream",
+    "pulp"
+  ],
+  "branding": {
+    "provider": "pulp-platform",
+    "display_name": "pulp-platform-common_cells"
+  },
+  "test": {
+    "status": "pending",
+    "coverage": "none"
+  },
+  "trust": {
+    "verification_level": "unverified",
+    "tapeout_count": 0,
+    "fpga_validated": true,
+    "maintained": true,
+    "last_activity": "2026-06-24T05:08:54Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "onboard_ip.py",
+      "template_version": "1.0.0",
+      "generated_at": "2026-06-24T05:08:54Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "_note": "Upstream pulp-platform/common_cells mirror. Dependency of pulp-platform-axi (rr_arb_tree, spill_register, cf_math_pkg, addr_decode, ...). Library of cells; macros in include/common_cells/, modules in rtl/."
+}

@@ -1,11 +1,11 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-06-24T02:52:55+00:00",
-  "generated_sha": "4195bf2a0a252d29de01bfb8eb7246c1d92328e9",
+  "generated_at": "2026-06-24T09:22:06+00:00",
+  "generated_sha": "2fd998e689a372b530ae3580bdc33834b28be821",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
-  "repo_count": 156,
-  "with_metadata": 150,
+  "repo_count": 160,
+  "with_metadata": 154,
   "without_metadata": 3,
   "ips": [
     {
@@ -1780,6 +1780,36 @@
       }
     },
     {
+      "repo": "vyges-ip/dpretet-axi-crossbar",
+      "name": "dpretet-axi-crossbar",
+      "version": "0.1.0",
+      "content_hash": "cc5ef54c23d3218313438ae021f310ceb6d144a53060fc300460ff1b15d82436",
+      "default_branch": "main",
+      "metadata_path": "metadata/dpretet-axi-crossbar.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/dpretet-axi-crossbar/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "AXI4 crossbar"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "AXI4 crossbar"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "beta",
+        "license": "MIT",
+        "summary": "Configurable SystemVerilog AXI4 / AXI4-Lite crossbar (dpretet): parametric masters/slaves, any addr/data/ID width, round-robin arbitration with priorities, rout"
+      }
+    },
+    {
       "repo": "vyges-ip/ef-wdt32-1",
       "name": "ef-wdt32-1",
       "version": "0.1.0",
@@ -1992,6 +2022,36 @@
         "maturity": "production",
         "license": "Apache-2.0",
         "summary": "Ibex RV32IMC RISC-V CPU core. 2-stage pipeline (IF/ID+EX), configurable register file (FF/FPGA/latch), optional PMP, optional ICache, branch predictor, SecureIb"
+      }
+    },
+    {
+      "repo": "vyges-ip/litedram",
+      "name": "litedram",
+      "version": "0.1.0",
+      "content_hash": "0e02f14fc84cbe0c43bfaa8f8d212dca8d21f47a07afbc640de5c7777a40e7d2",
+      "default_branch": "main",
+      "metadata_path": "metadata/litedram.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/litedram/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Memory Subsystems",
+            "sub_category": "DRAM controller (DDR3/DDR4/LPDDR4, soft-DDR)"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Memory Subsystems",
+            "sub_category": "DRAM controller (DDR3/DDR4/LPDDR4, soft-DDR)"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "stable",
+        "license": "BSD-2-Clause",
+        "summary": "LiteDRAM \u2014 a small, configurable DRAM controller core from the LiteX ecosystem. It is a GENERATED core: the LiteX/Migen generator (`litedram/gen.py`, a.k.a. lit"
       }
     },
     {
@@ -3312,6 +3372,66 @@
         "maturity": "production",
         "license": "ISC",
         "summary": "PicoRV32 is a size-optimized RISC-V CPU core implementing the RV32IMC instruction set, configurable for RV32E, RV32I, RV32IC, RV32IM, or RV32IMC cores, with opt"
+      }
+    },
+    {
+      "repo": "vyges-ip/pulp-platform-axi",
+      "name": "pulp-platform-axi",
+      "version": "0.1.0",
+      "content_hash": "6373a8cf17a2ee5de2479a984337f8e5538d0463a70af7d28d29d50689810152",
+      "default_branch": "main",
+      "metadata_path": "metadata/pulp-platform-axi.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/pulp-platform-axi/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "AXI4 fabric library"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Interface Controllers",
+            "sub_category": "AXI4 fabric library"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "stable",
+        "license": "SHL-0.51",
+        "summary": "SystemVerilog AXI4 library from PULP: axi_xbar (full crossbar), axi_dw_converter (data-width up/downsizers), axi_iw_converter/axi_id_remap (ID width), axi_mux/a"
+      }
+    },
+    {
+      "repo": "vyges-ip/pulp-platform-common_cells",
+      "name": "pulp-platform-common_cells",
+      "version": "0.1.0",
+      "content_hash": "ff99ea086a346aea23e2c60293f9a72aa150725c7688d1aa2057b1a755697416",
+      "default_branch": "main",
+      "metadata_path": "metadata/pulp-platform-common_cells.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/pulp-platform-common_cells/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "RTL primitives"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Base Libraries",
+            "sub_category": "RTL primitives"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "stable",
+        "license": "SHL-0.51",
+        "summary": "SystemVerilog RTL primitives library from PULP: FIFOs (fifo_v3), arbiters (rr_arb_tree), CDC, spill_register, stream_* building blocks, cf_math_pkg, and the reg"
       }
     },
     {

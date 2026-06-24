@@ -1,10 +1,10 @@
 {
   "scorer_ref": "v1",
-  "ip_count": 150,
+  "ip_count": 154,
   "aggregate": 87,
   "tiers": {
     "Good": 127,
-    "Medium": 15,
+    "Medium": 19,
     "High-risk": 8
   },
   "ips": [
@@ -2122,6 +2122,24 @@
       ]
     },
     {
+      "ip": "litedram",
+      "score": 75,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test.testbenches"
+      ]
+    },
+    {
       "ip": "opentitan-prim-xilinx",
       "score": 75,
       "tier": "Medium",
@@ -2196,7 +2214,64 @@
       ]
     },
     {
+      "ip": "dpretet-axi-crossbar",
+      "score": 65,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test.testbenches"
+      ]
+    },
+    {
       "ip": "mipi-csi2-rx",
+      "score": 65,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "pulp-platform-axi",
+      "score": 65,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "pulp-platform-common_cells",
       "score": 65,
       "tier": "Medium",
       "breakdown": {

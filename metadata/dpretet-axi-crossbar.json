@@ -1,0 +1,106 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "dpretet-axi-crossbar",
+  "version": "0.1.0",
+  "description": "Configurable SystemVerilog AXI4 / AXI4-Lite crossbar (dpretet): parametric masters/slaves, any addr/data/ID width, round-robin arbitration with priorities, routing tables, optional CDC. No data-width converters (upstream-planned).",
+  "license": "MIT",
+  "maturity": "beta",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-06-24T04:56:11Z",
+  "updated": "2026-06-24T04:56:11Z",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/dpretet/axi-crossbar",
+    "commit": "0820b0b03d3c1e431337025dbce05abbf3b8c741",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true
+  },
+  "maintainers": [
+    {
+      "name": "dpretet",
+      "url": "https://github.com/dpretet",
+      "github": "dpretet"
+    },
+    {
+      "name": "Vyges",
+      "email": "team@vyges.com",
+      "url": "https://vyges.com",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "name": "clock",
+      "signals": [
+        {
+          "name": "clk",
+          "direction": "input",
+          "type": "clock",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "type": "reset",
+      "name": "reset",
+      "signals": [
+        {
+          "name": "rst_n",
+          "direction": "input",
+          "type": "reset",
+          "width": 1,
+          "active_level": "low"
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "main_category": "Interface Controllers",
+      "sub_category": "AXI4 crossbar"
+    }
+  ],
+  "keywords": [
+    "axi4",
+    "axi-lite",
+    "crossbar",
+    "interconnect",
+    "mit"
+  ],
+  "branding": {
+    "provider": "dpretet",
+    "display_name": "dpretet-axi-crossbar"
+  },
+  "test": {
+    "status": "pending",
+    "coverage": "none"
+  },
+  "trust": {
+    "verification_level": "unverified",
+    "tapeout_count": 0,
+    "fpga_validated": true,
+    "maintained": true,
+    "last_activity": "2026-06-24T04:56:11Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "onboard_ip.py",
+      "template_version": "1.0.0",
+      "generated_at": "2026-06-24T04:56:11Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  },
+  "_note": "Upstream dpretet/axi-crossbar mirror (MIT). Onboarded as an alternative AXI crossbar (kept for later); the data-plane currently uses pulp-platform-axi (which also ships the width converters dpretet lacks). RTL in rtl/."
+}

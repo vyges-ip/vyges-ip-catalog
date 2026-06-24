@@ -1,9 +1,9 @@
 # Vyges IP Catalog — Metadata Quality Scores
 
 - **Aggregate:** 87/100
-- **IPs scored:** 150
+- **IPs scored:** 154
 - **Good (≥80):** 127
-- **Medium (60–79):** 15
+- **Medium (60–79):** 19
 - **High-risk (<60):** 8
 - **Scorer:** [vyges/metadata-scorer-action@v1](https://github.com/vyges/metadata-scorer-action/tree/v1)
 
@@ -27,10 +27,10 @@
 | `cf-tmr32` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `ef-wdt32-1` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `wrapped-wb-hyperram` | 63 | Medium | interfaces: interfaces[].bus.signals |
+| `dpretet-axi-crossbar` | 65 | Medium | interfaces: interfaces[].type=bus |
 | `mipi-csi2-rx` | 65 | Medium | interfaces: interfaces[].type=bus |
-| `tech_cells_generic` | 65 | Medium | interfaces: interfaces (none declared) |
-| `xkdla` | 65 | Medium | interfaces: interfaces[].type=bus |
-| `cf-sram-1024x32` | 70 | Medium | interfaces: interfaces[].type=reset |
+| `pulp-platform-axi` | 65 | Medium | interfaces: interfaces[].type=bus |
+| `pulp-platform-common_cells` | 65 | Medium | interfaces: interfaces[].type=bus |
 
 ## Top 20 (highest scores)
 
