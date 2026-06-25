@@ -22,11 +22,11 @@
 | `hardfloat` | 60 | Medium | interfaces: interfaces (none declared) |
 | `opentitan-racl-ctrl` | 60 | Medium | interfaces: interfaces (none declared) |
 | `cf-i2c` | 63 | Medium | interfaces: interfaces[].bus.signals |
-| `cf-i2s` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `cf-spi` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `cf-tmr32` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `ef-wdt32-1` | 63 | Medium | interfaces: interfaces[].bus.signals |
 | `wrapped-wb-hyperram` | 63 | Medium | interfaces: interfaces[].bus.signals |
+| `cf-i2s` | 65 | Medium | parameters: parameters (none declared) |
 | `dpretet-axi-crossbar` | 65 | Medium | interfaces: interfaces[].type=bus |
 | `mipi-csi2-rx` | 65 | Medium | interfaces: interfaces[].type=bus |
 | `pulp-platform-axi` | 65 | Medium | interfaces: interfaces[].type=bus |
@@ -36,6 +36,7 @@
 
 | IP | Score |
 |---|---:|
+| `coralnpu-i2c-master` | 100 |
 | `fast-fourier-transform-ip` | 100 |
 | `ibex` | 100 |
 | `openfasoc-temp-sensor` | 100 |
@@ -55,4 +56,3 @@
 | `caliptra-sha256` | 98 |
 | `caliptra-sha512` | 98 |
 | `coralnpu-core` | 98 |
-| `coralnpu-i2c-master` | 98 |

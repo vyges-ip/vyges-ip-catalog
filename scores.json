@@ -9,6 +9,20 @@
   },
   "ips": [
     {
+      "ip": "coralnpu-i2c-master",
+      "score": 100,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 15,
+        "provenance": 10
+      },
+      "gaps": []
+    },
+    {
       "ip": "fast-fourier-transform-ip",
       "score": 100,
       "tier": "Good",
@@ -282,22 +296,6 @@
     },
     {
       "ip": "coralnpu-core",
-      "score": 98,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 23,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 15,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].bus.signals"
-      ]
-    },
-    {
-      "ip": "coralnpu-i2c-master",
       "score": 98,
       "tier": "Good",
       "breakdown": {
@@ -665,6 +663,22 @@
       ]
     },
     {
+      "ip": "canakari",
+      "score": 95,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "verification: test.testbenches"
+      ]
+    },
+    {
       "ip": "vyges-gpio-lite",
       "score": 95,
       "tier": "Good",
@@ -835,23 +849,6 @@
     },
     {
       "ip": "caliptra-tlul",
-      "score": 93,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 23,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 10,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].bus.signals",
-        "verification: test.testbenches"
-      ]
-    },
-    {
-      "ip": "canakari",
       "score": 93,
       "tier": "Good",
       "breakdown": {
@@ -2140,6 +2137,23 @@
       ]
     },
     {
+      "ip": "cf-uart",
+      "score": 75,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
+      ]
+    },
+    {
       "ip": "opentitan-prim-xilinx",
       "score": 75,
       "tier": "Medium",
@@ -2156,24 +2170,6 @@
         "interfaces: interfaces[].type=reset",
         "interfaces: interfaces[].type=bus",
         "verification: test.testbenches"
-      ]
-    },
-    {
-      "ip": "cf-uart",
-      "score": 73,
-      "tier": "Medium",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 23,
-        "parameters": 10,
-        "implementation": 10,
-        "verification": 0,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].bus.signals",
-        "implementation: asic{} or fpga{}",
-        "verification: test{}"
       ]
     },
     {
@@ -2230,6 +2226,24 @@
         "parameters: parameters (none declared)",
         "implementation: asic{} or fpga{}",
         "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "cf-i2s",
+      "score": 65,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 0,
+        "provenance": 10
+      },
+      "gaps": [
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test{}"
       ]
     },
     {
@@ -2346,25 +2360,6 @@
     },
     {
       "ip": "cf-i2c",
-      "score": 63,
-      "tier": "Medium",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 23,
-        "parameters": 0,
-        "implementation": 10,
-        "verification": 0,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].bus.signals",
-        "parameters: parameters (none declared)",
-        "implementation: asic{} or fpga{}",
-        "verification: test{}"
-      ]
-    },
-    {
-      "ip": "cf-i2s",
       "score": 63,
       "tier": "Medium",
       "breakdown": {

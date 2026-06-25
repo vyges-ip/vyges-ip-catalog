@@ -14,7 +14,7 @@
     "digital"
   ],
   "created": "2026-04-20T03:24:52Z",
-  "updated": "2026-04-20T03:24:52Z",
+  "updated": "2026-06-25T05:27:57Z",
   "source": {
     "type": "git",
     "url": "https://github.com/google-coral/coralnpu",
@@ -32,86 +32,144 @@
       "github": "vyges"
     }
   ],
+  "integration": {
+    "soc_generator_hints": {
+      "top_module": "i2c_master_top",
+      "clock": {
+        "port": "clk_i"
+      },
+      "reset": {
+        "port": "rst_ni"
+      },
+      "note": "i2c_master_top is clk_i/rst_ni + a TL-UL device (tl_i/tl_o, coralnpu_tlul_pkg_32 aliased to tlul_pkg via vyges-additions) + open-drain I2C pads (scl_*/sda_*). Native Vyges surface, no facade needed."
+    }
+  },
   "interfaces": [
     {
-      "type": "bus",
-      "direction": "slave",
-      "protocol": "TileLink-UL",
-      "port": "tl_i",
-      "width": 32,
-      "description": "TileLink host-to-device input interface."
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "TileLink-UL",
-      "port": "tl_o",
-      "width": 32,
-      "description": "TileLink device-to-host output interface."
-    },
-    {
+      "name": "clock",
       "type": "clock",
       "direction": "input",
-      "protocol": "generic",
-      "port": "clk_i",
-      "width": 1,
-      "description": "Clock input signal."
+      "signals": [
+        {
+          "name": "clk_i",
+          "direction": "input",
+          "type": "clock",
+          "width": 1
+        }
+      ]
     },
     {
+      "name": "reset",
       "type": "reset",
       "direction": "input",
-      "protocol": "generic",
-      "port": "rst_ni",
-      "width": 1,
-      "description": "Active-low reset input signal."
+      "signals": [
+        {
+          "name": "rst_ni",
+          "direction": "input",
+          "type": "reset",
+          "width": 1,
+          "active_level": "low"
+        }
+      ]
     },
     {
-      "type": "serial",
+      "name": "tl",
+      "type": "bus",
+      "protocol": "tl-ul",
+      "direction": "slave",
+      "description": "TL-UL device (register interface).",
+      "signals": [
+        {
+          "name": "tl_i",
+          "direction": "input",
+          "type": "bus",
+          "width": 1
+        },
+        {
+          "name": "tl_o",
+          "direction": "output",
+          "type": "bus",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "name": "i2c_scl_i",
+      "type": "io",
       "direction": "input",
-      "protocol": "I2C",
-      "port": "scl_i",
-      "width": 1,
-      "description": "I2C clock input signal."
+      "signals": [
+        {
+          "name": "scl_i",
+          "direction": "input",
+          "type": "data",
+          "width": 1
+        }
+      ]
     },
     {
-      "type": "serial",
+      "name": "i2c_scl_o",
+      "type": "io",
       "direction": "output",
-      "protocol": "I2C",
-      "port": "scl_o",
-      "width": 1,
-      "description": "I2C clock output signal."
+      "signals": [
+        {
+          "name": "scl_o",
+          "direction": "output",
+          "type": "data",
+          "width": 1
+        }
+      ]
     },
     {
-      "type": "serial",
+      "name": "i2c_scl_en_o",
+      "type": "io",
       "direction": "output",
-      "protocol": "I2C",
-      "port": "scl_en_o",
-      "width": 1,
-      "description": "I2C clock enable output signal."
+      "signals": [
+        {
+          "name": "scl_en_o",
+          "direction": "output",
+          "type": "data",
+          "width": 1
+        }
+      ]
     },
     {
-      "type": "serial",
+      "name": "i2c_sda_i",
+      "type": "io",
       "direction": "input",
-      "protocol": "I2C",
-      "port": "sda_i",
-      "width": 1,
-      "description": "I2C data input signal."
+      "signals": [
+        {
+          "name": "sda_i",
+          "direction": "input",
+          "type": "data",
+          "width": 1
+        }
+      ]
     },
     {
-      "type": "serial",
+      "name": "i2c_sda_o",
+      "type": "io",
       "direction": "output",
-      "protocol": "I2C",
-      "port": "sda_o",
-      "width": 1,
-      "description": "I2C data output signal."
+      "signals": [
+        {
+          "name": "sda_o",
+          "direction": "output",
+          "type": "data",
+          "width": 1
+        }
+      ]
     },
     {
-      "type": "serial",
+      "name": "i2c_sda_en_o",
+      "type": "io",
       "direction": "output",
-      "protocol": "I2C",
-      "port": "sda_en_o",
-      "width": 1,
-      "description": "I2C data enable output signal."
+      "signals": [
+        {
+          "name": "sda_en_o",
+          "direction": "output",
+          "type": "data",
+          "width": 1
+        }
+      ]
     }
   ],
   "parameters": [
