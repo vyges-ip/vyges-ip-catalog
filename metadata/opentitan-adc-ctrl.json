@@ -50,20 +50,25 @@
       "description": "Active-low reset for the core clock domain."
     },
     {
+      "name": "tl",
       "type": "bus",
+      "protocol": "tl-ul",
       "direction": "slave",
-      "protocol": "TL-UL",
-      "port": "tl_i",
-      "width": 32,
-      "description": "TileLink host-to-device interface for register access."
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "TL-UL",
-      "port": "tl_o",
-      "width": 32,
-      "description": "TileLink device-to-host interface for register responses."
+      "description": "TL-UL device register interface (h2d in / d2h out).",
+      "signals": [
+        {
+          "name": "tl_i",
+          "direction": "input",
+          "type": "bus",
+          "width": 1
+        },
+        {
+          "name": "tl_o",
+          "direction": "output",
+          "type": "bus",
+          "width": 1
+        }
+      ]
     },
     {
       "type": "interrupt",

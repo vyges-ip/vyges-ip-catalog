@@ -104,5 +104,12 @@
       "version": "1.0.0"
     }
   },
-  "_note": "Upstream pulp-platform/common_cells mirror. Dependency of pulp-platform-axi (rr_arb_tree, spill_register, cf_math_pkg, addr_decode, ...). Library of cells; macros in include/common_cells/, modules in rtl/."
+  "_note": "Upstream pulp-platform/common_cells mirror. Dependency of pulp-platform-axi (rr_arb_tree, spill_register, cf_math_pkg, addr_decode, ...). Library of cells; macros in include/common_cells/, modules in rtl/.",
+  "integration": {
+    "soc_generator_hints": {
+      "lint_waivers": [
+        "vyges-additions/vyges-lint-waivers.vlt"
+      ]
+    }
+  }
 }

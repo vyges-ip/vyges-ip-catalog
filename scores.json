@@ -679,6 +679,38 @@
       ]
     },
     {
+      "ip": "opentitan-adc-ctrl",
+      "score": 95,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-rv-timer",
+      "score": 95,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "verification: test.testbenches"
+      ]
+    },
+    {
       "ip": "vyges-gpio-lite",
       "score": 95,
       "tier": "Good",
@@ -985,23 +1017,6 @@
     },
     {
       "ip": "i3c-core",
-      "score": 93,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 23,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 10,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].bus.signals",
-        "verification: test.testbenches"
-      ]
-    },
-    {
-      "ip": "opentitan-adc-ctrl",
       "score": 93,
       "tier": "Good",
       "breakdown": {
@@ -1359,23 +1374,6 @@
     },
     {
       "ip": "opentitan-rv-dm",
-      "score": 93,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 23,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 10,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].bus.signals",
-        "verification: test.testbenches"
-      ]
-    },
-    {
-      "ip": "opentitan-rv-timer",
       "score": 93,
       "tier": "Good",
       "breakdown": {

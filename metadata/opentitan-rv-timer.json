@@ -50,20 +50,25 @@
       "description": "Active-low reset signal"
     },
     {
+      "name": "tl",
       "type": "bus",
+      "protocol": "tl-ul",
       "direction": "slave",
-      "protocol": "TL-UL",
-      "port": "tl_i",
-      "width": 32,
-      "description": "Incoming TL-UL bus interface"
-    },
-    {
-      "type": "bus",
-      "direction": "master",
-      "protocol": "TL-UL",
-      "port": "tl_o",
-      "width": 32,
-      "description": "Outgoing TL-UL bus interface"
+      "description": "TL-UL device register interface (h2d in / d2h out).",
+      "signals": [
+        {
+          "name": "tl_i",
+          "direction": "input",
+          "type": "bus",
+          "width": 1
+        },
+        {
+          "name": "tl_o",
+          "direction": "output",
+          "type": "bus",
+          "width": 1
+        }
+      ]
     },
     {
       "type": "custom",
