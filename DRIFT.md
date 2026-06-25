@@ -1,10 +1,10 @@
 # Metadata schema drift report
 
-- **Generated:** 2026-06-25T04:46:15+00:00
+- **Generated:** 2026-06-25T09:52:13+00:00
 - **Schema:** bundled Vyges metadata schema (vendored at `schema/vyges-metadata.schema.json`)
 - **Total IP metadata files:** 155
-- **Failing schema validation:** 21/155
-- **Passing:** 134/155
+- **Failing schema validation:** 20/155
+- **Passing:** 135/155
 
 > Report-only. This check never fails the build; it is a periodic drift signal.
 
@@ -13,7 +13,7 @@
 | Category | Count |
 | --- | ---: |
 | enum_violation | 36 |
-| type_violation | 8 |
+| type_violation | 7 |
 | additional_property | 7 |
 | unknown_top_level_property | 4 |
 | missing_required | 4 |
@@ -38,7 +38,6 @@
 | `vyges-rv-dbg-tlul.json` | 2 |
 | `caliptra-csrng.json` | 1 |
 | `cf-ip-util.json` | 1 |
-| `cf-uart.json` | 1 |
 | `cva6.json` | 1 |
 | `opentitan-otp-macro.json` | 1 |
 | `opentitan-spi-device.json` | 1 |
@@ -145,10 +144,6 @@
 ### `cf-ip-util.json` (1)
 
 - [<root>] 'modules' does not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
-
-### `cf-uart.json` (1)
-
-- [dependencies/0] 'cf-ip-util' is not of type 'object'
 
 ### `cva6.json` (1)
 
