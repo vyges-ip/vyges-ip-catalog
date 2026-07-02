@@ -1,12 +1,12 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-07-01T19:48:53+00:00",
-  "generated_sha": "5f70e90196257fd08345145e95776c4c6628e065",
+  "generated_at": "2026-07-02T02:53:23+00:00",
+  "generated_sha": "4ad809cf712c0134b1e7e7d272bdf284639e7202",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 161,
-  "with_metadata": 155,
-  "without_metadata": 3,
+  "with_metadata": 156,
+  "without_metadata": 2,
   "ips": [
     {
       "repo": "vyges-ip/32bit-risc-core",
@@ -1062,9 +1062,9 @@
     },
     {
       "repo": "vyges-ip/cf-sram-1024x32",
-      "name": "cf-sram",
+      "name": "cf-sram-1024x32",
       "version": "1.0.0",
-      "content_hash": "396671fb4d8d0a6173ea472f824d4faf268fff34c8953e4d49e2e974577538b4",
+      "content_hash": "929b6e262372be5414429d5f740dc42db4d9d7c1378a76dc42f0ebd08f77cf5a",
       "default_branch": "main",
       "metadata_path": "metadata/cf-sram-1024x32.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-sram-1024x32/main/vyges-metadata.json",
@@ -1089,6 +1089,37 @@
         "maturity": "production",
         "license": "Apache-2.0",
         "summary": "ChipFoundry CF_SRAM_1024x32 \u2014 single-port synchronous SRAM in SKY130 technology. 1024 words \u00d7 32 bits, bit-enable write, separate data-in/data-out pins. Commerc"
+      }
+    },
+    {
+      "repo": "vyges-ip/cf-sram-4096x32",
+      "name": "cf-sram-4096x32",
+      "version": "1.0.0",
+      "content_hash": "ac58ea3e4f6879a943c4a1dead1fc2fd9a0558643339b1a6a3bf0efeebe00941",
+      "default_branch": "main",
+      "metadata_path": "metadata/cf-sram-4096x32.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-sram-4096x32/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Memory",
+            "sub_category": "SRAM"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Memory",
+            "sub_category": "SRAM"
+          }
+        ],
+        "design_type": [
+          "digital",
+          "memory"
+        ],
+        "maturity": "production",
+        "license": "Apache-2.0",
+        "summary": "ChipFoundry CF_SRAM_4096x32 \u2014 single-port synchronous SRAM in SKY130 technology. 4096 words \u00d7 32 bits (16 KiB), bit-enable write, separate data-in/data-out pins"
       }
     },
     {
@@ -1124,7 +1155,7 @@
       "repo": "vyges-ip/cf-uart",
       "name": "cf-uart",
       "version": "0.1.0",
-      "content_hash": "a6cfc24cb15414485b99c574219fd944fdd6c9a53b0021a59fa0553a86b11db1",
+      "content_hash": "19fec54d878473d78ecd162e0cedbe93222b6da27f0a0162c4618dc948ce0cae",
       "default_branch": "main",
       "metadata_path": "metadata/cf-uart.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/cf-uart/main/vyges-metadata.json",
@@ -3259,7 +3290,7 @@
       "repo": "vyges-ip/opentitan-tlul",
       "name": "opentitan-tlul",
       "version": "0.1.0",
-      "content_hash": "58768661eb837baf177b309e844f5cc149b74b0f505982e4ef536c8d17328200",
+      "content_hash": "af0dab93bd8541d815aa2b9a3f52a0820001f155568e19855b8ef6d1b2a9d12a",
       "default_branch": "main",
       "metadata_path": "metadata/opentitan-tlul.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opentitan-tlul/main/vyges-metadata.json",

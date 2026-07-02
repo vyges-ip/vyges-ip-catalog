@@ -1,9 +1,9 @@
 {
   "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
   "x-version": "1.0.0",
-  "name": "cf-sram-1024x32",
+  "name": "cf-sram-4096x32",
   "version": "1.0.0",
-  "description": "ChipFoundry CF_SRAM_1024x32 \u2014 single-port synchronous SRAM in SKY130 technology. 1024 words \u00d7 32 bits, bit-enable write, separate data-in/data-out pins. Commercial-quality hardened macro (GDS/LEF/LIB/stub Verilog). Apache 2.0 licensed. Default SRAM for Vyges soc-generator on Sky130 ASIC targets; replaces OpenRAM-generated sky130_sram_2kbyte_1rw1r_32x512_8 which had known LVS/DRC issues.",
+  "description": "ChipFoundry CF_SRAM_4096x32 \u2014 single-port synchronous SRAM in SKY130 technology. 4096 words \u00d7 32 bits (16 KiB), bit-enable write, separate data-in/data-out pins. Commercial-quality hardened macro (GDS/LEF/LIB/RTL). Apache 2.0 licensed. Used by Vyges soc-generator for larger on-chip RAM/ROM regions on Sky130 ASIC targets.",
   "license": "Apache-2.0",
   "maturity": "production",
   "target": [
@@ -13,11 +13,11 @@
     "digital",
     "memory"
   ],
-  "created": "2026-04-16T15:00:00Z",
-  "updated": "2026-07-01T20:49:38Z",
+  "created": "2026-07-01T20:48:57Z",
+  "updated": "2026-07-01T20:48:57Z",
   "source": {
     "type": "bundle",
-    "url": "https://github.com/vyges-ip/cf-sram",
+    "url": "https://github.com/vyges-ip/cf-sram-4096x32",
     "private": false,
     "containsEncryptedPayload": false,
     "indexing": true
@@ -60,8 +60,8 @@
       "direction": "input",
       "protocol": "standard",
       "port": "AD",
-      "width": 10,
-      "description": "Word address [9:0] \u2014 1024 entries"
+      "width": 12,
+      "description": "Word address [11:0] \u2014 4096 entries"
     },
     {
       "type": "custom",
@@ -155,12 +155,12 @@
   "parameters": [],
   "performance": {
     "access_time_ns_tt_1v8_25c": null,
-    "note": "See lib/CF_SRAM_1024x32_tt_180V_25C.lib for characterized timing"
+    "note": "See lib/CF_SRAM_4096x32.lib for characterized timing"
   },
   "architecture": {
     "type": "memory",
     "features": [
-      "1024 words \u00d7 32 bits = 4 KiB per instance",
+      "4096 words \u00d7 32 bits = 16 KiB per instance",
       "Single-port, synchronous, flow-through",
       "Active-high bit-enable (per-bit write granularity)",
       "Read/Write select via single R_WB pin",
@@ -179,9 +179,7 @@
       "sky130A"
     ],
     "corners": [
-      "tt_180V_25C",
-      "ff_195V_100C",
-      "ss_160V_100C"
+      "tt_180V_25C"
     ]
   },
   "fpga": {
@@ -199,9 +197,9 @@
     "datasheet": "README.md"
   },
   "artifacts": {
-    "gds_bytes": 9000000,
-    "lef_bytes": 28000,
-    "lib_bytes_per_corner": 350000
+    "gds_bytes": 5716842,
+    "lef_bytes": 48282,
+    "lib_bytes_per_corner": 137414
   },
   "categories": [
     {
@@ -224,28 +222,27 @@
     "fpga_validated": false,
     "formal_verified": false,
     "maintained": true,
-    "last_activity": "2026-04-16T15:00:00Z"
+    "last_activity": "2026-07-01T20:48:57Z"
   },
   "meta": {
     "template": {
       "generator": "vyges-manual",
       "template_version": "1.0.0",
-      "generated_at": "2026-04-16T15:00:00Z"
+      "generated_at": "2026-07-01T20:48:57Z"
     },
     "schema": {
       "version": "1.0.0"
     }
   },
   "rtl_files": [
-    "hdl/CF_SRAM_1024x32_stub.v",
-    "hdl/CF_SRAM_1024x32.tt_180V_25C.v"
+    "hdl/CF_SRAM_4096x32.v",
+    "hdl/bus_wrapper/CF_SRAM_4096x32_wb_wrapper.v",
+    "hdl/controllers/ram_controller_wb.v"
   ],
   "hardened_files": [
-    "gds/CF_SRAM_1024x32.gds",
-    "lef/CF_SRAM_1024x32.lef",
-    "lib/CF_SRAM_1024x32_tt_180V_25C.lib",
-    "lib/CF_SRAM_1024x32_ff_195V_100C.lib",
-    "lib/CF_SRAM_1024x32_ss_160V_100C.lib"
+    "gds/CF_SRAM_4096x32.gds",
+    "lef/CF_SRAM_4096x32.lef",
+    "lib/CF_SRAM_4096x32.lib"
   ],
   "rtl_quality": {
     "module_prefixed": true,
@@ -262,13 +259,13 @@
   "defines": [],
   "soc_integration": {
     "openlane_extra_lefs": [
-      "lef/CF_SRAM_1024x32.lef"
+      "lef/CF_SRAM_4096x32.lef"
     ],
     "openlane_extra_libs": [
-      "lib/CF_SRAM_1024x32_tt_180V_25C.lib"
+      "lib/CF_SRAM_4096x32.lib"
     ],
     "openlane_extra_gds": [
-      "gds/CF_SRAM_1024x32.gds"
+      "gds/CF_SRAM_4096x32.gds"
     ],
     "pdn_macro_connections_regex": [
       ".*u_bank[0-9]+ vpwra vgnd vccd1 vssd1",
@@ -279,7 +276,7 @@
       ".*u_bank[0-9]+ vpb vnb vccd1 vssd1"
     ],
     "ignore_disconnected_modules": [
-      "CF_SRAM_1024x32"
+      "CF_SRAM_4096x32"
     ],
     "magic_ext_abstract_cells": [
       "CF_SRAM_.*"

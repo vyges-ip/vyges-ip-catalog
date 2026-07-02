@@ -1,10 +1,10 @@
 {
   "scorer_ref": "v1",
-  "ip_count": 155,
+  "ip_count": 156,
   "aggregate": 87,
   "tiers": {
     "Good": 128,
-    "Medium": 19,
+    "Medium": 20,
     "High-risk": 8
   },
   "ips": [
@@ -696,6 +696,22 @@
     },
     {
       "ip": "opentitan-rv-timer",
+      "score": 95,
+      "tier": "Good",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 25,
+        "parameters": 10,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opentitan-tlul",
       "score": 95,
       "tier": "Good",
       "breakdown": {
@@ -1475,23 +1491,6 @@
       ]
     },
     {
-      "ip": "opentitan-tlul",
-      "score": 93,
-      "tier": "Good",
-      "breakdown": {
-        "identity": 20,
-        "interfaces": 23,
-        "parameters": 10,
-        "implementation": 20,
-        "verification": 10,
-        "provenance": 10
-      },
-      "gaps": [
-        "interfaces: interfaces[].bus.signals",
-        "verification: test.testbenches"
-      ]
-    },
-    {
       "ip": "opentitan-usbdev",
       "score": 93,
       "tier": "Good",
@@ -2190,6 +2189,25 @@
     },
     {
       "ip": "cf-sram-1024x32",
+      "score": 70,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 10,
+        "parameters": 0,
+        "implementation": 20,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=reset",
+        "interfaces: interfaces[].type=bus",
+        "parameters: parameters (none declared)",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "cf-sram-4096x32",
       "score": 70,
       "tier": "Medium",
       "breakdown": {
