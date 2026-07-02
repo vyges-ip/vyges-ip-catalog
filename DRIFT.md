@@ -1,10 +1,10 @@
 # Metadata schema drift report
 
-- **Generated:** 2026-07-01T20:25:08+00:00
+- **Generated:** 2026-07-02T04:40:18+00:00
 - **Schema:** bundled Vyges metadata schema (vendored at `schema/vyges-metadata.schema.json`)
-- **Total IP metadata files:** 155
-- **Failing schema validation:** 20/155
-- **Passing:** 135/155
+- **Total IP metadata files:** 156
+- **Failing schema validation:** 21/156
+- **Passing:** 135/156
 
 > Report-only. This check never fails the build; it is a periodic drift signal.
 
@@ -12,10 +12,10 @@
 
 | Category | Count |
 | --- | ---: |
-| enum_violation | 36 |
+| enum_violation | 38 |
 | type_violation | 7 |
 | additional_property | 7 |
-| unknown_top_level_property | 4 |
+| unknown_top_level_property | 5 |
 | missing_required | 4 |
 | pattern_violation | 1 |
 
@@ -30,6 +30,7 @@
 | `usb-cdc.json` | 4 |
 | `wrapped-wb-hyperram.json` | 4 |
 | `cf-sram-1024x32.json` | 3 |
+| `cf-sram-4096x32.json` | 3 |
 | `riscduino-pwm.json` | 3 |
 | `coralnpu-core.json` | 2 |
 | `opentitan-edn.json` | 2 |
@@ -101,6 +102,12 @@
 - [interfaces/3/type] 'interface' is not one of ['bus', 'clock', 'reset', 'interrupt', 'custom', 'control', 'signal', 'data', 'io', 'status', 'analog', 'gpio', 'digital', 'serial', 'audio', 'debug', 'packet', 'jtag', 'tieoff', 'entropy', 'keyvault', 'power', 'alert', 'sideload', 'register', 'trace', 'ground', 'chiplet', 'lifecycle', 'rng', 'pcr_vault']
 
 ### `cf-sram-1024x32.json` (3)
+
+- [<root>] 'hardened_files', 'soc_integration' do not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
+- [categories/0/main_category] 'Memory' is not one of ['Analog & Mixed-Signal', 'Arithmetic Units', 'Base Libraries', 'Chiplet Integration', 'Control Logic', 'Converters', 'Interface Controllers', 'Memory Subsystems', 'Miscellaneous', 'Processing Cores', 'Security IP', 'Signal Processing', 'Timing & Clocking', 'Verification & Testing']
+- [source/type] 'bundle' is not one of ['git', 'archive']
+
+### `cf-sram-4096x32.json` (3)
 
 - [<root>] 'hardened_files', 'soc_integration' do not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
 - [categories/0/main_category] 'Memory' is not one of ['Analog & Mixed-Signal', 'Arithmetic Units', 'Base Libraries', 'Chiplet Integration', 'Control Logic', 'Converters', 'Interface Controllers', 'Memory Subsystems', 'Miscellaneous', 'Processing Cores', 'Security IP', 'Signal Processing', 'Timing & Clocking', 'Verification & Testing']
