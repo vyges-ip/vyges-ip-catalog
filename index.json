@@ -1,11 +1,11 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-07-03T02:36:27+00:00",
-  "generated_sha": "7bff5b8c15f899e00501132c75f7ad62b17f0370",
+  "generated_at": "2026-07-03T08:57:13+00:00",
+  "generated_sha": "076fde52a12d0f435021d376eee79f7449679413",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
-  "repo_count": 161,
-  "with_metadata": 156,
+  "repo_count": 162,
+  "with_metadata": 157,
   "without_metadata": 2,
   "ips": [
     {
@@ -70,6 +70,36 @@
         "maturity": "rtl_verified",
         "license": "Apache-2.0",
         "summary": "Adams-Bridge is a silicon IP block designed for interfacing with AHB-Lite bus systems, providing robust data transfer capabilities and support for cryptographic"
+      }
+    },
+    {
+      "repo": "vyges-ip/ascon-crypto-ip",
+      "name": "ascon-crypto-ip",
+      "version": "0.1.0",
+      "content_hash": "5f5ec94b89b097566cd5828d29180b038ba191ec3019a1a550d7be7dd56d345d",
+      "default_branch": "main",
+      "metadata_path": "metadata/ascon-crypto-ip.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/ascon-crypto-ip/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Cryptography"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Security IP",
+            "sub_category": "Cryptography"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "prototype",
+        "license": "Apache-2.0",
+        "summary": "Ascon-AEAD128 authenticated-encryption core (NIST SP 800-232 lightweight cryptography). Clean-room parameterized SystemVerilog: 128-bit key/nonce/tag, single-ro"
       }
     },
     {

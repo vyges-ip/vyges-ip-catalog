@@ -1,10 +1,10 @@
 {
   "scorer_ref": "v1",
-  "ip_count": 156,
+  "ip_count": 157,
   "aggregate": 87,
   "tiers": {
     "Good": 128,
-    "Medium": 20,
+    "Medium": 21,
     "High-risk": 8
   },
   "ips": [
@@ -2239,6 +2239,25 @@
       },
       "gaps": [
         "interfaces: interfaces[].type=reset",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "ascon-crypto-ip",
+      "score": 65,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
         "parameters: parameters (none declared)",
         "implementation: asic{} or fpga{}",
         "verification: test.testbenches"
