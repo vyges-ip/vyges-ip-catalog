@@ -419,7 +419,8 @@
     "rtl/fft_bus_master.sv",
     "rtl/fft_rescale_unit.sv",
     "rtl/fft_scale_factor_tracker.sv",
-    "rtl/fft_twiddle_rom.sv"
+    "rtl/fft_twiddle_rom.sv",
+    "rtl/fft_bin_streamer.sv"
   ],
   "rtl_quality": {
     "module_prefixed": false,
