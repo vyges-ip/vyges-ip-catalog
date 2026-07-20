@@ -339,7 +339,7 @@
   "defines": [],
   "upstream": {
     "repo": "https://github.com/lowRISC/ibex",
-    "commit": "c6edaa4060b1a3cd27fda928058db4f0ee3d24bd"
+    "commit": "8ed87e07e3331561bce93af1568d9b376948e701"
   },
   "vyges_overlays": [
     {
