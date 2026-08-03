@@ -1,10 +1,10 @@
 # Metadata schema drift report
 
-- **Generated:** 2026-08-03T04:06:15+00:00
+- **Generated:** 2026-08-03T10:12:48+00:00
 - **Schema:** bundled Vyges metadata schema (vendored at `schema/vyges-metadata.schema.json`)
 - **Total IP metadata files:** 157
-- **Failing schema validation:** 21/157
-- **Passing:** 136/157
+- **Failing schema validation:** 22/157
+- **Passing:** 135/157
 
 > Report-only. This check never fails the build; it is a periodic drift signal.
 
@@ -15,7 +15,7 @@
 | enum_violation | 38 |
 | type_violation | 7 |
 | additional_property | 7 |
-| unknown_top_level_property | 5 |
+| unknown_top_level_property | 6 |
 | missing_required | 4 |
 | pattern_violation | 1 |
 
@@ -40,6 +40,7 @@
 | `caliptra-csrng.json` | 1 |
 | `cf-ip-util.json` | 1 |
 | `cva6.json` | 1 |
+| `fast-fourier-transform-ip.json` | 1 |
 | `opentitan-otp-macro.json` | 1 |
 | `opentitan-spi-device.json` | 1 |
 | `pulp-riscv-dbg.json` | 1 |
@@ -155,6 +156,10 @@
 ### `cva6.json` (1)
 
 - [performance/area] '0.5mm^2' is not of type 'object'
+
+### `fast-fourier-transform-ip.json` (1)
+
+- [<root>] 'clock_domain_relations', 'clock_domains' do not match any of the regexes: '^(architecture|artifacts|trust)$', '^\\$schema$', '^_', '^upstream$'
 
 ### `opentitan-otp-macro.json` (1)
 
