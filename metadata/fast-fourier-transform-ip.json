@@ -15,7 +15,7 @@
     "digital"
   ],
   "created": "2025-11-01T00:00:00Z",
-  "updated": "2026-06-09T21:40:43Z",
+  "updated": "2026-08-01T18:32:57Z",
   "source": {
     "type": "git",
     "url": "https://github.com/vyges/fast-fourier-transform-ip",
@@ -239,6 +239,53 @@
       ]
     }
   ],
+  "clock_domains": [
+    {
+      "name": "core",
+      "clock": "clk_i",
+      "reset": "reset_n_i",
+      "reset_polarity": "active_low",
+      "reset_style": "asynchronous",
+      "period_ns": 25.0,
+      "period_source": "specified",
+      "description": "Core compute clock; the period matches CLOCK_PERIOD in flow/openlane/config.json."
+    },
+    {
+      "name": "apb",
+      "clock": "pclk_i",
+      "reset": "preset_n_i",
+      "reset_polarity": "active_low",
+      "reset_style": "asynchronous",
+      "period_ns": 25.0,
+      "period_source": "assumed",
+      "description": "APB control interface clock. This domain exists because the IP bundles an APB slave; the compute core itself is single-clock. The IP does not specify a rate, so 25 ns is a conservative placeholder equal to the core period and an integrator should override it."
+    },
+    {
+      "name": "axi",
+      "clock": "axi_aclk_i",
+      "reset": "axi_areset_n_i",
+      "reset_polarity": "active_low",
+      "reset_style": "asynchronous",
+      "period_ns": 25.0,
+      "period_source": "assumed",
+      "description": "AXI data-port clock. The AXI interface is Phase 2 and is tied off in the default build (see integration.soc_generator_hints.unused_interfaces), so this domain carries NO registers in a current hardened netlist \u2014 it is declared because the RTL port exists and the domain becomes real when the interface is enabled. Same conservative placeholder period as the APB domain."
+    }
+  ],
+  "clock_domain_relations": {
+    "asynchronous_groups": [
+      [
+        "core"
+      ],
+      [
+        "apb"
+      ],
+      [
+        "axi"
+      ]
+    ],
+    "crossings_synchronized": false,
+    "notes": "The IP has three clock domains only because it bundles three bus interfaces; the FFT compute core itself is single-clock. Measured on a hardened sky130 netlist: 536 registers on clk_i, 194 on pclk_i, and 0 on axi_aclk_i (that interface is tied off by default). The domains are mutually asynchronous and the IP provides NO CDC synchronisers between them \u2014 a structural check reports 175 unsynchronised reset-domain crossings between preset_n_i and reset_n_i, which exist as a consequence of the APB bundling rather than of the compute. The SDC declares the domains asynchronous so they are not timed against a meaningless edge relation; that is a timing statement, not a safety one. An integrator must provide synchronisers."
+  },
   "parameters": [
     {
       "name": "FFT_MAX_LENGTH_LOG2",
@@ -545,7 +592,12 @@
       "sky130A"
     ],
     "estimated_area": "49,958 um2 (sky130_fd_sc_hd)",
-    "estimated_gate_count": "~13,322 GE"
+    "estimated_gate_count": "~13,322 GE",
+    "constraints": {
+      "constraints": [
+        "flow/openlane/fft_top.sdc"
+      ]
+    }
   },
   "fpga": {
     "toolchain": [
@@ -554,6 +606,10 @@
     ],
     "devices": [
       "Artix-7 (xc7a100t)"
+    ],
+    "constraints": [
+      "flow/fpga/openfpga/constraints/timing.sdc",
+      "flow/fpga/openfpga/constraints/hx8k-ct256.pcf"
     ]
   },
   "keywords": [
