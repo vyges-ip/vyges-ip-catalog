@@ -31,6 +31,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        # Full history: the push below rebases, and a depth-1 clone has no
+        # merge base to rebase onto.
+        with:
+          fetch-depth: 0
 
       - name: Install vyges CLI
         run: |
@@ -63,4 +67,9 @@ jobs:
           git config user.email "bot@vyges.com"
           git add reconcile-index.json RECONCILE.md
           git commit -m "reconcile-index: refresh ($(date -u +%Y-%m-%d))" || echo "no changes"
+          # The run checks out the SHA that TRIGGERED it, not the tip of main.
+          # If another workflow pushed while this one queued, the local branch is
+          # stale and the push is rejected non-fast-forward. Rebase closes that;
+          # the shared concurrency group stops the two from interleaving.
+          git pull --rebase --autostash origin main
           git push || true
