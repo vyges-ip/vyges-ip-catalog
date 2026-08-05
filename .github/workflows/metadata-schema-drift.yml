@@ -16,8 +16,14 @@ on:
 permissions:
   contents: write
 
+# Serialised with every other workflow that pushes to main (sync-metadata,
+# metadata-schema-drift, metadata-reconcile-drift). Per-workflow groups let two
+# of them run at once and race on `git push`; the loser is rejected
+# non-fast-forward. The cron times are offset, but `paths:` triggers are not --
+# one commit touching two workflow files fires both at once, which is exactly
+# how run 31024152015 failed. One shared group is what actually prevents it.
 concurrency:
-  group: metadata-schema-drift
+  group: catalog-main-push
   cancel-in-progress: false
 
 jobs:
