@@ -1,6 +1,6 @@
 # Metadata schema drift report
 
-- **Generated:** 2026-08-25T13:28:27+00:00
+- **Generated:** 2026-08-25T19:08:32+00:00
 - **Schema:** bundled Vyges metadata schema (vendored at `schema/vyges-metadata.schema.json`)
 - **Total IP metadata files:** 157
 - **Failing schema validation:** 22/157
