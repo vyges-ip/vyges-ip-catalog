@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-09-06T19:56:30+00:00",
-  "generated_sha": "c24ac603b329fbe38281d8e1aa14e72ea1b0f1d5",
+  "generated_at": "2026-09-07T02:40:04+00:00",
+  "generated_sha": "b0a9b205b3afa11bbb366384739a66adb7dc41cb",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 162,
@@ -2056,7 +2056,7 @@
       "repo": "vyges-ip/ibex",
       "name": "ibex",
       "version": "0.1.0",
-      "content_hash": "5a3eb9f8967f02ec754e61c57e209c4660438338be23bb5d659f4cb30a9aeac3",
+      "content_hash": "9d7aa7ba4fb33dfe26977f678d596a43018a904fdad86c38152a8eef2cdeb10b",
       "default_branch": "main",
       "metadata_path": "metadata/ibex.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/ibex/main/vyges-metadata.json",
