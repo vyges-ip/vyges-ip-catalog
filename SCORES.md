@@ -1,9 +1,9 @@
 # Vyges IP Catalog — Metadata Quality Scores
 
-- **Aggregate:** 87/100
-- **IPs scored:** 157
+- **Aggregate:** 86/100
+- **IPs scored:** 158
 - **Good (≥80):** 128
-- **Medium (60–79):** 21
+- **Medium (60–79):** 22
 - **High-risk (<60):** 8
 - **Scorer:** [vyges/metadata-scorer-action@v1](https://github.com/vyges/metadata-scorer-action/tree/v1)
 
@@ -29,8 +29,8 @@
 | `ascon-crypto-ip` | 65 | Medium | interfaces: interfaces[].type=bus |
 | `cf-i2s` | 65 | Medium | parameters: parameters (none declared) |
 | `dpretet-axi-crossbar` | 65 | Medium | interfaces: interfaces[].type=bus |
+| `fesens-opentpu` | 65 | Medium | interfaces: interfaces[].type=bus |
 | `mipi-csi2-rx` | 65 | Medium | interfaces: interfaces[].type=bus |
-| `pulp-platform-axi` | 65 | Medium | interfaces: interfaces[].type=bus |
 
 ## Top 20 (highest scores)
 

@@ -1,11 +1,11 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-10-11T03:43:46+00:00",
-  "generated_sha": "ec31e5c8fe3f529b7a13e2906ebbef2115ffb693",
+  "generated_at": "2026-10-11T12:02:05+00:00",
+  "generated_sha": "9198e756d4f65d05bf0d227b815cb17ef1f48c9c",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
-  "repo_count": 162,
-  "with_metadata": 157,
+  "repo_count": 163,
+  "with_metadata": 158,
   "without_metadata": 2,
   "ips": [
     {
@@ -1961,6 +1961,36 @@
         "maturity": "rtl_verified",
         "license": "Apache-2.0",
         "summary": "FastVDMA is a highly configurable and portable DMA controller supporting 2D transfers with configurable stride, external frame synchronization, and multiple bus"
+      }
+    },
+    {
+      "repo": "vyges-ip/fesens-opentpu",
+      "name": "fesens-opentpu",
+      "version": "0.1.0",
+      "content_hash": "4d9b6e51577a451965201b7b1bf647ea44c74fb28428e59ed590713168f2c0ee",
+      "default_branch": "main",
+      "metadata_path": "metadata/fesens-opentpu.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/fesens-opentpu/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "Deep Learning Accelerator"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Processing Cores",
+            "sub_category": "Deep Learning Accelerator"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "prototype",
+        "license": "Apache-2.0",
+        "summary": "LLM-inference accelerator block: a matrix unit (MXU), a vector unit (VPU), DMA between the slice DRAM and on-chip tensor memory, and an instruction sequencer, i"
       }
     },
     {
