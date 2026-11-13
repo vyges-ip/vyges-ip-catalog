@@ -1,9 +1,9 @@
 # Vyges IP Catalog — Metadata Quality Scores
 
 - **Aggregate:** 86/100
-- **IPs scored:** 158
+- **IPs scored:** 159
 - **Good (≥80):** 128
-- **Medium (60–79):** 22
+- **Medium (60–79):** 23
 - **High-risk (<60):** 8
 - **Scorer:** [vyges/metadata-scorer-action@v1](https://github.com/vyges/metadata-scorer-action/tree/v1)
 

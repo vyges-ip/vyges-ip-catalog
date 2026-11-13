@@ -1,0 +1,112 @@
+{
+  "$schema": "https://vyges.com/schema/v1/vyges-metadata.schema.json",
+  "x-version": "1.0.0",
+  "name": "opensecura-ispyocto",
+  "version": "0.1.0",
+  "description": "ISPYocto: an image signal processor from the VeriSilicon ISP8000 family, customized for Open Se Cura and released under Apache-2.0. Takes a parallel Bayer sensor stream (8/10/12-bit; hsync/vsync/valid) and runs black-level subtraction, auto exposure, digital gain, demosaic and filtering, chromatic aberration correction, gamma, auto white balance, colour correction and crosstalk; a memory interface writes main and self-resized frames over two AXI write masters. Registers on an AHB slave. Includes the axi2sramcrs bridge. Used by the CoralNPU FPGA reference camera path. Mirror of https://opensecura.googlesource.com/3p/ip/isp; Vivante Corporation and Silicon Image GmbH copyright notices retained.",
+  "license": "Apache-2.0",
+  "maturity": "prototype",
+  "target": [
+    "asic",
+    "fpga"
+  ],
+  "design_type": [
+    "digital"
+  ],
+  "created": "2026-11-13T04:57:41Z",
+  "updated": "2026-11-13T04:57:41Z",
+  "source": {
+    "type": "git",
+    "url": "https://opensecura.googlesource.com/3p/ip/isp",
+    "commit": "d53dc0e0ce2605cea2e3b3fc5b97e9dd40f8d55a",
+    "ip_path": ".",
+    "private": false,
+    "containsEncryptedPayload": false,
+    "indexing": true,
+    "rtl_files": [
+      "ispyocto",
+      "axi2sramcrs",
+      "docs"
+    ]
+  },
+  "maintainers": [
+    {
+      "name": "opensecura",
+      "url": "https://opensecura.googlesource.com/3p/ip/isp"
+    },
+    {
+      "name": "Vyges",
+      "url": "https://vyges.com/contact",
+      "github": "vyges"
+    }
+  ],
+  "interfaces": [
+    {
+      "type": "clock",
+      "name": "clock",
+      "signals": [
+        {
+          "name": "clk",
+          "direction": "input",
+          "type": "clock",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "type": "reset",
+      "name": "reset",
+      "signals": [
+        {
+          "name": "reset_n",
+          "direction": "input",
+          "type": "reset",
+          "width": 1,
+          "active_level": "low"
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "main_category": "Signal Processing",
+      "sub_category": "Image Signal Processing"
+    }
+  ],
+  "keywords": [
+    "ISP",
+    "image signal processor",
+    "camera",
+    "Bayer",
+    "demosaic",
+    "AXI",
+    "AHB",
+    "CoralNPU",
+    "Open Se Cura"
+  ],
+  "branding": {
+    "provider": "VeriSilicon / Open Se Cura (Google)",
+    "display_name": "ISPYocto"
+  },
+  "test": {
+    "status": "pending",
+    "coverage": "none"
+  },
+  "trust": {
+    "verification_level": "unverified",
+    "tapeout_count": 0,
+    "fpga_validated": false,
+    "maintained": true,
+    "last_activity": "2026-11-13T04:57:41Z"
+  },
+  "meta": {
+    "template": {
+      "generator": "onboard_ip.py",
+      "template_version": "1.0.0",
+      "generated_at": "2026-11-13T04:57:41Z"
+    },
+    "schema": {
+      "version": "1.0.0"
+    }
+  }
+}

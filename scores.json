@@ -1,10 +1,10 @@
 {
   "scorer_ref": "v1",
-  "ip_count": 158,
+  "ip_count": 159,
   "aggregate": 86,
   "tiers": {
     "Good": 128,
-    "Medium": 22,
+    "Medium": 23,
     "High-risk": 8
   },
   "ips": [
@@ -2321,6 +2321,25 @@
     },
     {
       "ip": "mipi-csi2-rx",
+      "score": 65,
+      "tier": "Medium",
+      "breakdown": {
+        "identity": 20,
+        "interfaces": 15,
+        "parameters": 0,
+        "implementation": 10,
+        "verification": 10,
+        "provenance": 10
+      },
+      "gaps": [
+        "interfaces: interfaces[].type=bus",
+        "parameters: parameters (none declared)",
+        "implementation: asic{} or fpga{}",
+        "verification: test.testbenches"
+      ]
+    },
+    {
+      "ip": "opensecura-ispyocto",
       "score": 65,
       "tier": "Medium",
       "breakdown": {

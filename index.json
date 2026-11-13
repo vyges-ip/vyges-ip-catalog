@@ -1,11 +1,11 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-11-13T04:52:29+00:00",
-  "generated_sha": "3059c753719a212499bf9464385d8a4724a9b0a8",
+  "generated_at": "2026-11-13T13:51:28+00:00",
+  "generated_sha": "18595e77df31232dc4d3d01fed6b362bc6617574",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
-  "repo_count": 163,
-  "with_metadata": 158,
+  "repo_count": 164,
+  "with_metadata": 159,
   "without_metadata": 2,
   "ips": [
     {
@@ -2264,6 +2264,36 @@
         "maturity": "rtl_verified",
         "license": "Apache-2.0",
         "summary": "Analog temperature sensor generator designed for SKY130 and GF180 process nodes, providing automated synthesis and optimization for temperature sensing applicat"
+      }
+    },
+    {
+      "repo": "vyges-ip/opensecura-ispyocto",
+      "name": "opensecura-ispyocto",
+      "version": "0.1.0",
+      "content_hash": "8ea36ec6c5a315f0923cece87c20749426aefd8308e4e6c0996902d4708c4adb",
+      "default_branch": "main",
+      "metadata_path": "metadata/opensecura-ispyocto.json",
+      "manifest_url": "https://raw.githubusercontent.com/vyges-ip/opensecura-ispyocto/main/vyges-metadata.json",
+      "search": {
+        "category": null,
+        "subcategories": [
+          {
+            "main_category": "Signal Processing",
+            "sub_category": "Image Signal Processing"
+          }
+        ],
+        "keywords": [
+          {
+            "main_category": "Signal Processing",
+            "sub_category": "Image Signal Processing"
+          }
+        ],
+        "design_type": [
+          "digital"
+        ],
+        "maturity": "prototype",
+        "license": "Apache-2.0",
+        "summary": "ISPYocto: an image signal processor from the VeriSilicon ISP8000 family, customized for Open Se Cura and released under Apache-2.0. Takes a parallel Bayer senso"
       }
     },
     {
