@@ -1,7 +1,7 @@
 {
   "schema": "vyges-ip-catalog/index-v1",
-  "generated_at": "2026-11-15T13:23:12+00:00",
-  "generated_sha": "027ffb81f3aee9306bf80dcdcadefc79176c48a0",
+  "generated_at": "2026-11-15T18:01:33+00:00",
+  "generated_sha": "5294b8a9e79bed1f6b2a09f1f7793772b53948ef",
   "repo": "vyges-ip/vyges-ip-catalog",
   "org": "vyges-ip",
   "repo_count": 164,
@@ -2119,7 +2119,7 @@
       "repo": "vyges-ip/litedram",
       "name": "litedram",
       "version": "0.1.0",
-      "content_hash": "6706971a97a37c7ddd23bc524c0437c18fea498dc3e8fbd80b8fccbe3588af29",
+      "content_hash": "da78db27452165336a0da9cf4fb7f88d2a490697a7e17acb9953b08e6ee5ef11",
       "default_branch": "main",
       "metadata_path": "metadata/litedram.json",
       "manifest_url": "https://raw.githubusercontent.com/vyges-ip/litedram/main/vyges-metadata.json",

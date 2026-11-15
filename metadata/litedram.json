@@ -14,7 +14,7 @@
     "digital"
   ],
   "created": "2026-06-24T06:00:13Z",
-  "updated": "2026-06-24T18:17:56Z",
+  "updated": "2026-11-15T17:54:34Z",
   "source": {
     "type": "git",
     "url": "https://github.com/enjoy-digital/litedram",
@@ -360,7 +360,7 @@
     "soc_generator_hints": {
       "top_module": "litedram_core",
       "generated": true,
-      "note": "Generated core; AXI user port = user_port_axi_0_* (not s_axi_*); needs vyges_litedram_axi_adapter for the xbar m_axi_dram (prefix/addr/user_clk/wb_ctrl). See soc-generator socs/home_robot/litedram/."
+      "note": "Generated core; AXI user port = user_port_axi_0_* (not s_axi_*); needs vyges_litedram_axi_adapter for the xbar m_axi_dram (prefix/addr/user_clk/wb_ctrl)."
     }
   },
   "branding": {
